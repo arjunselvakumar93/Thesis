@@ -1,3 +1,4 @@
+import re
 from collections import defaultdict
 from typing import Optional
 
@@ -58,8 +59,15 @@ class FormulaAnnoType(AnnoType[FormulaAnnoState]):
             notations_by_argument_ranges[tuple(arg_ranges)].append(notation)
 
         # for level 2, argument order is irrelevant
-        arg_ranges_sorted = sorted(set(tuple(sorted(ar)) for ar in notations_by_argument_ranges.keys()))
-
+        arg_ranges_sorted = sorted(
+            set(tuple(sorted(ar)) for ar in notations_by_argument_ranges.keys()),
+            key=lambda ar: -max(
+                len(re.sub(r'#\d', '', notation))
+                for ranges, matching_notations in notations_by_argument_ranges.items()
+                if tuple(sorted(ranges)) == ar
+                for notation in matching_notations
+            )
+        )
         return notations_by_argument_ranges, arg_ranges_sorted
 
     def show_current_state(self):
@@ -114,7 +122,7 @@ class FormulaAnnoType(AnnoType[FormulaAnnoState]):
                         for n in notations_by_argument_ranges[arg_range]:
                             for symbol, macroname in notations[n]:
                                 symbols.append(symbol)
-                                substitutions.append(f'\\{macroname}' + ''.join('{' + string[a:b] + '}' for a, b in arg_range))
+                                substitutions.append(f'\\{macroname}' + ''.join('{' + string[a:b].strip() + '}' for a, b in arg_range))
                 make_annotation_cmd = MakeAnnotationCommand(self.name, symbols, substitutions, self.snify_state, self.show_current_state)
 
         return CommandCollection(
