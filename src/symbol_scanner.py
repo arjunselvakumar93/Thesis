@@ -8,12 +8,6 @@ PAPERS_DIR = Path(__file__).resolve().parents[1] / "papers"
 def remove_latex_comment(line):
     """
     Remove the comment part of a LaTeX line.
-
-    Example:
-        x = \\sqrt{4} % comment
-
-    becomes:
-        x = \\sqrt{4}
     """
 
     comment_position = line.find("%")
@@ -24,67 +18,144 @@ def remove_latex_comment(line):
     return line
 
 
-def extract_braced_expression(line, position, symbol):
+def find_matching_brace(text, opening_position):
     """
-    Extract the complete LaTeX expression belonging to a symbol.
+    Find the closing brace that belongs to an opening brace.
 
-    Example:
+    Nested braces are supported.
+    """
 
-        \\sqrt{3}
+    if (
+        opening_position >= len(text)
+        or text[opening_position] != "{"
+    ):
+        return None
 
-    becomes:
+    depth = 0
 
-        \\sqrt{3}
+    for index in range(
+        opening_position,
+        len(text)
+    ):
 
-    It also works with nested expressions such as:
+        if text[index] == "{":
+            depth += 1
 
-        \\sqrt{\\frac{B^2}{4} - C}
+        elif text[index] == "}":
+            depth -= 1
+
+            if depth == 0:
+                return index
+
+    return None
+
+
+def extract_command_with_arguments(
+    line,
+    position,
+    symbol,
+    argument_count
+):
+    """
+    Extract a LaTeX command together with its braced arguments.
+
+    One-argument example:
+
+        sqrt-style command with {x}
+
+    Two-argument example:
+
+        frac-style command with {a}{b}
+
+    Returns:
+
+        complete expression
+        list of extracted arguments
     """
 
     start = position
-
-    # Move to the character immediately after the symbol
     current = position + len(symbol)
 
-    # Ignore spaces after the symbol
-    while current < len(line) and line[current].isspace():
-        current += 1
+    arguments = []
 
-    # If the symbol is not followed by {
-    # return only the symbol
-    if current >= len(line) or line[current] != "{":
-        return symbol
+    for _ in range(argument_count):
 
-    brace_depth = 0
+        # Allow spaces between the command and an argument
+        while (
+            current < len(line)
+            and line[current].isspace()
+        ):
+            current += 1
 
-    # Read characters until the matching closing brace is found
-    for index in range(current, len(line)):
+        # Every argument must begin with {
+        if (
+            current >= len(line)
+            or line[current] != "{"
+        ):
+            return symbol, []
 
-        if line[index] == "{":
-            brace_depth += 1
+        closing_position = find_matching_brace(
+            line,
+            current
+        )
 
-        elif line[index] == "}":
-            brace_depth -= 1
+        if closing_position is None:
+            return symbol, []
 
-            # We found the closing brace belonging to the symbol
-            if brace_depth == 0:
-                return line[start:index + 1]
+        # Store the inside of the braces
+        argument = line[
+            current + 1:
+            closing_position
+        ]
 
-    # If something is incomplete, return only the symbol
-    return symbol
+        arguments.append(argument)
+
+        current = closing_position + 1
+
+    expression = line[
+        start:current
+    ]
+
+    return expression, arguments
 
 
-def find_symbol_occurrences(symbol):
+def extract_braced_expression(
+    line,
+    position,
+    symbol
+):
     """
-    Search all .tex files inside the papers folder.
+    Compatibility helper for the old one-argument workflow.
+    """
 
-    Return information about every occurrence of
-    the selected LaTeX symbol.
+    expression, _ = extract_command_with_arguments(
+        line,
+        position,
+        symbol,
+        1
+    )
+
+    return expression
+
+
+def find_symbol_occurrences(
+    symbol,
+    argument_count=1
+):
+    """
+    Search all TeX files for occurrences of a LaTeX command.
+
+    argument_count controls how many braced arguments
+    are expected.
+
+    Examples:
+
+        sqrt-style command -> 1 argument
+        frac-style command -> 2 arguments
     """
 
     matches = []
 
-    # Search all .tex files, including files inside subfolders
     for tex_file in PAPERS_DIR.rglob("*.tex"):
 
         lines = tex_file.read_text(
@@ -92,81 +163,161 @@ def find_symbol_occurrences(symbol):
             errors="replace"
         ).splitlines()
 
-        # Check every line
-        for line_number, original_line in enumerate(lines, start=1):
+        for line_number, original_line in enumerate(
+            lines,
+            start=1
+        ):
 
-            # Ignore LaTeX comments
-            line = remove_latex_comment(original_line)
+            line = remove_latex_comment(
+                original_line
+            )
 
             search_position = 0
 
-            # A line can contain the same symbol more than once
             while True:
 
-                position = line.find(symbol, search_position)
+                position = line.find(
+                    symbol,
+                    search_position
+                )
 
-                # No more matches on this line
                 if position == -1:
                     break
 
-                # Extract the complete expression
-                matched_expression = extract_braced_expression(
+                (
+                    matched_expression,
+                    arguments
+                ) = extract_command_with_arguments(
                     line,
                     position,
-                    symbol
+                    symbol,
+                    argument_count
                 )
 
-                matches.append(
-                    {
-                        "file": tex_file,
-                        "line": line_number,
-                        "column": position + 1,
-                        "text": line.rstrip(),
-                        "matched_expression": matched_expression
-                    }
-                )
+                # Only keep candidates whose argument
+                # structure matches what we expect.
+                if len(arguments) == argument_count:
 
-                # Continue searching after this occurrence
-                search_position = position + len(symbol)
+                    matches.append(
+                        {
+                            "file": tex_file,
+                            "line": line_number,
+                            "column": position + 1,
+                            "text": line.rstrip(),
+                            "matched_expression":
+                                matched_expression,
+                            "arguments":
+                                arguments
+                        }
+                    )
+
+                search_position = (
+                    position + len(symbol)
+                )
 
     return matches
 
 
 def main():
     """
-    Run the symbol scanner from the terminal.
+    Run the scanner manually from the terminal.
     """
 
     symbol = input(
-        r"Enter a LaTeX symbol, for example \sqrt: "
+        r"Enter LaTeX symbol, for example \sqrt or \frac: "
     ).strip()
 
-    # Stop if the user enters nothing
     if not symbol:
         print("No symbol was entered.")
         return
 
-    matches = find_symbol_occurrences(symbol)
+    argument_input = input(
+        "Number of braced arguments "
+        "(press Enter for 1): "
+    ).strip()
+
+    if not argument_input:
+        argument_count = 1
+
+    else:
+
+        try:
+            argument_count = int(
+                argument_input
+            )
+
+        except ValueError:
+            print(
+                "Argument count must be a number."
+            )
+            return
+
+    matches = find_symbol_occurrences(
+        symbol,
+        argument_count
+    )
 
     print()
-    print(f"Found {len(matches)} occurrence(s).")
+    print(
+        f"Found {len(matches)} "
+        "matching occurrence(s)."
+    )
     print()
 
-    # Display every result
-    for number, match in enumerate(matches, start=1):
+    for number, match in enumerate(
+        matches,
+        start=1
+    ):
 
         print("=" * 60)
-        print(f"Candidate {number} of {len(matches)}")
+
+        print(
+            f"Candidate {number} "
+            f"of {len(matches)}"
+        )
+
         print()
-        print(f"File: {match['file'].name}")
-        print(f"Line: {match['line']}")
-        print(f"Column: {match['column']}")
+
+        print(
+            f"File: {match['file'].name}"
+        )
+
+        print(
+            f"Line: {match['line']}"
+        )
+
+        print(
+            f"Column: {match['column']}"
+        )
+
         print()
-        print(f"Full text:")
-        print(match["text"])
+
+        print("Full text:")
+        print(
+            match["text"]
+        )
+
         print()
+
         print("Matched expression:")
-        print(match["matched_expression"])
+        print(
+            match["matched_expression"]
+        )
+
+        print()
+
+        print("Extracted arguments:")
+
+        for argument_number, argument in enumerate(
+            match["arguments"],
+            start=1
+        ):
+
+            print(
+                f"Argument {argument_number}: "
+                f"{argument}"
+            )
+
         print()
 
 

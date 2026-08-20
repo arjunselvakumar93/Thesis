@@ -2,10 +2,8 @@ import re
 from pathlib import Path
 
 
-# Main project folder
 PROJECT_DIR = Path(__file__).resolve().parents[1]
 
-# SMGloM arithmetic source files
 SMGLOM_DIR = (
     PROJECT_DIR
     / "reference"
@@ -16,15 +14,7 @@ SMGLOM_DIR = (
 
 def get_module_name(line):
     """
-    Read the name of an sTeX module.
-
-    Example:
-
-    \\begin{smodule}[title={General Arithmetics}]{arithmetics}
-
-    returns:
-
-    arithmetics
+    Read an sTeX module name.
     """
 
     match = re.search(
@@ -40,13 +30,7 @@ def get_module_name(line):
 
 def get_symdef_information(line):
     """
-    Extract information from a simple \\symdef declaration.
-
-    We try to obtain:
-
-    - semantic macro name
-    - number of arguments
-    - human-readable meaning
+    Extract information from a symdef declaration.
     """
 
     macro_match = re.search(
@@ -88,23 +72,46 @@ def get_symdef_information(line):
     }
 
 
-def find_symbol_definitions(symbol, required_args=None):
+def get_notation_target(line):
     """
-    Search SMGloM for semantic definitions that contain
-    the selected visible LaTeX symbol.
-
-    required_args can be used to filter by argument count.
+    Read the semantic symbol used by a notation declaration.
 
     Example:
 
-        symbol = \\sqrt
-        required_args = 1
+        \\notation{adivide}[...]{\\frac{#1}{#2}}
 
-    keeps square-root definitions such as \\asqrt
-    but removes two-argument root definitions such as \\aroot.
+    returns:
+
+        adivide
     """
 
-    results = []
+    match = re.search(
+        r"\\notation\{([^}]+)\}",
+        line
+    )
+
+    if not match:
+        return None
+
+    target = match.group(1)
+
+    # Handle qualified names such as:
+    # arithmetics?exponentiation
+    if "?" in target:
+        target = target.split("?")[-1]
+
+    return target
+
+
+def build_symdef_index():
+    """
+    Build an index of semantic symbols found in SMGloM.
+
+    The index lets us connect a notation declaration
+    with the corresponding symdef.
+    """
+
+    index = {}
 
     for tex_file in SMGLOM_DIR.rglob("*.tex"):
 
@@ -128,38 +135,158 @@ def find_symbol_definitions(symbol, required_args=None):
             if "\\symdef" not in line:
                 continue
 
-            if symbol not in line:
-                continue
-
             information = get_symdef_information(line)
 
             if information is None:
                 continue
 
-            # Filter by number of arguments
-            if required_args is not None:
+            key = (
+                current_module,
+                information["macro"]
+            )
 
-                if information["args"] != str(required_args):
+            index[key] = {
+                "macro": information["macro"],
+                "args": information["args"],
+                "name": information["name"],
+                "module": current_module,
+                "file": tex_file,
+                "line": line_number,
+                "declaration": line.strip()
+            }
+
+    return index
+
+
+def find_symbol_definitions(
+    symbol,
+    required_args=None
+):
+    """
+    Find semantic candidates for a visible LaTeX symbol.
+
+    This function supports both:
+
+    1. visible notation directly inside symdef
+
+       example:
+       \\symdef{asqrt}[args=1,...]{\\sqrt{#1}}
+
+    2. separate notation declarations
+
+       example:
+       \\notation{adivide}[...]{\\frac{#1}{#2}}
+    """
+
+    results = []
+
+    symdef_index = build_symdef_index()
+
+    for tex_file in SMGLOM_DIR.rglob("*.tex"):
+
+        lines = tex_file.read_text(
+            encoding="utf-8",
+            errors="replace"
+        ).splitlines()
+
+        current_module = None
+
+        for line_number, line in enumerate(
+            lines,
+            start=1
+        ):
+
+            module = get_module_name(line)
+
+            if module:
+                current_module = module
+
+            # --------------------------------------
+            # Case 1: symbol appears in a symdef
+            # --------------------------------------
+
+            if "\\symdef" in line and symbol in line:
+
+                information = get_symdef_information(
+                    line
+                )
+
+                if information is None:
                     continue
 
-            results.append(
-                {
-                    "file": tex_file,
-                    "line": line_number,
-                    "module": current_module,
-                    "macro": information["macro"],
-                    "args": information["args"],
-                    "name": information["name"],
-                    "declaration": line.strip()
-                }
-            )
+                if required_args is not None:
+
+                    if (
+                        information["args"]
+                        != str(required_args)
+                    ):
+                        continue
+
+                results.append(
+                    {
+                        "file": tex_file,
+                        "line": line_number,
+                        "module": current_module,
+                        "macro": information["macro"],
+                        "args": information["args"],
+                        "name": information["name"],
+                        "source_type": "symdef",
+                        "declaration": line.strip()
+                    }
+                )
+
+            # --------------------------------------
+            # Case 2: symbol appears in notation
+            # --------------------------------------
+
+            elif "\\notation" in line and symbol in line:
+
+                target_macro = get_notation_target(
+                    line
+                )
+
+                if target_macro is None:
+                    continue
+
+                key = (
+                    current_module,
+                    target_macro
+                )
+
+                semantic_information = (
+                    symdef_index.get(key)
+                )
+
+                if semantic_information is None:
+                    continue
+
+                if required_args is not None:
+
+                    if (
+                        semantic_information["args"]
+                        != str(required_args)
+                    ):
+                        continue
+
+                results.append(
+                    {
+                        "file": tex_file,
+                        "line": line_number,
+                        "module": current_module,
+                        "macro": target_macro,
+                        "args": semantic_information["args"],
+                        "name": semantic_information["name"],
+                        "source_type": "notation",
+                        "declaration": line.strip()
+                    }
+                )
 
     return results
 
 
 def choose_candidate(results):
     """
-    Let the user choose one semantic definition.
+    Let the user choose one semantic candidate.
     """
 
     if not results:
@@ -168,6 +295,7 @@ def choose_candidate(results):
     while True:
 
         print()
+
         choice = input(
             "Choose a semantic candidate by number, "
             "or Q to quit: "
@@ -182,9 +310,12 @@ def choose_candidate(results):
 
         number = int(choice)
 
-        if number < 1 or number > len(results):
+        if (
+            number < 1
+            or number > len(results)
+        ):
             print(
-                f"Please choose a number between "
+                f"Choose a number between "
                 f"1 and {len(results)}."
             )
             continue
@@ -195,35 +326,21 @@ def choose_candidate(results):
 def main():
 
     symbol = input(
-        r"Enter LaTeX symbol, for example \sqrt: "
+        r"Enter visible LaTeX symbol, for example \sqrt or \frac: "
     ).strip()
 
     if not symbol:
         print("No symbol entered.")
         return
 
-    print()
-    print(
-        "For the current prototype we are looking "
-        "for one-argument notation."
-    )
-
-    # Our current expressions look like:
-    #
-    # \sqrt{3}
-    #
-    # so they have one argument.
-    required_args = 1
-
     results = find_symbol_definitions(
-        symbol,
-        required_args=required_args
+        symbol
     )
 
     print()
     print(
-        f"Found {len(results)} matching "
-        f"one-argument SMGloM candidate(s)."
+        f"Found {len(results)} "
+        "SMGloM candidate(s)."
     )
     print()
 
@@ -253,11 +370,8 @@ def main():
         )
 
         print(
-            f"File: {result['file'].name}"
-        )
-
-        print(
-            f"Line: {result['line']}"
+            f"Definition type: "
+            f"{result['source_type']}"
         )
 
         print()
@@ -270,18 +384,24 @@ def main():
 
         print()
 
-    selected = choose_candidate(results)
+    selected = choose_candidate(
+        results
+    )
 
     if selected is None:
 
         print()
-        print("No semantic candidate selected.")
+        print(
+            "No semantic candidate selected."
+        )
 
         return
 
     print()
     print("=" * 60)
-    print("SELECTED SEMANTIC CANDIDATE")
+    print(
+        "SELECTED SEMANTIC CANDIDATE"
+    )
     print("=" * 60)
 
     print()
@@ -295,19 +415,16 @@ def main():
     )
 
     print(
+        f"Arguments: {selected['args']}"
+    )
+
+    print(
         f"Module: {selected['module']}"
     )
 
     print(
-        f"Arguments: {selected['args']}"
-    )
-
-    print()
-
-    print("Example semantic macro:")
-
-    print(
-        f"\\{selected['macro']}{{...}}"
+        f"Definition type: "
+        f"{selected['source_type']}"
     )
 
 

@@ -1,15 +1,25 @@
 import json
 from pathlib import Path
 
-from symbol_scanner import PAPERS_DIR, find_symbol_occurrences
-from smglom_lookup import find_symbol_definitions, choose_candidate
+from symbol_scanner import (
+    PAPERS_DIR,
+    find_symbol_occurrences,
+)
+
+from smglom_lookup import (
+    find_symbol_definitions,
+    choose_candidate,
+)
 
 
 PROJECT_DIR = Path(__file__).resolve().parents[1]
 
 DECISIONS_DIR = PROJECT_DIR / "decisions"
 
-DECISION_FILE = DECISIONS_DIR / "review_results.json"
+DECISION_FILE = (
+    DECISIONS_DIR
+    / "review_results.json"
+)
 
 
 def generate_semantic_suggestion(
@@ -18,23 +28,20 @@ def generate_semantic_suggestion(
     semantic_macro
 ):
     """
-    Replace the visible LaTeX symbol with the
-    selected semantic sTeX macro.
+    Replace the visible LaTeX command with
+    the selected semantic sTeX macro.
 
-    Example:
+    Example 1:
 
-        visible symbol:
-        \sqrt
+        \\sqrt{3}
+        ->
+        \\asqrt{3}
 
-        selected semantic macro:
-        asqrt
+    Example 2:
 
-        expression:
-        \sqrt{3}
-
-    becomes:
-
-        \asqrt{3}
+        \\frac{a}{b}
+        ->
+        \\adivide{a}{b}
     """
 
     replacement = "\\" + semantic_macro
@@ -48,16 +55,16 @@ def generate_semantic_suggestion(
 
 def ask_for_decision():
     """
-    Ask whether the current suggestion should
-    be accepted, rejected, skipped, or whether
-    the review should stop.
+    Ask the user what to do with the suggestion.
     """
 
     while True:
 
         choice = input(
-            "[A] Accept  [R] Reject  "
-            "[S] Skip  [Q] Quit: "
+            "[A] Accept  "
+            "[R] Reject  "
+            "[S] Skip  "
+            "[Q] Quit: "
         ).strip().lower()
 
         if choice == "a":
@@ -72,15 +79,19 @@ def ask_for_decision():
         if choice == "q":
             return "quit"
 
-        print("Please enter A, R, S, or Q.")
+        print(
+            "Please enter A, R, S, or Q."
+        )
 
 
 def save_decisions(decisions):
     """
-    Save review decisions to JSON.
+    Save all review decisions as JSON.
     """
 
-    DECISIONS_DIR.mkdir(exist_ok=True)
+    DECISIONS_DIR.mkdir(
+        exist_ok=True
+    )
 
     DECISION_FILE.write_text(
         json.dumps(
@@ -92,16 +103,21 @@ def save_decisions(decisions):
     )
 
 
-def display_semantic_candidates(results):
+def display_semantic_candidates(
+    results
+):
     """
-    Display semantic definitions found in SMGloM.
+    Display semantic candidates found
+    automatically in SMGloM.
     """
 
     print()
+
     print(
         f"Found {len(results)} possible "
         "semantic candidate(s)."
     )
+
     print()
 
     for number, result in enumerate(
@@ -113,6 +129,7 @@ def display_semantic_candidates(results):
             f"[{number}] "
             f"\\{result['macro']} "
             f"- {result['name']} "
+            f"- arguments: {result['args']} "
             f"- module: {result['module']}"
         )
 
@@ -121,35 +138,41 @@ def display_semantic_candidates(results):
 
 def main():
 
-    # -------------------------------------------------
-    # STEP 1:
-    # User chooses the visible LaTeX notation
-    # -------------------------------------------------
+    # ---------------------------------------------
+    # STEP 1
+    # User selects visible LaTeX notation
+    # ---------------------------------------------
 
     symbol = input(
-        r"Enter LaTeX symbol, for example \sqrt: "
+        r"Enter LaTeX symbol, for example \sqrt or \frac: "
     ).strip()
 
     if not symbol:
-        print("No symbol was entered.")
+
+        print(
+            "No symbol was entered."
+        )
+
         return
 
-    # -------------------------------------------------
-    # STEP 2:
-    # Search SMGloM automatically
-    # -------------------------------------------------
+    # ---------------------------------------------
+    # STEP 2
+    # Search SMGloM
+    # ---------------------------------------------
 
-    semantic_candidates = find_symbol_definitions(
-        symbol,
-        required_args=1
+    semantic_candidates = (
+        find_symbol_definitions(
+            symbol
+        )
     )
 
     if not semantic_candidates:
 
         print()
+
         print(
-            "No matching one-argument "
-            "SMGloM definitions were found."
+            "No matching SMGloM "
+            "definitions were found."
         )
 
         return
@@ -158,10 +181,10 @@ def main():
         semantic_candidates
     )
 
-    # -------------------------------------------------
-    # STEP 3:
-    # User selects the semantic interpretation
-    # -------------------------------------------------
+    # ---------------------------------------------
+    # STEP 3
+    # User chooses semantic meaning
+    # ---------------------------------------------
 
     selected = choose_candidate(
         semantic_candidates
@@ -170,17 +193,58 @@ def main():
     if selected is None:
 
         print()
+
         print(
             "No semantic candidate selected."
         )
 
         return
 
-    semantic_macro = selected["macro"]
-    semantic_module = selected["module"]
-    semantic_meaning = selected["name"]
+    semantic_macro = selected[
+        "macro"
+    ]
+
+    semantic_module = selected[
+        "module"
+    ]
+
+    semantic_meaning = selected[
+        "name"
+    ]
+
+    argument_value = selected[
+        "args"
+    ]
+
+    # Current prototype supports
+    # numeric argument counts such as 1 or 2.
+    try:
+
+        argument_count = int(
+            argument_value
+        )
+
+    except (
+        TypeError,
+        ValueError
+    ):
+
+        print()
+
+        print(
+            "This semantic definition does not "
+            "use a simple numeric argument count."
+        )
+
+        print(
+            "It is not supported by the "
+            "current prototype yet."
+        )
+
+        return
 
     print()
+
     print(
         "Selected semantic interpretation:"
     )
@@ -197,43 +261,52 @@ def main():
         f"Module: {semantic_module}"
     )
 
-    # -------------------------------------------------
-    # STEP 4:
-    # Search the document collection
-    # -------------------------------------------------
+    print(
+        f"Arguments: {argument_count}"
+    )
+
+    # ---------------------------------------------
+    # STEP 4
+    # Search all documents
+    # ---------------------------------------------
 
     matches = find_symbol_occurrences(
-        symbol
+        symbol,
+        argument_count
     )
 
     if not matches:
 
         print()
+
         print(
-            "No occurrences were found "
-            "in the papers."
+            "No matching occurrences "
+            "were found in the papers."
         )
 
         return
 
     print()
+
     print(
         f"Found {len(matches)} occurrence(s) "
         "in the paper collection."
     )
 
     print()
+
     print(
         "Review each semantic suggestion."
     )
+
     print()
 
     decisions = []
 
-    # -------------------------------------------------
-    # STEP 5:
-    # Review candidates one by one
-    # -------------------------------------------------
+    # ---------------------------------------------
+    # STEP 5
+    # Review each occurrence
+    # ---------------------------------------------
 
     for number, match in enumerate(
         matches,
@@ -243,12 +316,16 @@ def main():
         suggestion = (
             generate_semantic_suggestion(
                 symbol,
-                match["matched_expression"],
+                match[
+                    "matched_expression"
+                ],
                 semantic_macro
             )
         )
 
-        print("=" * 60)
+        print(
+            "=" * 60
+        )
 
         print(
             f"Candidate {number} "
@@ -258,20 +335,25 @@ def main():
         print()
 
         print(
-            f"File: {match['file'].name}"
+            f"File: "
+            f"{match['file'].name}"
         )
 
         print(
-            f"Line: {match['line']}"
+            f"Line: "
+            f"{match['line']}"
         )
 
         print(
-            f"Column: {match['column']}"
+            f"Column: "
+            f"{match['column']}"
         )
 
         print()
 
-        print("Full text:")
+        print(
+            "Full text:"
+        )
 
         print(
             match["text"]
@@ -279,11 +361,35 @@ def main():
 
         print()
 
-        print("Matched expression:")
+        print(
+            "Matched expression:"
+        )
 
         print(
-            match["matched_expression"]
+            match[
+                "matched_expression"
+            ]
         )
+
+        print()
+
+        print(
+            "Extracted arguments:"
+        )
+
+        for (
+            argument_number,
+            argument
+        ) in enumerate(
+            match["arguments"],
+            start=1
+        ):
+
+            print(
+                f"Argument "
+                f"{argument_number}: "
+                f"{argument}"
+            )
 
         print()
 
@@ -297,11 +403,14 @@ def main():
 
         print()
 
-        decision = ask_for_decision()
+        decision = (
+            ask_for_decision()
+        )
 
         if decision == "quit":
 
             print()
+
             print(
                 "Review stopped by user."
             )
@@ -322,21 +431,37 @@ def main():
                 "semantic_module":
                     semantic_module,
 
+                "argument_count":
+                    argument_count,
+
+                "arguments":
+                    match[
+                        "arguments"
+                    ],
+
                 "file":
                     str(
-                        match["file"].relative_to(
+                        match[
+                            "file"
+                        ].relative_to(
                             PAPERS_DIR
                         )
                     ),
 
                 "line":
-                    match["line"],
+                    match[
+                        "line"
+                    ],
 
                 "column":
-                    match["column"],
+                    match[
+                        "column"
+                    ],
 
                 "full_text":
-                    match["text"],
+                    match[
+                        "text"
+                    ],
 
                 "matched_expression":
                     match[
@@ -353,10 +478,10 @@ def main():
 
         print()
 
-    # -------------------------------------------------
-    # STEP 6:
-    # Save results
-    # -------------------------------------------------
+    # ---------------------------------------------
+    # STEP 6
+    # Save review results
+    # ---------------------------------------------
 
     save_decisions(
         decisions
