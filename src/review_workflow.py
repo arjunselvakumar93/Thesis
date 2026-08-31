@@ -84,22 +84,130 @@ def ask_for_decision():
         )
 
 
-def save_decisions(decisions):
+def load_existing_decisions():
     """
-    Save all review decisions as JSON.
+    Load previously saved review decisions.
+
+    If no decision file exists yet,
+    return an empty list.
+    """
+
+    if not DECISION_FILE.exists():
+        return []
+
+    try:
+
+        data = json.loads(
+            DECISION_FILE.read_text(
+                encoding="utf-8"
+            )
+        )
+
+    except json.JSONDecodeError:
+
+        print(
+            "Warning: Existing decision file "
+            "could not be read."
+        )
+
+        return []
+
+    if not isinstance(
+        data,
+        list
+    ):
+
+        print(
+            "Warning: Existing decision file "
+            "does not contain a list."
+        )
+
+        return []
+
+    return data
+
+
+def decision_key(
+    decision
+):
+    """
+    Create an identifier for one formula occurrence.
+
+    The file, line, column and visible symbol
+    together identify the reviewed occurrence.
+
+    If the same occurrence is reviewed again,
+    the newest decision replaces the older one.
+    """
+
+    return (
+        decision.get(
+            "file"
+        ),
+        decision.get(
+            "line"
+        ),
+        decision.get(
+            "column"
+        ),
+        decision.get(
+            "visible_symbol"
+        ),
+    )
+
+
+def save_decisions(
+    decisions
+):
+    """
+    Preserve previous review decisions
+    and add decisions from the current session.
+
+    Previous sessions are not overwritten.
+
+    If the same occurrence is reviewed again,
+    the newest decision replaces the old one.
     """
 
     DECISIONS_DIR.mkdir(
         exist_ok=True
     )
 
+    existing_decisions = (
+        load_existing_decisions()
+    )
+
+    merged_decisions = {
+        decision_key(
+            decision
+        ): decision
+        for decision
+        in existing_decisions
+    }
+
+    for decision in decisions:
+
+        merged_decisions[
+            decision_key(
+                decision
+            )
+        ] = decision
+
+    final_decisions = list(
+        merged_decisions.values()
+    )
+
     DECISION_FILE.write_text(
         json.dumps(
-            decisions,
+            final_decisions,
             indent=4,
             ensure_ascii=False
         ),
         encoding="utf-8"
+    )
+
+    return len(
+        final_decisions
     )
 
 
@@ -356,7 +464,9 @@ def main():
         )
 
         print(
-            match["text"]
+            match[
+                "text"
+            ]
         )
 
         print()
@@ -381,7 +491,9 @@ def main():
             argument_number,
             argument
         ) in enumerate(
-            match["arguments"],
+            match[
+                "arguments"
+            ],
             start=1
         ):
 
@@ -483,7 +595,7 @@ def main():
     # Save review results
     # ---------------------------------------------
 
-    save_decisions(
+    total_saved = save_decisions(
         decisions
     )
 
@@ -491,7 +603,20 @@ def main():
 
     print(
         f"Saved {len(decisions)} "
-        "decision(s) to:"
+        "decision(s) from this session."
+    )
+
+    print()
+
+    print(
+        f"Total stored decisions: "
+        f"{total_saved}"
+    )
+
+    print()
+
+    print(
+        "Decision file:"
     )
 
     print(
