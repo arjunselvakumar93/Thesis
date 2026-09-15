@@ -1,4 +1,5 @@
 import json
+import sys
 from pathlib import Path
 
 from symbol_scanner import (
@@ -10,6 +11,9 @@ from smglom_lookup import (
     find_symbol_definitions,
     choose_candidate,
 )
+from smglom_notation_extractor import scan_available_smglom
+from notation_classifier import classify_notation
+from notation_scanner import find_notation_occurrences
 
 
 PROJECT_DIR = Path(__file__).resolve().parents[1]
@@ -51,6 +55,124 @@ def generate_semantic_suggestion(
         replacement,
         1
     )
+
+
+def find_generic_candidates(symbol, records=None):
+    """Find semantic records whose classified visible notation equals symbol."""
+    if records is None:
+        records = scan_available_smglom()
+
+    definitions = {
+        (record.get("repository"), record.get("module"), record["macro"]): record
+        for record in records
+        if record.get("declaration_type") == "symdef"
+    }
+    candidates = []
+    for record in records:
+        classification = classify_notation(record)
+        pattern_type = classification.get("pattern_type")
+        visible = classification.get({
+            "command": "command", "binary_infix": "operator", "sequence": "separator"
+        }.get(pattern_type, ""))
+        if visible != symbol:
+            continue
+
+        if record.get("declaration_type") == "symdef":
+            definition = record
+            macro = record["macro"]
+        else:
+            macro = record.get("target", "").rsplit("?", 1)[-1]
+            definition = definitions.get(
+                (record.get("repository"), record.get("module"), macro)
+            )
+            if definition is None:
+                continue
+
+        candidates.append({
+            "macro": macro,
+            "name": definition.get("name"),
+            "args": definition.get("args"),
+            "module": definition.get("module"),
+            "repository": record.get("repository"),
+            "record": record,
+            "classification": classification,
+        })
+    return candidates
+
+
+def generate_classified_suggestion(match, candidate):
+    """Build a semantic macro call from a classified notation match."""
+    pattern_type = candidate["classification"].get("pattern_type")
+    arguments = match.get("arguments", [])
+    if match.get("pattern_type") != pattern_type or not arguments:
+        return None
+
+    macro = "\\" + candidate["macro"]
+    if pattern_type == "sequence":
+        if candidate.get("args") != "a" or len(arguments) < 2:
+            return None
+        return macro + "{" + ",".join(arguments) + "}"
+
+    if pattern_type in {"command", "binary_infix"}:
+        expected = candidate["classification"].get("argument_count")
+        if expected != len(arguments):
+            return None
+        return macro + "".join("{" + argument + "}" for argument in arguments)
+
+    return None
+
+
+def run_generic_review(symbol, candidates, papers_dir=PAPERS_DIR):
+    """Review classified matches and persist the human's decisions."""
+    display_semantic_candidates(candidates)
+    selected = choose_candidate(candidates)
+    if selected is None:
+        print("No semantic candidate selected.")
+        return 0
+
+    matches = find_notation_occurrences(selected["classification"], papers_dir)
+    if not matches:
+        print("No matching occurrences were found in the papers.")
+        return 0
+
+    print(f"Found {len(matches)} occurrence(s) in the paper collection.")
+    decisions = []
+    for number, match in enumerate(matches, start=1):
+        suggestion = generate_classified_suggestion(match, selected)
+        if suggestion is None:
+            continue
+        print("=" * 60)
+        print(f"Candidate {number} of {len(matches)}")
+        print(f"File: {match['file'].name}")
+        print(f"Line: {match['line']}  Column: {match['column']}")
+        print(f"Full text: {match['text']}")
+        print(f"Matched expression: {match['matched_expression']}")
+        print(f"Extracted arguments: {match['arguments']}")
+        print(f"Semantic sTeX suggestion: {suggestion}")
+        decision = ask_for_decision()
+        if decision == "quit":
+            break
+        decisions.append({
+            "visible_symbol": symbol,
+            "semantic_macro": selected["macro"],
+            "semantic_meaning": selected["name"],
+            "semantic_module": selected["module"],
+            "pattern_type": match["pattern_type"],
+            "argument_count": len(match["arguments"]),
+            "arguments": match["arguments"],
+            "file": str(match["file"].relative_to(papers_dir)),
+            "line": match["line"],
+            "column": match["column"],
+            "full_text": match["text"],
+            "matched_expression": match["matched_expression"],
+            "semantic_suggestion": suggestion,
+            "decision": decision,
+        })
+
+    total = save_decisions(decisions)
+    print(f"Saved {len(decisions)} decision(s). Total stored: {total}")
+    print(f"Decision file: {DECISION_FILE}")
+    return len(decisions)
 
 
 def ask_for_decision():
@@ -262,6 +384,15 @@ def main():
         )
 
         return
+
+    if "--legacy" not in sys.argv[1:]:
+        generic_candidates = find_generic_candidates(symbol)
+        if generic_candidates:
+            run_generic_review(symbol, generic_candidates)
+            return
+        if not symbol.startswith("\\"):
+            print("No supported SMGloM notation rule was found for this symbol.")
+            return
 
     # ---------------------------------------------
     # STEP 2

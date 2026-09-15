@@ -1,4 +1,4 @@
-"""Scan paper lines using rules derived from extracted SMGloM records."""
+"""Scan paper lines using classified SMGloM notation rules."""
 
 from pathlib import Path
 
@@ -20,13 +20,17 @@ def uncommented_prefix(line):
     return line
 
 
-def find_notation_occurrences(record, papers_dir=PAPERS_DIR):
-    """Classify one extracted record and search all paper TeX files.
+def find_notation_occurrences(rule_or_record, papers_dir=PAPERS_DIR):
+    """Search all paper TeX files with a classification or extracted record.
 
     Unsupported classifications produce no suggestions. Matching remains
     line based so the reported column is usable by the annotation applier.
     """
-    classification = classify_notation(record)
+    classification = (
+        rule_or_record
+        if "pattern_type" in rule_or_record
+        else classify_notation(rule_or_record)
+    )
     if classification.get("pattern_type") not in {
         "command", "binary_infix", "sequence"
     }:

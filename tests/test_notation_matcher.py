@@ -87,11 +87,15 @@ class TestNotationMatcher(unittest.TestCase):
         plus = classify_notation(parse_symdef(
             r"\symdef{natplus}[args=a]{\argsep{#1}{\mathbin{\maincomp+}}}"
         ))
+        minus = classify_notation(parse_symdef(
+            r"\symdef{natminus}[args=a]{\argsep{#1}{\mathbin{\maincomp-}}}"
+        ))
         greater = classify_notation(parse_symdef(
             r"\symdef{natmorethan}[args=ai]{#1\mathrel{\maincomp{>}}#2}"
         ))
         fraction = classify_notation({"notation": r"\frac{#1}{#2}", "placeholders": [1, 2]})
         for text, rule in (("a +", plus), ("+ b", plus), ("a ++ b", plus),
+                           ("A+b+", plus), ("- b", minus), ("A-B-", minus),
                            ("a >", greater), ("> b", greater),
                            (r"\frac{a}", fraction), (r"\frac", fraction)):
             with self.subTest(text=text):

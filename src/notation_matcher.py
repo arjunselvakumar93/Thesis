@@ -541,6 +541,7 @@ def match_sequence_notation(
         current = (
             first["end"]
         )
+        incomplete = False
 
         while True:
 
@@ -563,6 +564,8 @@ def match_sequence_notation(
             )
 
             if not is_valid_operand(next_argument):
+                incomplete = True
+                current = separator_position + len(separator)
                 break
 
             arguments.append(
@@ -577,7 +580,12 @@ def match_sequence_notation(
                 next_argument["end"]
             )
 
-        if len(arguments) >= 2:
+        if incomplete:
+            # A dangling separator makes the whole sequence incomplete.
+            # Do not return its valid-looking prefix as a confident match.
+            position = current
+
+        elif len(arguments) >= 2:
 
             matches.append(
                 {
