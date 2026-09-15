@@ -20,7 +20,7 @@ def remove_latex_comment(line):
 
 def find_matching_brace(text, opening_position):
     """
-    Find the closing brace that belongs to an opening brace.
+    Find the closing brace belonging to an opening brace.
 
     Nested braces are supported.
     """
@@ -50,6 +50,117 @@ def find_matching_brace(text, opening_position):
     return None
 
 
+def read_tex_argument(text, position):
+    """
+    Read one TeX argument.
+
+    A TeX argument can be:
+
+    1. A braced group:
+       {a+b}
+
+    2. A single character/token:
+       a
+
+    3. A control sequence:
+       \\alpha
+
+    Returns:
+
+        argument
+        next position
+
+    If no valid argument exists:
+
+        None
+        original position
+    """
+
+    current = position
+
+    # Ignore whitespace before the argument
+    while (
+        current < len(text)
+        and text[current].isspace()
+    ):
+        current += 1
+
+    if current >= len(text):
+        return None, position
+
+    # Case 1:
+    # Braced argument
+    #
+    # Example:
+    # {a+b}
+    if text[current] == "{":
+
+        closing_position = find_matching_brace(
+            text,
+            current
+        )
+
+        if closing_position is None:
+            return None, position
+
+        argument = text[
+            current + 1:
+            closing_position
+        ]
+
+        return (
+            argument,
+            closing_position + 1
+        )
+
+    # Case 2:
+    # LaTeX control sequence
+    #
+    # Example:
+    # \alpha
+    if text[current] == "\\":
+
+        start = current
+        current += 1
+
+        if current >= len(text):
+            return "\\", current
+
+        # Control word:
+        # \alpha
+        if text[current].isalpha():
+
+            while (
+                current < len(text)
+                and text[current].isalpha()
+            ):
+                current += 1
+
+        # Control symbol:
+        # \,
+        # \%
+        else:
+            current += 1
+
+        argument = text[
+            start:current
+        ]
+
+        return argument, current
+
+    # Case 3:
+    # Single TeX token
+    #
+    # Example:
+    # a
+    argument = text[current]
+
+    return (
+        argument,
+        current + 1
+    )
+
+
 def extract_command_with_arguments(
     line,
     position,
@@ -57,20 +168,19 @@ def extract_command_with_arguments(
     argument_count
 ):
     """
-    Extract a LaTeX command together with its braced arguments.
+    Extract a LaTeX command and its arguments.
 
-    One-argument example:
+    Arguments do not have to use braces.
 
-        sqrt-style command with {x}
+    These are all supported:
 
-    Two-argument example:
+        \\frac{a}{b}
+        \\frac a b
+        \\frac {a} b
+        \\frac a {b}
+        \\frac {a} {b}
 
-        frac-style command with {a}{b}
-
-    Returns:
-
-        complete expression
-        list of extracted arguments
+    This logic is generic and is not specific to \\frac.
     """
 
     start = position
@@ -80,37 +190,20 @@ def extract_command_with_arguments(
 
     for _ in range(argument_count):
 
-        # Allow spaces between the command and an argument
-        while (
-            current < len(line)
-            and line[current].isspace()
-        ):
-            current += 1
-
-        # Every argument must begin with {
-        if (
-            current >= len(line)
-            or line[current] != "{"
-        ):
-            return symbol, []
-
-        closing_position = find_matching_brace(
+        (
+            argument,
+            next_position
+        ) = read_tex_argument(
             line,
             current
         )
 
-        if closing_position is None:
+        if argument is None:
             return symbol, []
-
-        # Store the inside of the braces
-        argument = line[
-            current + 1:
-            closing_position
-        ]
 
         arguments.append(argument)
 
-        current = closing_position + 1
+        current = next_position
 
     expression = line[
         start:current
@@ -125,7 +218,8 @@ def extract_braced_expression(
     symbol
 ):
     """
-    Compatibility helper for the old one-argument workflow.
+    Compatibility helper for the old
+    one-argument workflow.
     """
 
     expression, _ = extract_command_with_arguments(
@@ -143,15 +237,11 @@ def find_symbol_occurrences(
     argument_count=1
 ):
     """
-    Search all TeX files for occurrences of a LaTeX command.
+    Search all TeX files for occurrences
+    of a LaTeX command.
 
-    argument_count controls how many braced arguments
-    are expected.
-
-    Examples:
-
-        sqrt-style command -> 1 argument
-        frac-style command -> 2 arguments
+    The argument reader supports both
+    grouped and ungrouped TeX arguments.
     """
 
     matches = []
@@ -194,8 +284,6 @@ def find_symbol_occurrences(
                     argument_count
                 )
 
-                # Only keep candidates whose argument
-                # structure matches what we expect.
                 if len(arguments) == argument_count:
 
                     matches.append(
@@ -220,7 +308,8 @@ def find_symbol_occurrences(
 
 def main():
     """
-    Run the scanner manually from the terminal.
+    Run the scanner manually
+    from the terminal.
     """
 
     symbol = input(
@@ -232,7 +321,7 @@ def main():
         return
 
     argument_input = input(
-        "Number of braced arguments "
+        "Number of arguments "
         "(press Enter for 1): "
     ).strip()
 
