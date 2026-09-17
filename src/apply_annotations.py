@@ -21,13 +21,15 @@ OUTPUT_DIR = (
 )
 
 
-def build_module_declaration(module_name):
+def build_module_declaration(module_name, repository="arithmetics"):
     """
     Create the required external sTeX module declaration.
     """
 
     return (
-        r"\usemodule[smglom/arithmetics]{mod?"
+        "\\usemodule[smglom/"
+        + repository
+        + "]{mod?"
         + module_name
         + "}"
     )
@@ -84,10 +86,16 @@ def insert_required_modules(text, module_names):
 
     declarations = []
 
-    for module_name in sorted(set(module_names)):
+    module_specs = {
+        item if isinstance(item, tuple) else ("arithmetics", item)
+        for item in module_names
+    }
+
+    for repository, module_name in sorted(module_specs):
 
         declaration = build_module_declaration(
-            module_name
+            module_name,
+            repository
         )
 
         if declaration not in text:
@@ -259,7 +267,13 @@ def apply_annotations(decisions):
 
             if module_name:
                 required_modules.append(
-                    module_name
+                    (
+                        decision.get(
+                            "semantic_repository",
+                            "arithmetics"
+                        ),
+                        module_name
+                    )
                 )
 
         text = insert_required_modules(
@@ -311,7 +325,13 @@ def main():
 
     modules = sorted(
         {
-            decision["semantic_module"]
+            (
+                decision.get(
+                    "semantic_repository",
+                    "arithmetics"
+                ),
+                decision["semantic_module"]
+            )
             for decision in accepted
             if decision.get(
                 "semantic_module"
@@ -324,11 +344,12 @@ def main():
         "Required semantic module(s):"
     )
 
-    for module in modules:
+    for repository, module in modules:
 
         print(
             build_module_declaration(
-                module
+                module,
+                repository
             )
         )
 

@@ -1,0 +1,178 @@
+"""Report stored review decisions that no longer match the current scanner."""
+
+import argparse
+import json
+import shutil
+from pathlib import Path
+
+from notation_scanner import find_notation_occurrences
+from review_workflow import find_generic_candidates
+from smglom_notation_extractor import scan_available_smglom
+from symbol_scanner import PAPERS_DIR
+
+
+PROJECT_DIR = Path(__file__).resolve().parents[1]
+DECISION_FILE = PROJECT_DIR / "decisions" / "review_results.json"
+
+
+def _normalise_file(path):
+    return str(path).replace("\\", "/")
+
+
+def decision_occurrence_key(decision):
+    return (
+        _normalise_file(decision.get("file", "")),
+        int(decision.get("line", 0)),
+        int(decision.get("column", 0)),
+        decision.get("matched_expression", ""),
+    )
+
+
+def match_occurrence_key(match, papers_dir):
+    return (
+        _normalise_file(match["file"].relative_to(papers_dir)),
+        int(match["line"]),
+        int(match["column"]),
+        match["matched_expression"],
+    )
+
+
+def _select_candidate(decision, candidates):
+    matching = [
+        candidate for candidate in candidates
+        if candidate.get("macro") == decision.get("semantic_macro")
+    ]
+    repository = decision.get("semantic_repository")
+    module = decision.get("semantic_module")
+    if repository:
+        matching = [item for item in matching if item.get("repository") == repository]
+    if module:
+        matching = [item for item in matching if item.get("module") == module]
+    return matching[0] if len(matching) == 1 else None
+
+
+def validate_decisions(decisions, records=None, papers_dir=PAPERS_DIR):
+    """Partition decisions without changing the stored decision file."""
+    if records is None:
+        records = scan_available_smglom()
+    candidates_by_symbol = {}
+    occurrences_by_candidate = {}
+    valid = []
+    stale = []
+    unverifiable = []
+
+    for index, decision in enumerate(decisions):
+        symbol = decision.get("visible_symbol")
+        macro = decision.get("semantic_macro")
+        if not symbol or not macro:
+            unverifiable.append((index, decision, "missing notation metadata"))
+            continue
+
+        if symbol not in candidates_by_symbol:
+            candidates_by_symbol[symbol] = find_generic_candidates(symbol, records)
+        candidate = _select_candidate(decision, candidates_by_symbol[symbol])
+        if candidate is None:
+            unverifiable.append((index, decision, "semantic candidate not found uniquely"))
+            continue
+
+        candidate_key = (
+            candidate.get("repository"), candidate.get("module"),
+            candidate.get("macro"), symbol,
+        )
+        if candidate_key not in occurrences_by_candidate:
+            occurrences_by_candidate[candidate_key] = {
+                match_occurrence_key(match, Path(papers_dir))
+                for match in find_notation_occurrences(
+                    candidate["classification"], papers_dir
+                )
+            }
+
+        item = (index, decision)
+        if decision_occurrence_key(decision) in occurrences_by_candidate[candidate_key]:
+            valid.append(item)
+        else:
+            stale.append(item)
+
+    return {"valid": valid, "stale": stale, "unverifiable": unverifiable}
+
+
+def remove_stale_decisions(decisions, stale_indexes, decision_file, confirmation):
+    """Remove reported entries only after exact confirmation and make a backup."""
+    if confirmation != "REMOVE":
+        return False
+    decision_file = Path(decision_file)
+    backup = decision_file.with_suffix(decision_file.suffix + ".bak")
+    shutil.copy2(decision_file, backup)
+    stale_indexes = set(stale_indexes)
+    retained = [item for index, item in enumerate(decisions) if index not in stale_indexes]
+    temporary = decision_file.with_suffix(decision_file.suffix + ".tmp")
+    temporary.write_text(
+        json.dumps(retained, indent=4, ensure_ascii=False), encoding="utf-8"
+    )
+    temporary.replace(decision_file)
+    return True
+
+
+def _describe(decision):
+    return (
+        f"{decision.get('decision', 'unknown'):8} "
+        f"{decision.get('semantic_macro', '?'):12} "
+        f"{decision.get('file', '?')}:{decision.get('line', '?')}:"
+        f"{decision.get('column', '?')}  {decision.get('matched_expression', '')!r}"
+    )
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Dry-run validation of stored notation review decisions."
+    )
+    parser.add_argument(
+        "--symbol", help="Only report one visible notation; use --symbol=- for minus."
+    )
+    parser.add_argument(
+        "--remove-stale", action="store_true",
+        help="Offer to remove reported stale entries after explicit confirmation.",
+    )
+    arguments = parser.parse_args()
+
+    if not DECISION_FILE.exists():
+        print(f"Decision file does not exist: {DECISION_FILE}")
+        return
+    decisions = json.loads(DECISION_FILE.read_text(encoding="utf-8"))
+    selected = [
+        (index, decision) for index, decision in enumerate(decisions)
+        if arguments.symbol is None or decision.get("visible_symbol") == arguments.symbol
+    ]
+    selected_decisions = [decision for _, decision in selected]
+    report = validate_decisions(selected_decisions)
+
+    print(f"Checked: {len(selected_decisions)}")
+    print(f"Current: {len(report['valid'])}")
+    print(f"Stale: {len(report['stale'])}")
+    print(f"Unverifiable: {len(report['unverifiable'])}")
+    if report["stale"]:
+        print("\nStale decisions:")
+        for _, decision in report["stale"]:
+            print(
+                _describe(decision)
+                + "  reason=current scanner no longer returns this occurrence"
+            )
+
+    if not arguments.remove_stale or not report["stale"]:
+        print("\nDry run only. No decisions were changed.")
+        return
+
+    original_indexes = [selected[index][0] for index, _ in report["stale"]]
+    confirmation = input(
+        f"Type REMOVE to delete {len(original_indexes)} stale decision(s) "
+        "after creating a .bak file: "
+    ).strip()
+    if remove_stale_decisions(decisions, original_indexes, DECISION_FILE, confirmation):
+        print(f"Removed {len(original_indexes)} stale decision(s).")
+        print(f"Backup: {DECISION_FILE.with_suffix(DECISION_FILE.suffix + '.bak')}")
+    else:
+        print("No decisions were changed.")
+
+
+if __name__ == "__main__":
+    main()

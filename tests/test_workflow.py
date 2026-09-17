@@ -245,6 +245,10 @@ class TestModuleHandling(unittest.TestCase):
             r"\usemodule[smglom/arithmetics]{mod?arithmetics}"
         )
 
+    def test_build_module_declaration_uses_record_repository(self):
+        result = build_module_declaration("equal", "mv")
+        self.assertEqual(result, r"\usemodule[smglom/mv]{mod?equal}")
+
     def test_insert_module_only_once(self):
 
         original = (

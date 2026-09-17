@@ -215,6 +215,29 @@ def parse_argsep(notation):
     }
 
 
+def add_operator_metadata(record, classification, fragment):
+    """Retain generic binding information carried by an SMGloM operator.
+
+    ``\mathrel`` is presentation metadata, rather than a property of one
+    particular visible character.  The matcher can therefore give all
+    relations complete expression operands without maintaining a list of
+    equality/ordering symbols.
+    """
+
+    if r"\mathrel" in fragment:
+        classification["operator_role"] = "relation"
+
+    precedence = record.get("options", {}).get("prec")
+    if precedence is not None:
+        try:
+            precedence = int(precedence)
+        except (TypeError, ValueError):
+            pass
+        classification["precedence"] = precedence
+
+    return classification
+
+
 def classify_notation(record):
     """
     Classify an extracted SMGloM notation.
@@ -260,7 +283,7 @@ def classify_notation(record):
 
         if information is not None:
 
-            return {
+            return add_operator_metadata(record, {
                 "pattern_type": "sequence",
                 "separator":
                     information["separator"],
@@ -269,7 +292,7 @@ def classify_notation(record):
                         "separator_fragment"
                     ],
                 "variable_arguments": True
-            }
+            }, information["separator_fragment"])
 
     # -------------------------------------------------
     # Case 2:
@@ -308,7 +331,7 @@ def classify_notation(record):
             len(stripped) - len("#2")
         ]
 
-        return {
+        return add_operator_metadata(record, {
             "pattern_type": "binary_infix",
             "operator_fragment": middle,
             "operator":
@@ -316,7 +339,7 @@ def classify_notation(record):
                     middle
                 ),
             "argument_count": 2
-        }
+        }, middle)
 
     # -------------------------------------------------
     # Case 4:

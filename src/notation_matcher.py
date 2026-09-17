@@ -1,7 +1,37 @@
+import re
+
 from symbol_scanner import (
     extract_command_with_arguments,
     find_matching_brace,
 )
+from tex_operand import (
+    is_structural_position,
+    is_valid_operand as is_valid_tex_operand,
+    read_tex_operand_left,
+    read_tex_operand_right,
+)
+from relation_expression import match_relation_notation
+
+
+PHYSICAL_LINE_BREAK = re.compile(r"[ \t\r]*\n[ \t\r]*")
+
+
+def normalize_math_expression(value):
+    """Replace source-formatting line breaks with one mathematical space."""
+    return PHYSICAL_LINE_BREAK.sub(" ", value)
+
+
+def normalize_match_expressions(matches):
+    """Normalize displayed values without changing their source offsets."""
+    for match in matches:
+        match["matched_expression"] = normalize_math_expression(
+            match["matched_expression"]
+        )
+        match["arguments"] = [
+            normalize_math_expression(argument)
+            for argument in match.get("arguments", [])
+        ]
+    return matches
 
 
 def skip_whitespace_right(text, position):
@@ -11,7 +41,7 @@ def skip_whitespace_right(text, position):
 
     while (
         position < len(text)
-        and text[position].isspace()
+        and text[position] in " \t\r"
     ):
         position += 1
 
@@ -25,7 +55,7 @@ def skip_whitespace_left(text, position):
 
     while (
         position >= 0
-        and text[position].isspace()
+        and text[position] in " \t\r"
     ):
         position -= 1
 
@@ -441,20 +471,21 @@ def match_binary_infix_notation(
         if position == -1:
             break
 
-        left = read_tex_atom_left(
+        left = read_tex_operand_left(
             text,
             position - 1
         )
 
-        right = read_tex_atom_right(
+        right = read_tex_operand_right(
             text,
             position + len(operator)
         )
 
         if (
             operator_at(text, operator, position)
-            and is_valid_operand(left)
-            and is_valid_operand(right)
+            and not is_structural_position(text, position)
+            and is_valid_tex_operand(left)
+            and is_valid_tex_operand(right)
         ):
 
             expression = text[
@@ -512,111 +543,81 @@ def match_sequence_notation(
 
     matches = []
 
-    position = 0
+    search_position = 0
 
-    while position < len(text):
-
-        first = read_tex_atom_right(
-            text,
-            position
-        )
-
-        if first is None:
+    while search_position < len(text):
+        separator_position = text.find(separator, search_position)
+        if separator_position == -1:
             break
 
-        if not is_valid_operand(first):
-            position = max(first["end"], position + 1)
+        if (
+            not operator_at(text, separator, separator_position)
+            or is_structural_position(text, separator_position)
+        ):
+            search_position = separator_position + len(separator)
             continue
 
-        arguments = [first["value"]]
-
-        sequence_start = (
-            first["start"]
+        first = read_tex_operand_left(text, separator_position - 1)
+        second = read_tex_operand_right(
+            text, separator_position + len(separator)
         )
+        if not (
+            is_valid_tex_operand(first)
+            and is_valid_tex_operand(second)
+        ):
+            search_position = separator_position + len(separator)
+            continue
 
-        sequence_end = (
-            first["end"]
-        )
-
-        current = (
-            first["end"]
-        )
+        arguments = [first["value"], second["value"]]
+        sequence_start = first["start"]
+        sequence_end = second["end"]
+        current = second["end"]
         incomplete = False
 
         while True:
-
-            separator_position = (
-                skip_whitespace_right(
-                    text,
-                    current
-                )
-            )
-
-            if not operator_at(text, separator, separator_position):
+            next_separator = skip_whitespace_right(text, current)
+            if not operator_at(text, separator, next_separator):
                 break
-
-            next_argument = (
-                read_tex_atom_right(
-                    text,
-                    separator_position
-                    + len(separator)
-                )
+            next_argument = read_tex_operand_right(
+                text, next_separator + len(separator)
             )
-
-            if not is_valid_operand(next_argument):
+            if not is_valid_tex_operand(next_argument):
                 incomplete = True
-                current = separator_position + len(separator)
+                current = next_separator + len(separator)
                 break
+            arguments.append(next_argument["value"])
+            sequence_end = next_argument["end"]
+            current = next_argument["end"]
 
-            arguments.append(
-                next_argument["value"]
+        if not incomplete:
+            matches.append({
+                "pattern_type": "sequence",
+                "matched_expression": text[sequence_start:sequence_end],
+                "separator": separator,
+                "arguments": arguments,
+                "start": sequence_start,
+                "end": sequence_end,
+            })
+        search_position = separator_position + len(separator)
+
+    unique = {
+        (match["start"], match["end"]): match
+        for match in matches
+    }
+    candidates = list(unique.values())
+    return sorted(
+        [
+            match for match in candidates
+            if not any(
+                other["start"] <= match["start"]
+                and match["end"] <= other["end"]
+                and (other["start"], other["end"])
+                    != (match["start"], match["end"])
+                for other in candidates
             )
-
-            sequence_end = (
-                next_argument["end"]
-            )
-
-            current = (
-                next_argument["end"]
-            )
-
-        if incomplete:
-            # A dangling separator makes the whole sequence incomplete.
-            # Do not return its valid-looking prefix as a confident match.
-            position = current
-
-        elif len(arguments) >= 2:
-
-            matches.append(
-                {
-                    "pattern_type":
-                        "sequence",
-                    "matched_expression":
-                        text[
-                            sequence_start:
-                            sequence_end
-                        ],
-                    "separator":
-                        separator,
-                    "arguments":
-                        arguments,
-                    "start":
-                        sequence_start,
-                    "end":
-                        sequence_end
-                }
-            )
-
-            position = sequence_end
-
-        else:
-
-            position = max(
-                first["end"],
-                position + 1
-            )
-
-    return matches
+        ],
+        key=lambda match: (match["start"], match["end"]),
+    )
 
 
 def match_notation(
@@ -635,26 +636,37 @@ def match_notation(
         "pattern_type"
     )
 
+    if (
+        classification.get("operator_role") == "relation"
+        and pattern_type in {"binary_infix", "sequence"}
+    ):
+        return normalize_match_expressions(match_relation_notation(
+            text,
+            classification,
+            operator_at,
+            is_structural_position,
+        ))
+
     if pattern_type == "command":
 
-        return match_command_notation(
+        return normalize_match_expressions(match_command_notation(
             text,
             classification
-        )
+        ))
 
     if pattern_type == "binary_infix":
 
-        return match_binary_infix_notation(
+        return normalize_match_expressions(match_binary_infix_notation(
             text,
             classification
-        )
+        ))
 
     if pattern_type == "sequence":
 
-        return match_sequence_notation(
+        return normalize_match_expressions(match_sequence_notation(
             text,
             classification
-        )
+        ))
 
     return []
 

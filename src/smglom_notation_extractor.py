@@ -6,6 +6,12 @@ from pathlib import Path
 PROJECT_DIR = Path(__file__).resolve().parents[1]
 
 SMGLOM_REPOSITORIES = {
+    "mv": (
+        PROJECT_DIR
+        / "reference"
+        / "mv"
+        / "source"
+    ),
     "arithmetics": (
         PROJECT_DIR
         / "reference"

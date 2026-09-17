@@ -14,6 +14,7 @@ from smglom_lookup import (
 from smglom_notation_extractor import scan_available_smglom
 from notation_classifier import classify_notation
 from notation_scanner import find_notation_occurrences
+from tex_notation_aliases import canonicalize_tex_notation
 
 
 PROJECT_DIR = Path(__file__).resolve().parents[1]
@@ -74,7 +75,7 @@ def find_generic_candidates(symbol, records=None):
         visible = classification.get({
             "command": "command", "binary_infix": "operator", "sequence": "separator"
         }.get(pattern_type, ""))
-        if visible != symbol:
+        if canonicalize_tex_notation(visible) != canonicalize_tex_notation(symbol):
             continue
 
         if record.get("declaration_type") == "symdef":
@@ -147,16 +148,18 @@ def run_generic_review(symbol, candidates, papers_dir=PAPERS_DIR):
         print(f"Line: {match['line']}  Column: {match['column']}")
         print(f"Full text: {match['text']}")
         print(f"Matched expression: {match['matched_expression']}")
+        print(f"Matched visible notation: {match['matched_visible_notation']}")
         print(f"Extracted arguments: {match['arguments']}")
         print(f"Semantic sTeX suggestion: {suggestion}")
         decision = ask_for_decision()
         if decision == "quit":
             break
         decisions.append({
-            "visible_symbol": symbol,
+            "visible_symbol": match["matched_visible_notation"],
             "semantic_macro": selected["macro"],
             "semantic_meaning": selected["name"],
             "semantic_module": selected["module"],
+            "semantic_repository": selected["repository"],
             "pattern_type": match["pattern_type"],
             "argument_count": len(match["arguments"]),
             "arguments": match["arguments"],
@@ -172,6 +175,8 @@ def run_generic_review(symbol, candidates, papers_dir=PAPERS_DIR):
     total = save_decisions(decisions)
     print(f"Saved {len(decisions)} decision(s). Total stored: {total}")
     print(f"Decision file: {DECISION_FILE}")
+    if any(item["decision"] == "accepted" for item in decisions):
+        print("Run 'py src/apply_annotations.py' to create annotated copies.")
     return len(decisions)
 
 
@@ -374,7 +379,7 @@ def main():
     # ---------------------------------------------
 
     symbol = input(
-        r"Enter LaTeX symbol, for example \sqrt or \frac: "
+        r"Enter visible notation (for example +, -, <, >, =, /, \ne, \times, \cdot, or \frac): "
     ).strip()
 
     if not symbol:
