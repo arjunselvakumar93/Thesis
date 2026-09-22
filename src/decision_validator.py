@@ -1,12 +1,13 @@
 """Report stored review decisions that no longer match the current scanner."""
 
 import argparse
+import hashlib
 import json
 import shutil
 from pathlib import Path
 
 from notation_scanner import find_notation_occurrences
-from review_workflow import find_generic_candidates
+from review_workflow import find_generic_candidates, find_expression_candidates
 from smglom_notation_extractor import scan_available_smglom
 from symbol_scanner import PAPERS_DIR
 
@@ -29,8 +30,10 @@ def decision_occurrence_key(decision):
 
 
 def match_occurrence_key(match, papers_dir):
+    base = Path(papers_dir)
+    relative = match["file"].name if base.is_file() else match["file"].relative_to(base)
     return (
-        _normalise_file(match["file"].relative_to(papers_dir)),
+        _normalise_file(relative),
         int(match["line"]),
         int(match["column"]),
         match["matched_expression"],
@@ -58,6 +61,7 @@ def validate_decisions(decisions, records=None, papers_dir=PAPERS_DIR):
     candidates_by_symbol = {}
     occurrences_by_candidate = {}
     valid = []
+    valid_matches = []
     stale = []
     unverifiable = []
 
@@ -68,9 +72,12 @@ def validate_decisions(decisions, records=None, papers_dir=PAPERS_DIR):
             unverifiable.append((index, decision, "missing notation metadata"))
             continue
 
-        if symbol not in candidates_by_symbol:
-            candidates_by_symbol[symbol] = find_generic_candidates(symbol, records)
-        candidate = _select_candidate(decision, candidates_by_symbol[symbol])
+        search_key = (symbol, json.dumps(decision.get("expression_config"), sort_keys=True))
+        if search_key not in candidates_by_symbol:
+            candidates_by_symbol[search_key] = (
+                find_expression_candidates(symbol, decision["expression_config"], records)
+                if "expression_config" in decision else find_generic_candidates(symbol, records))
+        candidate = _select_candidate(decision, candidates_by_symbol[search_key])
         if candidate is None:
             unverifiable.append((index, decision, "semantic candidate not found uniquely"))
             continue
@@ -78,22 +85,49 @@ def validate_decisions(decisions, records=None, papers_dir=PAPERS_DIR):
         candidate_key = (
             candidate.get("repository"), candidate.get("module"),
             candidate.get("macro"), symbol,
+            json.dumps(decision.get("expression_config"), sort_keys=True),
         )
+        classification = dict(candidate["classification"])
+        if "expression_config" in decision:
+            classification["expression_config"] = decision["expression_config"]
         if candidate_key not in occurrences_by_candidate:
             occurrences_by_candidate[candidate_key] = {
-                match_occurrence_key(match, Path(papers_dir))
+                match_occurrence_key(match, Path(papers_dir)): match
                 for match in find_notation_occurrences(
-                    candidate["classification"], papers_dir
+                    classification, papers_dir
                 )
             }
 
         item = (index, decision)
-        if decision_occurrence_key(decision) in occurrences_by_candidate[candidate_key]:
+        matched = occurrences_by_candidate[candidate_key].get(decision_occurrence_key(decision))
+        source_matches = matched is not None and all(
+            decision[field] == matched.get(field)
+            for field in ("source_start", "source_end", "source_expression") if field in decision)
+        saved_hash = decision.get("source_hash")
+        if saved_hash and matched is not None:
+            current_source = matched.get("source_expression", matched.get("matched_expression", ""))
+            source_matches = source_matches and saved_hash == hashlib.sha256(
+                current_source.encode("utf-8")).hexdigest()
+        if source_matches:
             valid.append(item)
+            valid_matches.append((index, decision, matched))
         else:
             stale.append(item)
 
-    return {"valid": valid, "stale": stale, "unverifiable": unverifiable}
+    return {"valid": valid, "valid_matches": valid_matches,
+            "stale": stale, "unverifiable": unverifiable}
+
+
+def materialize_valid_decisions(validation):
+    """Return copies tied to the exact immutable spans recovered by validation."""
+    result = []
+    for _, decision, match in validation.get("valid_matches", []):
+        enriched = dict(decision)
+        for field in ("source_start", "source_end", "source_expression"):
+            if field in match:
+                enriched[field] = match[field]
+        result.append(enriched)
+    return result
 
 
 def remove_stale_decisions(decisions, stale_indexes, decision_file, confirmation):

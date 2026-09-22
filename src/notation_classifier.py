@@ -1,4 +1,5 @@
 import sys
+import re
 from pathlib import Path
 
 
@@ -406,6 +407,94 @@ def get_record_name(record):
     return record.get(
         "target"
     )
+
+
+def classify_catalog_notation(record):
+    """Conservative structural classification for catalogue/registry imports.
+
+    The historical classifier remains available to compatibility callers.
+    Recognizing a template category does not claim it is executable grammar.
+    """
+    body = (record.get("notation") or "").strip()
+    placeholders = record.get("placeholders", [])
+    signature = str(record.get("args") or record.get("options", {}).get("args", ""))
+    components = {f"argument{index}": f"#{index}" for index in placeholders}
+    if "b" in signature:
+        operator = extract_visible_operator(body)
+        if not re.fullmatch(r"\\(?:[A-Za-z]+|[^A-Za-z])", operator or ""):
+            operator = None
+        return {"pattern_type": "binder", "components": components, "operator": operator,
+                "grammar_supported": False,
+                "unsupported_reason": "binder_metadata_incomplete"}
+    old = classify_notation(record)
+    # Strip only presentation wrappers around a single visible token.
+    def visible(fragment):
+        fragment = fragment.strip()
+        wrapper = re.fullmatch(r"\\(?:mathbin|mathrel|mathop|maincomp|comp)\s*\{(.*)\}", fragment, re.S)
+        if wrapper:
+            return visible(wrapper.group(1))
+        wrapper = re.fullmatch(r"\\(?:maincomp|comp)\s*((?:\\[A-Za-z]+)|[^\w\s{}#\\])", fragment)
+        if wrapper:
+            return wrapper.group(1)
+        return fragment if re.fullmatch(r"(?:\\[A-Za-z]+|\\[^A-Za-z]|[^\w\s{}#\\])", fragment) else None
+    if old["pattern_type"] == "sequence":
+        current = body.find(r"\argsep") + len(r"\argsep")
+        first, current = read_group(body, skip_whitespace(body, current))
+        second, current = read_group(body, skip_whitespace(body, current))
+        token = visible(second or "")
+        if body.startswith(r"\argsep") and first == "#1" and not body[current:].strip():
+            if token:
+                return dict(old, grammar_supported=True, fixity="infix", arity="variable")
+            if not (second or "").strip():
+                return {"pattern_type": "sequence", "separator": "", "implicit": True,
+                        "variable_arguments": True, "grammar_supported": True,
+                        "annotation_ready": True, "fixity": "infix", "arity": "variable"}
+    if old["pattern_type"] == "binary_infix":
+        token = visible(body[2:-2])
+        if token:
+            return dict(old, operator=token, grammar_supported=True, fixity="infix", arity=2)
+    # Exact command argument templates; a leading command alone is insufficient.
+    command = re.match(r"\\[A-Za-z]+", body)
+    if command and placeholders:
+        expected = command.group() + "".join("{#" + str(index) + "}" for index in placeholders)
+        if re.sub(r"\s+", "", body) == expected and placeholders == list(range(1, len(placeholders) + 1)):
+            return {"pattern_type": "command", "command": command.group(), "argument_count": len(placeholders),
+                    "arity": len(placeholders), "fixity": "command", "grammar_supported": True}
+    if placeholders == [1]:
+        for fixity, pattern in (("prefix", r"(.+?)(?:\{#1\}|#1)"),
+                                ("postfix", r"(?:\{#1\}|#1)(.+)")):
+            found = re.fullmatch(pattern, body, re.S)
+            token = visible(found.group(1)) if found else None
+            if token:
+                return add_operator_metadata(record, {"pattern_type": "unary", "operator": token,
+                    "fixity": fixity, "arity": 1, "argument_count": 1, "grammar_supported": True}, body)
+    if not placeholders and body:
+        token = visible(body)
+        return {"pattern_type": "constant", "visible": token or body,
+                "fixity": "constant", "arity": 0, "grammar_supported": bool(token and token.startswith("\\")),
+                **({} if token and token.startswith("\\") else {"unsupported_reason": "decorated_constant"})}
+    if re.search(r"\([^)]*#\d", body):
+        kind = "function_application"
+    elif re.search(r"[_^].*#\d", body):
+        kind = "scripted_operator"
+    elif body.startswith(r"\left"):
+        kind = "delimiter_application"
+    else:
+        kind = "template" if body else "unknown"
+    if kind == "function_application":
+        reason = "mixfix"
+    elif kind == "scripted_operator":
+        reason = "big_operator" if r"\mathop" in body else "scripted_template"
+    elif kind == "delimiter_application":
+        reason = "delimiter_notation"
+    elif len(re.findall(r"\\[A-Za-z]+", body)) > 1:
+        reason = "multi_part_command"
+    elif body.startswith("\\"):
+        reason = "unknown_wrapper"
+    else:
+        reason = "unsupported_template"
+    return {"pattern_type": kind, "components": components, "grammar_supported": False,
+            "unsupported_reason": reason}
 
 
 def display_classification(

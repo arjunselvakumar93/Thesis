@@ -12,6 +12,7 @@ from tex_notation_aliases import get_equivalent_tex_notations
 MATH_ENVIRONMENTS = {
     "equation", "equation*", "align", "align*",
     "gather", "gather*", "multline", "multline*",
+    "aligned", "alignedat", "eqnarray", "eqnarray*",
 }
 BEGIN_ENVIRONMENT = re.compile(r"\\begin\{([^{}]+)\}")
 
@@ -88,7 +89,8 @@ def extract_math_regions(source):
                 content_start = environment.end()
                 closing = text.find(closing_token, content_start)
                 if closing != -1:
-                    regions.append({"text": text[content_start:closing], "start": content_start})
+                    regions.append({"text": text[content_start:closing], "start": content_start,
+                                    "environment": name})
                     position = closing + len(closing_token)
                     continue
 
@@ -151,8 +153,29 @@ def find_notation_occurrences(rule_or_record, papers_dir=PAPERS_DIR):
         if "pattern_type" in rule_or_record
         else classify_notation(rule_or_record)
     )
+    if classification.get("grammar_adapter"):
+        from notation_adapters import match_adapter_expression
+        occurrences = []
+        if not classification.get("annotation_ready"):
+            return occurrences
+        for tex_file in sorted(Path(papers_dir).rglob("*.tex")):
+            source = tex_file.read_text(encoding="utf-8", errors="replace")
+            for region in extract_math_regions(source):
+                match = match_adapter_expression(region["text"], classification)
+                if not match:
+                    continue
+                absolute_start = region["start"] + match["start"]
+                line, column, original_line = _source_location(source, absolute_start)
+                occurrences.append(dict(match, file=tex_file, line=line, column=column,
+                                        text=original_line))
+        return occurrences
+    if classification.get("expression_config") is not None:
+        from expression_document import parse_papers, find_ast_occurrences
+        config = classification["expression_config"]
+        return find_ast_occurrences(parse_papers(papers_dir, config), classification, config)
+
     if classification.get("pattern_type") not in {
-        "command", "binary_infix", "sequence"
+        "command", "binary_infix", "sequence", "unary"
     }:
         return []
 
@@ -172,8 +195,11 @@ def find_notation_occurrences(rule_or_record, papers_dir=PAPERS_DIR):
                         "line": line,
                         "column": column,
                         "text": original_line,
+                        "source_start": absolute_start,
+                        "source_end": absolute_end,
+                        "source_expression": source[absolute_start:absolute_end],
                         "matched_expression": match["matched_expression"],
-                        "matched_visible_notation": spelling,
+                        "matched_visible_notation": match.get("matched_visible_notation", spelling),
                         "arguments": match["arguments"],
                         "pattern_type": match["pattern_type"],
                     }

@@ -1,0 +1,136 @@
+{
+  "timestamp": "2026-09-22T09:38:59.645828+00:00",
+  "repositories_installed": [
+    "arithmetics",
+    "mv"
+  ],
+  "records_by_repository": {
+    "arithmetics": 236,
+    "mv": 51
+  },
+  "classification_counts": {
+    "binary_infix": 32,
+    "binder": 33,
+    "command": 12,
+    "constant": 41,
+    "delimiter_application": 3,
+    "function_application": 7,
+    "scripted_operator": 34,
+    "sequence": 36,
+    "template": 79,
+    "unary": 10
+  },
+  "grammar_supported_counts": {
+    "arithmetics": 234,
+    "mv": 50
+  },
+  "annotation_ready_counts": {
+    "arithmetics": 209,
+    "mv": 50
+  },
+  "catalogue": {
+    "entries": 287,
+    "classified": 208,
+    "grammar_supported": 284,
+    "grammar_unsupported": 3,
+    "annotation_ready_entries": 259,
+    "unsupported_by_reason": {
+      "multi_part_command": 2,
+      "unsupported_template": 1
+    },
+    "supported_by_adapter": {
+      "BinderAdapter": 33,
+      "DecoratedSymbolAdapter": 36,
+      "DelimiterAdapter": 4,
+      "MixfixAdapter": 8,
+      "MultiPartAdapter": 74,
+      "ScriptedTemplateAdapter": 34,
+      "SemanticConstantAdapter": 5,
+      "SequencePatternAdapter": 2
+    }
+  },
+  "semantic_families": {
+    "arithmetics/Dedekind-cut": 1,
+    "arithmetics/argminmax": 14,
+    "arithmetics/arithmeticmean": 1,
+    "arithmetics/arithmetics": 13,
+    "arithmetics/binomial-coefficient": 1,
+    "arithmetics/ceilingfloor": 6,
+    "arithmetics/comparith": 15,
+    "arithmetics/complexnumbers": 7,
+    "arithmetics/congruence": 5,
+    "arithmetics/divisor": 1,
+    "arithmetics/divisor-lattice": 1,
+    "arithmetics/eulersnumber": 1,
+    "arithmetics/extendedreals": 3,
+    "arithmetics/factorial": 2,
+    "arithmetics/geometricmean": 1,
+    "arithmetics/greatestcommondivisor": 4,
+    "arithmetics/harmonicmean": 1,
+    "arithmetics/infinity": 1,
+    "arithmetics/intarith": 21,
+    "arithmetics/integer-interval": 1,
+    "arithmetics/integernumbers": 7,
+    "arithmetics/leastcommonmultiple": 2,
+    "arithmetics/minmax": 10,
+    "arithmetics/natarith": 16,
+    "arithmetics/natpns": 3,
+    "arithmetics/naturalnumbers": 9,
+    "arithmetics/numbers-orders": 4,
+    "arithmetics/percentage": 6,
+    "arithmetics/pinumber": 1,
+    "arithmetics/plusminus": 2,
+    "arithmetics/pns-common": 1,
+    "arithmetics/pnstartend": 4,
+    "arithmetics/positional-number-system": 3,
+    "arithmetics/quadratic-equation": 2,
+    "arithmetics/ratarith": 19,
+    "arithmetics/rationalnumbers": 6,
+    "arithmetics/realarith": 19,
+    "arithmetics/realnumbers": 6,
+    "arithmetics/realpns": 3,
+    "arithmetics/scinotation": 1,
+    "arithmetics/subset-sum-problem": 1,
+    "arithmetics/sumprod": 10,
+    "arithmetics/witherror": 1,
+    "mv/approxeq": 1,
+    "mv/defeq": 6,
+    "mv/equal": 2,
+    "mv/expression": 1,
+    "mv/mv": 24,
+    "mv/sequence": 11,
+    "mv/truthvalues": 6
+  },
+  "repository_health": [
+    {
+      "repository": "arithmetics",
+      "path": "arithmetics/source",
+      "source_directory_exists": true,
+      "tex_files": 111,
+      "symdefs": 176,
+      "notations": 60,
+      "parse_errors": 0,
+      "parse_error_details": [],
+      "total_catalogue_records": 236,
+      "classified_records": 182,
+      "grammar_supported_records": 234,
+      "annotation_ready_records": 209,
+      "status": "ok"
+    },
+    {
+      "repository": "mv",
+      "path": "mv/source",
+      "source_directory_exists": true,
+      "tex_files": 26,
+      "symdefs": 35,
+      "notations": 16,
+      "parse_errors": 0,
+      "parse_error_details": [],
+      "total_catalogue_records": 51,
+      "classified_records": 26,
+      "grammar_supported_records": 50,
+      "annotation_ready_records": 50,
+      "status": "ok"
+    }
+  ]
+}

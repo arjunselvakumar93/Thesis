@@ -1,0 +1,12 @@
+{
+  "operators": [
+    {
+      "token": "\\customop",
+      "fixity": "infix",
+      "precedence": 500,
+      "associativity": "left",
+      "arity": 2,
+      "semantic_macro": "customOperation"
+    }
+  ]
+}

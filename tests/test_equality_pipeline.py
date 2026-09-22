@@ -49,6 +49,8 @@ class TestEqualityPipeline(unittest.TestCase):
                 "separator_fragment": r"\mathrel{\maincomp=}",
                 "variable_arguments": True,
                 "operator_role": "relation", "precedence": 700,
+                "grammar_supported": True, "fixity": "infix",
+                "arity": "variable",
             },
         )
         self.assertEqual(
@@ -68,6 +70,7 @@ class TestEqualityPipeline(unittest.TestCase):
                 "operator_fragment": r"\mathrel{\maincomp\ne}",
                 "operator": r"\ne", "argument_count": 2,
                 "operator_role": "relation", "precedence": 800,
+                "grammar_supported": True, "fixity": "infix", "arity": 2,
             },
         )
 

@@ -1,0 +1,889 @@
+[
+  {
+    "gold": {
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 80,
+      "source_expression": "x^2 + Bx + C = (x-R)(x-S)",
+      "expected_root": "=",
+      "expected_arguments": [
+        "x^2 + Bx + C",
+        "(x-R)(x-S)"
+      ],
+      "semantic_status": "known",
+      "valid_semantic_macros": [
+        "eq"
+      ],
+      "should_propose": true,
+      "expected_annotation": "\\eq{x^2 + Bx + C,(x-R)(x-S)}"
+    },
+    "occurrence_id": 1,
+    "scope_exact": true,
+    "observed_root": "=",
+    "observed_arguments": [
+      "x^2 + Bx + C",
+      "(x-R)(x-S)"
+    ],
+    "candidate_macros": [
+      "aminus",
+      "aplus",
+      "atimes",
+      "compminus",
+      "compplus",
+      "comppower",
+      "comptimes",
+      "eq",
+      "intminus",
+      "intplus",
+      "intpower",
+      "inttimes",
+      "natminus",
+      "natplus",
+      "natpower",
+      "nattimes",
+      "power",
+      "ratminus",
+      "ratplus",
+      "ratpower",
+      "rattimes",
+      "realminus",
+      "realplus",
+      "realpower",
+      "realtimes"
+    ],
+    "correct_candidate_present": true
+  },
+  {
+    "gold": {
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 85,
+      "source_expression": "x = R",
+      "expected_root": "=",
+      "expected_arguments": [
+        "x",
+        "R"
+      ],
+      "semantic_status": "known",
+      "valid_semantic_macros": [
+        "eq"
+      ],
+      "should_propose": true,
+      "expected_annotation": "\\eq{x,R}"
+    },
+    "occurrence_id": 3,
+    "scope_exact": true,
+    "observed_root": "=",
+    "observed_arguments": [
+      "x",
+      "R"
+    ],
+    "candidate_macros": [
+      "eq"
+    ],
+    "correct_candidate_present": true
+  },
+  {
+    "gold": {
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 97,
+      "source_expression": "-\\frac{B}{2} \\pm z",
+      "expected_root": "\\pm",
+      "expected_arguments": [
+        "-\\frac{B}{2}",
+        "z"
+      ],
+      "semantic_status": "ambiguous",
+      "valid_semantic_macros": [],
+      "should_propose": false,
+      "expected_annotation": null
+    },
+    "occurrence_id": 12,
+    "scope_exact": true,
+    "observed_root": "\\pm",
+    "observed_arguments": [
+      "-\\frac{B}{2}",
+      "z"
+    ],
+    "candidate_macros": [
+      "adivide",
+      "aplusminus",
+      "auminus",
+      "compdivide",
+      "compuminus",
+      "fraction",
+      "intuminus",
+      "negative",
+      "ratdivide",
+      "ratuminus",
+      "realdivide",
+      "realuminus"
+    ],
+    "correct_candidate_present": false
+  },
+  {
+    "gold": {
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 106,
+      "source_expression": "R = S = -\\frac{B}{2}",
+      "expected_root": "=",
+      "expected_arguments": [
+        "R",
+        "S",
+        "-\\frac{B}{2}"
+      ],
+      "semantic_status": "known",
+      "valid_semantic_macros": [
+        "eq"
+      ],
+      "should_propose": true,
+      "expected_annotation": "\\eq{R,S,-\\frac{B}{2}}"
+    },
+    "occurrence_id": 16,
+    "scope_exact": true,
+    "observed_root": "=",
+    "observed_arguments": [
+      "R",
+      "S",
+      "-\\frac{B}{2}"
+    ],
+    "candidate_macros": [
+      "adivide",
+      "auminus",
+      "compdivide",
+      "compuminus",
+      "eq",
+      "fraction",
+      "intuminus",
+      "negative",
+      "ratdivide",
+      "ratuminus",
+      "realdivide",
+      "realuminus"
+    ],
+    "correct_candidate_present": true
+  },
+  {
+    "gold": {
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 107,
+      "source_expression": "(-\\frac{B}{2} + z)(-\\frac{B}{2} - z)",
+      "expected_root": "juxtaposition",
+      "expected_arguments": [
+        "(-\\frac{B}{2} + z)",
+        "(-\\frac{B}{2} - z)"
+      ],
+      "semantic_status": "ambiguous",
+      "valid_semantic_macros": [
+        "atimes",
+        "comptimes",
+        "inttimes",
+        "nattimes",
+        "rattimes",
+        "realtimes"
+      ],
+      "should_propose": true,
+      "expected_annotation": null
+    },
+    "occurrence_id": 17,
+    "scope_exact": true,
+    "observed_root": "juxtaposition",
+    "observed_arguments": [
+      "(-\\frac{B}{2} + z)",
+      "(-\\frac{B}{2} - z)"
+    ],
+    "candidate_macros": [
+      "adivide",
+      "aminus",
+      "aplus",
+      "atimes",
+      "auminus",
+      "compdivide",
+      "compminus",
+      "compplus",
+      "comptimes",
+      "compuminus",
+      "fraction",
+      "intminus",
+      "intplus",
+      "inttimes",
+      "intuminus",
+      "natminus",
+      "natplus",
+      "nattimes",
+      "negative",
+      "ratdivide",
+      "ratminus",
+      "ratplus",
+      "rattimes",
+      "ratuminus",
+      "realdivide",
+      "realminus",
+      "realplus",
+      "realtimes",
+      "realuminus"
+    ],
+    "correct_candidate_present": true
+  },
+  {
+    "gold": {
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 117,
+      "source_expression": "\\frac{B^2}{4} - C",
+      "expected_root": "-",
+      "expected_arguments": [
+        "\\frac{B^2}{4}",
+        "C"
+      ],
+      "semantic_status": "ambiguous",
+      "valid_semantic_macros": [
+        "aminus",
+        "natminus",
+        "intminus",
+        "ratminus",
+        "realminus",
+        "compminus"
+      ],
+      "should_propose": true,
+      "expected_annotation": null
+    },
+    "occurrence_id": 20,
+    "scope_exact": true,
+    "observed_root": "-",
+    "observed_arguments": [
+      "\\frac{B^2}{4}",
+      "C"
+    ],
+    "candidate_macros": [
+      "adivide",
+      "aminus",
+      "compdivide",
+      "compminus",
+      "fraction",
+      "intminus",
+      "natminus",
+      "ratdivide",
+      "ratminus",
+      "realdivide",
+      "realminus"
+    ],
+    "correct_candidate_present": true
+  },
+  {
+    "gold": {
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 121,
+      "source_expression": "-\\frac{B}{2} \\pm \\sqrt{\\frac{B^2}{4} - C}",
+      "expected_root": "\\pm",
+      "expected_arguments": [
+        "-\\frac{B}{2}",
+        "\\sqrt{\\frac{B^2}{4} - C}"
+      ],
+      "semantic_status": "ambiguous",
+      "valid_semantic_macros": [],
+      "should_propose": false,
+      "expected_annotation": null
+    },
+    "occurrence_id": 25,
+    "scope_exact": true,
+    "observed_root": "\\pm",
+    "observed_arguments": [
+      "-\\frac{B}{2}",
+      "\\sqrt{\\frac{B^2}{4} - C}"
+    ],
+    "candidate_macros": [
+      "adivide",
+      "aminus",
+      "aplusminus",
+      "asqrt",
+      "auminus",
+      "compdivide",
+      "compminus",
+      "compsqrt",
+      "compuminus",
+      "fraction",
+      "intminus",
+      "intsqrt",
+      "intuminus",
+      "natminus",
+      "natsqrt",
+      "negative",
+      "ratdivide",
+      "ratminus",
+      "ratsqrt",
+      "ratuminus",
+      "realdivide",
+      "realminus",
+      "realsqrt",
+      "realuminus"
+    ],
+    "correct_candidate_present": false
+  },
+  {
+    "gold": {
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 150,
+      "source_expression": "1 - z^2 &= 4 \\\\ z^2 &= -3.",
+      "expected_root": "align*",
+      "expected_arguments": [
+        "1 - z^2 &= 4",
+        "z^2 &= -3."
+      ],
+      "semantic_status": "structural_only",
+      "valid_semantic_macros": [],
+      "should_propose": false,
+      "expected_annotation": null
+    },
+    "occurrence_id": 31,
+    "scope_exact": true,
+    "observed_root": "align*",
+    "observed_arguments": [
+      "1 - z^2 &= 4",
+      "z^2 &= -3."
+    ],
+    "candidate_macros": [
+      "aminus",
+      "auminus",
+      "compminus",
+      "comppower",
+      "compuminus",
+      "eq",
+      "intminus",
+      "intpower",
+      "intuminus",
+      "natminus",
+      "natpower",
+      "negative",
+      "power",
+      "ratminus",
+      "ratpower",
+      "ratuminus",
+      "realminus",
+      "realpower",
+      "realuminus"
+    ],
+    "correct_candidate_present": false
+  },
+  {
+    "gold": {
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 154,
+      "source_expression": "i \\sqrt{3}",
+      "expected_root": "juxtaposition",
+      "expected_arguments": [
+        "i",
+        "\\sqrt{3}"
+      ],
+      "semantic_status": "ambiguous",
+      "valid_semantic_macros": [
+        "atimes",
+        "comptimes",
+        "inttimes",
+        "nattimes",
+        "rattimes",
+        "realtimes"
+      ],
+      "should_propose": true,
+      "expected_annotation": null
+    },
+    "occurrence_id": 32,
+    "scope_exact": true,
+    "observed_root": "juxtaposition",
+    "observed_arguments": [
+      "i",
+      "\\sqrt{3}"
+    ],
+    "candidate_macros": [
+      "asqrt",
+      "atimes",
+      "compsqrt",
+      "comptimes",
+      "intsqrt",
+      "inttimes",
+      "natsqrt",
+      "nattimes",
+      "ratsqrt",
+      "rattimes",
+      "realsqrt",
+      "realtimes"
+    ],
+    "correct_candidate_present": true
+  },
+  {
+    "gold": {
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 172,
+      "source_expression": "ax^2 + bx + c = 0",
+      "expected_root": "=",
+      "expected_arguments": [
+        "ax^2 + bx + c",
+        "0"
+      ],
+      "semantic_status": "known",
+      "valid_semantic_macros": [
+        "eq"
+      ],
+      "should_propose": true,
+      "expected_annotation": "\\eq{ax^2 + bx + c,0}"
+    },
+    "occurrence_id": 36,
+    "scope_exact": true,
+    "observed_root": "=",
+    "observed_arguments": [
+      "ax^2 + bx + c",
+      "0"
+    ],
+    "candidate_macros": [
+      "aplus",
+      "atimes",
+      "compplus",
+      "comppower",
+      "comptimes",
+      "eq",
+      "intplus",
+      "intpower",
+      "inttimes",
+      "natplus",
+      "natpower",
+      "nattimes",
+      "power",
+      "ratplus",
+      "ratpower",
+      "rattimes",
+      "realplus",
+      "realpower",
+      "realtimes"
+    ],
+    "correct_candidate_present": true
+  },
+  {
+    "gold": {
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 196,
+      "source_expression": "ax + b = 0",
+      "expected_root": "=",
+      "expected_arguments": [
+        "ax + b",
+        "0"
+      ],
+      "semantic_status": "known",
+      "valid_semantic_macros": [
+        "eq"
+      ],
+      "should_propose": true,
+      "expected_annotation": "\\eq{ax + b,0}"
+    },
+    "occurrence_id": 43,
+    "scope_exact": true,
+    "observed_root": "=",
+    "observed_arguments": [
+      "ax + b",
+      "0"
+    ],
+    "candidate_macros": [
+      "aplus",
+      "atimes",
+      "compplus",
+      "comptimes",
+      "eq",
+      "intplus",
+      "inttimes",
+      "natplus",
+      "nattimes",
+      "ratplus",
+      "rattimes",
+      "realplus",
+      "realtimes"
+    ],
+    "correct_candidate_present": true
+  },
+  {
+    "gold": {
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 196,
+      "source_expression": "x = -\\frac{b}{a}",
+      "expected_root": "=",
+      "expected_arguments": [
+        "x",
+        "-\\frac{b}{a}"
+      ],
+      "semantic_status": "known",
+      "valid_semantic_macros": [
+        "eq"
+      ],
+      "should_propose": true,
+      "expected_annotation": "\\eq{x,-\\frac{b}{a}}"
+    },
+    "occurrence_id": 44,
+    "scope_exact": true,
+    "observed_root": "=",
+    "observed_arguments": [
+      "x",
+      "-\\frac{b}{a}"
+    ],
+    "candidate_macros": [
+      "adivide",
+      "auminus",
+      "compdivide",
+      "compuminus",
+      "eq",
+      "fraction",
+      "intuminus",
+      "negative",
+      "ratdivide",
+      "ratuminus",
+      "realdivide",
+      "realuminus"
+    ],
+    "correct_candidate_present": true
+  },
+  {
+    "gold": {
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 196,
+      "source_expression": "a \\neq 0",
+      "expected_root": "\\ne",
+      "expected_arguments": [
+        "a",
+        "0"
+      ],
+      "semantic_status": "known",
+      "valid_semantic_macros": [
+        "notequal"
+      ],
+      "should_propose": true,
+      "expected_annotation": "\\notequal{a}{0}"
+    },
+    "occurrence_id": 45,
+    "scope_exact": true,
+    "observed_root": "\\ne",
+    "observed_arguments": [
+      "a",
+      "0"
+    ],
+    "candidate_macros": [
+      "notequal"
+    ],
+    "correct_candidate_present": true
+  },
+  {
+    "gold": {
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 206,
+      "source_expression": "(u + v)^2 = u^2 + 2uv + v^2",
+      "expected_root": "=",
+      "expected_arguments": [
+        "(u + v)^2",
+        "u^2 + 2uv + v^2"
+      ],
+      "semantic_status": "known",
+      "valid_semantic_macros": [
+        "eq"
+      ],
+      "should_propose": true,
+      "expected_annotation": "\\eq{(u + v)^2,u^2 + 2uv + v^2}"
+    },
+    "occurrence_id": 46,
+    "scope_exact": true,
+    "observed_root": "=",
+    "observed_arguments": [
+      "(u + v)^2",
+      "u^2 + 2uv + v^2"
+    ],
+    "candidate_macros": [
+      "aplus",
+      "atimes",
+      "compplus",
+      "comppower",
+      "comptimes",
+      "eq",
+      "intplus",
+      "intpower",
+      "inttimes",
+      "natplus",
+      "natpower",
+      "nattimes",
+      "power",
+      "ratplus",
+      "ratpower",
+      "rattimes",
+      "realplus",
+      "realpower",
+      "realtimes"
+    ],
+    "correct_candidate_present": true
+  },
+  {
+    "gold": {
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 207,
+      "source_expression": "(u+v)(u-v) = u^2 - v^2",
+      "expected_root": "=",
+      "expected_arguments": [
+        "(u+v)(u-v)",
+        "u^2 - v^2"
+      ],
+      "semantic_status": "known",
+      "valid_semantic_macros": [
+        "eq"
+      ],
+      "should_propose": true,
+      "expected_annotation": "\\eq{(u+v)(u-v),u^2 - v^2}"
+    },
+    "occurrence_id": 47,
+    "scope_exact": true,
+    "observed_root": "=",
+    "observed_arguments": [
+      "(u+v)(u-v)",
+      "u^2 - v^2"
+    ],
+    "candidate_macros": [
+      "aminus",
+      "aplus",
+      "atimes",
+      "compminus",
+      "compplus",
+      "comppower",
+      "comptimes",
+      "eq",
+      "intminus",
+      "intplus",
+      "intpower",
+      "inttimes",
+      "natminus",
+      "natplus",
+      "natpower",
+      "nattimes",
+      "power",
+      "ratminus",
+      "ratplus",
+      "ratpower",
+      "rattimes",
+      "realminus",
+      "realplus",
+      "realpower",
+      "realtimes"
+    ],
+    "correct_candidate_present": true
+  },
+  {
+    "gold": {
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 211,
+      "source_expression": "\\frac{1}{\\sqrt{3} - \\sqrt{2}}",
+      "expected_root": "\\frac",
+      "expected_arguments": [
+        "1",
+        "\\sqrt{3} - \\sqrt{2}"
+      ],
+      "semantic_status": "known",
+      "valid_semantic_macros": [
+        "adivide"
+      ],
+      "should_propose": true,
+      "expected_annotation": "\\adivide{1}{\\sqrt{3} - \\sqrt{2}}"
+    },
+    "occurrence_id": 48,
+    "scope_exact": true,
+    "observed_root": "\\frac",
+    "observed_arguments": [
+      "1",
+      "\\sqrt{3} - \\sqrt{2}"
+    ],
+    "candidate_macros": [
+      "adivide",
+      "aminus",
+      "asqrt",
+      "compdivide",
+      "compminus",
+      "compsqrt",
+      "fraction",
+      "intminus",
+      "intsqrt",
+      "natminus",
+      "natsqrt",
+      "ratdivide",
+      "ratminus",
+      "ratsqrt",
+      "realdivide",
+      "realminus",
+      "realsqrt"
+    ],
+    "correct_candidate_present": true
+  },
+  {
+    "gold": {
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 249,
+      "source_expression": "(x + D)^2",
+      "expected_root": "scripts",
+      "expected_arguments": [
+        "(x + D)",
+        "2"
+      ],
+      "semantic_status": "known",
+      "valid_semantic_macros": [
+        "power",
+        "comppower",
+        "intpower",
+        "ratpower",
+        "realpower"
+      ],
+      "should_propose": true,
+      "expected_annotation": null
+    },
+    "occurrence_id": 53,
+    "scope_exact": true,
+    "observed_root": "scripts",
+    "observed_arguments": [
+      "(x + D)",
+      "2"
+    ],
+    "candidate_macros": [
+      "aplus",
+      "compplus",
+      "comppower",
+      "intplus",
+      "intpower",
+      "natplus",
+      "natpower",
+      "power",
+      "ratplus",
+      "ratpower",
+      "realplus",
+      "realpower"
+    ],
+    "correct_candidate_present": true
+  },
+  {
+    "gold": {
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 259,
+      "source_expression": "x^2 = K",
+      "expected_root": "=",
+      "expected_arguments": [
+        "x^2",
+        "K"
+      ],
+      "semantic_status": "known",
+      "valid_semantic_macros": [
+        "eq"
+      ],
+      "should_propose": true,
+      "expected_annotation": "\\eq{x^2,K}"
+    },
+    "occurrence_id": 58,
+    "scope_exact": true,
+    "observed_root": "=",
+    "observed_arguments": [
+      "x^2",
+      "K"
+    ],
+    "candidate_macros": [
+      "comppower",
+      "eq",
+      "intpower",
+      "natpower",
+      "power",
+      "ratpower",
+      "realpower"
+    ],
+    "correct_candidate_present": true
+  },
+  {
+    "gold": {
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 352,
+      "source_expression": "(x+p)(x+q)",
+      "expected_root": "juxtaposition",
+      "expected_arguments": [
+        "(x+p)",
+        "(x+q)"
+      ],
+      "semantic_status": "ambiguous",
+      "valid_semantic_macros": [
+        "atimes",
+        "comptimes",
+        "inttimes",
+        "nattimes",
+        "rattimes",
+        "realtimes"
+      ],
+      "should_propose": true,
+      "expected_annotation": null
+    },
+    "occurrence_id": 67,
+    "scope_exact": true,
+    "observed_root": "juxtaposition",
+    "observed_arguments": [
+      "(x+p)",
+      "(x+q)"
+    ],
+    "candidate_macros": [
+      "aplus",
+      "atimes",
+      "compplus",
+      "comptimes",
+      "intplus",
+      "inttimes",
+      "natplus",
+      "nattimes",
+      "ratplus",
+      "rattimes",
+      "realplus",
+      "realtimes"
+    ],
+    "correct_candidate_present": true
+  },
+  {
+    "gold": {
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 388,
+      "source_expression": "x^2 + Bx + C = (x - R)(x - S)",
+      "expected_root": "=",
+      "expected_arguments": [
+        "x^2 + Bx + C",
+        "(x - R)(x - S)"
+      ],
+      "semantic_status": "known",
+      "valid_semantic_macros": [
+        "eq"
+      ],
+      "should_propose": true,
+      "expected_annotation": "\\eq{x^2 + Bx + C,(x - R)(x - S)}"
+    },
+    "occurrence_id": 68,
+    "scope_exact": true,
+    "observed_root": "=",
+    "observed_arguments": [
+      "x^2 + Bx + C",
+      "(x - R)(x - S)"
+    ],
+    "candidate_macros": [
+      "aminus",
+      "aplus",
+      "atimes",
+      "compminus",
+      "compplus",
+      "comppower",
+      "comptimes",
+      "eq",
+      "intminus",
+      "intplus",
+      "intpower",
+      "inttimes",
+      "natminus",
+      "natplus",
+      "natpower",
+      "nattimes",
+      "power",
+      "ratminus",
+      "ratplus",
+      "ratpower",
+      "rattimes",
+      "realminus",
+      "realplus",
+      "realpower",
+      "realtimes"
+    ],
+    "correct_candidate_present": true
+  }
+]

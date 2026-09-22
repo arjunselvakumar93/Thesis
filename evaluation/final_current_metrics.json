@@ -1,0 +1,160 @@
+{
+  "tests": {
+    "discovered": 185
+  },
+  "repositories": {
+    "installed": [
+      "arithmetics",
+      "mv"
+    ],
+    "referenced": [
+      "algebra",
+      "arithmetics",
+      "calculus",
+      "computing",
+      "constants",
+      "epistemology",
+      "grammar",
+      "linear-algebra",
+      "linguistics",
+      "logic",
+      "math",
+      "mv",
+      "numbers",
+      "primes",
+      "sets",
+      "theocs",
+      "trigonometry",
+      "units"
+    ],
+    "missing": [
+      "algebra",
+      "calculus",
+      "computing",
+      "constants",
+      "epistemology",
+      "grammar",
+      "linear-algebra",
+      "linguistics",
+      "logic",
+      "math",
+      "numbers",
+      "primes",
+      "sets",
+      "theocs",
+      "trigonometry",
+      "units"
+    ]
+  },
+  "catalogue": {
+    "entries": 287,
+    "classified": 208,
+    "grammar_supported": 284,
+    "grammar_unsupported": 3,
+    "annotation_ready_entries": 259,
+    "unsupported_by_reason": {
+      "multi_part_command": 2,
+      "unsupported_template": 1
+    },
+    "supported_by_adapter": {
+      "BinderAdapter": 33,
+      "DecoratedSymbolAdapter": 36,
+      "DelimiterAdapter": 4,
+      "MixfixAdapter": 8,
+      "MultiPartAdapter": 74,
+      "ScriptedTemplateAdapter": 34,
+      "SemanticConstantAdapter": 5,
+      "SequencePatternAdapter": 2
+    }
+  },
+  "real_paper": {
+    "math_regions": 70,
+    "structural_parser": {
+      "parsed": 70,
+      "unsupported": 0,
+      "coverage_percent": 100.0
+    },
+    "notation_recognition": {
+      "regions": 49,
+      "coverage_percent": 70.0
+    },
+    "semantic_candidate_coverage": {
+      "regions": 46,
+      "coverage_percent": 65.7
+    },
+    "annotation_ready_coverage": {
+      "regions": 46,
+      "coverage_percent": 65.7
+    },
+    "gold": {
+      "size": 20,
+      "exact_scope": 20,
+      "partial_or_incorrect_scope": 0,
+      "scope_accuracy_percent": 100.0,
+      "semantic_candidate_recall": {
+        "present": 17,
+        "gold_with_known_candidate": 17,
+        "percent": 100.0
+      },
+      "semantic_candidate_precision": {
+        "relevant": 41,
+        "generated_on_labeled_gold": 252,
+        "percent": 16.3
+      },
+      "ambiguous_cases": 6
+    }
+  },
+  "decisions": {
+    "stored_decisions": 143,
+    "accepted": 143,
+    "validated_current": 59,
+    "stale": 84,
+    "unverifiable": 0
+  },
+  "application": {
+    "requested": true,
+    "accepted": 143,
+    "applied": 59,
+    "failed": 0,
+    "original_sources_unchanged": true,
+    "validated_current": 59,
+    "stale": 84,
+    "unverifiable": 0,
+    "compilation": "not run; no usable compiler was invoked",
+    "eligible_current_decisions": 59,
+    "unique_source_nodes": 59,
+    "same_span_conflicts": 0,
+    "partial_overlap_conflicts": 0,
+    "nested_relationships": 24,
+    "nested_compositions": 16,
+    "independent_replacements": 19,
+    "successfully_rendered_decisions": 59,
+    "successfully_written_files": 1,
+    "failure_reasons": {},
+    "modules_inserted": [
+      {
+        "repository": "arithmetics",
+        "module": "arithmetics"
+      },
+      {
+        "repository": "mv",
+        "module": "equal"
+      }
+    ],
+    "sanity": {
+      "files_checked": 1,
+      "unreadable_files": [],
+      "unbalanced_brace_files": [],
+      "unbalanced_math_delimiter_files": [],
+      "duplicate_module_files": [],
+      "passed": true
+    },
+    "compiler_available": false
+  },
+  "integral": {
+    "structural_support": true,
+    "configured_semantic_support": true,
+    "real_smglom_semantic_records": 0,
+    "real_smglom_semantics_available": false
+  }
+}

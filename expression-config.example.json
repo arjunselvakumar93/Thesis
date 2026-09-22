@@ -1,0 +1,93 @@
+{
+  "operators": [
+    {"token": "+", "precedence": 10, "associativity": "left", "arity": "variable"},
+    {"token": "-", "precedence": 10, "associativity": "left", "arity": "variable"},
+    {"token": "*", "precedence": 20, "associativity": "left"},
+    {"token": "/", "precedence": 20, "associativity": "left"},
+    {"token": "+", "precedence": 30, "associativity": "right", "fixity": "prefix", "arity": 1},
+    {"token": "-", "precedence": 30, "associativity": "right", "fixity": "prefix", "arity": 1},
+    {"token": "=", "precedence": 1, "associativity": "sequence", "arity": "variable"},
+    {"token": "\\ne", "precedence": 1, "associativity": "none"},
+    {"token": "\\wedge", "variants": ["\\land"], "precedence": 6, "associativity": "left"},
+    {"token": "\\vee", "precedence": 5, "associativity": "left"},
+    {"token": "\\cup", "precedence": 10, "associativity": "left"},
+    {"token": "\\cap", "precedence": 20, "associativity": "left"},
+    {"token": "\\in", "precedence": 1, "associativity": "none"},
+    {"token": "\\subseteq", "precedence": 1, "associativity": "none"},
+    {"token": "\\pm", "precedence": 10, "associativity": "left"},
+    {"token": "\\pm", "precedence": 30, "associativity": "right", "fixity": "prefix", "arity": 1}
+  ],
+  "commands": {
+    "\\aplus": {"arity": 1, "semantic": true, "argument_types": ["sequence"]},
+    "\\eq": {"arity": 1, "semantic": true, "argument_types": ["sequence"]},
+    "\\notequal": {"arity": 2, "semantic": true, "argument_types": ["expression", "expression"]},
+    "\\frac": {"arity": 2, "roles": ["numerator", "denominator"]},
+    "\\sqrt": {"arity": 1, "optional_arguments": 1, "roles": ["radicand"]},
+    "\\mathcal": {"arity": 1, "callable": true},
+    "\\mathfrak": {"arity": 1, "callable": true},
+    "\\alpha": {"arity": 0},
+    "\\Box": {"arity": 0},
+    "\\boldsymbol": {"arity": 1, "roles": ["content"]}
+    ,"\\mathrm": {"arity": 1, "roles": ["content"]}
+    ,"\\operatorname": {"arity": 1, "roles": ["content"]}
+    ,"\\sin": {"arity": 0, "callable": true}
+    ,"\\pi": {"arity": 0}
+  },
+  "bound_constructs": {
+    "\\sum": {
+      "node_kind": "BigOperatorApplication",
+      "scripts": {"_": "lower", "^": "upper"},
+      "body_role": "body",
+      "body_precedence": 11
+    },
+    "\\prod": {
+      "node_kind": "BigOperatorApplication",
+      "scripts": {"_": "lower", "^": "upper"},
+      "body_role": "body",
+      "body_precedence": 11
+    },
+    "\\int": {
+      "node_kind": "BoundExpression",
+      "scripts": {"_": "lower", "^": "upper"},
+      "body_role": "body",
+      "body_precedence": 0,
+      "trailing_role": "variable",
+      "trailing_forms": [
+        {"separator": "\\,", "prefix": "d"},
+        {"separator": ",", "prefix": "d"},
+        {"prefix": "d"},
+        {"separator": "\\,", "prefix_command": "\\mathrm", "prefix_argument": "d"},
+        {"prefix_command": "\\mathrm", "prefix_argument": "d"},
+        {"separator": "\\,", "prefix_command": "\\operatorname", "prefix_argument": "d"},
+        {"prefix_command": "\\operatorname", "prefix_argument": "d"}
+      ]
+    },
+    "\\lim": {
+      "node_kind": "BigOperatorApplication",
+      "scripts": {"_": "lower", "^": "upper"},
+      "body_role": "body",
+      "body_precedence": 11
+    },
+    "\\forall": {
+      "node_kind": "BinderApplication",
+      "leading_roles": ["variable"],
+      "body_role": "body",
+      "body_precedence": 0
+    },
+    "\\exists": {
+      "node_kind": "BinderApplication",
+      "leading_roles": ["variable"],
+      "body_role": "body",
+      "body_precedence": 0
+    }
+  },
+  "syntax": {
+    "functions": ["f", "g", "P"],
+    "alignment_environments": ["align", "align*", "aligned", "alignedat", "eqnarray", "eqnarray*"],
+    "ignored_commands": {"\\label": 1, "\\,": 0},
+    "trailing_punctuation": [",", ";", ":", "."],
+    "script_precedence": 40,
+    "application_precedence": 50,
+    "implicit_operator": {"token": "juxtaposition", "precedence": 20, "associativity": "left"}
+  }
+}

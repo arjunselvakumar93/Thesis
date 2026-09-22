@@ -1,0 +1,446 @@
+{
+  "math_region_extraction": {
+    "total_extracted": 70,
+    "gold_regions_located": 20,
+    "gold_regions": 20
+  },
+  "structural_parser": {
+    "parsed": 70,
+    "unsupported": 0,
+    "coverage_percent": 100.0
+  },
+  "notation_recognition": {
+    "regions": 49,
+    "coverage_percent": 70.0
+  },
+  "semantic_candidate_coverage": {
+    "regions": 46,
+    "coverage_percent": 65.7
+  },
+  "annotation_ready_coverage": {
+    "regions": 46,
+    "coverage_percent": 65.7
+  },
+  "semantic_ambiguity_regions": 42,
+  "gold": {
+    "size": 20,
+    "exact_scope": 20,
+    "partial_or_incorrect_scope": 0,
+    "scope_accuracy_percent": 100.0,
+    "semantic_candidate_recall": {
+      "present": 17,
+      "gold_with_known_candidate": 17,
+      "percent": 100.0
+    },
+    "semantic_candidate_precision": {
+      "relevant": 41,
+      "generated_on_labeled_gold": 252,
+      "percent": 16.3
+    },
+    "ambiguous_cases": 6
+  },
+  "review": {
+    "stored_decisions": 143,
+    "accepted": 143,
+    "validated_current": 59,
+    "stale": 84,
+    "unverifiable": 0
+  },
+  "application": {
+    "requested": true,
+    "accepted": 143,
+    "applied": 59,
+    "failed": 0,
+    "original_sources_unchanged": true,
+    "validated_current": 59,
+    "stale": 84,
+    "unverifiable": 0,
+    "compilation": "not run; no usable compiler was invoked",
+    "eligible_current_decisions": 59,
+    "unique_source_nodes": 59,
+    "same_span_conflicts": 0,
+    "partial_overlap_conflicts": 0,
+    "nested_relationships": 24,
+    "nested_compositions": 16,
+    "independent_replacements": 19,
+    "successfully_rendered_decisions": 59,
+    "successfully_written_files": 1,
+    "failure_reasons": {},
+    "modules_inserted": [
+      {
+        "repository": "arithmetics",
+        "module": "arithmetics"
+      },
+      {
+        "repository": "mv",
+        "module": "equal"
+      }
+    ],
+    "sanity": {
+      "files_checked": 1,
+      "unreadable_files": [],
+      "unbalanced_brace_files": [],
+      "unbalanced_math_delimiter_files": [],
+      "duplicate_module_files": [],
+      "passed": true
+    },
+    "compiler_available": false
+  },
+  "blockers": {
+    "missing_argument_mapping": 20,
+    "multi_part_command": 2,
+    "no_deterministic_source_pattern": 4,
+    "unsupported_replacement_scope": 1,
+    "unsupported_template": 1
+  },
+  "examples": {
+    "successful": [
+      {
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 80,
+        "expression": "x^2 + Bx + C = (x-R)(x-S)",
+        "root": "=",
+        "candidate_macros": [
+          "aminus",
+          "aplus",
+          "atimes",
+          "compminus",
+          "compplus",
+          "comppower",
+          "comptimes",
+          "eq",
+          "intminus",
+          "intplus",
+          "intpower",
+          "inttimes",
+          "natminus",
+          "natplus",
+          "natpower",
+          "nattimes",
+          "power",
+          "ratminus",
+          "ratplus",
+          "ratpower",
+          "rattimes",
+          "realminus",
+          "realplus",
+          "realpower",
+          "realtimes"
+        ]
+      },
+      {
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 85,
+        "expression": "x = R",
+        "root": "=",
+        "candidate_macros": [
+          "eq"
+        ]
+      },
+      {
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 106,
+        "expression": "R = S = -\\frac{B}{2}",
+        "root": "=",
+        "candidate_macros": [
+          "adivide",
+          "auminus",
+          "compdivide",
+          "compuminus",
+          "eq",
+          "fraction",
+          "intuminus",
+          "negative",
+          "ratdivide",
+          "ratuminus",
+          "realdivide",
+          "realuminus"
+        ]
+      },
+      {
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 107,
+        "expression": "(-\\frac{B}{2} + z)(-\\frac{B}{2} - z)",
+        "root": "juxtaposition",
+        "candidate_macros": [
+          "adivide",
+          "aminus",
+          "aplus",
+          "atimes",
+          "auminus",
+          "compdivide",
+          "compminus",
+          "compplus",
+          "comptimes",
+          "compuminus",
+          "fraction",
+          "intminus",
+          "intplus",
+          "inttimes",
+          "intuminus",
+          "natminus",
+          "natplus",
+          "nattimes",
+          "negative",
+          "ratdivide",
+          "ratminus",
+          "ratplus",
+          "rattimes",
+          "ratuminus",
+          "realdivide",
+          "realminus",
+          "realplus",
+          "realtimes",
+          "realuminus"
+        ]
+      },
+      {
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 117,
+        "expression": "\\frac{B^2}{4} - C",
+        "root": "-",
+        "candidate_macros": [
+          "adivide",
+          "aminus",
+          "compdivide",
+          "compminus",
+          "fraction",
+          "intminus",
+          "natminus",
+          "ratdivide",
+          "ratminus",
+          "realdivide",
+          "realminus"
+        ]
+      }
+    ],
+    "ambiguous": [
+      {
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 97,
+        "expression": "-\\frac{B}{2} \\pm z",
+        "valid_semantic_macros": [],
+        "reason": "multiple concepts share the visible notation"
+      },
+      {
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 107,
+        "expression": "(-\\frac{B}{2} + z)(-\\frac{B}{2} - z)",
+        "valid_semantic_macros": [
+          "atimes",
+          "comptimes",
+          "inttimes",
+          "nattimes",
+          "rattimes",
+          "realtimes"
+        ],
+        "reason": "multiple concepts share the visible notation"
+      },
+      {
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 117,
+        "expression": "\\frac{B^2}{4} - C",
+        "valid_semantic_macros": [
+          "aminus",
+          "natminus",
+          "intminus",
+          "ratminus",
+          "realminus",
+          "compminus"
+        ],
+        "reason": "multiple concepts share the visible notation"
+      },
+      {
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 121,
+        "expression": "-\\frac{B}{2} \\pm \\sqrt{\\frac{B^2}{4} - C}",
+        "valid_semantic_macros": [],
+        "reason": "multiple concepts share the visible notation"
+      },
+      {
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 154,
+        "expression": "i \\sqrt{3}",
+        "valid_semantic_macros": [
+          "atimes",
+          "comptimes",
+          "inttimes",
+          "nattimes",
+          "rattimes",
+          "realtimes"
+        ],
+        "reason": "multiple concepts share the visible notation"
+      }
+    ],
+    "blocked": [
+      {
+        "semantic_macro": "bargmincond",
+        "module": "argminmax",
+        "notation": "\\underset{#2}{\\maincomp{\\mathrm{argmin}}}\\; #3",
+        "reason": "missing_argument_mapping"
+      },
+      {
+        "semantic_macro": "bargminS",
+        "module": "argminmax",
+        "notation": "\\underset{#2}{\\maincomp{\\mathrm{argmin}}}\\; #3",
+        "reason": "missing_argument_mapping"
+      },
+      {
+        "semantic_macro": "bargmaxcond",
+        "module": "argminmax",
+        "notation": "\\underset{#2}{\\maincomp{\\mathrm{argmax}}}\\; #3",
+        "reason": "missing_argument_mapping"
+      },
+      {
+        "semantic_macro": "bargmaxS",
+        "module": "argminmax",
+        "notation": "\\underset{#2}{\\maincomp{\\mathrm{argmax}}}\\; #3",
+        "reason": "missing_argument_mapping"
+      },
+      {
+        "semantic_macro": "bargmincond",
+        "module": "argminmax",
+        "notation": "\\underset{#2}{\\maincomp{\\mathrm{argmin}}}\\;{#3}",
+        "reason": "missing_argument_mapping"
+      },
+      {
+        "semantic_macro": "bargmaxcond",
+        "module": "argminmax",
+        "notation": "\\underset{#2}{\\maincomp{\\mathrm{argmax}}}\\;{#3}",
+        "reason": "missing_argument_mapping"
+      },
+      {
+        "semantic_macro": "bincoeff",
+        "module": "binomial-coefficient",
+        "notation": "\\left(\\begin{matrix}#1\\\\#2\\end{matrix}\\right)",
+        "reason": "unsupported_replacement_scope"
+      },
+      {
+        "semantic_macro": "congmod",
+        "module": "congruence",
+        "notation": "\\argsep{#1}{\\mathrel{\\comp\\equiv}}\\,\\comp{\\mathrm{mod}}\\,#2",
+        "reason": "multi_part_command"
+      },
+      {
+        "semantic_macro": "congmod",
+        "module": "congruence",
+        "notation": "\\argsep{#1}{\\mathrel{\\maincomp\\equiv_{#2}}}",
+        "reason": "no_deterministic_source_pattern"
+      },
+      {
+        "semantic_macro": "bminval",
+        "module": "minmax",
+        "notation": "\\underset{#2}{\\maincomp{\\mathrm{min}}\\;} #3",
+        "reason": "missing_argument_mapping"
+      },
+      {
+        "semantic_macro": "bmaxval",
+        "module": "minmax",
+        "notation": "\\underset{#2}{\\maincomp{\\mathrm{max}}\\;} #3",
+        "reason": "missing_argument_mapping"
+      },
+      {
+        "semantic_macro": "bminval",
+        "module": "minmax",
+        "notation": "\\underset{#2}{\\maincomp{\\mathrm{min}\\;}}{#3}",
+        "reason": "missing_argument_mapping"
+      },
+      {
+        "semantic_macro": "bmaxval",
+        "module": "minmax",
+        "notation": "\\underset{#2}{\\maincomp{\\mathrm{max}\\;}}{#3}",
+        "reason": "missing_argument_mapping"
+      },
+      {
+        "semantic_macro": "pnendswith",
+        "module": "pnstartend",
+        "notation": "\\comp\\cdots_{#1}\\argsep{#2}{}",
+        "reason": "no_deterministic_source_pattern"
+      },
+      {
+        "semantic_macro": "pnstartswith",
+        "module": "pnstartend",
+        "notation": "\\argsep{#2}{}\\comp\\cdots_{#1}",
+        "reason": "no_deterministic_source_pattern"
+      },
+      {
+        "semantic_macro": "pnendswith",
+        "module": "pnstartend",
+        "notation": "\\comp\\cdots\\argsep{#2}{}",
+        "reason": "no_deterministic_source_pattern"
+      },
+      {
+        "semantic_macro": "pnstartswith",
+        "module": "pnstartend",
+        "notation": "\\argsep{#2}{}\\comp\\cdots",
+        "reason": "multi_part_command"
+      },
+      {
+        "semantic_macro": "Sumfromto",
+        "module": "sumprod",
+        "notation": "\\mathop{\\comp\\sum}_{#2\\comp=#3}^{#4}#5",
+        "reason": "missing_argument_mapping"
+      },
+      {
+        "semantic_macro": "SumOver",
+        "module": "sumprod",
+        "notation": "\\mathop{\\comp\\sum}_{#2}{#3}",
+        "reason": "missing_argument_mapping"
+      },
+      {
+        "semantic_macro": "SumfromtoProp",
+        "module": "sumprod",
+        "notation": "\\mathop{\\comp\\sum}_{#2\\comp=#3;\\,#5}^{#4}{#6}",
+        "reason": "missing_argument_mapping"
+      },
+      {
+        "semantic_macro": "SumInColl",
+        "module": "sumprod",
+        "notation": "\\mathop{\\comp\\sum}_{#2\\comp\\in{#3}}{#4}",
+        "reason": "missing_argument_mapping"
+      },
+      {
+        "semantic_macro": "SumProp",
+        "module": "sumprod",
+        "notation": "\\mathop{\\comp\\sum}_{#3}{#4}",
+        "reason": "missing_argument_mapping"
+      },
+      {
+        "semantic_macro": "Prodfromto",
+        "module": "sumprod",
+        "notation": "\\mathop{\\comp\\prod}_{#2\\comp=#3}^{#4}#5",
+        "reason": "missing_argument_mapping"
+      },
+      {
+        "semantic_macro": "ProdOver",
+        "module": "sumprod",
+        "notation": "\\mathop{\\comp\\prod}_{#2}{#3}",
+        "reason": "missing_argument_mapping"
+      },
+      {
+        "semantic_macro": "ProdfromtoProp",
+        "module": "sumprod",
+        "notation": "\\mathop{\\comp\\prod}_{#2\\comp=#3;\\,#5}^{#4}{#6}",
+        "reason": "missing_argument_mapping"
+      },
+      {
+        "semantic_macro": "ProdInColl",
+        "module": "sumprod",
+        "notation": "\\mathop{\\comp\\prod}_{#2\\comp\\in{#3}}{#4}",
+        "reason": "missing_argument_mapping"
+      },
+      {
+        "semantic_macro": "ProdProp",
+        "module": "sumprod",
+        "notation": "\\mathop{\\comp\\prod}_{#3}{#4}",
+        "reason": "missing_argument_mapping"
+      },
+      {
+        "semantic_macro": "seq",
+        "module": "sequence",
+        "notation": "#1",
+        "reason": "unsupported_template"
+      }
+    ]
+  }
+}

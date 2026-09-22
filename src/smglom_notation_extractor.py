@@ -5,26 +5,18 @@ from pathlib import Path
 
 PROJECT_DIR = Path(__file__).resolve().parents[1]
 
-SMGLOM_REPOSITORIES = {
-    "mv": (
-        PROJECT_DIR
-        / "reference"
-        / "mv"
-        / "source"
-    ),
-    "arithmetics": (
-        PROJECT_DIR
-        / "reference"
-        / "arithmetics"
-        / "source"
-    ),
-    "sets": (
-        PROJECT_DIR
-        / "reference"
-        / "sets"
-        / "source"
-    ),
-}
+def discover_repositories(reference_dir=None):
+    """Discover installed repository/source directories, including new modules."""
+    root = Path(reference_dir) if reference_dir is not None else PROJECT_DIR / "reference"
+    if not root.is_dir():
+        return {}
+    return {directory.name: directory / "source" for directory in sorted(root.iterdir())
+            if directory.is_dir() and (directory / "source").is_dir()}
+
+
+# Compatibility snapshot for callers using a known local repository by name.
+# Scans discover afresh, so additions do not require restarting Python.
+SMGLOM_REPOSITORIES = discover_repositories()
 
 
 def find_matching_delimiter(
@@ -332,6 +324,10 @@ def parse_notation(
         + len(r"\notation")
     )
 
+    starred = current < len(declaration) and declaration[current] == "*"
+    if starred:
+        current += 1
+
     current = skip_whitespace(
         declaration,
         current
@@ -383,6 +379,7 @@ def parse_notation(
 
     return {
         "declaration_type": "notation",
+        "starred": starred,
         "target": target,
         "options": options,
         "notation": notation,
@@ -566,21 +563,22 @@ def scan_repository(
     return records
 
 
-def scan_available_smglom():
+def scan_available_smglom(reference_dir=None, repositories=None, quiet=False):
     """
     Scan every available local SMGloM repository.
     """
 
     records = []
 
-    for (
-        repository_name,
-        source_directory
-    ) in SMGLOM_REPOSITORIES.items():
+    discovered = discover_repositories(reference_dir)
+    names = sorted(discovered) if repositories is None else repositories
+    for repository_name in names:
+        source_directory = discovered.get(repository_name)
 
-        if source_directory.exists():
+        if source_directory is not None:
 
-            print(
+            if not quiet:
+                print(
                 f"Scanning {repository_name}: "
                 f"{source_directory}"
             )
@@ -598,7 +596,8 @@ def scan_available_smglom():
 
         else:
 
-            print(
+            if not quiet:
+                print(
                 f"Not found locally: "
                 f"{repository_name}"
             )

@@ -632,6 +632,12 @@ def match_notation(
     from SMGloM.
     """
 
+    if classification.get("expression_config") is not None:
+        from expression_parser import match_expression_scopes
+        return normalize_match_expressions(match_expression_scopes(
+            text, classification, classification["expression_config"]
+        ))
+
     pattern_type = classification.get(
         "pattern_type"
     )

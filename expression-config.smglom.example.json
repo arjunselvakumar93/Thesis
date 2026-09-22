@@ -1,0 +1,15 @@
+{
+  "smglom_precedence_direction": "lower",
+  "smglom": [
+    {"repository": "arithmetics", "module": "arithmetics", "macro": "aplus", "visible": "+", "associativity": "left"},
+    {"repository": "arithmetics", "module": "arithmetics", "macro": "aminus", "visible": "-", "associativity": "left"},
+    {"repository": "arithmetics", "module": "arithmetics", "macro": "atimes", "visible": "\\cdot", "variants": ["*"], "associativity": "left"},
+    {"repository": "arithmetics", "module": "arithmetics", "macro": "adivide", "visible": "/", "associativity": "left"},
+    {"repository": "arithmetics", "module": "arithmetics", "macro": "adivide", "visible": "\\frac"},
+    {"repository": "arithmetics", "module": "arithmetics", "macro": "asqrt", "visible": "\\sqrt"},
+    {"repository": "mv", "module": "equal", "macro": "eq", "visible": "=", "associativity": "sequence"},
+    {"repository": "mv", "module": "equal", "macro": "notequal", "visible": "\\ne", "associativity": "none"}
+  ],
+  "operators": [],
+  "syntax": {"script_precedence": 100, "application_precedence": 100, "functions": ["f", "g"]}
+}

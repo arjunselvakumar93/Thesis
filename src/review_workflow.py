@@ -1,3 +1,4 @@
+import hashlib
 import json
 import sys
 from pathlib import Path
@@ -59,53 +60,56 @@ def generate_semantic_suggestion(
 
 
 def find_generic_candidates(symbol, records=None):
-    """Find semantic records whose classified visible notation equals symbol."""
+    """Search all loaded notation data by spelling, macro, meaning or module."""
+    from notation_catalog import build_catalog, search_catalog, annotation_candidates
     if records is None:
         records = scan_available_smglom()
+    return annotation_candidates(search_catalog(build_catalog(records), symbol))
 
-    definitions = {
-        (record.get("repository"), record.get("module"), record["macro"]): record
-        for record in records
-        if record.get("declaration_type") == "symdef"
-    }
+
+def find_expression_candidates(symbol, configuration, records=None):
+    """Search catalogue and user definitions, including configured variants."""
+    from notation_catalog import build_catalog, search_catalog, annotation_candidates
+    from expression_registry import NotationRegistry
+    if records is None:
+        records = scan_available_smglom()
+    registry = NotationRegistry.from_config(configuration)
+    spellings = {symbol}
+    for fixity in ("infix", "prefix", "postfix"):
+        op = registry.operators.get((symbol, fixity))
+        if op:
+            spellings.add(op.token)
+    catalogue = build_catalog(records, configuration)
     candidates = []
-    for record in records:
-        classification = classify_notation(record)
-        pattern_type = classification.get("pattern_type")
-        visible = classification.get({
-            "command": "command", "binary_infix": "operator", "sequence": "separator"
-        }.get(pattern_type, ""))
-        if canonicalize_tex_notation(visible) != canonicalize_tex_notation(symbol):
-            continue
-
-        if record.get("declaration_type") == "symdef":
-            definition = record
-            macro = record["macro"]
-        else:
-            macro = record.get("target", "").rsplit("?", 1)[-1]
-            definition = definitions.get(
-                (record.get("repository"), record.get("module"), macro)
-            )
-            if definition is None:
+    for spelling in sorted(spellings):
+        for candidate in annotation_candidates(search_catalog(catalogue, spelling)):
+            # Imported operators in a compiled config must not duplicate the
+            # actual SMGloM candidate and lose its module provenance.
+            if candidate.get("record") is None and any(item["macro"] == candidate["macro"] for item in candidates):
                 continue
-
-        candidates.append({
-            "macro": macro,
-            "name": definition.get("name"),
-            "args": definition.get("args"),
-            "module": definition.get("module"),
-            "repository": record.get("repository"),
-            "record": record,
-            "classification": classification,
-        })
+            if candidate not in candidates:
+                candidates.append(candidate)
+    from expression_metadata import configured_annotation_candidates
+    for candidate in configured_annotation_candidates(symbol, configuration):
+        if not any((item.get("macro"), item.get("module"), item.get("repository")) ==
+                   (candidate.get("macro"), candidate.get("module"), candidate.get("repository"))
+                   for item in candidates):
+            candidates.append(candidate)
     return candidates
-
 
 def generate_classified_suggestion(match, candidate):
     """Build a semantic macro call from a classified notation match."""
     pattern_type = candidate["classification"].get("pattern_type")
     arguments = match.get("arguments", [])
-    if match.get("pattern_type") != pattern_type or not arguments:
+    if match.get("pattern_type") != pattern_type:
+        return None
+
+    if candidate["classification"].get("grammar_adapter"):
+        from notation_adapters import adapter_suggestion
+        return adapter_suggestion(candidate["macro"], arguments,
+                                  pattern_type == "sequence" or candidate.get("args") == "a")
+
+    if not arguments:
         return None
 
     macro = "\\" + candidate["macro"]
@@ -114,7 +118,7 @@ def generate_classified_suggestion(match, candidate):
             return None
         return macro + "{" + ",".join(arguments) + "}"
 
-    if pattern_type in {"command", "binary_infix"}:
+    if pattern_type in {"command", "binary_infix", "unary", "bound_construct"}:
         expected = candidate["classification"].get("argument_count")
         if expected != len(arguments):
             return None
@@ -123,15 +127,37 @@ def generate_classified_suggestion(match, candidate):
     return None
 
 
-def run_generic_review(symbol, candidates, papers_dir=PAPERS_DIR):
+def run_generic_review(symbol, candidates, papers_dir=PAPERS_DIR, expression_config=None,
+                       parsed_regions=None):
     """Review classified matches and persist the human's decisions."""
+    # Whole-region grammar is established before the semantic choice. The old
+    # selected-notation configuration remains a compatibility path only.
+    if expression_config is not None and "selected" not in expression_config:
+        from expression_metadata import build_expression_config
+        from expression_document import parse_papers
+        expression_config = build_expression_config(expression_config)
+        if parsed_regions is None:
+            parsed_regions = parse_papers(papers_dir, expression_config)
+        for region in parsed_regions:
+            if region.error:
+                print(f"Unparsed math region in {region.file}, offset {region.start}: {region.error}")
     display_semantic_candidates(candidates)
     selected = choose_candidate(candidates)
     if selected is None:
         print("No semantic candidate selected.")
         return 0
 
-    matches = find_notation_occurrences(selected["classification"], papers_dir)
+    classification = dict(selected["classification"])
+    if expression_config is not None:
+        if "selected" in expression_config:
+            from expression_metadata import prepare_expression_config
+            expression_config = prepare_expression_config(selected, expression_config)
+        classification["expression_config"] = expression_config
+    if parsed_regions is None:
+        matches = find_notation_occurrences(classification, papers_dir)
+    else:
+        from expression_document import find_ast_occurrences
+        matches = find_ast_occurrences(parsed_regions, classification, expression_config)
     if not matches:
         print("No matching occurrences were found in the papers.")
         return 0
@@ -163,7 +189,8 @@ def run_generic_review(symbol, candidates, papers_dir=PAPERS_DIR):
             "pattern_type": match["pattern_type"],
             "argument_count": len(match["arguments"]),
             "arguments": match["arguments"],
-            "file": str(match["file"].relative_to(papers_dir)),
+            "file": (match["file"].name if Path(papers_dir).is_file()
+                     else str(match["file"].relative_to(papers_dir))),
             "line": match["line"],
             "column": match["column"],
             "full_text": match["text"],
@@ -171,6 +198,21 @@ def run_generic_review(symbol, candidates, papers_dir=PAPERS_DIR):
             "semantic_suggestion": suggestion,
             "decision": decision,
         })
+        if "expression_config" in classification:
+            decisions[-1]["expression_config"] = classification["expression_config"]
+        for field in ("source_start", "source_end", "source_expression"):
+            if field in match:
+                decisions[-1][field] = match[field]
+        decisions[-1]["argument_roles"] = list(classification.get("argument_roles", []))
+        decisions[-1]["configuration_source"] = selected.get(
+            "semantic_source", selected.get("source", "SMGloM" if selected.get("record") else "user configuration"))
+        source_snapshot = decisions[-1].get("source_expression", match["matched_expression"])
+        decisions[-1]["source_hash"] = hashlib.sha256(
+            source_snapshot.encode("utf-8")).hexdigest()
+        identity = "\0".join((
+            decisions[-1]["file"], str(decisions[-1].get("source_start", "")),
+            str(decisions[-1].get("source_end", "")), selected["macro"], source_snapshot))
+        decisions[-1]["decision_id"] = hashlib.sha256(identity.encode("utf-8")).hexdigest()
 
     total = save_decisions(decisions)
     print(f"Saved {len(decisions)} decision(s). Total stored: {total}")
@@ -280,6 +322,7 @@ def decision_key(
         decision.get(
             "visible_symbol"
         ),
+        decision.get("matched_expression") if "expression_config" in decision else None,
     )
 
 
@@ -373,14 +416,62 @@ def display_semantic_candidates(
 
 def main():
 
+    papers_target = PAPERS_DIR
+    paper_option = "--paper" in sys.argv
+    if paper_option:
+        index = sys.argv.index("--paper")
+        if index + 1 >= len(sys.argv):
+            raise ValueError("--paper requires a TeX file or directory")
+        papers_target = Path(sys.argv[index + 1]).resolve()
+        if not papers_target.exists():
+            raise ValueError(f"Paper target does not exist: {papers_target}")
+
+    if "--list-notations" in sys.argv or "--search" in sys.argv:
+        from notation_catalog import main as catalog_main
+        options = ["--list"]
+        for flag, target in (("--search", "--search"), ("--expression-config", "--config")):
+            if flag in sys.argv:
+                index = sys.argv.index(flag)
+                if index + 1 >= len(sys.argv):
+                    raise ValueError(flag + " requires a value")
+                options.extend([target, sys.argv[index + 1]])
+        return catalog_main(options)
+
+    configuration = None
+    parsed_regions = None
+    if "--expression-config" in sys.argv or "--report-unsupported" in sys.argv:
+        path = PROJECT_DIR / "expression-config.example.json"
+        if "--expression-config" in sys.argv:
+            index = sys.argv.index("--expression-config")
+            if index + 1 >= len(sys.argv):
+                raise ValueError("--expression-config requires a JSON file path")
+            path = Path(sys.argv[index + 1])
+        configuration = json.loads(path.read_text(encoding="utf-8-sig"))
+        if "selected" not in configuration:
+            from expression_metadata import build_expression_config
+            from expression_document import parse_papers
+            configuration = build_expression_config(configuration)
+            parsed_regions = parse_papers(papers_target, configuration)
+            from parser_diagnostics import coverage_report, display_report
+            from notation_catalog import build_catalog
+            catalogue = build_catalog(scan_available_smglom(quiet=True), configuration)
+            display_report(coverage_report(parsed_regions, catalogue),
+                           "--report-unsupported" in sys.argv)
+            if "--report-unsupported" in sys.argv:
+                return
+
     # ---------------------------------------------
     # STEP 1
     # User selects visible LaTeX notation
     # ---------------------------------------------
 
-    symbol = input(
-        r"Enter visible notation (for example +, -, <, >, =, /, \ne, \times, \cdot, or \frac): "
-    ).strip()
+    while True:
+        symbol = input("Enter a mathematical notation, semantic macro, or search term "
+                       "(type ? to browse available notations): ").strip()
+        if symbol != "?":
+            break
+        from notation_catalog import build_catalog, display_catalog
+        display_catalog(build_catalog(scan_available_smglom(), configuration))
 
     if not symbol:
 
@@ -390,14 +481,39 @@ def main():
 
         return
 
+    from expression_registry import STRUCTURAL_TOKENS
+    if symbol in STRUCTURAL_TOKENS:
+        descriptions = {"^": "superscript", "_": "subscript", "%": "comment",
+                        "#": "macro parameter", "{": "grouping", "}": "grouping"}
+        print(f"This is TeX {descriptions.get(symbol, 'structural')} syntax handled by the expression parser, "
+              "not a standalone semantic notation.")
+        return
+
     if "--legacy" not in sys.argv[1:]:
-        generic_candidates = find_generic_candidates(symbol)
+        generic_candidates = (find_expression_candidates(symbol, configuration)
+                              if parsed_regions is not None else find_generic_candidates(symbol))
         if generic_candidates:
-            run_generic_review(symbol, generic_candidates)
+            if configuration is None:
+                if paper_option:
+                    run_generic_review(symbol, generic_candidates, papers_dir=papers_target)
+                else:
+                    run_generic_review(symbol, generic_candidates)
+            else:
+                if paper_option:
+                    run_generic_review(symbol, generic_candidates, papers_dir=papers_target,
+                                       expression_config=configuration, parsed_regions=parsed_regions)
+                else:
+                    run_generic_review(symbol, generic_candidates, expression_config=configuration,
+                                       parsed_regions=parsed_regions)
             return
-        if not symbol.startswith("\\"):
-            print("No supported SMGloM notation rule was found for this symbol.")
-            return
+        from notation_catalog import build_catalog, search_catalog, display_catalog
+        matches = search_catalog(build_catalog(scan_available_smglom(), configuration), symbol)
+        if matches:
+            display_catalog(matches)
+            print("These records need annotation metadata or a grammar adapter before review.")
+        else:
+            print("No matching notation was found in the loaded catalogue or configuration.")
+        return
 
     # ---------------------------------------------
     # STEP 2
