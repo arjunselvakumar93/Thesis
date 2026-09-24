@@ -141,6 +141,20 @@ def run_generic_review(symbol, candidates, papers_dir=PAPERS_DIR, expression_con
         for region in parsed_regions:
             if region.error:
                 print(f"Unparsed math region in {region.file}, offset {region.start}: {region.error}")
+    from semantic_candidate_ranker import document_context, rank_candidates
+    paths = [Path(papers_dir)] if Path(papers_dir).is_file() else sorted(Path(papers_dir).rglob("*.tex"))
+    source = "\n".join(path.read_text(encoding="utf-8", errors="replace") for path in paths)
+    records = scan_available_smglom(quiet=True)
+    from notation_catalog import build_catalog
+    context = document_context(source, build_catalog(records))
+    history = []
+    occurrence = {"visible_symbol": symbol}
+    if Path(papers_dir).is_file():
+        occurrence["file"] = Path(papers_dir).name
+        from decision_validator import materialize_valid_decisions, validate_decisions
+        accepted = [item for item in load_existing_decisions() if item.get("decision") == "accepted"]
+        history = materialize_valid_decisions(validate_decisions(accepted, records, papers_dir))
+    candidates = rank_candidates(candidates, occurrence, context, history)
     display_semantic_candidates(candidates)
     selected = choose_candidate(candidates)
     if selected is None:
@@ -391,10 +405,8 @@ def display_semantic_candidates(
 
     print()
 
-    print(
-        f"Found {len(results)} possible "
-        "semantic candidate(s)."
-    )
+    qualifier = " ranked by available evidence" if any("score" in item for item in results) else ""
+    print(f"Found {len(results)} semantic candidate(s){qualifier}.")
 
     print()
 
@@ -403,13 +415,12 @@ def display_semantic_candidates(
         start=1
     ):
 
-        print(
-            f"[{number}] "
-            f"\\{result['macro']} "
-            f"- {result['name']} "
-            f"- arguments: {result['args']} "
-            f"- module: {result['module']}"
-        )
+        score = f" - score: {result['score']}" if "score" in result else ""
+        print(f"[{number}] \\{result['macro']} - {result['name']}"
+              f" - arguments: {result['args']} - module: {result['module']}{score}")
+        if result.get("evidence"):
+            signals = ", ".join(item["signal"] for item in result["evidence"])
+            print(f"    evidence: {signals}")
 
     print()
 

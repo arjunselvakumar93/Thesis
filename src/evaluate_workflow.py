@@ -16,6 +16,8 @@ from notation_adapters import match_adapter_expression
 from notation_catalog import annotation_candidates, build_catalog
 from notation_matcher import normalize_math_expression
 from notation_scanner import _source_location
+from proposal_eligibility import proposal_eligibility, assess_proposal_candidates
+from semantic_candidate_ranker import document_context, policy_dict, rank_candidates
 from smglom_notation_extractor import scan_available_smglom
 from symbol_scanner import PAPERS_DIR
 
@@ -45,6 +47,8 @@ def _node_arguments(node):
 
 
 def _relative(path, root):
+    if Path(root).is_file():
+        return Path(path).name
     return str(Path(path).relative_to(root)).replace("\\", "/")
 
 
@@ -58,14 +62,26 @@ def _candidate_matches(region, candidates, registry):
         else:
             matches = match_ast(region.tree, rule, registry)
         for match in matches:
+            eligibility = proposal_eligibility(region.tree, match["start"], match["end"])
+            if not eligibility["eligible"]:
+                continue
             found.append({"semantic_macro": candidate.get("macro"),
+                          "macro": candidate.get("macro"), "name": candidate.get("name"),
                           "module": candidate.get("module"),
                           "repository": candidate.get("repository"),
+                          "source": candidate.get("source"), "classification": dict(rule),
+                          "catalogue_visible": candidate.get("visible"),
+                          "configured_notation_alias": bool(
+                              match.get("matched_visible_notation")
+                              and match.get("matched_visible_notation") != candidate.get("visible")
+                              and match.get("matched_visible_notation") in candidate.get("variants", ())),
                           "pattern_type": rule.get("pattern_type"),
                           "grammar_adapter": rule.get("grammar_adapter"),
                           "arguments": match["arguments"], "start": match["start"],
                           "end": match["end"], "matched_expression": match["matched_expression"],
-                          "annotation_ready": True})
+                          "matched_visible_notation": match.get("matched_visible_notation"),
+                          "annotation_ready": True,
+                          "proposal_eligibility": eligibility})
     unique = {(item["semantic_macro"], item["start"], item["end"], tuple(item["arguments"])):
               item for item in found}
     return sorted(unique.values(), key=lambda item: (item["start"], item["end"], item["semantic_macro"] or ""))
@@ -91,6 +107,61 @@ def _region_records(papers_dir, config, catalogue, decisions):
                              "SemanticCommand", "ScriptedExpression", "BigOperatorApplication",
                              "BinderApplication", "BoundExpression"}]
         semantic = [] if region.tree is None else _candidate_matches(region, candidates, registry)
+        ast_patterns, ast_visible = {}, {}
+        if region.tree is not None:
+            for node in region.tree.walk():
+                if node.kind == "UnaryOperator":
+                    pattern = "unary"
+                elif node.kind in {"BinaryOperator", "NaryOperator"}:
+                    pattern = ("sequence" if node.kind == "NaryOperator"
+                               or getattr(node.metadata, "arity", None) == "variable"
+                               else "binary_infix")
+                elif node.kind in {"Command", "SemanticCommand"}:
+                    pattern = "command"
+                elif node.kind == "BoundExpression":
+                    pattern = "bound_construct"
+                elif node.kind == "ScriptedExpression":
+                    pattern = "scripted_operator"
+                else:
+                    pattern = None
+                if pattern:
+                    ast_patterns.setdefault((node.start, node.end), pattern)
+                    ast_visible.setdefault((node.start, node.end), node.notation or node.value)
+        ranked, by_scope = [], defaultdict(list)
+        for candidate in semantic:
+            by_scope[(candidate["start"], candidate["end"],
+                      candidate["matched_expression"])].append(candidate)
+        context = document_context(region.source, catalogue)
+        automatic, proposal_statuses = [], []
+        for scope_candidates in by_scope.values():
+            first = scope_candidates[0]
+            scope_ranked = rank_candidates(scope_candidates, {
+                "matched_visible_notation": ast_visible.get(
+                    (first["start"], first["end"]), first.get("matched_visible_notation")),
+                "pattern_type": ast_patterns.get((first["start"], first["end"])), "file": file,
+            }, context, decisions)
+            actual = ast_visible.get((first["start"], first["end"]),
+                                     first.get("matched_visible_notation"))
+            # Multiple independently declared/configured records for one surface form
+            # make the spelling context-sensitive, even when only one is currently
+            # annotation-ready.  This is derived from catalogue provenance.
+            catalogue_surface = first.get("catalogue_visible")
+            surface_records = {(entry.get("macro"), entry.get("module"),
+                                entry.get("repository"), entry.get("source"),
+                                entry.get("fixity"))
+                               for entry in catalogue
+                               if (actual in entry.get("variants", ())
+                                   or catalogue_surface in entry.get("variants", ()))}
+            assessment = assess_proposal_candidates(
+                scope_ranked, context_sensitive=len(surface_records) > 1)
+            proposal_statuses.append({"start": first["start"], "end": first["end"],
+                                      "expression": first["matched_expression"], **assessment,
+                                      "automatic_candidates": [item.get("semantic_macro")
+                                                               for item in assessment["automatic_candidates"]]})
+            automatic.extend(assessment["automatic_candidates"])
+            ranked.extend(scope_ranked)
+        ranked.sort(key=lambda item: (item["start"], item["end"], item["rank"],
+                                      item.get("semantic_macro") or ""))
         grouped = defaultdict(set)
         for item in semantic:
             grouped[(item["start"], item["end"], item["matched_expression"])].add(item["semantic_macro"])
@@ -107,8 +178,11 @@ def _region_records(papers_dir, config, catalogue, decisions):
                         "ast_type": region.tree.kind if region.tree else None,
                         "ast": _node_json(region.tree) if region.tree else None,
                         "recognized_notation_nodes": nodes,
+                        "raw_candidates": semantic,
                         "semantic_candidates": semantic,
-                        "annotation_candidates": semantic,
+                        "ranked_candidates": ranked,
+                        "annotation_candidates": automatic,
+                        "proposal_statuses": proposal_statuses,
                         "semantic_ambiguities": ambiguous,
                         "review_decisions": reviewed,
                         "application_result": "not_run"})
@@ -119,8 +193,13 @@ def _gold_metrics(gold, occurrences):
     by_file_line = defaultdict(list)
     for occurrence in occurrences:
         by_file_line[(occurrence["file"], occurrence["line"])].append(occurrence)
-    exact, partial, candidate_present, candidate_total = 0, 0, 0, 0
+    exact, partial, structural_total, candidate_present, candidate_total = 0, 0, 0, 0, 0
+    argument_exact, argument_total = 0, 0
     generated_valid, generated_total, ambiguous = 0, 0, 0
+    top_hits = {1: 0, 3: 0, 5: 0}
+    precision_relevant = {1: 0, 3: 0, 5: 0}
+    precision_total = {1: 0, 3: 0, 5: 0}
+    reciprocal_ranks = []
     details = []
     for item in gold:
         possible = by_file_line[(item["file"], item["line"])]
@@ -129,31 +208,70 @@ def _gold_metrics(gold, occurrences):
                            if gold_source in normalize_math_expression(value["source_expression"])), None)
         root = occurrence and occurrence.get("ast")
         args = [] if not occurrence or not occurrence.get("ast") else _node_arguments_from_json(root)
-        scope_exact = bool(root and root["value"] == item["expected_root"]
-                           and args == item["expected_arguments"])
-        exact += scope_exact
-        partial += bool(root) and not scope_exact
+        structural_labeled = item.get("expected_root") is not None
+        arguments_labeled = item.get("expected_arguments") is not None
+        root_exact = bool(root and (not structural_labeled or root["value"] == item["expected_root"]))
+        arguments_exact = bool(root and (not arguments_labeled or args == item["expected_arguments"]))
+        scope_exact = root_exact and arguments_exact
+        if structural_labeled:
+            structural_total += 1
+            exact += scope_exact
+            partial += bool(root) and not scope_exact
+        if arguments_labeled:
+            argument_total += 1
+            argument_exact += arguments_exact
         macros = {candidate["semantic_macro"] for candidate in (occurrence or {}).get("semantic_candidates", [])}
+        ranked = (occurrence or {}).get("ranked_candidates", [])
+        if root:
+            scoped = [candidate for candidate in ranked
+                      if candidate["start"] == root["start"] and candidate["end"] == root["end"]]
+            if scoped:
+                ranked = scoped
+        ranked_macros = [candidate["semantic_macro"] for candidate in ranked]
         valid = set(item.get("valid_semantic_macros", []))
         if item.get("semantic_status") == "ambiguous":
             ambiguous += 1
         if item.get("should_propose") and valid:
             candidate_total += 1
             candidate_present += bool(macros & valid)
+            positions = [index for index, macro in enumerate(ranked_macros, 1) if macro in valid]
+            reciprocal_ranks.append(1 / min(positions) if positions else 0)
+            for cutoff in top_hits:
+                top_hits[cutoff] += bool(valid & set(ranked_macros[:cutoff]))
         if valid:
             generated_total += len(macros)
             generated_valid += len(macros & valid)
+            for cutoff in precision_relevant:
+                selected = ranked_macros[:cutoff]
+                precision_relevant[cutoff] += len(valid & set(selected))
+                precision_total[cutoff] += len(selected)
         details.append({"gold": item, "occurrence_id": occurrence and occurrence["id"],
                         "scope_exact": scope_exact, "observed_root": root and root["value"],
                         "observed_arguments": args, "candidate_macros": sorted(macros),
+                        "ranked_candidate_macros": ranked_macros,
+                        "ranked_candidates": ranked,
                         "correct_candidate_present": bool(macros & valid)})
     size = len(gold)
-    return {"size": size, "exact_scope": exact, "partial_or_incorrect_scope": partial,
-            "scope_accuracy_percent": round(100 * exact / size, 1) if size else None,
+    return {"size": size, "structurally_labeled": structural_total,
+            "semantically_labeled": candidate_total,
+            "argument_labeled": argument_total, "correct_arguments": argument_exact,
+            "argument_accuracy_percent": round(100 * argument_exact / argument_total, 1) if argument_total else None,
+            "exact_scope": exact, "partial_or_incorrect_scope": partial,
+            "scope_accuracy_percent": round(100 * exact / structural_total, 1) if structural_total else None,
             "semantic_candidate_recall": {"present": candidate_present, "gold_with_known_candidate": candidate_total,
                 "percent": round(100 * candidate_present / candidate_total, 1) if candidate_total else None},
             "semantic_candidate_precision": {"relevant": generated_valid, "generated_on_labeled_gold": generated_total,
                 "percent": round(100 * generated_valid / generated_total, 1) if generated_total else None},
+            "semantic_ranking": {
+                "top_1_recall_percent": round(100 * top_hits[1] / candidate_total, 1) if candidate_total else None,
+                "top_3_recall_percent": round(100 * top_hits[3] / candidate_total, 1) if candidate_total else None,
+                "top_5_recall_percent": round(100 * top_hits[5] / candidate_total, 1) if candidate_total else None,
+                "mean_reciprocal_rank": round(sum(reciprocal_ranks) / len(reciprocal_ranks), 4)
+                    if reciprocal_ranks else None,
+                **{f"precision_at_{cutoff}_percent": round(
+                    100 * precision_relevant[cutoff] / precision_total[cutoff], 1)
+                    if precision_total[cutoff] else None for cutoff in (1, 3, 5)},
+            },
             "ambiguous_cases": ambiguous,
             "details": details}
 
@@ -205,11 +323,16 @@ def _output_sanity(root):
 
 def evaluate(papers_dir=PAPERS_DIR, config_path=ROOT / "expression-config.example.json",
              gold_path=GOLD_FILE, apply=False):
-    config = build_expression_config(json.loads(Path(config_path).read_text(encoding="utf-8-sig")))
+    raw_config = json.loads(Path(config_path).read_text(encoding="utf-8-sig"))
+    config = build_expression_config(raw_config)
     records = scan_available_smglom(quiet=True)
-    catalogue = build_catalog(records)
+    catalogue = build_catalog(records, raw_config)
     decisions = json.loads(DECISIONS_FILE.read_text(encoding="utf-8")) if DECISIONS_FILE.exists() else []
-    occurrences = _region_records(Path(papers_dir), config, catalogue, decisions)
+    accepted = [item for item in decisions if item.get("decision") == "accepted"]
+    from decision_validator import materialize_valid_decisions, validate_decisions
+    validation = validate_decisions(accepted, records, papers_dir)
+    valid_accepted = materialize_valid_decisions(validation)
+    occurrences = _region_records(Path(papers_dir), config, catalogue, valid_accepted)
     gold = json.loads(Path(gold_path).read_text(encoding="utf-8"))
     blockers = Counter()
     for entry in catalogue:
@@ -224,10 +347,6 @@ def evaluate(papers_dir=PAPERS_DIR, config_path=ROOT / "expression-config.exampl
     semantic = sum(bool(item["semantic_candidates"]) for item in occurrences)
     ready = sum(bool(item["annotation_candidates"]) for item in occurrences)
     ambiguous = sum(bool(item["semantic_ambiguities"]) for item in occurrences)
-    accepted = [item for item in decisions if item.get("decision") == "accepted"]
-    from decision_validator import materialize_valid_decisions, validate_decisions
-    validation = validate_decisions(accepted, records, papers_dir)
-    valid_accepted = materialize_valid_decisions(validation)
     application = {"requested": apply, "accepted": len(accepted), "applied": 0,
                    "failed": 0, "original_sources_unchanged": True,
                    "validated_current": len(valid_accepted),
@@ -253,6 +372,29 @@ def evaluate(papers_dir=PAPERS_DIR, config_path=ROOT / "expression-config.exampl
         for occurrence in occurrences:
             occurrence["application_result"] = "evaluated_in_output_copy"
     gold_report = _gold_metrics(gold, occurrences)
+    candidate_counts = [len(item["raw_candidates"]) for item in occurrences]
+    ranked_counts = [len(item["ranked_candidates"]) for item in occurrences]
+    ordered = sorted(candidate_counts)
+    median = ((ordered[len(ordered) // 2] if len(ordered) % 2 else
+               (ordered[len(ordered) // 2 - 1] + ordered[len(ordered) // 2]) / 2)
+              if ordered else 0)
+    signal_usage = Counter(evidence["signal"] for occurrence in occurrences
+                           for candidate in occurrence["ranked_candidates"]
+                           for evidence in candidate["evidence"])
+    ranking_summary = dict(
+        gold_report["semantic_ranking"],
+        average_candidate_count=(round(sum(candidate_counts) / len(candidate_counts), 3)
+                                 if candidate_counts else 0),
+        median_candidate_count=median,
+        duplicates_removed=sum(candidate_counts) - sum(ranked_counts),
+        occurrences_with_contextual_evidence=sum(
+            any(candidate["contextual_evidence"] for candidate in item["ranked_candidates"])
+            for item in occurrences),
+        fallback_only_occurrences=sum(
+            bool(item["ranked_candidates"]) and all(
+                not candidate["contextual_evidence"] for candidate in item["ranked_candidates"])
+            for item in occurrences),
+        signal_usage=dict(sorted(signal_usage.items())), policy=policy_dict())
     successful_examples = [{"file": detail["gold"]["file"], "line": detail["gold"]["line"],
                             "expression": detail["gold"]["source_expression"],
                             "root": detail["observed_root"],
@@ -288,6 +430,7 @@ def evaluate(papers_dir=PAPERS_DIR, config_path=ROOT / "expression-config.exampl
                "annotation_ready_coverage": {"regions": ready,
                 "coverage_percent": round(100 * ready / total, 1) if total else None},
                "semantic_ambiguity_regions": ambiguous,
+               "semantic_ranking": ranking_summary,
                "gold": {key: value for key, value in gold_report.items() if key != "details"},
                "review": {"stored_decisions": len(decisions), "accepted": len(accepted),
                           "validated_current": len(valid_accepted),
@@ -332,6 +475,34 @@ def main(argv=None):
         json.dumps(occurrences, indent=2, ensure_ascii=False), encoding="utf-8")
     (args.output / "evaluation_gold_results.json").write_text(
         json.dumps(gold_details, indent=2, ensure_ascii=False), encoding="utf-8")
+    representatives = []
+    for detail in (item for item in gold_details if item["ranked_candidates"]):
+        representatives.append({
+            "file": detail["gold"]["file"], "line": detail["gold"]["line"],
+            "expression": detail["gold"]["source_expression"],
+            "raw_candidates": detail["candidate_macros"],
+            "ranked_candidates": [{key: candidate.get(key) for key in (
+                "semantic_macro", "module", "repository", "score", "rank", "evidence")}
+                for candidate in detail["ranked_candidates"]],
+            "valid_semantic_macros": detail["gold"].get("valid_semantic_macros", []),
+            "first_valid_position": next((index for index, macro in enumerate(
+                detail["ranked_candidate_macros"], 1)
+                if macro in detail["gold"].get("valid_semantic_macros", [])), None),
+        })
+        if len(representatives) == 4:
+            break
+    ranking_output = {
+        "baseline": {
+            "candidate_set_recall": summary["gold"]["semantic_candidate_recall"],
+            "candidate_set_precision": summary["gold"]["semantic_candidate_precision"],
+            "average_candidate_count": summary["semantic_ranking"]["average_candidate_count"],
+            "ambiguous_region_count": summary["semantic_ambiguity_regions"],
+        },
+        "ranking": summary["semantic_ranking"],
+        "representative_examples": representatives,
+    }
+    (args.output / "semantic_ranking_metrics.json").write_text(
+        json.dumps(ranking_output, indent=2, ensure_ascii=False), encoding="utf-8")
     if args.json:
         print(json.dumps(summary, indent=2))
     else:

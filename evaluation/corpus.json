@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "documents": [
+    {
+      "id": "quadratic-paper",
+      "path": "../papers",
+      "description": "Current real-paper evaluation corpus",
+      "gold": "gold_v1.json",
+      "config": "../expression-config.example.json",
+      "enabled": true
+    },
+    {
+      "id": "general-expressions",
+      "path": "../tests/fixtures/general_math_expressions.tex",
+      "description": "Hand-authored cross-family expression fixture",
+      "gold": "gold_general_v2.json",
+      "config": "../expression-config.example.json",
+      "enabled": true
+    },
+    {
+      "id": "configured-integrals",
+      "path": "../tests/fixtures/integral_expressions.tex",
+      "description": "Hand-authored configured integral expressions",
+      "gold": "gold_integrals_v2.json",
+      "config": "../integral-config.example.json",
+      "enabled": true
+    }
+  ]
+}

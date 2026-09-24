@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Partial semantic annotation gold set",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["document_id", "file", "source_expression", "should_propose"],
+    "properties": {
+      "document_id": {"type": "string"},
+      "file": {"type": "string"},
+      "math_region": {"type": ["integer", "null"]},
+      "start": {"type": ["integer", "null"]},
+      "end": {"type": ["integer", "null"]},
+      "source_expression": {"type": "string"},
+      "target_ast_span": {
+        "type": ["object", "null"],
+        "properties": {"start": {"type": "integer"}, "end": {"type": "integer"}}
+      },
+      "expected_root": {"type": ["string", "null"]},
+      "valid_semantic_macros": {"type": "array", "items": {"type": "string"}},
+      "expected_arguments": {"type": "array", "items": {"type": "string"}},
+      "expected_annotation": {"type": ["string", "null"]},
+      "should_propose": {"type": "boolean"},
+      "proposal_eligible": {
+        "type": "boolean",
+        "description": "Optional explicit evaluation eligibility. SemanticCommand roots remain ineligible for a second wrapper even when legacy should_propose is true."
+      }
+    }
+  }
+}

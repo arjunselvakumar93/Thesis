@@ -1,0 +1,368 @@
+[
+  {
+    "id": "quadratic-paper",
+    "path": "../papers",
+    "description": "Current real-paper evaluation corpus",
+    "math_regions": 70,
+    "parsed": 70,
+    "parser_coverage_percent": 100.0,
+    "gold_occurrences": 20,
+    "structurally_labeled": 20,
+    "semantically_labeled": 17,
+    "scope_accuracy_percent": 100.0,
+    "notation_recognition": {
+      "regions": 49,
+      "coverage_percent": 70.0
+    },
+    "legacy_candidate_recall": {
+      "present": 17,
+      "gold_with_known_candidate": 17,
+      "percent": 100.0
+    },
+    "candidate_recall": {
+      "successes": 17,
+      "total": 17,
+      "percent": 100.0,
+      "wilson_95_percent": [
+        81.6,
+        100.0
+      ]
+    },
+    "candidate_precision": {
+      "relevant": 41,
+      "generated_on_labeled_gold": 252,
+      "percent": 16.3
+    },
+    "legacy_ranking": {
+      "top_1_recall_percent": 100.0,
+      "top_3_recall_percent": 100.0,
+      "top_5_recall_percent": 100.0,
+      "mean_reciprocal_rank": 1.0,
+      "precision_at_1_percent": 100.0,
+      "precision_at_3_percent": 66.7,
+      "precision_at_5_percent": 59.0
+    },
+    "ranking": {
+      "top_1_recall": {
+        "successes": 17,
+        "total": 17,
+        "percent": 100.0,
+        "wilson_95_percent": [
+          81.6,
+          100.0
+        ]
+      },
+      "top_3_recall": {
+        "successes": 17,
+        "total": 17,
+        "percent": 100.0,
+        "wilson_95_percent": [
+          81.6,
+          100.0
+        ]
+      },
+      "top_5_recall": {
+        "successes": 17,
+        "total": 17,
+        "percent": 100.0,
+        "wilson_95_percent": [
+          81.6,
+          100.0
+        ]
+      },
+      "mean_reciprocal_rank": 1.0
+    },
+    "annotation_ready": {
+      "regions": 37,
+      "coverage_percent": 52.9
+    },
+    "argument_accuracy_percent": 100.0,
+    "decision_validation": {
+      "stored_decisions": 143,
+      "accepted": 143,
+      "validated_current": 59,
+      "stale": 84,
+      "unverifiable": 0
+    },
+    "semantic_evaluation": {
+      "semantic_gold_cases": 17,
+      "proposal_eligible_cases": 17,
+      "mapping_available_cases": 17,
+      "mapping_unavailable_cases": 0,
+      "candidate_present_cases": 17,
+      "proposal_candidate_recall": {
+        "successes": 17,
+        "total": 17,
+        "percent": 100.0,
+        "wilson_95_percent": [
+          81.6,
+          100.0
+        ]
+      },
+      "supported_candidate_recall": {
+        "successes": 17,
+        "total": 17,
+        "percent": 100.0,
+        "wilson_95_percent": [
+          81.6,
+          100.0
+        ]
+      },
+      "top_1_recall": {
+        "successes": 17,
+        "total": 17,
+        "percent": 100.0,
+        "wilson_95_percent": [
+          81.6,
+          100.0
+        ]
+      },
+      "already_semantic_cases": 0,
+      "already_semantic_correctly_skipped": 0
+    }
+  },
+  {
+    "id": "general-expressions",
+    "path": "../tests/fixtures/general_math_expressions.tex",
+    "description": "Hand-authored cross-family expression fixture",
+    "math_regions": 63,
+    "parsed": 63,
+    "parser_coverage_percent": 100.0,
+    "gold_occurrences": 30,
+    "structurally_labeled": 30,
+    "semantically_labeled": 22,
+    "scope_accuracy_percent": 100.0,
+    "notation_recognition": {
+      "regions": 62,
+      "coverage_percent": 98.4
+    },
+    "legacy_candidate_recall": {
+      "present": 20,
+      "gold_with_known_candidate": 22,
+      "percent": 90.9
+    },
+    "candidate_recall": {
+      "successes": 20,
+      "total": 20,
+      "percent": 100.0,
+      "wilson_95_percent": [
+        83.9,
+        100.0
+      ]
+    },
+    "candidate_precision": {
+      "relevant": 113,
+      "generated_on_labeled_gold": 190,
+      "percent": 59.5
+    },
+    "legacy_ranking": {
+      "top_1_recall_percent": 90.9,
+      "top_3_recall_percent": 90.9,
+      "top_5_recall_percent": 90.9,
+      "mean_reciprocal_rank": 0.9091,
+      "precision_at_1_percent": 100.0,
+      "precision_at_3_percent": 100.0,
+      "precision_at_5_percent": 93.9
+    },
+    "ranking": {
+      "top_1_recall": {
+        "successes": 20,
+        "total": 20,
+        "percent": 100.0,
+        "wilson_95_percent": [
+          83.9,
+          100.0
+        ]
+      },
+      "top_3_recall": {
+        "successes": 20,
+        "total": 20,
+        "percent": 100.0,
+        "wilson_95_percent": [
+          83.9,
+          100.0
+        ]
+      },
+      "top_5_recall": {
+        "successes": 20,
+        "total": 20,
+        "percent": 100.0,
+        "wilson_95_percent": [
+          83.9,
+          100.0
+        ]
+      },
+      "mean_reciprocal_rank": 1.0
+    },
+    "annotation_ready": {
+      "regions": 44,
+      "coverage_percent": 69.8
+    },
+    "argument_accuracy_percent": null,
+    "decision_validation": {
+      "stored_decisions": 143,
+      "accepted": 143,
+      "validated_current": 0,
+      "stale": 143,
+      "unverifiable": 0
+    },
+    "semantic_evaluation": {
+      "semantic_gold_cases": 22,
+      "proposal_eligible_cases": 20,
+      "mapping_available_cases": 20,
+      "mapping_unavailable_cases": 0,
+      "candidate_present_cases": 20,
+      "proposal_candidate_recall": {
+        "successes": 20,
+        "total": 20,
+        "percent": 100.0,
+        "wilson_95_percent": [
+          83.9,
+          100.0
+        ]
+      },
+      "supported_candidate_recall": {
+        "successes": 20,
+        "total": 20,
+        "percent": 100.0,
+        "wilson_95_percent": [
+          83.9,
+          100.0
+        ]
+      },
+      "top_1_recall": {
+        "successes": 20,
+        "total": 20,
+        "percent": 100.0,
+        "wilson_95_percent": [
+          83.9,
+          100.0
+        ]
+      },
+      "already_semantic_cases": 2,
+      "already_semantic_correctly_skipped": 2
+    }
+  },
+  {
+    "id": "configured-integrals",
+    "path": "../tests/fixtures/integral_expressions.tex",
+    "description": "Hand-authored configured integral expressions",
+    "math_regions": 8,
+    "parsed": 8,
+    "parser_coverage_percent": 100.0,
+    "gold_occurrences": 8,
+    "structurally_labeled": 8,
+    "semantically_labeled": 7,
+    "scope_accuracy_percent": 100.0,
+    "notation_recognition": {
+      "regions": 8,
+      "coverage_percent": 100.0
+    },
+    "legacy_candidate_recall": {
+      "present": 7,
+      "gold_with_known_candidate": 7,
+      "percent": 100.0
+    },
+    "candidate_recall": {
+      "successes": 7,
+      "total": 7,
+      "percent": 100.0,
+      "wilson_95_percent": [
+        64.6,
+        100.0
+      ]
+    },
+    "candidate_precision": {
+      "relevant": 16,
+      "generated_on_labeled_gold": 107,
+      "percent": 15.0
+    },
+    "legacy_ranking": {
+      "top_1_recall_percent": 100.0,
+      "top_3_recall_percent": 100.0,
+      "top_5_recall_percent": 100.0,
+      "mean_reciprocal_rank": 1.0,
+      "precision_at_1_percent": 100.0,
+      "precision_at_3_percent": 52.4,
+      "precision_at_5_percent": 42.9
+    },
+    "ranking": {
+      "top_1_recall": {
+        "successes": 7,
+        "total": 7,
+        "percent": 100.0,
+        "wilson_95_percent": [
+          64.6,
+          100.0
+        ]
+      },
+      "top_3_recall": {
+        "successes": 7,
+        "total": 7,
+        "percent": 100.0,
+        "wilson_95_percent": [
+          64.6,
+          100.0
+        ]
+      },
+      "top_5_recall": {
+        "successes": 7,
+        "total": 7,
+        "percent": 100.0,
+        "wilson_95_percent": [
+          64.6,
+          100.0
+        ]
+      },
+      "mean_reciprocal_rank": 1.0
+    },
+    "annotation_ready": {
+      "regions": 7,
+      "coverage_percent": 87.5
+    },
+    "argument_accuracy_percent": null,
+    "decision_validation": {
+      "stored_decisions": 143,
+      "accepted": 143,
+      "validated_current": 0,
+      "stale": 143,
+      "unverifiable": 0
+    },
+    "semantic_evaluation": {
+      "semantic_gold_cases": 7,
+      "proposal_eligible_cases": 7,
+      "mapping_available_cases": 7,
+      "mapping_unavailable_cases": 0,
+      "candidate_present_cases": 7,
+      "proposal_candidate_recall": {
+        "successes": 7,
+        "total": 7,
+        "percent": 100.0,
+        "wilson_95_percent": [
+          64.6,
+          100.0
+        ]
+      },
+      "supported_candidate_recall": {
+        "successes": 7,
+        "total": 7,
+        "percent": 100.0,
+        "wilson_95_percent": [
+          64.6,
+          100.0
+        ]
+      },
+      "top_1_recall": {
+        "successes": 7,
+        "total": 7,
+        "percent": 100.0,
+        "wilson_95_percent": [
+          64.6,
+          100.0
+        ]
+      },
+      "already_semantic_cases": 0,
+      "already_semantic_correctly_skipped": 0
+    }
+  }
+]

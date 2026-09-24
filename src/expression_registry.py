@@ -81,7 +81,9 @@ class BoundConstruct:
 
 
 class NotationRegistry:
-    def __init__(self, operators=(), commands=None, syntax=None, bound_constructs=None):
+    def __init__(self, operators=(), commands=None, syntax=None, bound_constructs=None,
+                 notation_aliases=None):
+        self.notation_aliases = deepcopy(notation_aliases or {})
         self.operators = {}
         for item in operators:
             op = item if isinstance(item, Operator) else Operator(**item)
@@ -90,7 +92,7 @@ class NotationRegistry:
                     raise ValueError("Operator spellings must be nonempty tokens")
                 if variant in STRUCTURAL_TOKENS:
                     raise ValueError("TeX structural syntax cannot be registered as an operator")
-                for spelling in get_equivalent_tex_notations(variant):
+                for spelling in get_equivalent_tex_notations(variant, self.notation_aliases):
                     key = spelling, op.fixity
                     previous = self.operators.get(key)
                     if previous is not None and previous != op:
@@ -156,8 +158,11 @@ class NotationRegistry:
     @classmethod
     def from_config(cls, config):
         return cls(config.get("operators", ()), config.get("commands"), config.get("syntax"),
-                   config.get("bound_constructs"))
+                   config.get("bound_constructs"), config.get("notation_aliases"))
 
     def equivalent(self, visible, node_operator):
-        return any(self.operators.get((spelling, node_operator.fixity)) == node_operator
-                   for spelling in get_equivalent_tex_notations(visible))
+        visible_forms = set(get_equivalent_tex_notations(visible, self.notation_aliases))
+        operator_forms = {node_operator.token, *node_operator.variants}
+        operator_forms = {form for item in operator_forms
+                          for form in get_equivalent_tex_notations(item, self.notation_aliases)}
+        return bool(visible_forms & operator_forms)

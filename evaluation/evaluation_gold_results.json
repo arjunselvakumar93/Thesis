@@ -50,6 +50,67 @@
       "realpower",
       "realtimes"
     ],
+    "ranked_candidate_macros": [
+      "eq"
+    ],
+    "ranked_candidates": [
+      {
+        "semantic_macro": "eq",
+        "macro": "eq",
+        "name": "equal",
+        "module": "equal",
+        "repository": "mv",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "=",
+          "separator_fragment": "\\mathrel{\\maincomp=}",
+          "variable_arguments": true,
+          "operator_role": "relation",
+          "precedence": 700,
+          "grammar_supported": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "x^2 + Bx + C",
+          "(x-R)(x-S)"
+        ],
+        "start": 22,
+        "end": 47,
+        "matched_expression": "x^2 + Bx + C = (x-R)(x-S)",
+        "matched_visible_notation": "=",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 5.0,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "same_document_macro_history",
+            "weight": 3.5
+          }
+        ],
+        "semantic_family": {
+          "operation": "equal",
+          "module": "equal",
+          "repository": "mv"
+        },
+        "contextual_evidence": true,
+        "rank": 1
+      }
+    ],
     "correct_candidate_present": true
   },
   {
@@ -78,6 +139,67 @@
     ],
     "candidate_macros": [
       "eq"
+    ],
+    "ranked_candidate_macros": [
+      "eq"
+    ],
+    "ranked_candidates": [
+      {
+        "semantic_macro": "eq",
+        "macro": "eq",
+        "name": "equal",
+        "module": "equal",
+        "repository": "mv",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "=",
+          "separator_fragment": "\\mathrel{\\maincomp=}",
+          "variable_arguments": true,
+          "operator_role": "relation",
+          "precedence": 700,
+          "grammar_supported": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "x",
+          "R"
+        ],
+        "start": 0,
+        "end": 5,
+        "matched_expression": "x = R",
+        "matched_visible_notation": "=",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 5.0,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "same_document_macro_history",
+            "weight": 3.5
+          }
+        ],
+        "semantic_family": {
+          "operation": "equal",
+          "module": "equal",
+          "repository": "mv"
+        },
+        "contextual_evidence": true,
+        "rank": 1
+      }
     ],
     "correct_candidate_present": true
   },
@@ -116,6 +238,66 @@
       "ratuminus",
       "realdivide",
       "realuminus"
+    ],
+    "ranked_candidate_macros": [
+      "aplusminus"
+    ],
+    "ranked_candidates": [
+      {
+        "semantic_macro": "aplusminus",
+        "macro": "aplusminus",
+        "name": "plusminus",
+        "module": "plusminus",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "binary_infix",
+          "operator_fragment": "\\maincomp{\\pm}",
+          "operator": "\\pm",
+          "argument_count": 2,
+          "precedence": 600,
+          "grammar_supported": true,
+          "fixity": "infix",
+          "arity": 2
+        },
+        "pattern_type": "binary_infix",
+        "grammar_adapter": null,
+        "arguments": [
+          "-\\frac{B}{2}",
+          "z"
+        ],
+        "start": 0,
+        "end": 18,
+        "matched_expression": "-\\frac{B}{2} \\pm z",
+        "matched_visible_notation": "\\pm",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 1.5,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "plusminus",
+          "module": "plusminus",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 1
+      }
     ],
     "correct_candidate_present": false
   },
@@ -158,6 +340,68 @@
       "ratuminus",
       "realdivide",
       "realuminus"
+    ],
+    "ranked_candidate_macros": [
+      "eq"
+    ],
+    "ranked_candidates": [
+      {
+        "semantic_macro": "eq",
+        "macro": "eq",
+        "name": "equal",
+        "module": "equal",
+        "repository": "mv",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "=",
+          "separator_fragment": "\\mathrel{\\maincomp=}",
+          "variable_arguments": true,
+          "operator_role": "relation",
+          "precedence": 700,
+          "grammar_supported": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "R",
+          "S",
+          "-\\frac{B}{2}"
+        ],
+        "start": 0,
+        "end": 20,
+        "matched_expression": "R = S = -\\frac{B}{2}",
+        "matched_visible_notation": "=",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 5.0,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "same_document_macro_history",
+            "weight": 3.5
+          }
+        ],
+        "semantic_family": {
+          "operation": "equal",
+          "module": "equal",
+          "repository": "mv"
+        },
+        "contextual_evidence": true,
+        "rank": 1
+      }
     ],
     "correct_candidate_present": true
   },
@@ -221,6 +465,298 @@
       "realtimes",
       "realuminus"
     ],
+    "ranked_candidate_macros": [
+      "atimes",
+      "comptimes",
+      "inttimes",
+      "nattimes",
+      "rattimes",
+      "realtimes"
+    ],
+    "ranked_candidates": [
+      {
+        "semantic_macro": "atimes",
+        "macro": "atimes",
+        "name": "multiplication",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "",
+          "implicit": true,
+          "variable_arguments": true,
+          "grammar_supported": true,
+          "annotation_ready": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "(-\\frac{B}{2} + z)",
+          "(-\\frac{B}{2} - z)"
+        ],
+        "start": 0,
+        "end": 36,
+        "matched_expression": "(-\\frac{B}{2} + z)(-\\frac{B}{2} - z)",
+        "matched_visible_notation": null,
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "multiplication",
+          "module": "arithmetics",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "comptimes",
+        "macro": "comptimes",
+        "name": "multiplication",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "",
+          "implicit": true,
+          "variable_arguments": true,
+          "grammar_supported": true,
+          "annotation_ready": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "(-\\frac{B}{2} + z)",
+          "(-\\frac{B}{2} - z)"
+        ],
+        "start": 0,
+        "end": 36,
+        "matched_expression": "(-\\frac{B}{2} + z)(-\\frac{B}{2} - z)",
+        "matched_visible_notation": null,
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "multiplication",
+          "module": "comparith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "inttimes",
+        "macro": "inttimes",
+        "name": "multiplication",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "",
+          "implicit": true,
+          "variable_arguments": true,
+          "grammar_supported": true,
+          "annotation_ready": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "(-\\frac{B}{2} + z)",
+          "(-\\frac{B}{2} - z)"
+        ],
+        "start": 0,
+        "end": 36,
+        "matched_expression": "(-\\frac{B}{2} + z)(-\\frac{B}{2} - z)",
+        "matched_visible_notation": null,
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "multiplication",
+          "module": "intarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "nattimes",
+        "macro": "nattimes",
+        "name": "multiplication",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "",
+          "implicit": true,
+          "variable_arguments": true,
+          "grammar_supported": true,
+          "annotation_ready": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "(-\\frac{B}{2} + z)",
+          "(-\\frac{B}{2} - z)"
+        ],
+        "start": 0,
+        "end": 36,
+        "matched_expression": "(-\\frac{B}{2} + z)(-\\frac{B}{2} - z)",
+        "matched_visible_notation": null,
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "multiplication",
+          "module": "natarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "rattimes",
+        "macro": "rattimes",
+        "name": "multiplication",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "",
+          "implicit": true,
+          "variable_arguments": true,
+          "grammar_supported": true,
+          "annotation_ready": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "(-\\frac{B}{2} + z)",
+          "(-\\frac{B}{2} - z)"
+        ],
+        "start": 0,
+        "end": 36,
+        "matched_expression": "(-\\frac{B}{2} + z)(-\\frac{B}{2} - z)",
+        "matched_visible_notation": null,
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "multiplication",
+          "module": "ratarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "realtimes",
+        "macro": "realtimes",
+        "name": "multiplication",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "",
+          "implicit": true,
+          "variable_arguments": true,
+          "grammar_supported": true,
+          "annotation_ready": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "(-\\frac{B}{2} + z)",
+          "(-\\frac{B}{2} - z)"
+        ],
+        "start": 0,
+        "end": 36,
+        "matched_expression": "(-\\frac{B}{2} + z)(-\\frac{B}{2} - z)",
+        "matched_visible_notation": null,
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "multiplication",
+          "module": "realarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 1
+      }
+    ],
     "correct_candidate_present": true
   },
   {
@@ -264,6 +800,346 @@
       "ratminus",
       "realdivide",
       "realminus"
+    ],
+    "ranked_candidate_macros": [
+      "aminus",
+      "compminus",
+      "intminus",
+      "natminus",
+      "ratminus",
+      "realminus"
+    ],
+    "ranked_candidates": [
+      {
+        "semantic_macro": "aminus",
+        "macro": "aminus",
+        "name": "subtraction",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "-",
+          "separator_fragment": "\\mathbin{\\maincomp-}",
+          "variable_arguments": true,
+          "precedence": 450,
+          "grammar_supported": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "\\frac{B^2}{4}",
+          "C"
+        ],
+        "start": 0,
+        "end": 17,
+        "matched_expression": "\\frac{B^2}{4} - C",
+        "matched_visible_notation": "-",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 5.0,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "same_document_macro_history",
+            "weight": 3.5
+          }
+        ],
+        "semantic_family": {
+          "operation": "subtraction",
+          "module": "arithmetics",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": true,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "compminus",
+        "macro": "compminus",
+        "name": "subtraction",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "-",
+          "separator_fragment": "\\mathbin{\\maincomp-}",
+          "variable_arguments": true,
+          "precedence": 450,
+          "grammar_supported": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "\\frac{B^2}{4}",
+          "C"
+        ],
+        "start": 0,
+        "end": 17,
+        "matched_expression": "\\frac{B^2}{4} - C",
+        "matched_visible_notation": "-",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 1.5,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "subtraction",
+          "module": "comparith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "intminus",
+        "macro": "intminus",
+        "name": "subtraction",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "-",
+          "separator_fragment": "\\mathbin{\\maincomp-}",
+          "variable_arguments": true,
+          "precedence": 450,
+          "grammar_supported": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "\\frac{B^2}{4}",
+          "C"
+        ],
+        "start": 0,
+        "end": 17,
+        "matched_expression": "\\frac{B^2}{4} - C",
+        "matched_visible_notation": "-",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 1.5,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "subtraction",
+          "module": "intarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "natminus",
+        "macro": "natminus",
+        "name": "subtraction",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "-",
+          "separator_fragment": "\\mathbin{\\maincomp-}",
+          "variable_arguments": true,
+          "precedence": 450,
+          "grammar_supported": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "\\frac{B^2}{4}",
+          "C"
+        ],
+        "start": 0,
+        "end": 17,
+        "matched_expression": "\\frac{B^2}{4} - C",
+        "matched_visible_notation": "-",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 1.5,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "subtraction",
+          "module": "natarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "ratminus",
+        "macro": "ratminus",
+        "name": "subtraction",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "-",
+          "separator_fragment": "\\mathbin{\\maincomp-}",
+          "variable_arguments": true,
+          "precedence": 450,
+          "grammar_supported": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "\\frac{B^2}{4}",
+          "C"
+        ],
+        "start": 0,
+        "end": 17,
+        "matched_expression": "\\frac{B^2}{4} - C",
+        "matched_visible_notation": "-",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 1.5,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "subtraction",
+          "module": "ratarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "realminus",
+        "macro": "realminus",
+        "name": "subtraction",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "-",
+          "separator_fragment": "\\mathbin{\\maincomp-}",
+          "variable_arguments": true,
+          "precedence": 450,
+          "grammar_supported": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "\\frac{B^2}{4}",
+          "C"
+        ],
+        "start": 0,
+        "end": 17,
+        "matched_expression": "\\frac{B^2}{4} - C",
+        "matched_visible_notation": "-",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 1.5,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "subtraction",
+          "module": "realarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      }
     ],
     "correct_candidate_present": true
   },
@@ -315,6 +1191,66 @@
       "realsqrt",
       "realuminus"
     ],
+    "ranked_candidate_macros": [
+      "aplusminus"
+    ],
+    "ranked_candidates": [
+      {
+        "semantic_macro": "aplusminus",
+        "macro": "aplusminus",
+        "name": "plusminus",
+        "module": "plusminus",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "binary_infix",
+          "operator_fragment": "\\maincomp{\\pm}",
+          "operator": "\\pm",
+          "argument_count": 2,
+          "precedence": 600,
+          "grammar_supported": true,
+          "fixity": "infix",
+          "arity": 2
+        },
+        "pattern_type": "binary_infix",
+        "grammar_adapter": null,
+        "arguments": [
+          "-\\frac{B}{2}",
+          "\\sqrt{\\frac{B^2}{4} - C}"
+        ],
+        "start": 30,
+        "end": 71,
+        "matched_expression": "-\\frac{B}{2} \\pm \\sqrt{\\frac{B^2}{4} - C}",
+        "matched_visible_notation": "\\pm",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 1.5,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "plusminus",
+          "module": "plusminus",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 1
+      }
+    ],
     "correct_candidate_present": false
   },
   {
@@ -360,6 +1296,1242 @@
       "realpower",
       "realuminus"
     ],
+    "ranked_candidate_macros": [
+      "aminus",
+      "compminus",
+      "intminus",
+      "natminus",
+      "ratminus",
+      "realminus",
+      "eq",
+      "comppower",
+      "intpower",
+      "natpower",
+      "power",
+      "ratpower",
+      "realpower",
+      "eq",
+      "auminus",
+      "compuminus",
+      "intuminus",
+      "negative",
+      "ratuminus",
+      "realuminus"
+    ],
+    "ranked_candidates": [
+      {
+        "semantic_macro": "aminus",
+        "macro": "aminus",
+        "name": "subtraction",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "-",
+          "separator_fragment": "\\mathbin{\\maincomp-}",
+          "variable_arguments": true,
+          "precedence": 450,
+          "grammar_supported": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "1",
+          "z^2"
+        ],
+        "start": 3,
+        "end": 10,
+        "matched_expression": "1 - z^2",
+        "matched_visible_notation": "-",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 5.0,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "same_document_macro_history",
+            "weight": 3.5
+          }
+        ],
+        "semantic_family": {
+          "operation": "subtraction",
+          "module": "arithmetics",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": true,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "compminus",
+        "macro": "compminus",
+        "name": "subtraction",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "-",
+          "separator_fragment": "\\mathbin{\\maincomp-}",
+          "variable_arguments": true,
+          "precedence": 450,
+          "grammar_supported": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "1",
+          "z^2"
+        ],
+        "start": 3,
+        "end": 10,
+        "matched_expression": "1 - z^2",
+        "matched_visible_notation": "-",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 1.5,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "subtraction",
+          "module": "comparith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "intminus",
+        "macro": "intminus",
+        "name": "subtraction",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "-",
+          "separator_fragment": "\\mathbin{\\maincomp-}",
+          "variable_arguments": true,
+          "precedence": 450,
+          "grammar_supported": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "1",
+          "z^2"
+        ],
+        "start": 3,
+        "end": 10,
+        "matched_expression": "1 - z^2",
+        "matched_visible_notation": "-",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 1.5,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "subtraction",
+          "module": "intarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "natminus",
+        "macro": "natminus",
+        "name": "subtraction",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "-",
+          "separator_fragment": "\\mathbin{\\maincomp-}",
+          "variable_arguments": true,
+          "precedence": 450,
+          "grammar_supported": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "1",
+          "z^2"
+        ],
+        "start": 3,
+        "end": 10,
+        "matched_expression": "1 - z^2",
+        "matched_visible_notation": "-",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 1.5,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "subtraction",
+          "module": "natarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "ratminus",
+        "macro": "ratminus",
+        "name": "subtraction",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "-",
+          "separator_fragment": "\\mathbin{\\maincomp-}",
+          "variable_arguments": true,
+          "precedence": 450,
+          "grammar_supported": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "1",
+          "z^2"
+        ],
+        "start": 3,
+        "end": 10,
+        "matched_expression": "1 - z^2",
+        "matched_visible_notation": "-",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 1.5,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "subtraction",
+          "module": "ratarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "realminus",
+        "macro": "realminus",
+        "name": "subtraction",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "-",
+          "separator_fragment": "\\mathbin{\\maincomp-}",
+          "variable_arguments": true,
+          "precedence": 450,
+          "grammar_supported": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "1",
+          "z^2"
+        ],
+        "start": 3,
+        "end": 10,
+        "matched_expression": "1 - z^2",
+        "matched_visible_notation": "-",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 1.5,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "subtraction",
+          "module": "realarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "eq",
+        "macro": "eq",
+        "name": "equal",
+        "module": "equal",
+        "repository": "mv",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "=",
+          "separator_fragment": "\\mathrel{\\maincomp=}",
+          "variable_arguments": true,
+          "operator_role": "relation",
+          "precedence": 700,
+          "grammar_supported": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "1 - z^2",
+          "4"
+        ],
+        "start": 3,
+        "end": 15,
+        "matched_expression": "1 - z^2 &= 4",
+        "matched_visible_notation": "=",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 5.0,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "same_document_macro_history",
+            "weight": 3.5
+          }
+        ],
+        "semantic_family": {
+          "operation": "equal",
+          "module": "equal",
+          "repository": "mv"
+        },
+        "contextual_evidence": true,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "comppower",
+        "macro": "comppower",
+        "name": "exponentiation",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "1 - z",
+          "2 &= 4 \\\\\n  z^2 &= -3."
+        ],
+        "start": 3,
+        "end": 31,
+        "matched_expression": "1 - z^2 &= 4 \\\\\n  z^2 &= -3.",
+        "matched_visible_notation": "1 - z^2 &= 4 \\\\\n  z^2 &= -3.",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 1.0,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "comparith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "intpower",
+        "macro": "intpower",
+        "name": "exponentiation",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "1 - z",
+          "2 &= 4 \\\\\n  z^2 &= -3."
+        ],
+        "start": 3,
+        "end": 31,
+        "matched_expression": "1 - z^2 &= 4 \\\\\n  z^2 &= -3.",
+        "matched_visible_notation": "1 - z^2 &= 4 \\\\\n  z^2 &= -3.",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 1.0,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "intarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "natpower",
+        "macro": "natpower",
+        "name": "exponentiation",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "1 - z",
+          "2 &= 4 \\\\\n  z^2 &= -3."
+        ],
+        "start": 3,
+        "end": 31,
+        "matched_expression": "1 - z^2 &= 4 \\\\\n  z^2 &= -3.",
+        "matched_visible_notation": "1 - z^2 &= 4 \\\\\n  z^2 &= -3.",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 1.0,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "natarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "power",
+        "macro": "power",
+        "name": "exponentiation",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "1 - z",
+          "2 &= 4 \\\\\n  z^2 &= -3."
+        ],
+        "start": 3,
+        "end": 31,
+        "matched_expression": "1 - z^2 &= 4 \\\\\n  z^2 &= -3.",
+        "matched_visible_notation": "1 - z^2 &= 4 \\\\\n  z^2 &= -3.",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 1.0,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "arithmetics",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "ratpower",
+        "macro": "ratpower",
+        "name": "exponentiation",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "1 - z",
+          "2 &= 4 \\\\\n  z^2 &= -3."
+        ],
+        "start": 3,
+        "end": 31,
+        "matched_expression": "1 - z^2 &= 4 \\\\\n  z^2 &= -3.",
+        "matched_visible_notation": "1 - z^2 &= 4 \\\\\n  z^2 &= -3.",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 1.0,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "ratarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "realpower",
+        "macro": "realpower",
+        "name": "exponentiation",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "1 - z",
+          "2 &= 4 \\\\\n  z^2 &= -3."
+        ],
+        "start": 3,
+        "end": 31,
+        "matched_expression": "1 - z^2 &= 4 \\\\\n  z^2 &= -3.",
+        "matched_visible_notation": "1 - z^2 &= 4 \\\\\n  z^2 &= -3.",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 1.0,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "realarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "eq",
+        "macro": "eq",
+        "name": "equal",
+        "module": "equal",
+        "repository": "mv",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "=",
+          "separator_fragment": "\\mathrel{\\maincomp=}",
+          "variable_arguments": true,
+          "operator_role": "relation",
+          "precedence": 700,
+          "grammar_supported": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "z^2",
+          "-3"
+        ],
+        "start": 21,
+        "end": 30,
+        "matched_expression": "z^2 &= -3",
+        "matched_visible_notation": "=",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 5.0,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "same_document_macro_history",
+            "weight": 3.5
+          }
+        ],
+        "semantic_family": {
+          "operation": "equal",
+          "module": "equal",
+          "repository": "mv"
+        },
+        "contextual_evidence": true,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "auminus",
+        "macro": "auminus",
+        "name": "uminus",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "unary",
+          "operator": "-",
+          "fixity": "prefix",
+          "arity": 1,
+          "argument_count": 1,
+          "grammar_supported": true,
+          "precedence": 450
+        },
+        "pattern_type": "unary",
+        "grammar_adapter": null,
+        "arguments": [
+          "3"
+        ],
+        "start": 28,
+        "end": 30,
+        "matched_expression": "-3",
+        "matched_visible_notation": "-",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 3.0,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "same_document_module_history",
+            "weight": 1.5
+          }
+        ],
+        "semantic_family": {
+          "operation": "uminus",
+          "module": "arithmetics",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": true,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "compuminus",
+        "macro": "compuminus",
+        "name": null,
+        "module": "comparith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "unary",
+          "operator": "-",
+          "fixity": "prefix",
+          "arity": 1,
+          "argument_count": 1,
+          "grammar_supported": true,
+          "precedence": 300
+        },
+        "pattern_type": "unary",
+        "grammar_adapter": null,
+        "arguments": [
+          "3"
+        ],
+        "start": 28,
+        "end": 30,
+        "matched_expression": "-3",
+        "matched_visible_notation": "-",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 1.5,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "unary",
+          "module": "comparith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "intuminus",
+        "macro": "intuminus",
+        "name": null,
+        "module": "intarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "unary",
+          "operator": "-",
+          "fixity": "prefix",
+          "arity": 1,
+          "argument_count": 1,
+          "grammar_supported": true,
+          "precedence": 700
+        },
+        "pattern_type": "unary",
+        "grammar_adapter": null,
+        "arguments": [
+          "3"
+        ],
+        "start": 28,
+        "end": 30,
+        "matched_expression": "-3",
+        "matched_visible_notation": "-",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 1.5,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "unary",
+          "module": "intarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "negative",
+        "macro": "negative",
+        "name": null,
+        "module": "integernumbers",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "unary",
+          "operator": "-",
+          "fixity": "prefix",
+          "arity": 1,
+          "argument_count": 1,
+          "grammar_supported": true,
+          "precedence": 700
+        },
+        "pattern_type": "unary",
+        "grammar_adapter": null,
+        "arguments": [
+          "3"
+        ],
+        "start": 28,
+        "end": 30,
+        "matched_expression": "-3",
+        "matched_visible_notation": "-",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 1.5,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "unary",
+          "module": "integernumbers",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "ratuminus",
+        "macro": "ratuminus",
+        "name": "uminus",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "unary",
+          "operator": "-",
+          "fixity": "prefix",
+          "arity": 1,
+          "argument_count": 1,
+          "grammar_supported": true,
+          "precedence": "nobrackets"
+        },
+        "pattern_type": "unary",
+        "grammar_adapter": null,
+        "arguments": [
+          "3"
+        ],
+        "start": 28,
+        "end": 30,
+        "matched_expression": "-3",
+        "matched_visible_notation": "-",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 1.5,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "uminus",
+          "module": "ratarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "realuminus",
+        "macro": "realuminus",
+        "name": null,
+        "module": "realarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "unary",
+          "operator": "-",
+          "fixity": "prefix",
+          "arity": 1,
+          "argument_count": 1,
+          "grammar_supported": true,
+          "precedence": 300
+        },
+        "pattern_type": "unary",
+        "grammar_adapter": null,
+        "arguments": [
+          "3"
+        ],
+        "start": 28,
+        "end": 30,
+        "matched_expression": "-3",
+        "matched_visible_notation": "-",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 1.5,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "unary",
+          "module": "realarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      }
+    ],
     "correct_candidate_present": false
   },
   {
@@ -404,6 +2576,298 @@
       "rattimes",
       "realsqrt",
       "realtimes"
+    ],
+    "ranked_candidate_macros": [
+      "atimes",
+      "comptimes",
+      "inttimes",
+      "nattimes",
+      "rattimes",
+      "realtimes"
+    ],
+    "ranked_candidates": [
+      {
+        "semantic_macro": "atimes",
+        "macro": "atimes",
+        "name": "multiplication",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "",
+          "implicit": true,
+          "variable_arguments": true,
+          "grammar_supported": true,
+          "annotation_ready": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "i",
+          "\\sqrt{3}"
+        ],
+        "start": 0,
+        "end": 10,
+        "matched_expression": "i \\sqrt{3}",
+        "matched_visible_notation": null,
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "multiplication",
+          "module": "arithmetics",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "comptimes",
+        "macro": "comptimes",
+        "name": "multiplication",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "",
+          "implicit": true,
+          "variable_arguments": true,
+          "grammar_supported": true,
+          "annotation_ready": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "i",
+          "\\sqrt{3}"
+        ],
+        "start": 0,
+        "end": 10,
+        "matched_expression": "i \\sqrt{3}",
+        "matched_visible_notation": null,
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "multiplication",
+          "module": "comparith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "inttimes",
+        "macro": "inttimes",
+        "name": "multiplication",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "",
+          "implicit": true,
+          "variable_arguments": true,
+          "grammar_supported": true,
+          "annotation_ready": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "i",
+          "\\sqrt{3}"
+        ],
+        "start": 0,
+        "end": 10,
+        "matched_expression": "i \\sqrt{3}",
+        "matched_visible_notation": null,
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "multiplication",
+          "module": "intarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "nattimes",
+        "macro": "nattimes",
+        "name": "multiplication",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "",
+          "implicit": true,
+          "variable_arguments": true,
+          "grammar_supported": true,
+          "annotation_ready": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "i",
+          "\\sqrt{3}"
+        ],
+        "start": 0,
+        "end": 10,
+        "matched_expression": "i \\sqrt{3}",
+        "matched_visible_notation": null,
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "multiplication",
+          "module": "natarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "rattimes",
+        "macro": "rattimes",
+        "name": "multiplication",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "",
+          "implicit": true,
+          "variable_arguments": true,
+          "grammar_supported": true,
+          "annotation_ready": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "i",
+          "\\sqrt{3}"
+        ],
+        "start": 0,
+        "end": 10,
+        "matched_expression": "i \\sqrt{3}",
+        "matched_visible_notation": null,
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "multiplication",
+          "module": "ratarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "realtimes",
+        "macro": "realtimes",
+        "name": "multiplication",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "",
+          "implicit": true,
+          "variable_arguments": true,
+          "grammar_supported": true,
+          "annotation_ready": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "i",
+          "\\sqrt{3}"
+        ],
+        "start": 0,
+        "end": 10,
+        "matched_expression": "i \\sqrt{3}",
+        "matched_visible_notation": null,
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "multiplication",
+          "module": "realarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 1
+      }
     ],
     "correct_candidate_present": true
   },
@@ -452,6 +2916,501 @@
       "realpower",
       "realtimes"
     ],
+    "ranked_candidate_macros": [
+      "eq",
+      "comppower",
+      "intpower",
+      "natpower",
+      "power",
+      "ratpower",
+      "realpower"
+    ],
+    "ranked_candidates": [
+      {
+        "semantic_macro": "eq",
+        "macro": "eq",
+        "name": "equal",
+        "module": "equal",
+        "repository": "mv",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "=",
+          "separator_fragment": "\\mathrel{\\maincomp=}",
+          "variable_arguments": true,
+          "operator_role": "relation",
+          "precedence": 700,
+          "grammar_supported": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "ax^2 + bx\n+ c",
+          "0"
+        ],
+        "start": 0,
+        "end": 17,
+        "matched_expression": "ax^2 + bx\n+ c = 0",
+        "matched_visible_notation": "=",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 5.0,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "same_document_macro_history",
+            "weight": 3.5
+          }
+        ],
+        "semantic_family": {
+          "operation": "equal",
+          "module": "equal",
+          "repository": "mv"
+        },
+        "contextual_evidence": true,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "comppower",
+        "macro": "comppower",
+        "name": "exponentiation",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "ax",
+          "2 + bx\n+ c = 0"
+        ],
+        "start": 0,
+        "end": 17,
+        "matched_expression": "ax^2 + bx\n+ c = 0",
+        "matched_visible_notation": "ax^2 + bx\n+ c = 0",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "comparith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "intpower",
+        "macro": "intpower",
+        "name": "exponentiation",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "ax",
+          "2 + bx\n+ c = 0"
+        ],
+        "start": 0,
+        "end": 17,
+        "matched_expression": "ax^2 + bx\n+ c = 0",
+        "matched_visible_notation": "ax^2 + bx\n+ c = 0",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "intarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "natpower",
+        "macro": "natpower",
+        "name": "exponentiation",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "ax",
+          "2 + bx\n+ c = 0"
+        ],
+        "start": 0,
+        "end": 17,
+        "matched_expression": "ax^2 + bx\n+ c = 0",
+        "matched_visible_notation": "ax^2 + bx\n+ c = 0",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "natarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "power",
+        "macro": "power",
+        "name": "exponentiation",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "ax",
+          "2 + bx\n+ c = 0"
+        ],
+        "start": 0,
+        "end": 17,
+        "matched_expression": "ax^2 + bx\n+ c = 0",
+        "matched_visible_notation": "ax^2 + bx\n+ c = 0",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "arithmetics",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "ratpower",
+        "macro": "ratpower",
+        "name": "exponentiation",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "ax",
+          "2 + bx\n+ c = 0"
+        ],
+        "start": 0,
+        "end": 17,
+        "matched_expression": "ax^2 + bx\n+ c = 0",
+        "matched_visible_notation": "ax^2 + bx\n+ c = 0",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "ratarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "realpower",
+        "macro": "realpower",
+        "name": "exponentiation",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "ax",
+          "2 + bx\n+ c = 0"
+        ],
+        "start": 0,
+        "end": 17,
+        "matched_expression": "ax^2 + bx\n+ c = 0",
+        "matched_visible_notation": "ax^2 + bx\n+ c = 0",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "realarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      }
+    ],
     "correct_candidate_present": true
   },
   {
@@ -493,6 +3452,67 @@
       "realplus",
       "realtimes"
     ],
+    "ranked_candidate_macros": [
+      "eq"
+    ],
+    "ranked_candidates": [
+      {
+        "semantic_macro": "eq",
+        "macro": "eq",
+        "name": "equal",
+        "module": "equal",
+        "repository": "mv",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "=",
+          "separator_fragment": "\\mathrel{\\maincomp=}",
+          "variable_arguments": true,
+          "operator_role": "relation",
+          "precedence": 700,
+          "grammar_supported": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "ax + b",
+          "0"
+        ],
+        "start": 0,
+        "end": 10,
+        "matched_expression": "ax + b = 0",
+        "matched_visible_notation": "=",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 5.0,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "same_document_macro_history",
+            "weight": 3.5
+          }
+        ],
+        "semantic_family": {
+          "operation": "equal",
+          "module": "equal",
+          "repository": "mv"
+        },
+        "contextual_evidence": true,
+        "rank": 1
+      }
+    ],
     "correct_candidate_present": true
   },
   {
@@ -533,6 +3553,67 @@
       "realdivide",
       "realuminus"
     ],
+    "ranked_candidate_macros": [
+      "eq"
+    ],
+    "ranked_candidates": [
+      {
+        "semantic_macro": "eq",
+        "macro": "eq",
+        "name": "equal",
+        "module": "equal",
+        "repository": "mv",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "=",
+          "separator_fragment": "\\mathrel{\\maincomp=}",
+          "variable_arguments": true,
+          "operator_role": "relation",
+          "precedence": 700,
+          "grammar_supported": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "x",
+          "-\\frac{b}{a}"
+        ],
+        "start": 0,
+        "end": 16,
+        "matched_expression": "x = -\\frac{b}{a}",
+        "matched_visible_notation": "=",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 5.0,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "same_document_macro_history",
+            "weight": 3.5
+          }
+        ],
+        "semantic_family": {
+          "operation": "equal",
+          "module": "equal",
+          "repository": "mv"
+        },
+        "contextual_evidence": true,
+        "rank": 1
+      }
+    ],
     "correct_candidate_present": true
   },
   {
@@ -561,6 +3642,67 @@
     ],
     "candidate_macros": [
       "notequal"
+    ],
+    "ranked_candidate_macros": [
+      "notequal"
+    ],
+    "ranked_candidates": [
+      {
+        "semantic_macro": "notequal",
+        "macro": "notequal",
+        "name": "not equal",
+        "module": "equal",
+        "repository": "mv",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "binary_infix",
+          "operator_fragment": "\\mathrel{\\maincomp\\ne}",
+          "operator": "\\ne",
+          "argument_count": 2,
+          "operator_role": "relation",
+          "precedence": 800,
+          "grammar_supported": true,
+          "fixity": "infix",
+          "arity": 2
+        },
+        "pattern_type": "binary_infix",
+        "grammar_adapter": null,
+        "arguments": [
+          "a",
+          "0"
+        ],
+        "start": 0,
+        "end": 8,
+        "matched_expression": "a \\neq 0",
+        "matched_visible_notation": "\\neq",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 5.0,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "same_document_macro_history",
+            "weight": 3.5
+          }
+        ],
+        "semantic_family": {
+          "operation": "not equal",
+          "module": "equal",
+          "repository": "mv"
+        },
+        "contextual_evidence": true,
+        "rank": 1
+      }
     ],
     "correct_candidate_present": true
   },
@@ -608,6 +3750,501 @@
       "realplus",
       "realpower",
       "realtimes"
+    ],
+    "ranked_candidate_macros": [
+      "eq",
+      "comppower",
+      "intpower",
+      "natpower",
+      "power",
+      "ratpower",
+      "realpower"
+    ],
+    "ranked_candidates": [
+      {
+        "semantic_macro": "eq",
+        "macro": "eq",
+        "name": "equal",
+        "module": "equal",
+        "repository": "mv",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "=",
+          "separator_fragment": "\\mathrel{\\maincomp=}",
+          "variable_arguments": true,
+          "operator_role": "relation",
+          "precedence": 700,
+          "grammar_supported": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "(u + v)^2",
+          "u^2 + 2uv +\nv^2"
+        ],
+        "start": 0,
+        "end": 27,
+        "matched_expression": "(u + v)^2 = u^2 + 2uv +\nv^2",
+        "matched_visible_notation": "=",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 5.0,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "same_document_macro_history",
+            "weight": 3.5
+          }
+        ],
+        "semantic_family": {
+          "operation": "equal",
+          "module": "equal",
+          "repository": "mv"
+        },
+        "contextual_evidence": true,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "comppower",
+        "macro": "comppower",
+        "name": "exponentiation",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "(u + v)",
+          "2 = u^2 + 2uv +\nv^2"
+        ],
+        "start": 0,
+        "end": 27,
+        "matched_expression": "(u + v)^2 = u^2 + 2uv +\nv^2",
+        "matched_visible_notation": "(u + v)^2 = u^2 + 2uv +\nv^2",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "comparith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "intpower",
+        "macro": "intpower",
+        "name": "exponentiation",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "(u + v)",
+          "2 = u^2 + 2uv +\nv^2"
+        ],
+        "start": 0,
+        "end": 27,
+        "matched_expression": "(u + v)^2 = u^2 + 2uv +\nv^2",
+        "matched_visible_notation": "(u + v)^2 = u^2 + 2uv +\nv^2",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "intarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "natpower",
+        "macro": "natpower",
+        "name": "exponentiation",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "(u + v)",
+          "2 = u^2 + 2uv +\nv^2"
+        ],
+        "start": 0,
+        "end": 27,
+        "matched_expression": "(u + v)^2 = u^2 + 2uv +\nv^2",
+        "matched_visible_notation": "(u + v)^2 = u^2 + 2uv +\nv^2",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "natarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "power",
+        "macro": "power",
+        "name": "exponentiation",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "(u + v)",
+          "2 = u^2 + 2uv +\nv^2"
+        ],
+        "start": 0,
+        "end": 27,
+        "matched_expression": "(u + v)^2 = u^2 + 2uv +\nv^2",
+        "matched_visible_notation": "(u + v)^2 = u^2 + 2uv +\nv^2",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "arithmetics",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "ratpower",
+        "macro": "ratpower",
+        "name": "exponentiation",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "(u + v)",
+          "2 = u^2 + 2uv +\nv^2"
+        ],
+        "start": 0,
+        "end": 27,
+        "matched_expression": "(u + v)^2 = u^2 + 2uv +\nv^2",
+        "matched_visible_notation": "(u + v)^2 = u^2 + 2uv +\nv^2",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "ratarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "realpower",
+        "macro": "realpower",
+        "name": "exponentiation",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "(u + v)",
+          "2 = u^2 + 2uv +\nv^2"
+        ],
+        "start": 0,
+        "end": 27,
+        "matched_expression": "(u + v)^2 = u^2 + 2uv +\nv^2",
+        "matched_visible_notation": "(u + v)^2 = u^2 + 2uv +\nv^2",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "realarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      }
     ],
     "correct_candidate_present": true
   },
@@ -662,6 +4299,501 @@
       "realpower",
       "realtimes"
     ],
+    "ranked_candidate_macros": [
+      "eq",
+      "comppower",
+      "intpower",
+      "natpower",
+      "power",
+      "ratpower",
+      "realpower"
+    ],
+    "ranked_candidates": [
+      {
+        "semantic_macro": "eq",
+        "macro": "eq",
+        "name": "equal",
+        "module": "equal",
+        "repository": "mv",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "=",
+          "separator_fragment": "\\mathrel{\\maincomp=}",
+          "variable_arguments": true,
+          "operator_role": "relation",
+          "precedence": 700,
+          "grammar_supported": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "(u+v)(u-v)",
+          "u^2 - v^2"
+        ],
+        "start": 0,
+        "end": 22,
+        "matched_expression": "(u+v)(u-v) = u^2 - v^2",
+        "matched_visible_notation": "=",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 5.0,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "same_document_macro_history",
+            "weight": 3.5
+          }
+        ],
+        "semantic_family": {
+          "operation": "equal",
+          "module": "equal",
+          "repository": "mv"
+        },
+        "contextual_evidence": true,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "comppower",
+        "macro": "comppower",
+        "name": "exponentiation",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "(u+v)(u-v) = u",
+          "2 - v^2"
+        ],
+        "start": 0,
+        "end": 22,
+        "matched_expression": "(u+v)(u-v) = u^2 - v^2",
+        "matched_visible_notation": "(u+v)(u-v) = u^2 - v^2",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "comparith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "intpower",
+        "macro": "intpower",
+        "name": "exponentiation",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "(u+v)(u-v) = u",
+          "2 - v^2"
+        ],
+        "start": 0,
+        "end": 22,
+        "matched_expression": "(u+v)(u-v) = u^2 - v^2",
+        "matched_visible_notation": "(u+v)(u-v) = u^2 - v^2",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "intarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "natpower",
+        "macro": "natpower",
+        "name": "exponentiation",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "(u+v)(u-v) = u",
+          "2 - v^2"
+        ],
+        "start": 0,
+        "end": 22,
+        "matched_expression": "(u+v)(u-v) = u^2 - v^2",
+        "matched_visible_notation": "(u+v)(u-v) = u^2 - v^2",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "natarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "power",
+        "macro": "power",
+        "name": "exponentiation",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "(u+v)(u-v) = u",
+          "2 - v^2"
+        ],
+        "start": 0,
+        "end": 22,
+        "matched_expression": "(u+v)(u-v) = u^2 - v^2",
+        "matched_visible_notation": "(u+v)(u-v) = u^2 - v^2",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "arithmetics",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "ratpower",
+        "macro": "ratpower",
+        "name": "exponentiation",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "(u+v)(u-v) = u",
+          "2 - v^2"
+        ],
+        "start": 0,
+        "end": 22,
+        "matched_expression": "(u+v)(u-v) = u^2 - v^2",
+        "matched_visible_notation": "(u+v)(u-v) = u^2 - v^2",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "ratarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "realpower",
+        "macro": "realpower",
+        "name": "exponentiation",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "(u+v)(u-v) = u",
+          "2 - v^2"
+        ],
+        "start": 0,
+        "end": 22,
+        "matched_expression": "(u+v)(u-v) = u^2 - v^2",
+        "matched_visible_notation": "(u+v)(u-v) = u^2 - v^2",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "realarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      }
+    ],
     "correct_candidate_present": true
   },
   {
@@ -707,6 +4839,280 @@
       "realminus",
       "realsqrt"
     ],
+    "ranked_candidate_macros": [
+      "adivide",
+      "compdivide",
+      "fraction",
+      "ratdivide",
+      "realdivide"
+    ],
+    "ranked_candidates": [
+      {
+        "semantic_macro": "adivide",
+        "macro": "adivide",
+        "name": "division",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "command",
+          "command": "\\frac",
+          "argument_count": 2,
+          "arity": 2,
+          "fixity": "command",
+          "grammar_supported": true
+        },
+        "pattern_type": "command",
+        "grammar_adapter": null,
+        "arguments": [
+          "1",
+          "\\sqrt{3} - \\sqrt{2}"
+        ],
+        "start": 0,
+        "end": 29,
+        "matched_expression": "\\frac{1}{\\sqrt{3} - \\sqrt{2}}",
+        "matched_visible_notation": "\\frac",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 5.0,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "same_document_macro_history",
+            "weight": 3.5
+          }
+        ],
+        "semantic_family": {
+          "operation": "division",
+          "module": "arithmetics",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": true,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "compdivide",
+        "macro": "compdivide",
+        "name": "division",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "command",
+          "command": "\\frac",
+          "argument_count": 2,
+          "arity": 2,
+          "fixity": "command",
+          "grammar_supported": true
+        },
+        "pattern_type": "command",
+        "grammar_adapter": null,
+        "arguments": [
+          "1",
+          "\\sqrt{3} - \\sqrt{2}"
+        ],
+        "start": 0,
+        "end": 29,
+        "matched_expression": "\\frac{1}{\\sqrt{3} - \\sqrt{2}}",
+        "matched_visible_notation": "\\frac",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 1.5,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "division",
+          "module": "comparith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "fraction",
+        "macro": "fraction",
+        "name": null,
+        "module": "rationalnumbers",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "command",
+          "command": "\\frac",
+          "argument_count": 2,
+          "arity": 2,
+          "fixity": "command",
+          "grammar_supported": true
+        },
+        "pattern_type": "command",
+        "grammar_adapter": null,
+        "arguments": [
+          "1",
+          "\\sqrt{3} - \\sqrt{2}"
+        ],
+        "start": 0,
+        "end": 29,
+        "matched_expression": "\\frac{1}{\\sqrt{3} - \\sqrt{2}}",
+        "matched_visible_notation": "\\frac",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 1.5,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "command",
+          "module": "rationalnumbers",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "ratdivide",
+        "macro": "ratdivide",
+        "name": "division",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "command",
+          "command": "\\frac",
+          "argument_count": 2,
+          "arity": 2,
+          "fixity": "command",
+          "grammar_supported": true
+        },
+        "pattern_type": "command",
+        "grammar_adapter": null,
+        "arguments": [
+          "1",
+          "\\sqrt{3} - \\sqrt{2}"
+        ],
+        "start": 0,
+        "end": 29,
+        "matched_expression": "\\frac{1}{\\sqrt{3} - \\sqrt{2}}",
+        "matched_visible_notation": "\\frac",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 1.5,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "division",
+          "module": "ratarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "realdivide",
+        "macro": "realdivide",
+        "name": "division",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "command",
+          "command": "\\frac",
+          "argument_count": 2,
+          "arity": 2,
+          "fixity": "command",
+          "grammar_supported": true
+        },
+        "pattern_type": "command",
+        "grammar_adapter": null,
+        "arguments": [
+          "1",
+          "\\sqrt{3} - \\sqrt{2}"
+        ],
+        "start": 0,
+        "end": 29,
+        "matched_expression": "\\frac{1}{\\sqrt{3} - \\sqrt{2}}",
+        "matched_visible_notation": "\\frac",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 1.5,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "division",
+          "module": "realarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      }
+    ],
     "correct_candidate_present": true
   },
   {
@@ -751,6 +5157,468 @@
       "realplus",
       "realpower"
     ],
+    "ranked_candidate_macros": [
+      "comppower",
+      "intpower",
+      "natpower",
+      "power",
+      "ratpower",
+      "realpower"
+    ],
+    "ranked_candidates": [
+      {
+        "semantic_macro": "comppower",
+        "macro": "comppower",
+        "name": "exponentiation",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "(x + D)",
+          "2"
+        ],
+        "start": 0,
+        "end": 9,
+        "matched_expression": "(x + D)^2",
+        "matched_visible_notation": "(x + D)^2",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.5,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "comparith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "intpower",
+        "macro": "intpower",
+        "name": "exponentiation",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "(x + D)",
+          "2"
+        ],
+        "start": 0,
+        "end": 9,
+        "matched_expression": "(x + D)^2",
+        "matched_visible_notation": "(x + D)^2",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.5,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "intarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "natpower",
+        "macro": "natpower",
+        "name": "exponentiation",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "(x + D)",
+          "2"
+        ],
+        "start": 0,
+        "end": 9,
+        "matched_expression": "(x + D)^2",
+        "matched_visible_notation": "(x + D)^2",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.5,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "natarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "power",
+        "macro": "power",
+        "name": "exponentiation",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "(x + D)",
+          "2"
+        ],
+        "start": 0,
+        "end": 9,
+        "matched_expression": "(x + D)^2",
+        "matched_visible_notation": "(x + D)^2",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.5,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "arithmetics",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "ratpower",
+        "macro": "ratpower",
+        "name": "exponentiation",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "(x + D)",
+          "2"
+        ],
+        "start": 0,
+        "end": 9,
+        "matched_expression": "(x + D)^2",
+        "matched_visible_notation": "(x + D)^2",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.5,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "ratarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "realpower",
+        "macro": "realpower",
+        "name": "exponentiation",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "(x + D)",
+          "2"
+        ],
+        "start": 0,
+        "end": 9,
+        "matched_expression": "(x + D)^2",
+        "matched_visible_notation": "(x + D)^2",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.5,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "realarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 1
+      }
+    ],
     "correct_candidate_present": true
   },
   {
@@ -785,6 +5653,501 @@
       "power",
       "ratpower",
       "realpower"
+    ],
+    "ranked_candidate_macros": [
+      "eq",
+      "comppower",
+      "intpower",
+      "natpower",
+      "power",
+      "ratpower",
+      "realpower"
+    ],
+    "ranked_candidates": [
+      {
+        "semantic_macro": "eq",
+        "macro": "eq",
+        "name": "equal",
+        "module": "equal",
+        "repository": "mv",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "=",
+          "separator_fragment": "\\mathrel{\\maincomp=}",
+          "variable_arguments": true,
+          "operator_role": "relation",
+          "precedence": 700,
+          "grammar_supported": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "x^2",
+          "K"
+        ],
+        "start": 0,
+        "end": 7,
+        "matched_expression": "x^2 = K",
+        "matched_visible_notation": "=",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 5.0,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "same_document_macro_history",
+            "weight": 3.5
+          }
+        ],
+        "semantic_family": {
+          "operation": "equal",
+          "module": "equal",
+          "repository": "mv"
+        },
+        "contextual_evidence": true,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "comppower",
+        "macro": "comppower",
+        "name": "exponentiation",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "x",
+          "2 = K"
+        ],
+        "start": 0,
+        "end": 7,
+        "matched_expression": "x^2 = K",
+        "matched_visible_notation": "x^2 = K",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "comparith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "intpower",
+        "macro": "intpower",
+        "name": "exponentiation",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "x",
+          "2 = K"
+        ],
+        "start": 0,
+        "end": 7,
+        "matched_expression": "x^2 = K",
+        "matched_visible_notation": "x^2 = K",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "intarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "natpower",
+        "macro": "natpower",
+        "name": "exponentiation",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "x",
+          "2 = K"
+        ],
+        "start": 0,
+        "end": 7,
+        "matched_expression": "x^2 = K",
+        "matched_visible_notation": "x^2 = K",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "natarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "power",
+        "macro": "power",
+        "name": "exponentiation",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "x",
+          "2 = K"
+        ],
+        "start": 0,
+        "end": 7,
+        "matched_expression": "x^2 = K",
+        "matched_visible_notation": "x^2 = K",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "arithmetics",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "ratpower",
+        "macro": "ratpower",
+        "name": "exponentiation",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "x",
+          "2 = K"
+        ],
+        "start": 0,
+        "end": 7,
+        "matched_expression": "x^2 = K",
+        "matched_visible_notation": "x^2 = K",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "ratarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "realpower",
+        "macro": "realpower",
+        "name": "exponentiation",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "x",
+          "2 = K"
+        ],
+        "start": 0,
+        "end": 7,
+        "matched_expression": "x^2 = K",
+        "matched_visible_notation": "x^2 = K",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "realarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      }
     ],
     "correct_candidate_present": true
   },
@@ -830,6 +6193,298 @@
       "rattimes",
       "realplus",
       "realtimes"
+    ],
+    "ranked_candidate_macros": [
+      "atimes",
+      "comptimes",
+      "inttimes",
+      "nattimes",
+      "rattimes",
+      "realtimes"
+    ],
+    "ranked_candidates": [
+      {
+        "semantic_macro": "atimes",
+        "macro": "atimes",
+        "name": "multiplication",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "",
+          "implicit": true,
+          "variable_arguments": true,
+          "grammar_supported": true,
+          "annotation_ready": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "(x+p)",
+          "(x+q)"
+        ],
+        "start": 0,
+        "end": 10,
+        "matched_expression": "(x+p)(x+q)",
+        "matched_visible_notation": null,
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "multiplication",
+          "module": "arithmetics",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "comptimes",
+        "macro": "comptimes",
+        "name": "multiplication",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "",
+          "implicit": true,
+          "variable_arguments": true,
+          "grammar_supported": true,
+          "annotation_ready": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "(x+p)",
+          "(x+q)"
+        ],
+        "start": 0,
+        "end": 10,
+        "matched_expression": "(x+p)(x+q)",
+        "matched_visible_notation": null,
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "multiplication",
+          "module": "comparith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "inttimes",
+        "macro": "inttimes",
+        "name": "multiplication",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "",
+          "implicit": true,
+          "variable_arguments": true,
+          "grammar_supported": true,
+          "annotation_ready": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "(x+p)",
+          "(x+q)"
+        ],
+        "start": 0,
+        "end": 10,
+        "matched_expression": "(x+p)(x+q)",
+        "matched_visible_notation": null,
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "multiplication",
+          "module": "intarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "nattimes",
+        "macro": "nattimes",
+        "name": "multiplication",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "",
+          "implicit": true,
+          "variable_arguments": true,
+          "grammar_supported": true,
+          "annotation_ready": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "(x+p)",
+          "(x+q)"
+        ],
+        "start": 0,
+        "end": 10,
+        "matched_expression": "(x+p)(x+q)",
+        "matched_visible_notation": null,
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "multiplication",
+          "module": "natarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "rattimes",
+        "macro": "rattimes",
+        "name": "multiplication",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "",
+          "implicit": true,
+          "variable_arguments": true,
+          "grammar_supported": true,
+          "annotation_ready": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "(x+p)",
+          "(x+q)"
+        ],
+        "start": 0,
+        "end": 10,
+        "matched_expression": "(x+p)(x+q)",
+        "matched_visible_notation": null,
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "multiplication",
+          "module": "ratarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "realtimes",
+        "macro": "realtimes",
+        "name": "multiplication",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "",
+          "implicit": true,
+          "variable_arguments": true,
+          "grammar_supported": true,
+          "annotation_ready": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "(x+p)",
+          "(x+q)"
+        ],
+        "start": 0,
+        "end": 10,
+        "matched_expression": "(x+p)(x+q)",
+        "matched_visible_notation": null,
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "multiplication",
+          "module": "realarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 1
+      }
     ],
     "correct_candidate_present": true
   },
@@ -883,6 +6538,501 @@
       "realplus",
       "realpower",
       "realtimes"
+    ],
+    "ranked_candidate_macros": [
+      "eq",
+      "comppower",
+      "intpower",
+      "natpower",
+      "power",
+      "ratpower",
+      "realpower"
+    ],
+    "ranked_candidates": [
+      {
+        "semantic_macro": "eq",
+        "macro": "eq",
+        "name": "equal",
+        "module": "equal",
+        "repository": "mv",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "sequence",
+          "separator": "=",
+          "separator_fragment": "\\mathrel{\\maincomp=}",
+          "variable_arguments": true,
+          "operator_role": "relation",
+          "precedence": 700,
+          "grammar_supported": true,
+          "fixity": "infix",
+          "arity": "variable"
+        },
+        "pattern_type": "sequence",
+        "grammar_adapter": null,
+        "arguments": [
+          "x^2 + Bx + C",
+          "(x - R)(x - S)"
+        ],
+        "start": 0,
+        "end": 29,
+        "matched_expression": "x^2 + Bx + C = (x - R)(x - S)",
+        "matched_visible_notation": "=",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 5.0,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "same_document_macro_history",
+            "weight": 3.5
+          }
+        ],
+        "semantic_family": {
+          "operation": "equal",
+          "module": "equal",
+          "repository": "mv"
+        },
+        "contextual_evidence": true,
+        "rank": 1
+      },
+      {
+        "semantic_macro": "comppower",
+        "macro": "comppower",
+        "name": "exponentiation",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "x",
+          "2 + Bx + C = (x - R)(x - S)"
+        ],
+        "start": 0,
+        "end": 29,
+        "matched_expression": "x^2 + Bx + C = (x - R)(x - S)",
+        "matched_visible_notation": "x^2 + Bx + C = (x - R)(x - S)",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "comparith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "intpower",
+        "macro": "intpower",
+        "name": "exponentiation",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "x",
+          "2 + Bx + C = (x - R)(x - S)"
+        ],
+        "start": 0,
+        "end": 29,
+        "matched_expression": "x^2 + Bx + C = (x - R)(x - S)",
+        "matched_visible_notation": "x^2 + Bx + C = (x - R)(x - S)",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "intarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "natpower",
+        "macro": "natpower",
+        "name": "exponentiation",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "x",
+          "2 + Bx + C = (x - R)(x - S)"
+        ],
+        "start": 0,
+        "end": 29,
+        "matched_expression": "x^2 + Bx + C = (x - R)(x - S)",
+        "matched_visible_notation": "x^2 + Bx + C = (x - R)(x - S)",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "natarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "power",
+        "macro": "power",
+        "name": "exponentiation",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "x",
+          "2 + Bx + C = (x - R)(x - S)"
+        ],
+        "start": 0,
+        "end": 29,
+        "matched_expression": "x^2 + Bx + C = (x - R)(x - S)",
+        "matched_visible_notation": "x^2 + Bx + C = (x - R)(x - S)",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "arithmetics",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "ratpower",
+        "macro": "ratpower",
+        "name": "exponentiation",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "fixed",
+                "text": "{"
+              },
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "}^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "x",
+          "2 + Bx + C = (x - R)(x - S)"
+        ],
+        "start": 0,
+        "end": 29,
+        "matched_expression": "x^2 + Bx + C = (x - R)(x - S)",
+        "matched_visible_notation": "x^2 + Bx + C = (x - R)(x - S)",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "ratarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      },
+      {
+        "semantic_macro": "realpower",
+        "macro": "realpower",
+        "name": "exponentiation",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "source": "SMGloM",
+        "classification": {
+          "pattern_type": "scripted_operator",
+          "components": {
+            "argument1": "#1",
+            "argument2": "#2"
+          },
+          "grammar_supported": true,
+          "grammar_adapter": "ScriptedTemplateAdapter",
+          "annotation_ready": true,
+          "grammar_interpretation": {
+            "node_kind": "ScriptedExpression",
+            "parts": [
+              {
+                "kind": "argument",
+                "slot": 1
+              },
+              {
+                "kind": "fixed",
+                "text": "^{"
+              },
+              {
+                "kind": "argument",
+                "slot": 2
+              },
+              {
+                "kind": "fixed",
+                "text": "}"
+              }
+            ]
+          }
+        },
+        "pattern_type": "scripted_operator",
+        "grammar_adapter": "ScriptedTemplateAdapter",
+        "arguments": [
+          "x",
+          "2 + Bx + C = (x - R)(x - S)"
+        ],
+        "start": 0,
+        "end": 29,
+        "matched_expression": "x^2 + Bx + C = (x - R)(x - S)",
+        "matched_visible_notation": "x^2 + Bx + C = (x - R)(x - S)",
+        "annotation_ready": true,
+        "provenance": [
+          "SMGloM"
+        ],
+        "presentation_variants": 1,
+        "score": 0.0,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ],
+        "semantic_family": {
+          "operation": "exponentiation",
+          "module": "realarith",
+          "repository": "arithmetics"
+        },
+        "contextual_evidence": false,
+        "rank": 2
+      }
     ],
     "correct_candidate_present": true
   }

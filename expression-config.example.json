@@ -1,4 +1,5 @@
 {
+  "notation_aliases": {"*": "\\times"},
   "operators": [
     {"token": "+", "precedence": 10, "associativity": "left", "arity": "variable"},
     {"token": "-", "precedence": 10, "associativity": "left", "arity": "variable"},

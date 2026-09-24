@@ -1,0 +1,324 @@
+{
+  "aggregate": {
+    "documents": 3,
+    "math_regions": 141,
+    "gold_occurrences": 58,
+    "structurally_labeled": 58,
+    "semantically_labeled": 46,
+    "parser_coverage": {
+      "successes": 141,
+      "total": 141,
+      "percent": 100.0,
+      "wilson_95_percent": [
+        97.3,
+        100.0
+      ]
+    },
+    "scope_accuracy": {
+      "successes": 58,
+      "total": 58,
+      "percent": 100.0,
+      "wilson_95_percent": [
+        93.8,
+        100.0
+      ]
+    },
+    "notation_recognition_coverage": {
+      "successes": 119,
+      "total": 141,
+      "percent": 84.4,
+      "wilson_95_percent": [
+        77.5,
+        89.5
+      ]
+    },
+    "candidate_set_recall": {
+      "successes": 44,
+      "total": 44,
+      "percent": 100.0,
+      "wilson_95_percent": [
+        92.0,
+        100.0
+      ]
+    },
+    "candidate_set_precision_percent": 31.0,
+    "top_1_recall": {
+      "successes": 44,
+      "total": 44,
+      "percent": 100.0,
+      "wilson_95_percent": [
+        92.0,
+        100.0
+      ]
+    },
+    "top_3_recall": {
+      "successes": 44,
+      "total": 44,
+      "percent": 100.0,
+      "wilson_95_percent": [
+        92.0,
+        100.0
+      ]
+    },
+    "top_5_recall": {
+      "successes": 44,
+      "total": 44,
+      "percent": 100.0,
+      "wilson_95_percent": [
+        92.0,
+        100.0
+      ]
+    },
+    "mean_reciprocal_rank": 1.0,
+    "annotation_ready_coverage": {
+      "successes": 88,
+      "total": 141,
+      "percent": 62.4,
+      "wilson_95_percent": [
+        54.2,
+        70.0
+      ]
+    },
+    "correct_argument_extraction": {
+      "successes": 20,
+      "total": 20,
+      "percent": 100.0,
+      "wilson_95_percent": [
+        83.9,
+        100.0
+      ]
+    },
+    "macro_average_percent": {
+      "parser": 100.0,
+      "scope": 100.0,
+      "recall": 100.0,
+      "top1": 100.0
+    },
+    "application": {
+      "requested": true,
+      "accepted": 143,
+      "applied": 59,
+      "failed": 0,
+      "original_sources_unchanged": true,
+      "validated_current": 59,
+      "stale": 84,
+      "unverifiable": 0,
+      "compilation": "not run; no usable compiler was invoked",
+      "eligible_current_decisions": 59,
+      "unique_source_nodes": 59,
+      "same_span_conflicts": 0,
+      "partial_overlap_conflicts": 0,
+      "nested_relationships": 24,
+      "nested_compositions": 16,
+      "independent_replacements": 19,
+      "successfully_rendered_decisions": 59,
+      "successfully_written_files": 1,
+      "failure_reasons": {},
+      "modules_inserted": [
+        {
+          "repository": "arithmetics",
+          "module": "arithmetics"
+        },
+        {
+          "repository": "mv",
+          "module": "equal"
+        }
+      ],
+      "sanity": {
+        "files_checked": 1,
+        "unreadable_files": [],
+        "unbalanced_brace_files": [],
+        "unbalanced_math_delimiter_files": [],
+        "duplicate_module_files": [],
+        "passed": true
+      },
+      "compiler_available": false
+    },
+    "semantic_evaluation": {
+      "semantic_gold_cases": 46,
+      "proposal_eligible_cases": 44,
+      "mapping_available_cases": 44,
+      "mapping_unavailable_cases": 0,
+      "candidate_present_cases": 44,
+      "proposal_candidate_recall": {
+        "successes": 44,
+        "total": 44,
+        "percent": 100.0,
+        "wilson_95_percent": [
+          92.0,
+          100.0
+        ]
+      },
+      "supported_candidate_recall": {
+        "successes": 44,
+        "total": 44,
+        "percent": 100.0,
+        "wilson_95_percent": [
+          92.0,
+          100.0
+        ]
+      },
+      "semantic_coverage": {
+        "successes": 44,
+        "total": 44,
+        "percent": 100.0,
+        "wilson_95_percent": [
+          92.0,
+          100.0
+        ]
+      },
+      "already_semantic_cases": 2,
+      "already_semantic_correctly_skipped": 2,
+      "already_semantic_accuracy": {
+        "successes": 2,
+        "total": 2,
+        "percent": 100.0,
+        "wilson_95_percent": [
+          34.2,
+          100.0
+        ]
+      },
+      "no_proposal_gold_cases": 14,
+      "correctly_suppressed": 14,
+      "no_proposal_accuracy": {
+        "successes": 14,
+        "total": 14,
+        "percent": 100.0,
+        "wilson_95_percent": [
+          78.5,
+          100.0
+        ]
+      },
+      "ranking": {
+        "top_1_recall": {
+          "successes": 44,
+          "total": 44,
+          "percent": 100.0,
+          "wilson_95_percent": [
+            92.0,
+            100.0
+          ]
+        },
+        "top_3_recall": {
+          "successes": 44,
+          "total": 44,
+          "percent": 100.0,
+          "wilson_95_percent": [
+            92.0,
+            100.0
+          ]
+        },
+        "top_5_recall": {
+          "successes": 44,
+          "total": 44,
+          "percent": 100.0,
+          "wilson_95_percent": [
+            92.0,
+            100.0
+          ]
+        },
+        "mean_reciprocal_rank": 1.0
+      },
+      "supported_only_ranking": {
+        "top_1_recall": {
+          "successes": 44,
+          "total": 44,
+          "percent": 100.0,
+          "wilson_95_percent": [
+            92.0,
+            100.0
+          ]
+        },
+        "top_3_recall": {
+          "successes": 44,
+          "total": 44,
+          "percent": 100.0,
+          "wilson_95_percent": [
+            92.0,
+            100.0
+          ]
+        },
+        "top_5_recall": {
+          "successes": 44,
+          "total": 44,
+          "percent": 100.0,
+          "wilson_95_percent": [
+            92.0,
+            100.0
+          ]
+        },
+        "mean_reciprocal_rank": 1.0
+      }
+    },
+    "annotation_evaluation": {
+      "total_math_regions": 141,
+      "gold_semantic_targets": 46,
+      "proposal_eligible_targets": 44,
+      "no_proposal_gold_scopes": 14,
+      "annotation_ready_regions_all_math": 88,
+      "unsupported_semantic_targets": 0,
+      "regions_without_a_semantic_gold_target": 95,
+      "eligible_annotation_ready_coverage": {
+        "successes": 44,
+        "total": 44,
+        "percent": 100.0,
+        "wilson_95_percent": [
+          92.0,
+          100.0
+        ]
+      },
+      "note": "The original annotation-ready metric uses all extracted math regions; the eligible metric uses proposal-eligible semantic gold targets."
+    }
+  },
+  "breakdown": {
+    "candidate_count": {
+      "1": {
+        "occurrences": 6,
+        "top_1_percent": 100.0,
+        "mrr": 1.0
+      },
+      "4-6": {
+        "occurrences": 25,
+        "top_1_percent": 100.0,
+        "mrr": 1.0
+      },
+      "7+": {
+        "occurrences": 13,
+        "top_1_percent": 100.0,
+        "mrr": 1.0
+      }
+    },
+    "context_evidence": {
+      "contextual": {
+        "occurrences": 33,
+        "top_1_percent": 100.0,
+        "mrr": 1.0,
+        "average_candidate_count": 5.36
+      },
+      "fallback_only": {
+        "occurrences": 11,
+        "top_1_percent": 100.0,
+        "mrr": 1.0,
+        "average_candidate_count": 9.09
+      }
+    },
+    "semantic_family": {
+      "arithmetics/arithmetics": {
+        "occurrences": 27,
+        "top_1_percent": 100.0
+      },
+      "arithmetics/comparith": {
+        "occurrences": 1,
+        "top_1_percent": 100.0
+      },
+      "mv/equal": {
+        "occurrences": 11,
+        "top_1_percent": 100.0
+      },
+      "user/synthetic-integrals": {
+        "occurrences": 5,
+        "top_1_percent": 100.0
+      }
+    }
+  }
+}

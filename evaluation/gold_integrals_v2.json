@@ -1,0 +1,10 @@
+[
+  {"document_id":"configured-integrals","file":"integral_expressions.tex","line":3,"math_region":1,"start":null,"end":null,"source_expression":"\\int f(x)\\,dx","expected_root":"\\int","should_propose":false},
+  {"document_id":"configured-integrals","file":"integral_expressions.tex","line":4,"math_region":2,"start":null,"end":null,"source_expression":"\\int_0^1 f(x)\\,dx","expected_root":"\\int","valid_semantic_macros":["fooIntegral"],"should_propose":true},
+  {"document_id":"configured-integrals","file":"integral_expressions.tex","line":5,"math_region":3,"start":null,"end":null,"source_expression":"\\int_a^b f(t)\\,dt","expected_root":"\\int","valid_semantic_macros":["fooIntegral"],"should_propose":true},
+  {"document_id":"configured-integrals","file":"integral_expressions.tex","line":6,"math_region":4,"start":null,"end":null,"source_expression":"\\int_0^1 (a+b*x)\\,dx","expected_root":"\\int","valid_semantic_macros":["fooIntegral"],"should_propose":true},
+  {"document_id":"configured-integrals","file":"integral_expressions.tex","line":7,"math_region":5,"start":null,"end":null,"source_expression":"\\int_0^1 \\frac{x^2+1}{\\sqrt{1-x}}\\,dx","expected_root":"\\int","valid_semantic_macros":["fooIntegral"],"should_propose":true},
+  {"document_id":"configured-integrals","file":"integral_expressions.tex","line":8,"math_region":6,"start":null,"end":null,"source_expression":"a+\\int_0^1 f(x)\\,dx","expected_root":"+","valid_semantic_macros":["aplus","natplus","intplus","ratplus","realplus","compplus"],"should_propose":true},
+  {"document_id":"configured-integrals","file":"integral_expressions.tex","line":9,"math_region":7,"start":null,"end":null,"source_expression":"\\frac{\\int_0^1 f(x)\\,dx}{2}","expected_root":"\\frac","valid_semantic_macros":["adivide","compdivide","fraction","ratdivide","realdivide"],"should_propose":true},
+  {"document_id":"configured-integrals","file":"integral_expressions.tex","line":10,"math_region":8,"start":null,"end":null,"source_expression":"\\int_0^1 \\left(\\int_0^x f(t)\\,dt\\right)\\,dx","expected_root":"\\int","valid_semantic_macros":["fooIntegral"],"should_propose":true}
+]

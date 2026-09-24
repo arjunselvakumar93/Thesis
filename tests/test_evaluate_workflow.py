@@ -28,6 +28,12 @@ class TestWorkflowEvaluation(unittest.TestCase):
         self.assertIn("semantic_candidate_coverage", summary)
         self.assertIn("annotation_ready_coverage", summary)
         self.assertIn("application", summary)
+        self.assertIn("semantic_ranking", summary)
+        self.assertIn("top_1_recall_percent", summary["semantic_ranking"])
+        self.assertTrue(all("raw_candidates" in item and "ranked_candidates" in item
+                            for item in occurrences))
+        self.assertTrue(all(item["raw_candidates"] == item["semantic_candidates"]
+                            for item in occurrences))
         self.assertEqual(len(summary["examples"]["successful"]), 5)
         self.assertEqual(len(summary["examples"]["ambiguous"]), 5)
 

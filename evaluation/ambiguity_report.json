@@ -1,0 +1,5203 @@
+[
+  {
+    "document_id": "quadratic-paper",
+    "file": "1910.06709/quadratic-20121216.tex",
+    "line": 107,
+    "expression": "(-\\frac{B}{2} + z)(-\\frac{B}{2} - z)",
+    "candidate_count": 6,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "atimes",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "comptimes",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "inttimes",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "nattimes",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "rattimes",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realtimes",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "atimes",
+      "comptimes",
+      "inttimes",
+      "nattimes",
+      "rattimes",
+      "realtimes"
+    ],
+    "top_ranked_candidate": "atimes",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "quadratic-paper",
+    "file": "1910.06709/quadratic-20121216.tex",
+    "line": 117,
+    "expression": "\\frac{B^2}{4} - C",
+    "candidate_count": 6,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "aminus",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 5.0,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "same_document_macro_history",
+            "weight": 3.5
+          }
+        ]
+      },
+      {
+        "semantic_macro": "compminus",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "intminus",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natminus",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratminus",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realminus",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "aminus",
+      "compminus",
+      "intminus",
+      "natminus",
+      "ratminus",
+      "realminus"
+    ],
+    "top_ranked_candidate": "aminus",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "quadratic-paper",
+    "file": "1910.06709/quadratic-20121216.tex",
+    "line": 154,
+    "expression": "i \\sqrt{3}",
+    "candidate_count": 6,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "atimes",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "comptimes",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "inttimes",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "nattimes",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "rattimes",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realtimes",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "atimes",
+      "comptimes",
+      "inttimes",
+      "nattimes",
+      "rattimes",
+      "realtimes"
+    ],
+    "top_ranked_candidate": "atimes",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "quadratic-paper",
+    "file": "1910.06709/quadratic-20121216.tex",
+    "line": 172,
+    "expression": "ax^2 + bx + c = 0",
+    "candidate_count": 7,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "eq",
+        "module": "equal",
+        "repository": "mv",
+        "score": 5.0,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "same_document_macro_history",
+            "weight": 3.5
+          }
+        ]
+      },
+      {
+        "semantic_macro": "comppower",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "intpower",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natpower",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "power",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratpower",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realpower",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "eq"
+    ],
+    "top_ranked_candidate": "eq",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "quadratic-paper",
+    "file": "1910.06709/quadratic-20121216.tex",
+    "line": 206,
+    "expression": "(u + v)^2 = u^2 + 2uv + v^2",
+    "candidate_count": 7,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "eq",
+        "module": "equal",
+        "repository": "mv",
+        "score": 5.0,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "same_document_macro_history",
+            "weight": 3.5
+          }
+        ]
+      },
+      {
+        "semantic_macro": "comppower",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "intpower",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natpower",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "power",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratpower",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realpower",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "eq"
+    ],
+    "top_ranked_candidate": "eq",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "quadratic-paper",
+    "file": "1910.06709/quadratic-20121216.tex",
+    "line": 207,
+    "expression": "(u+v)(u-v) = u^2 - v^2",
+    "candidate_count": 7,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "eq",
+        "module": "equal",
+        "repository": "mv",
+        "score": 5.0,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "same_document_macro_history",
+            "weight": 3.5
+          }
+        ]
+      },
+      {
+        "semantic_macro": "comppower",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "intpower",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natpower",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "power",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratpower",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realpower",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "eq"
+    ],
+    "top_ranked_candidate": "eq",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "quadratic-paper",
+    "file": "1910.06709/quadratic-20121216.tex",
+    "line": 211,
+    "expression": "\\frac{1}{\\sqrt{3} - \\sqrt{2}}",
+    "candidate_count": 5,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "adivide",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 5.0,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "same_document_macro_history",
+            "weight": 3.5
+          }
+        ]
+      },
+      {
+        "semantic_macro": "compdivide",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "fraction",
+        "module": "rationalnumbers",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratdivide",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realdivide",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "adivide"
+    ],
+    "top_ranked_candidate": "adivide",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "quadratic-paper",
+    "file": "1910.06709/quadratic-20121216.tex",
+    "line": 249,
+    "expression": "(x + D)^2",
+    "candidate_count": 6,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "comppower",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 0.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "intpower",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 0.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natpower",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 0.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "power",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 0.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratpower",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 0.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realpower",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 0.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "comppower",
+      "intpower",
+      "power",
+      "ratpower",
+      "realpower"
+    ],
+    "top_ranked_candidate": "comppower",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "quadratic-paper",
+    "file": "1910.06709/quadratic-20121216.tex",
+    "line": 259,
+    "expression": "x^2 = K",
+    "candidate_count": 7,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "eq",
+        "module": "equal",
+        "repository": "mv",
+        "score": 5.0,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "same_document_macro_history",
+            "weight": 3.5
+          }
+        ]
+      },
+      {
+        "semantic_macro": "comppower",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "intpower",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natpower",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "power",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratpower",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realpower",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "eq"
+    ],
+    "top_ranked_candidate": "eq",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "quadratic-paper",
+    "file": "1910.06709/quadratic-20121216.tex",
+    "line": 352,
+    "expression": "(x+p)(x+q)",
+    "candidate_count": 6,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "atimes",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "comptimes",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "inttimes",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "nattimes",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "rattimes",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realtimes",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "atimes",
+      "comptimes",
+      "inttimes",
+      "nattimes",
+      "rattimes",
+      "realtimes"
+    ],
+    "top_ranked_candidate": "atimes",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "quadratic-paper",
+    "file": "1910.06709/quadratic-20121216.tex",
+    "line": 388,
+    "expression": "x^2 + Bx + C = (x - R)(x - S)",
+    "candidate_count": 7,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "eq",
+        "module": "equal",
+        "repository": "mv",
+        "score": 5.0,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "same_document_macro_history",
+            "weight": 3.5
+          }
+        ]
+      },
+      {
+        "semantic_macro": "comppower",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "intpower",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natpower",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "power",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratpower",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realpower",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "eq"
+    ],
+    "top_ranked_candidate": "eq",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "general-expressions",
+    "file": "general_math_expressions.tex",
+    "line": 4,
+    "expression": "a+b",
+    "candidate_count": 6,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "aplus",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 3.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "local_semantic_module",
+            "weight": 2.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "compplus",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "intplus",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natplus",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratplus",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realplus",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "aplus",
+      "compplus",
+      "intplus",
+      "natplus",
+      "ratplus",
+      "realplus"
+    ],
+    "top_ranked_candidate": "aplus",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "general-expressions",
+    "file": "general_math_expressions.tex",
+    "line": 5,
+    "expression": "a-b",
+    "candidate_count": 6,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "aminus",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 3.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "local_semantic_module",
+            "weight": 2.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "compminus",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "intminus",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natminus",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratminus",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realminus",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "aminus",
+      "compminus",
+      "intminus",
+      "natminus",
+      "ratminus",
+      "realminus"
+    ],
+    "top_ranked_candidate": "aminus",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "general-expressions",
+    "file": "general_math_expressions.tex",
+    "line": 6,
+    "expression": "a*b",
+    "candidate_count": 6,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "atimes",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 2.75,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "configured_notation_alias",
+            "weight": 0.75
+          },
+          {
+            "signal": "local_semantic_module",
+            "weight": 2.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "comptimes",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 0.75,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "configured_notation_alias",
+            "weight": 0.75
+          }
+        ]
+      },
+      {
+        "semantic_macro": "inttimes",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 0.75,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "configured_notation_alias",
+            "weight": 0.75
+          }
+        ]
+      },
+      {
+        "semantic_macro": "nattimes",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 0.75,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "configured_notation_alias",
+            "weight": 0.75
+          }
+        ]
+      },
+      {
+        "semantic_macro": "rattimes",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 0.75,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "configured_notation_alias",
+            "weight": 0.75
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realtimes",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 0.75,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "configured_notation_alias",
+            "weight": 0.75
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "atimes",
+      "comptimes",
+      "inttimes",
+      "nattimes",
+      "rattimes",
+      "realtimes"
+    ],
+    "top_ranked_candidate": "atimes",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "general-expressions",
+    "file": "general_math_expressions.tex",
+    "line": 7,
+    "expression": "a/b",
+    "candidate_count": 4,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "adivide",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 3.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "local_semantic_module",
+            "weight": 2.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "compdivide",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratdivide",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realdivide",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "adivide",
+      "compdivide",
+      "ratdivide",
+      "realdivide"
+    ],
+    "top_ranked_candidate": "adivide",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "general-expressions",
+    "file": "general_math_expressions.tex",
+    "line": 8,
+    "expression": "a+b*c",
+    "candidate_count": 6,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "aplus",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 3.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "local_semantic_module",
+            "weight": 2.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "compplus",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "intplus",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natplus",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratplus",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realplus",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "aplus",
+      "compplus",
+      "intplus",
+      "natplus",
+      "ratplus",
+      "realplus"
+    ],
+    "top_ranked_candidate": "aplus",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "general-expressions",
+    "file": "general_math_expressions.tex",
+    "line": 9,
+    "expression": "(a+b)*c",
+    "candidate_count": 6,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "atimes",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 2.75,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "configured_notation_alias",
+            "weight": 0.75
+          },
+          {
+            "signal": "local_semantic_module",
+            "weight": 2.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "comptimes",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 0.75,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "configured_notation_alias",
+            "weight": 0.75
+          }
+        ]
+      },
+      {
+        "semantic_macro": "inttimes",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 0.75,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "configured_notation_alias",
+            "weight": 0.75
+          }
+        ]
+      },
+      {
+        "semantic_macro": "nattimes",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 0.75,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "configured_notation_alias",
+            "weight": 0.75
+          }
+        ]
+      },
+      {
+        "semantic_macro": "rattimes",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 0.75,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "configured_notation_alias",
+            "weight": 0.75
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realtimes",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 0.75,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "configured_notation_alias",
+            "weight": 0.75
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "atimes",
+      "comptimes",
+      "inttimes",
+      "nattimes",
+      "rattimes",
+      "realtimes"
+    ],
+    "top_ranked_candidate": "atimes",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "general-expressions",
+    "file": "general_math_expressions.tex",
+    "line": 10,
+    "expression": "a*b+c",
+    "candidate_count": 6,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "aplus",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 3.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "local_semantic_module",
+            "weight": 2.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "compplus",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "intplus",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natplus",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratplus",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realplus",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "aplus",
+      "compplus",
+      "intplus",
+      "natplus",
+      "ratplus",
+      "realplus"
+    ],
+    "top_ranked_candidate": "aplus",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "general-expressions",
+    "file": "general_math_expressions.tex",
+    "line": 11,
+    "expression": "a+b-c",
+    "candidate_count": 6,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "aminus",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 3.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "local_semantic_module",
+            "weight": 2.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "compminus",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "intminus",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natminus",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratminus",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realminus",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "aminus",
+      "compminus",
+      "intminus",
+      "natminus",
+      "ratminus",
+      "realminus"
+    ],
+    "top_ranked_candidate": "aminus",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "general-expressions",
+    "file": "general_math_expressions.tex",
+    "line": 12,
+    "expression": "a-b-c",
+    "candidate_count": 6,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "aminus",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 3.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "local_semantic_module",
+            "weight": 2.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "compminus",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "intminus",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natminus",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratminus",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realminus",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "aminus",
+      "compminus",
+      "intminus",
+      "natminus",
+      "ratminus",
+      "realminus"
+    ],
+    "top_ranked_candidate": "aminus",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "general-expressions",
+    "file": "general_math_expressions.tex",
+    "line": 13,
+    "expression": "a+(b-c)",
+    "candidate_count": 6,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "aplus",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 3.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "local_semantic_module",
+            "weight": 2.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "compplus",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "intplus",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natplus",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratplus",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realplus",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "aplus",
+      "compplus",
+      "intplus",
+      "natplus",
+      "ratplus",
+      "realplus"
+    ],
+    "top_ranked_candidate": "aplus",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "general-expressions",
+    "file": "general_math_expressions.tex",
+    "line": 14,
+    "expression": "(a+b)-c",
+    "candidate_count": 6,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "aminus",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 3.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "local_semantic_module",
+            "weight": 2.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "compminus",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "intminus",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natminus",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratminus",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realminus",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "aminus",
+      "compminus",
+      "intminus",
+      "natminus",
+      "ratminus",
+      "realminus"
+    ],
+    "top_ranked_candidate": "aminus",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "general-expressions",
+    "file": "general_math_expressions.tex",
+    "line": 15,
+    "expression": "x^2",
+    "candidate_count": 6,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "power",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 2.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "local_semantic_module",
+            "weight": 2.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "comppower",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 0.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "intpower",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 0.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natpower",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 0.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratpower",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 0.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realpower",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 0.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "comppower",
+      "intpower",
+      "power",
+      "ratpower",
+      "realpower"
+    ],
+    "top_ranked_candidate": "power",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "general-expressions",
+    "file": "general_math_expressions.tex",
+    "line": 17,
+    "expression": "x_i^2",
+    "candidate_count": 10,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "power",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 2.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "local_semantic_module",
+            "weight": 2.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "comppower",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 0.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "intpower",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 0.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natbasebencoding",
+        "module": "natpns",
+        "repository": "arithmetics",
+        "score": 0.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natpower",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 0.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "pnsinbase",
+        "module": "positional-number-system",
+        "repository": "arithmetics",
+        "score": 0.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratpower",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 0.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realbaseencoding",
+        "module": "realpns",
+        "repository": "arithmetics",
+        "score": 0.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realpower",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 0.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "seqsel",
+        "module": "sequence",
+        "repository": "mv",
+        "score": 0.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "comppower",
+      "intpower",
+      "power",
+      "ratpower",
+      "realpower"
+    ],
+    "top_ranked_candidate": "power",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "general-expressions",
+    "file": "general_math_expressions.tex",
+    "line": 18,
+    "expression": "x^2_i",
+    "candidate_count": 10,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "power",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 2.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "local_semantic_module",
+            "weight": 2.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "comppower",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 0.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "intpower",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 0.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natbasebencoding",
+        "module": "natpns",
+        "repository": "arithmetics",
+        "score": 0.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natpower",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 0.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "pnsinbase",
+        "module": "positional-number-system",
+        "repository": "arithmetics",
+        "score": 0.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratpower",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 0.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realbaseencoding",
+        "module": "realpns",
+        "repository": "arithmetics",
+        "score": 0.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realpower",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 0.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "seqsel",
+        "module": "sequence",
+        "repository": "mv",
+        "score": 0.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "comppower",
+      "intpower",
+      "power",
+      "ratpower",
+      "realpower"
+    ],
+    "top_ranked_candidate": "power",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "general-expressions",
+    "file": "general_math_expressions.tex",
+    "line": 19,
+    "expression": "x^{n+1}",
+    "candidate_count": 6,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "power",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 2.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "local_semantic_module",
+            "weight": 2.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "comppower",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 0.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "intpower",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 0.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natpower",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 0.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratpower",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 0.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realpower",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 0.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "comppower",
+      "intpower",
+      "power",
+      "ratpower",
+      "realpower"
+    ],
+    "top_ranked_candidate": "power",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "general-expressions",
+    "file": "general_math_expressions.tex",
+    "line": 21,
+    "expression": "\\frac{a+b}{c-d}",
+    "candidate_count": 5,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "adivide",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 3.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "local_semantic_module",
+            "weight": 2.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "compdivide",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "fraction",
+        "module": "rationalnumbers",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratdivide",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realdivide",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "adivide",
+      "compdivide",
+      "fraction",
+      "ratdivide",
+      "realdivide"
+    ],
+    "top_ranked_candidate": "adivide",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "general-expressions",
+    "file": "general_math_expressions.tex",
+    "line": 22,
+    "expression": "\\sqrt{x^2+y^2}",
+    "candidate_count": 6,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "asqrt",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 3.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "local_semantic_module",
+            "weight": 2.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "compsqrt",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "intsqrt",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natsqrt",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratsqrt",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realsqrt",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "asqrt",
+      "compsqrt",
+      "intsqrt",
+      "natsqrt",
+      "ratsqrt",
+      "realsqrt"
+    ],
+    "top_ranked_candidate": "asqrt",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "general-expressions",
+    "file": "general_math_expressions.tex",
+    "line": 23,
+    "expression": "\\aplus{a,b}*c",
+    "candidate_count": 6,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "atimes",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 2.75,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "configured_notation_alias",
+            "weight": 0.75
+          },
+          {
+            "signal": "local_semantic_module",
+            "weight": 2.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "comptimes",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 0.75,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "configured_notation_alias",
+            "weight": 0.75
+          }
+        ]
+      },
+      {
+        "semantic_macro": "inttimes",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 0.75,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "configured_notation_alias",
+            "weight": 0.75
+          }
+        ]
+      },
+      {
+        "semantic_macro": "nattimes",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 0.75,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "configured_notation_alias",
+            "weight": 0.75
+          }
+        ]
+      },
+      {
+        "semantic_macro": "rattimes",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 0.75,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "configured_notation_alias",
+            "weight": 0.75
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realtimes",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 0.75,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "configured_notation_alias",
+            "weight": 0.75
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "atimes",
+      "comptimes",
+      "inttimes",
+      "nattimes",
+      "rattimes",
+      "realtimes"
+    ],
+    "top_ranked_candidate": "atimes",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "general-expressions",
+    "file": "general_math_expressions.tex",
+    "line": 24,
+    "expression": "a+\\aplus{b,c}",
+    "candidate_count": 6,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "aplus",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 3.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "local_semantic_module",
+            "weight": 2.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "compplus",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "intplus",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natplus",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratplus",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realplus",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "aplus",
+      "compplus",
+      "intplus",
+      "natplus",
+      "ratplus",
+      "realplus"
+    ],
+    "top_ranked_candidate": "aplus",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "general-expressions",
+    "file": "general_math_expressions.tex",
+    "line": 25,
+    "expression": "\\aplus{a,b*c}-\\frac{x}{y}",
+    "candidate_count": 6,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "aminus",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 3.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "local_semantic_module",
+            "weight": 2.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "compminus",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "intminus",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natminus",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratminus",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realminus",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "aminus",
+      "compminus",
+      "intminus",
+      "natminus",
+      "ratminus",
+      "realminus"
+    ],
+    "top_ranked_candidate": "aminus",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "configured-integrals",
+    "file": "integral_expressions.tex",
+    "line": 4,
+    "expression": "\\int_0^1 f(x)\\,dx",
+    "candidate_count": 11,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "fooIntegral",
+        "module": "synthetic-integrals",
+        "repository": "user",
+        "score": 1.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "comppower",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "intpower",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natbasebencoding",
+        "module": "natpns",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natpower",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "pnsinbase",
+        "module": "positional-number-system",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "power",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratpower",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realbaseencoding",
+        "module": "realpns",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realpower",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "seqsel",
+        "module": "sequence",
+        "repository": "mv",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "fooIntegral"
+    ],
+    "top_ranked_candidate": "fooIntegral",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "configured-integrals",
+    "file": "integral_expressions.tex",
+    "line": 5,
+    "expression": "\\int_a^b f(t)\\,dt",
+    "candidate_count": 11,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "fooIntegral",
+        "module": "synthetic-integrals",
+        "repository": "user",
+        "score": 1.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "comppower",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "intpower",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natbasebencoding",
+        "module": "natpns",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natpower",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "pnsinbase",
+        "module": "positional-number-system",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "power",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratpower",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realbaseencoding",
+        "module": "realpns",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realpower",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "seqsel",
+        "module": "sequence",
+        "repository": "mv",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "fooIntegral"
+    ],
+    "top_ranked_candidate": "fooIntegral",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "configured-integrals",
+    "file": "integral_expressions.tex",
+    "line": 6,
+    "expression": "\\int_0^1 (a+b*x)\\,dx",
+    "candidate_count": 11,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "fooIntegral",
+        "module": "synthetic-integrals",
+        "repository": "user",
+        "score": 1.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "comppower",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "intpower",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natbasebencoding",
+        "module": "natpns",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natpower",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "pnsinbase",
+        "module": "positional-number-system",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "power",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratpower",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realbaseencoding",
+        "module": "realpns",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realpower",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "seqsel",
+        "module": "sequence",
+        "repository": "mv",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "fooIntegral"
+    ],
+    "top_ranked_candidate": "fooIntegral",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "configured-integrals",
+    "file": "integral_expressions.tex",
+    "line": 7,
+    "expression": "\\int_0^1 \\frac{x^2+1}{\\sqrt{1-x}}\\,dx",
+    "candidate_count": 11,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "fooIntegral",
+        "module": "synthetic-integrals",
+        "repository": "user",
+        "score": 1.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "comppower",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "intpower",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natbasebencoding",
+        "module": "natpns",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natpower",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "pnsinbase",
+        "module": "positional-number-system",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "power",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratpower",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realbaseencoding",
+        "module": "realpns",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realpower",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "seqsel",
+        "module": "sequence",
+        "repository": "mv",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "fooIntegral"
+    ],
+    "top_ranked_candidate": "fooIntegral",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "configured-integrals",
+    "file": "integral_expressions.tex",
+    "line": 8,
+    "expression": "a+\\int_0^1 f(x)\\,dx",
+    "candidate_count": 16,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "aplus",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "compplus",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "intplus",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natplus",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratplus",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realplus",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "comppower",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 7,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "intpower",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 7,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natbasebencoding",
+        "module": "natpns",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 7,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natpower",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 7,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "pnsinbase",
+        "module": "positional-number-system",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 7,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "power",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 7,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratpower",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 7,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realbaseencoding",
+        "module": "realpns",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 7,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realpower",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 7,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "seqsel",
+        "module": "sequence",
+        "repository": "mv",
+        "score": 0.0,
+        "rank": 7,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "aplus",
+      "compplus",
+      "intplus",
+      "natplus",
+      "ratplus",
+      "realplus"
+    ],
+    "top_ranked_candidate": "aplus",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "configured-integrals",
+    "file": "integral_expressions.tex",
+    "line": 9,
+    "expression": "\\frac{\\int_0^1 f(x)\\,dx}{2}",
+    "candidate_count": 5,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "adivide",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "compdivide",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "fraction",
+        "module": "rationalnumbers",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratdivide",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realdivide",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 1.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "adivide",
+      "compdivide",
+      "fraction",
+      "ratdivide",
+      "realdivide"
+    ],
+    "top_ranked_candidate": "adivide",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "configured-integrals",
+    "file": "integral_expressions.tex",
+    "line": 10,
+    "expression": "\\int_0^1 \\left(\\int_0^x f(t)\\,dt\\right)\\,dx",
+    "candidate_count": 11,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "fooIntegral",
+        "module": "synthetic-integrals",
+        "repository": "user",
+        "score": 1.5,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "comppower",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "intpower",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natbasebencoding",
+        "module": "natpns",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natpower",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "pnsinbase",
+        "module": "positional-number-system",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "power",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratpower",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realbaseencoding",
+        "module": "realpns",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realpower",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "seqsel",
+        "module": "sequence",
+        "repository": "mv",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "fooIntegral"
+    ],
+    "top_ranked_candidate": "fooIntegral",
+    "top_ranked_is_valid": true
+  }
+]

@@ -14,6 +14,8 @@ from tex_notation_aliases import get_equivalent_tex_notations, canonicalize_tex_
 
 
 def build_catalog(records, configuration=None):
+    config = configuration or {}
+    aliases = config.get("notation_aliases")
     definitions = [record for record in records if record.get("declaration_type") == "symdef"]
     entries = []
     for record in records:
@@ -49,14 +51,13 @@ def build_catalog(records, configuration=None):
         options = record.get("options", {})
         entries.append({"repository": record.get("repository"), "module": record.get("module"),
                         "macro": definition.get("macro"), "name": definition.get("name"),
-                        "visible": visible, "variants": get_equivalent_tex_notations(visible) if visible else [],
+                        "visible": visible, "variants": get_equivalent_tex_notations(visible, aliases) if visible else [],
                         "notation": record.get("notation"), "args": definition.get("args"),
                         "placeholders": record.get("placeholders", []), "precedence": options.get("prec"),
                         "associativity": options.get("associativity", options.get("assoc")),
                         "fixity": rule.get("fixity"), "classification": rule,
                         "file": str(record.get("file", "")), "line": record.get("line"),
                         "record": record, "source": "SMGloM", "resolved": bool(definition)})
-    config = configuration or {}
     for operator in config.get("operators", []):
         arity, fixity = operator.get("arity", 2), operator.get("fixity", "infix")
         kind = "unary" if fixity != "infix" else "sequence" if arity == "variable" else "binary_infix"
@@ -65,7 +66,7 @@ def build_catalog(records, configuration=None):
                 "grammar_supported": True}
         entries.append({"repository": None, "module": None, "macro": operator.get("semantic_macro"),
                         "name": operator.get("name", operator.get("semantic_macro")), "visible": operator["token"],
-                        "variants": list(dict.fromkeys([*get_equivalent_tex_notations(operator["token"]), *operator.get("variants", [])])),
+                        "variants": list(dict.fromkeys([*get_equivalent_tex_notations(operator["token"], aliases), *operator.get("variants", [])])),
                         "notation": operator.get("pattern", operator["token"]), "args": "a" if arity == "variable" else str(arity),
                         "placeholders": [], "precedence": operator.get("precedence"),
                         "associativity": operator.get("associativity"), "fixity": fixity, "classification": rule,
@@ -172,7 +173,8 @@ def annotation_candidates(entries):
         if not entry.get("macro") or not rule.get("grammar_supported") or not ready:
             continue
         candidate = {key: entry.get(key) for key in (
-            "macro", "name", "args", "module", "repository", "record", "match_type", "source")}
+            "macro", "name", "args", "module", "repository", "record", "match_type", "source",
+            "visible", "variants")}
         candidate["semantic_source"] = entry.get("source")
         candidate["classification"] = dict(rule)
         if candidate not in candidates:

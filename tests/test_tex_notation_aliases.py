@@ -18,6 +18,7 @@ from tex_notation_aliases import (
     canonicalize_tex_notation,
     get_equivalent_tex_notations,
 )
+from notation_catalog import build_catalog, search_catalog
 
 
 class TestTexNotationAliases(unittest.TestCase):
@@ -36,6 +37,26 @@ class TestTexNotationAliases(unittest.TestCase):
         self.assertEqual(get_equivalent_tex_notations(r"\ne"), [r"\ne", r"\neq"])
         self.assertEqual(get_equivalent_tex_notations(r"\neq"), [r"\ne", r"\neq"])
         self.assertEqual(get_equivalent_tex_notations("+"), ["+"])
+
+    def test_project_alias_is_generic_bidirectional_and_opt_in(self):
+        aliases = {"<custom-op>": r"\times"}
+        self.assertEqual(get_equivalent_tex_notations("<custom-op>"), ["<custom-op>"])
+        self.assertEqual(set(get_equivalent_tex_notations("<custom-op>", aliases)),
+                         {"<custom-op>", r"\times"})
+        self.assertEqual(canonicalize_tex_notation("<custom-op>", aliases), r"\times")
+        self.assertNotIn("semantic", json.dumps(aliases))
+
+    def test_configured_star_alias_resolves_a_real_smglom_record(self):
+        records = scan_repository("arithmetics", SMGLOM_REPOSITORIES["arithmetics"])
+        default = build_catalog(records)
+        configured = build_catalog(records, {"notation_aliases": {"*": r"\times"}})
+        self.assertFalse(any(item.get("macro") and "*" in item.get("variants", ())
+                             for item in default))
+        matches = [item for item in search_catalog(configured, "*")
+                   if item.get("macro") and item.get("visible") == r"\times"]
+        self.assertTrue(matches)
+        self.assertTrue(all(item["source"] == "SMGloM" and item["record"] is not None
+                            for item in matches))
 
     def test_lookup_from_both_spellings_resolves_the_same_real_record(self):
         canonical = next(

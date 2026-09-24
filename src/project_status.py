@@ -56,6 +56,7 @@ def collect_status():
             "semantic_candidate_coverage": evaluation["semantic_candidate_coverage"],
             "annotation_ready_coverage": evaluation["annotation_ready_coverage"],
             "gold": evaluation["gold"],
+            "semantic_ranking": evaluation.get("semantic_ranking"),
         },
         "decisions": evaluation["review"],
         "application": application,
@@ -106,6 +107,12 @@ def display_status(status):
     print("Configured semantic support: " + ("yes" if status["integral"]["configured_semantic_support"] else "no"))
     available = status["integral"]["real_smglom_semantics_available"]
     print("Real SMGloM integral semantics: " + ("available" if available else "unavailable locally"))
+    ranking = paper.get("semantic_ranking")
+    if ranking:
+        print("\nSemantic ranking\n----------------")
+        print(f"Gold top-1 recall: {ranking['top_1_recall_percent']}%")
+        print(f"Gold top-3 recall: {ranking['top_3_recall_percent']}%")
+        print(f"Gold MRR: {ranking['mean_reciprocal_rank']}")
 
 
 def main(argv=None):

@@ -7,6 +7,7 @@ from expression_registry import NotationRegistry
 from expression_annotation import match_ast
 from notation_scanner import extract_math_regions, _source_location, mask_latex_comments
 from notation_matcher import normalize_math_expression
+from proposal_eligibility import proposal_eligibility
 
 
 def _without_alignment_markers(text):
@@ -113,6 +114,9 @@ def find_ast_occurrences(regions, classification, configuration):
             continue
         matches = match_ast(region.tree, classification, registry)
         for match in matches:
+            eligibility = proposal_eligibility(region.tree, match["start"], match["end"])
+            if not eligibility["eligible"]:
+                continue
             start, end = region.start + match["start"], region.start + match["end"]
             line, column, text = _source_location(region.source, start)
             match["source_start"], match["source_end"] = start, end
@@ -121,5 +125,6 @@ def find_ast_occurrences(regions, classification, configuration):
                 _without_alignment_markers(mask_latex_comments(match["matched_expression"])))
             match["arguments"] = [normalize_math_expression(
                 _without_alignment_markers(mask_latex_comments(arg))) for arg in match["arguments"]]
-            occurrences.append(dict(match, file=region.file, line=line, column=column, text=text))
+            occurrences.append(dict(match, file=region.file, line=line, column=column, text=text,
+                                    proposal_eligibility=eligibility))
     return occurrences
