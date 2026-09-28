@@ -1,0 +1,2483 @@
+{
+  "total": 309,
+  "counts": {
+    "FULLY_STRUCTURED": 306,
+    "OPAQUE_PRESERVED": 3,
+    "PARTIAL": 0,
+    "UNSUPPORTED": 0
+  },
+  "results": [
+    {
+      "expression": "x+A",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "x−A",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "x×A",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "x÷A",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "x∪A",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "x∩A",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "x∧A",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "x∨A",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "y+B",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "y−B",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "y×B",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "y÷B",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "y∪B",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "y∩B",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "y∧B",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "y∨B",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "z+C",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "z−C",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "z×C",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "z÷C",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "z∪C",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "z∩C",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "z∧C",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "z∨C",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "A+α",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "A−α",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "A×α",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "A÷α",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "A∪α",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "A∩α",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "A∧α",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "A∨α",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "B+β",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "B−β",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "B×β",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "B÷β",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "B∪β",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "B∩β",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "B∧β",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "B∨β",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "C+γ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "C−γ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "C×γ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "C÷γ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "C∪γ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "C∩γ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "C∧γ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "C∨γ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "α+ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "α−ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "α×ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "α÷ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "α∪ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "α∩ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "α∧ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "α∨ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "β+θ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "β−θ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "β×θ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "β÷θ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "β∪θ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "β∩θ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "β∧θ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "β∨θ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "γ+Ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "γ−Ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "γ×Ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "γ÷Ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "γ∪Ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "γ∩Ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "γ∧Ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "γ∨Ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "ω+x",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "ω−x",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "ω×x",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "ω÷x",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "ω∪x",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "ω∩x",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "ω∧x",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "ω∨x",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "θ+y",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "θ−y",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "θ×y",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "θ÷y",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "θ∪y",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "θ∩y",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "θ∧y",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "θ∨y",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "Ω+z",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "Ω−z",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "Ω×z",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "Ω÷z",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "Ω∪z",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "Ω∩z",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "Ω∧z",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "Ω∨z",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "x=y",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "x<y",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "x>y",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "x≤y",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "x≥y",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "x≠y",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "x≈y",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "x≡y",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "x∈y",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "x∉y",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "x⊂y",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "x⊆y",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "x⊃y",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "x⊇y",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "x→y",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "x⇒y",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "y=z",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "y<z",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "y>z",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "y≤z",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "y≥z",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "y≠z",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "y≈z",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "y≡z",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "y∈z",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "y∉z",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "y⊂z",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "y⊆z",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "y⊃z",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "y⊇z",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "y→z",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "y⇒z",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "z=A",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "z<A",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "z>A",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "z≤A",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "z≥A",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "z≠A",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "z≈A",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "z≡A",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "z∈A",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "z∉A",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "z⊂A",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "z⊆A",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "z⊃A",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "z⊇A",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "z→A",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "z⇒A",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "A=B",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "A<B",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "A>B",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "A≤B",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "A≥B",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "A≠B",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "A≈B",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "A≡B",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "A∈B",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "A∉B",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "A⊂B",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "A⊆B",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "A⊃B",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "A⊇B",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "A→B",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "A⇒B",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "B=C",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "B<C",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "B>C",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "B≤C",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "B≥C",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "B≠C",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "B≈C",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "B≡C",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "B∈C",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "B∉C",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "B⊂C",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "B⊆C",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "B⊃C",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "B⊇C",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "B→C",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "B⇒C",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "C=α",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "C<α",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "C>α",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "C≤α",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "C≥α",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "C≠α",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "C≈α",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "C≡α",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "C∈α",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "C∉α",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "C⊂α",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "C⊆α",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "C⊃α",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "C⊇α",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "C→α",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "C⇒α",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "α=β",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "α<β",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "α>β",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "α≤β",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "α≥β",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "α≠β",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "α≈β",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "α≡β",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "α∈β",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "α∉β",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "α⊂β",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "α⊆β",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "α⊃β",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "α⊇β",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "α→β",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "α⇒β",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "β=γ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "β<γ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "β>γ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "β≤γ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "β≥γ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "β≠γ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "β≈γ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "β≡γ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "β∈γ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "β∉γ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "β⊂γ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "β⊆γ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "β⊃γ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "β⊇γ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "β→γ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "β⇒γ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "γ=ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "γ<ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "γ>ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "γ≤ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "γ≥ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "γ≠ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "γ≈ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "γ≡ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "γ∈ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "γ∉ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "γ⊂ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "γ⊆ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "γ⊃ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "γ⊇ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "γ→ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "γ⇒ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "ω=θ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "ω<θ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "ω>θ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "ω≤θ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "ω≥θ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "ω≠θ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "ω≈θ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "ω≡θ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "ω∈θ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "ω∉θ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "ω⊂θ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "ω⊆θ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "ω⊃θ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "ω⊇θ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "ω→θ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "ω⇒θ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "θ=Ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "θ<Ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "θ>Ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "θ≤Ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "θ≥Ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "θ≠Ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "θ≈Ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "θ≡Ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "θ∈Ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "θ∉Ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "θ⊂Ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "θ⊆Ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "θ⊃Ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "θ⊇Ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "θ→Ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "θ⇒Ω",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "Ω=x",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "Ω<x",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "Ω>x",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "Ω≤x",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "Ω≥x",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "Ω≠x",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "Ω≈x",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "Ω≡x",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "Ω∈x",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "Ω∉x",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "Ω⊂x",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "Ω⊆x",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "Ω⊃x",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "Ω⊇x",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "Ω→x",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "Ω⇒x",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "ωᵢ∈A",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "x²+y²",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "x₁≤x₂",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "P(ωᵢ)",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "f(α+β)",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "√x",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "√(x²+y²)",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "∑_{i=1}^{n} x_i",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "∑_{ωᵢ∈A} P(ωᵢ)",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "∫₀¹ f(x) dx",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "∀x P(x)",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "∃x Q(x)",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "Σ",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "∞",
+      "status": "OPAQUE_PRESERVED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "x→∞",
+      "status": "OPAQUE_PRESERVED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "⟨α+β⟩",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "\\sum_{\\omega_i\\in A} P(\\omega_i)",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "∑_{\\omega_i∈A} P(\\omega_i)",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "\\frac{α+β}{x²+y²}",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "P(ωi) ω∈A",
+      "status": "FULLY_STRUCTURED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    },
+    {
+      "expression": "⊕",
+      "status": "OPAQUE_PRESERVED",
+      "semantic_mapping_available": false,
+      "review_scope_available": true,
+      "annotation_ready": false,
+      "exact_source_preserved": true
+    }
+  ]
+}

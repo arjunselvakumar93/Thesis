@@ -2,6 +2,7 @@
 
 import argparse
 import json
+import sys
 from pathlib import Path
 from expression_metadata import build_expression_config
 from expression_parser import ExpressionParser, ParseError
@@ -34,6 +35,10 @@ def format_tree(root):
 
 
 def main(argv=None):
+    # Windows terminals often inherit a legacy code page.  Keep Unicode
+    # mathematics printable without changing the parsed or stored source.
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="backslashreplace")
     cli = argparse.ArgumentParser(description=__doc__)
     cli.add_argument("expression", nargs="?")
     cli.add_argument("--file", type=Path, help="Parse every math region in a TeX file")

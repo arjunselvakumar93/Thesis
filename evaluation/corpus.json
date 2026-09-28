@@ -3,7 +3,7 @@
   "documents": [
     {
       "id": "quadratic-paper",
-      "path": "../papers",
+      "path": "frozen_papers",
       "description": "Current real-paper evaluation corpus",
       "gold": "gold_v1.json",
       "config": "../expression-config.example.json",

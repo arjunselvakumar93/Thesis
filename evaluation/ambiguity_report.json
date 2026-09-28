@@ -2,6 +2,119 @@
   {
     "document_id": "quadratic-paper",
     "file": "1910.06709/quadratic-20121216.tex",
+    "line": 80,
+    "expression": "x^2 + Bx + C = (x-R)(x-S)",
+    "candidate_count": 7,
+    "ranked_candidates": [
+      {
+        "semantic_macro": "eq",
+        "module": "equal",
+        "repository": "mv",
+        "score": 5.0,
+        "rank": 1,
+        "evidence": [
+          {
+            "signal": "exact_visible_notation",
+            "weight": 1.0
+          },
+          {
+            "signal": "structural_compatibility",
+            "weight": 0.5
+          },
+          {
+            "signal": "same_document_macro_history",
+            "weight": 3.5
+          }
+        ]
+      },
+      {
+        "semantic_macro": "comppower",
+        "module": "comparith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "intpower",
+        "module": "intarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "natpower",
+        "module": "natarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "power",
+        "module": "arithmetics",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "ratpower",
+        "module": "ratarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      },
+      {
+        "semantic_macro": "realpower",
+        "module": "realarith",
+        "repository": "arithmetics",
+        "score": 0.0,
+        "rank": 2,
+        "evidence": [
+          {
+            "signal": "fallback_only",
+            "weight": 0.0
+          }
+        ]
+      }
+    ],
+    "gold_valid_candidates": [
+      "eq"
+    ],
+    "top_ranked_candidate": "eq",
+    "top_ranked_is_valid": true
+  },
+  {
+    "document_id": "quadratic-paper",
+    "file": "1910.06709/quadratic-20121216.tex",
     "line": 107,
     "expression": "(-\\frac{B}{2} + z)(-\\frac{B}{2} - z)",
     "candidate_count": 6,

@@ -115,10 +115,39 @@ def display_status(status):
         print(f"Gold MRR: {ranking['mean_reciprocal_rank']}")
 
 
+def display_professor_demo(status):
+    """Concise read-only presentation status assembled from existing reports."""
+    display_status(status)
+    unicode_path = EVALUATION_DIR / "unicode_stress_results.json"
+    general_path = EVALUATION_DIR / "generalization_final.json"
+    print("\nProfessor demo\n--------------")
+    print("Parser: LaTeX and Unicode source-preserving structural parsing available")
+    print("Review: semantic candidates first; structural fallback otherwise")
+    print("Semantics: metadata-driven; structural recognition does not imply meaning")
+    print("Application: validated source-span application to copied documents")
+    if unicode_path.exists():
+        report = json.loads(unicode_path.read_text(encoding="utf-8-sig"))
+        counts = report.get("counts", {})
+        print(f"Unicode stress: {report.get('total', 0)} total; "
+              f"{counts.get('FULLY_STRUCTURED', 0)} fully structured; "
+              f"{counts.get('OPAQUE_PRESERVED', 0)} opaque-preserved; "
+              f"{counts.get('UNSUPPORTED', 0)} unsupported")
+    if general_path.exists():
+        report = json.loads(general_path.read_text(encoding="utf-8-sig"))
+        total = report.get("total", report.get("expressions", 0))
+        if isinstance(total, list):
+            total = len(total)
+        print(f"Generalization report: available ({total} cases recorded)")
+    print("Known limitations: bounded TeX grammar, incomplete local SMGloM repositories, "
+          "and no semantic claim for structurally recognized unknown notation")
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--json", action="store_true")
     parser.add_argument("--metrics", type=Path, help="Write the same current status as JSON")
+    parser.add_argument("--professor-demo", action="store_true",
+                        help="Show concise parser, review, evaluation, and limitation status")
     args = parser.parse_args(argv)
     status = collect_status()
     if args.metrics:
@@ -126,6 +155,8 @@ def main(argv=None):
         args.metrics.write_text(json.dumps(status, indent=2), encoding="utf-8")
     if args.json:
         print(json.dumps(status, indent=2))
+    elif args.professor_demo:
+        display_professor_demo(status)
     else:
         display_status(status)
     return 0

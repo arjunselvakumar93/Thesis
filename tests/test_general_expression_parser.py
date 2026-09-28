@@ -20,7 +20,8 @@ from inspect_expression import main as inspect_main
 from parser_diagnostics import coverage_report
 from notation_catalog import build_catalog, catalog_statistics, registry_from_catalog, search_catalog
 from smglom_notation_extractor import scan_repository, scan_available_smglom, SMGLOM_REPOSITORIES
-from review_workflow import find_generic_candidates, generate_classified_suggestion
+from review_workflow import (find_expression_candidates, find_generic_candidates,
+                             generate_classified_suggestion)
 import review_workflow
 import apply_annotations
 from decision_validator import validate_decisions
@@ -57,6 +58,113 @@ class TestGeneralExpressionParser(unittest.TestCase):
         tree = ExpressionParser(registry=registry).parse(r"a\customop b")
         self.assertEqual((tree.kind, tree.value), ("BinaryOperator", r"\customop"))
         self.assertEqual(tree.metadata.semantic_macro, "customOperation")
+
+    def test_unconfigured_bare_commands_are_semantics_free_symbol_atoms(self):
+        for source in (r"\omega", r"\beta", r"\gamma", r"\theta", r"\lambda",
+                       r"\mu", r"\phi", r"\unknownsymbol"):
+            with self.subTest(source=source):
+                tree = self.parser.parse(source)
+                self.assertEqual((tree.kind, tree.value, tree.text),
+                                 ("SymbolAtom", source, source))
+                self.assertFalse(tree.metadata["semantic_mapping_available"])
+
+    def test_symbol_commands_compose_with_scripts_relations_and_arithmetic(self):
+        for source in (r"\omega_i", r"\omega^2", r"\omega_i^2"):
+            with self.subTest(source=source):
+                tree = self.parser.parse(source)
+                self.assertEqual(tree.kind, "ScriptedExpression")
+                self.assertEqual(tree.children[0].kind, "SymbolAtom")
+                self.assertEqual(tree.text, source)
+        relation = self.parser.parse(r"\omega_i\in A")
+        self.assertEqual((relation.kind, relation.value, relation.text),
+                         ("BinaryOperator", r"\in", r"\omega_i\in A"))
+        self.assertEqual(relation.children[0].text, r"\omega_i")
+        for source in (r"\alpha+\beta", r"\theta-\lambda",
+                       r"\alpha\beta", r"\alpha+\beta*\gamma"):
+            self.assertEqual(self.parser.parse(source).text, source)
+
+    def test_unknown_command_groups_use_an_explicit_opaque_fallback(self):
+        cases = {
+            r"\foo{x}": ("arg1",),
+            r"\foo{x}{y}": ("arg1", "arg2"),
+            r"\foo[x]": ("optional1",),
+            r"\foo[x]{y}": ("optional1", "arg1"),
+        }
+        for source, roles in cases.items():
+            with self.subTest(source=source):
+                tree = self.parser.parse(source)
+                self.assertEqual((tree.kind, tree.value, tree.text),
+                                 ("OpaqueCommandApplication", r"\foo", source))
+                self.assertEqual(tree.roles, roles)
+                self.assertTrue(tree.metadata["opaque"])
+                self.assertFalse(tree.metadata["semantic_mapping_available"])
+                self.assertFalse(tree.metadata["argument_roles_known"])
+
+    def test_opaque_command_does_not_overconsume_and_composes_as_an_operand(self):
+        addition = self.parser.parse(r"\foo{x}+y")
+        self.assertEqual((addition.kind, addition.value), ("BinaryOperator", "+"))
+        self.assertEqual([child.text for child in addition.children], [r"\foo{x}", "y"])
+        product = self.parser.parse(r"a*\foo{x}")
+        self.assertEqual([child.text for child in product.children], ["a", r"\foo{x}"])
+        for source in (r"\foo {x}", r"\foo{x}", r"\foo  {x}"):
+            self.assertEqual(self.parser.parse(source).text, source)
+
+    def test_nested_opaque_command_groups_remain_structured(self):
+        for source in (r"\foo{x+y}", r"\foo{\frac{a}{b}}",
+                       r"\foo{\sum_{i=1}^{n} a_i}"):
+            with self.subTest(source=source):
+                tree = self.parser.parse(source)
+                self.assertEqual(tree.kind, "OpaqueCommandApplication")
+                self.assertEqual(tree.text, source)
+                self.assertTrue(tree.children[0].children)
+        self.assertEqual(self.parser.parse(r"\foo{x}+g(y)").children[0].text, r"\foo{x}")
+        function = self.parser.parse(r"f(\foo{x})")
+        self.assertEqual(function.kind, "FunctionApplication")
+        self.assertTrue(any(node.kind == "OpaqueCommandApplication" for node in function.walk()))
+
+    def test_config_metadata_replaces_opaque_fallback_without_parser_changes(self):
+        before = self.parser.parse(r"\foo{x}")
+        self.assertEqual(before.kind, "OpaqueCommandApplication")
+        raw = configuration()
+        raw["commands"][r"\foo"] = {
+            "arity": 1, "semantic_macro": "fooSemantic",
+            "argument_types": ["expression"], "source": "test metadata"}
+        configured = build_expression_config(raw, [])
+        after = ExpressionParser(registry=NotationRegistry.from_config(configured)).parse(r"\foo{x}")
+        self.assertEqual(after.kind, "Command")
+        self.assertTrue(find_expression_candidates(r"\foo", configured, []))
+
+    def test_complex_opaque_command_composes_with_known_grammar(self):
+        source = (r"\frac{\foo{x+y}+\sum_{\omega_i\in A}P(\omega_i)}"
+                  r"{\sqrt{\alpha^2+\beta^2}}")
+        tree = self.parser.parse(source)
+        self.assertEqual((tree.kind, tree.value, tree.text), ("Command", r"\frac", source))
+        kinds = {node.kind for node in tree.walk()}
+        self.assertTrue({"OpaqueCommandApplication", "BigOperatorApplication",
+                         "FunctionApplication", "ScriptedExpression"} <= kinds)
+
+    def test_symbol_commands_work_in_functions_scripts_sums_and_integrals(self):
+        for source in (r"\pi r^2", r"f(\theta)", r"A_{\lambda}",
+                       r"\sum_{i=1}^{n} \alpha_i",
+                       r"\int_0^1 \omega x\,dx"):
+            with self.subTest(source=source):
+                self.assertEqual(self.parser.parse(source).text, source)
+
+    def test_unconfigured_symbol_in_sum_preserves_complete_generic_structure(self):
+        source = r"\sum_{\omega_i\in A} P(\omega_i)"
+        tree = self.parser.parse(source)
+        self.assertEqual((tree.kind, tree.value, tree.text),
+                         ("BigOperatorApplication", r"\sum", source))
+        self.assertEqual(tree.roles, ("lower", "body"))
+        lower, body = tree.children
+        self.assertEqual((lower.kind, lower.value, lower.text),
+                         ("GroupedExpression", "{", r"{\omega_i\in A}"))
+        relation = lower.children[0]
+        self.assertEqual((relation.kind, relation.value, relation.text),
+                         ("BinaryOperator", r"\in", r"\omega_i\in A"))
+        self.assertEqual(relation.children[0].text, r"\omega_i")
+        self.assertEqual(body.kind, "FunctionApplication")
+        self.assertEqual(body.text, r"P(\omega_i)")
 
     def test_logic_and_set_metadata_use_the_same_parser(self):
         for source, outer, inner in ((r"A\wedge(B\vee C)", r"\wedge", r"\vee"),
@@ -128,6 +236,80 @@ class TestGeneralExpressionParser(unittest.TestCase):
         self.assertNotEqual(styles[0].children[0].value, styles[1].children[0].value)
         self.assertEqual(self.parser.parse("f(x^2+a*b)+g(y)").children[0].kind, "FunctionApplication")
 
+    def test_configured_symbolic_calls_preserve_complete_spans(self):
+        sources = (
+            "f(x)", "g(a+b)", "P(A_1)", "F(x_i)", r"h(\frac{a}{b})",
+            "f(g(x))", "f(g(x)+h(y))", r"f(\frac{x}{2})", "f(x_i^2)",
+            "f(a+b*c)", r"P\left(A_1\cup A_2\right)",
+        )
+        self.assertTrue(set("fghPF") <= self.registry.functions)
+        for source in sources:
+            with self.subTest(source=source):
+                tree = self.parser.parse(source)
+                self.assertEqual(tree.kind, "FunctionApplication")
+                self.assertEqual(tree.text, source)
+                self.assertEqual((tree.start, tree.end), (0, len(source)))
+
+    def test_addition_consumes_complete_function_application_children(self):
+        rule = {"pattern_type": "sequence", "separator": "+", "fixity": "infix",
+                "arity": "variable"}
+        cases = {
+            "f(x)+g(y)": ["f(x)", "g(y)"],
+            "f(x)+g(y)+h(z)": ["f(x)", "g(y)", "h(z)"],
+            "f(x*y)+g(a+b)": ["f(x*y)", "g(a+b)"],
+            "F(x_1)+\\dots+F(x_n)": ["F(x_1)", r"\dots", "F(x_n)"],
+            "a+f(x)": ["a", "f(x)"],
+            "f(x)+a": ["f(x)", "a"],
+            "(a+b)+f(x)": ["(a+b)", "f(x)"],
+            "f(x)+(a+b)": ["f(x)", "(a+b)"],
+            "P(A_1)+\\dots+P(A_k)": ["P(A_1)", r"\dots", "P(A_k)"],
+        }
+        for source, arguments in cases.items():
+            with self.subTest(source=source):
+                tree = self.parser.parse(source)
+                matches = match_ast(tree, rule, self.registry)
+                root = next(match for match in matches
+                            if (match["start"], match["end"]) == (0, len(source)))
+                self.assertEqual(root["matched_expression"], source)
+                self.assertEqual(root["arguments"], arguments)
+
+    def test_real_probability_shape_and_sized_calls_keep_exact_scopes(self):
+        source = (r"P\left(A_1\cup\dots\cup A_k\right)="
+                  r"P(A_1)+\dots+P(A_k).")
+        tree = self.parser.parse(source)
+        left, right = tree.children
+        self.assertEqual((left.kind, left.text),
+                         ("FunctionApplication", r"P\left(A_1\cup\dots\cup A_k\right)"))
+        union = next(node for node in left.walk() if node.value == r"\cup")
+        self.assertEqual(union.text, r"A_1\cup\dots\cup A_k")
+        rule = {"pattern_type": "sequence", "separator": "+"}
+        matches = match_ast(tree, rule, self.registry)
+        complete = next(match for match in matches
+                        if match["matched_expression"] == r"P(A_1)+\dots+P(A_k)")
+        self.assertEqual(complete["arguments"],
+                         [r"P(A_1)", r"\dots", r"P(A_k)"])
+
+    def test_gather_continuation_preserves_complete_sized_call_operands(self):
+        source = ("\\begin{gather*}\n"
+                  r"P\left(\text{all pieces}\right)=\\" + "\n"
+                  r"P\left(\text{pieces in }A_1\right)+\dots+"
+                  r"P\left(\text{pieces in }A_k\right)." + "\n\\end{gather*}")
+        regions = parse_math_regions(source, self.registry)
+        self.assertEqual(len(regions), 1)
+        self.assertFalse(regions[0].error)
+        matches = match_ast(regions[0].tree,
+                            {"pattern_type": "sequence", "separator": "+"}, self.registry)
+        self.assertEqual(matches[-1]["arguments"],
+                         [r"P\left(\text{pieces in }A_1\right)", r"\dots",
+                          r"P\left(\text{pieces in }A_k\right)"])
+
+    def test_symbolic_calls_do_not_replace_implicit_products(self):
+        for source in ("2(x+1)", "(a+b)(c+d)", "2x"):
+            with self.subTest(source=source):
+                tree = self.parser.parse(source)
+                self.assertNotEqual(tree.kind, "FunctionApplication")
+                self.assertEqual(tree.value, "juxtaposition")
+
     def test_implicit_product_is_explicit_policy(self):
         tree = self.parser.parse("(x-R)(x-S)")
         self.assertEqual(tree.value, "juxtaposition")
@@ -189,8 +371,9 @@ class TestGeneralExpressionParser(unittest.TestCase):
         self.assertEqual(tokens[0].kind, "number")
         self.assertEqual(tokens[1].text, r"\neq")
         self.assertTrue(all(source[token.start:token.end] == token.text for token in tokens))
-        with self.assertRaises(ParseError):
-            self.parser.parse(r"a\neqUnknown b")
+        tree = self.parser.parse(r"a\neqUnknown b")
+        unknown = next(node for node in tree.walk() if node.kind == "SymbolAtom")
+        self.assertEqual((unknown.value, unknown.text), (r"\neqUnknown", r"\neqUnknown"))
 
     def test_nodes_keep_source_spans_and_metadata(self):
         source = r"\frac{x_i^2+a*b}{\sqrt{c-d}}"
@@ -206,12 +389,14 @@ class TestGeneralExpressionParser(unittest.TestCase):
     def test_unsupported_regions_retain_source_and_do_not_block_others(self):
         source = r"$a+b$ $\unknown{x}$ $a&b$ $a*b$"
         regions = parse_math_regions(source, self.registry)
-        self.assertEqual([bool(region.error) for region in regions], [False, True, True, False])
+        self.assertEqual([bool(region.error) for region in regions], [False, False, True, False])
         self.assertEqual(source[regions[1].start:regions[1].end], r"\unknown{x}")
+        self.assertEqual(regions[1].tree.kind, "OpaqueCommandApplication")
         with self.assertRaises(ParseError):
             self.parser.parse(r"a\\b")
-        with self.assertRaises(ParseError):
-            self.parser.parse("x\u00b2")
+        unicode_script = self.parser.parse("x\u00b2")
+        self.assertEqual((unicode_script.kind, unicode_script.roles, unicode_script.text),
+                         ("ScriptedExpression", ("base", "^"), "x\u00b2"))
 
     def test_synthetic_corpus_reports_explicit_advanced_grammar_gaps(self):
         source = (ROOT / "tests/fixtures/general_math_expressions.tex").read_text(encoding="utf-8")
@@ -299,8 +484,8 @@ class TestGeneralExpressionParser(unittest.TestCase):
             self.assertEqual(inspect_main(["a+b*c"]), 0)
         self.assertIn("BinaryOperator(*)", output.getvalue())
         with patch("sys.stdout", new_callable=io.StringIO) as output:
-            self.assertEqual(inspect_main([r"\unknown{x}"]), 1)
-        self.assertIn("UnsupportedExpression", output.getvalue())
+            self.assertEqual(inspect_main([r"\unknown{x}"]), 0)
+        self.assertIn("OpaqueCommandApplication", output.getvalue())
 
 
 class TestRegistryIntegration(unittest.TestCase):

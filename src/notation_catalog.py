@@ -70,7 +70,8 @@ def build_catalog(records, configuration=None):
                         "notation": operator.get("pattern", operator["token"]), "args": "a" if arity == "variable" else str(arity),
                         "placeholders": [], "precedence": operator.get("precedence"),
                         "associativity": operator.get("associativity"), "fixity": fixity, "classification": rule,
-                        "file": "", "line": None, "record": None, "source": "user configuration", "resolved": True})
+                        "file": "", "line": None, "record": None,
+                        "source": operator.get("source", "user configuration"), "resolved": True})
     for token, command in config.get("commands", {}).items():
         kind = "semantic_application" if command.get("semantic") else "command"
         entries.append({"repository": None, "module": None, "macro": command.get("semantic_macro"),
@@ -104,7 +105,7 @@ def build_catalog(records, configuration=None):
                                            **({} if ready else {
                                                "annotation_blocker": "missing_argument_mapping"})},
                         "file": "", "line": None, "record": None,
-                        "source": "user configuration", "resolved": True})
+                        "source": construct.get("source", "user configuration"), "resolved": True})
     # Rich structures are represented without claiming an executable adapter.
     for notation in config.get("notations", []):
         entries.append({"repository": None, "module": notation.get("module"),

@@ -1,0 +1,118 @@
+﻿{
+    "generated_from":  [
+                           "evaluation/corpus_summary.json",
+                           "evaluation/annotation_coverage_gaps.json",
+                           "evaluation/per_document_metrics.json",
+                           "evaluation/corpus.json"
+                       ],
+    "corpus":  {
+                   "documents":  3,
+                   "total_math_regions":  141,
+                   "gold_occurrences":  58
+               },
+    "structure":  {
+                      "parsed":  141,
+                      "parser_total":  141,
+                      "parser_coverage_percent":  100.0,
+                      "scope_labeled_count":  58,
+                      "correct_scopes":  58,
+                      "scope_accuracy_percent":  100.0
+                  },
+    "semantics":  {
+                      "supported_candidate_cases":  44,
+                      "candidates_found":  44,
+                      "candidate_recall_percent":  100.0,
+                      "top_1":  {
+                                    "successes":  44,
+                                    "total":  44,
+                                    "percent":  100.0,
+                                    "wilson_95_percent":  [
+                                                              92.0,
+                                                              100.0
+                                                          ]
+                                },
+                      "top_3":  {
+                                    "successes":  44,
+                                    "total":  44,
+                                    "percent":  100.0,
+                                    "wilson_95_percent":  [
+                                                              92.0,
+                                                              100.0
+                                                          ]
+                                },
+                      "top_5":  {
+                                    "successes":  44,
+                                    "total":  44,
+                                    "percent":  100.0,
+                                    "wilson_95_percent":  [
+                                                              92.0,
+                                                              100.0
+                                                          ]
+                                },
+                      "mean_reciprocal_rank":  1.0
+                  },
+    "annotation":  {
+                       "annotation_eligible":  107,
+                       "supported_eligible":  99,
+                       "review_ready":  99,
+                       "automatically_ready":  88,
+                       "human_selection_required":  11,
+                       "unsupported":  8,
+                       "supported_review_ready_percent":  100.0
+                   },
+    "application":  {
+                        "current_decisions":  59,
+                        "rendered":  59,
+                        "conflicts":  0,
+                        "failures":  0,
+                        "original_unchanged":  true,
+                        "idempotent":  true,
+                        "idempotence_evidence":  "verified by the full regression suite"
+                    },
+    "limitations":  {
+                        "missing_sets_repository":  7,
+                        "indefinite_integral_signature_blocker":  1,
+                        "already_semantic":  2,
+                        "intentionally_no_proposal":  5,
+                        "no_semantic_notation_present":  22,
+                        "structural_only_tex":  3
+                    },
+    "per_document":  [
+                         {
+                             "document":  "quadratic-paper",
+                             "math_regions":  70,
+                             "annotation_eligible":  47,
+                             "mapping_available":  47,
+                             "review_ready":  47,
+                             "automatic_ready":  37,
+                             "human_selection_required":  10,
+                             "annotation_ready":  37,
+                             "already_semantic":  0,
+                             "unsupported_or_missing_semantic_data":  0
+                         },
+                         {
+                             "document":  "general-expressions",
+                             "math_regions":  63,
+                             "annotation_eligible":  52,
+                             "mapping_available":  45,
+                             "review_ready":  45,
+                             "automatic_ready":  44,
+                             "human_selection_required":  1,
+                             "annotation_ready":  44,
+                             "already_semantic":  2,
+                             "unsupported_or_missing_semantic_data":  9
+                         },
+                         {
+                             "document":  "configured-integrals",
+                             "math_regions":  8,
+                             "annotation_eligible":  8,
+                             "mapping_available":  7,
+                             "review_ready":  7,
+                             "automatic_ready":  7,
+                             "human_selection_required":  0,
+                             "annotation_ready":  7,
+                             "already_semantic":  0,
+                             "unsupported_or_missing_semantic_data":  0
+                         }
+                     ]
+}

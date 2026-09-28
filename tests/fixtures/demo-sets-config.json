@@ -1,0 +1,52 @@
+{
+  "demo_only": true,
+  "description": "Test/demo configuration; not real SMGloM set semantics.",
+  "operators": [
+    {
+      "token": "\\cup",
+      "precedence": 10,
+      "associativity": "sequence",
+      "arity": "variable",
+      "semantic_macro": "fooUnion",
+      "source": "test/demo configuration; not real SMGloM"
+    },
+    {
+      "token": "\\cap",
+      "precedence": 20,
+      "associativity": "left",
+      "semantic_macro": "fooIntersection",
+      "source": "test/demo configuration; not real SMGloM"
+    },
+    {
+      "token": "\\in",
+      "precedence": 1,
+      "associativity": "none",
+      "semantic_macro": "fooMembership",
+      "source": "test/demo configuration; not real SMGloM"
+    },
+    {
+      "token": "\\subseteq",
+      "precedence": 1,
+      "associativity": "none",
+      "semantic_macro": "fooSubseteq",
+      "source": "test/demo configuration; not real SMGloM"
+    }
+  ],
+  "commands": {
+    "\\dots": {"arity": 0}
+  },
+  "syntax": {
+    "functions": ["P"],
+    "script_precedence": 40,
+    "application_precedence": 50
+  },
+  "review_labels": {
+    "\\cup": "union",
+    "\\cap": "intersection",
+    "\\subseteq": "subset relation",
+    "\\in": "membership relation"
+  },
+  "review_argument_labels": {
+    "\\in": {"left": "element", "right": "set"}
+  }
+}

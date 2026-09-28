@@ -6,7 +6,7 @@ import json
 import shutil
 from pathlib import Path
 
-from notation_scanner import find_notation_occurrences
+from notation_scanner import find_notation_occurrences  # compatibility patch point
 from review_workflow import find_generic_candidates, find_expression_candidates
 from smglom_notation_extractor import scan_available_smglom
 from symbol_scanner import PAPERS_DIR
@@ -51,7 +51,23 @@ def _select_candidate(decision, candidates):
         matching = [item for item in matching if item.get("repository") == repository]
     if module:
         matching = [item for item in matching if item.get("module") == module]
-    return matching[0] if len(matching) == 1 else None
+    if len(matching) == 1:
+        return matching[0]
+    stored = decision.get("candidate_classification")
+    if stored and matching:
+        keys = ("pattern_type", "grammar_adapter", "implicit", "separator", "operator",
+                "command", "node_kind", "argument_roles")
+        matching = [item for item in matching if all(
+            item.get("classification", {}).get(key) == stored.get(key) for key in keys)]
+        # Multiple catalogue records with the same semantic identity and the
+        # same structural interpretation are presentation provenance variants,
+        # not distinct reviewer choices.
+        if matching:
+            signatures = {json.dumps({key: item["classification"].get(key) for key in keys},
+                                     sort_keys=True) for item in matching}
+            if len(signatures) == 1:
+                return matching[0]
+    return None
 
 
 def validate_decisions(decisions, records=None, papers_dir=PAPERS_DIR):
@@ -64,19 +80,28 @@ def validate_decisions(decisions, records=None, papers_dir=PAPERS_DIR):
     valid_matches = []
     stale = []
     unverifiable = []
+    default_config = json.loads(
+        (PROJECT_DIR / "expression-config.example.json").read_text(encoding="utf-8-sig"))
 
     for index, decision in enumerate(decisions):
         symbol = decision.get("visible_symbol")
         macro = decision.get("semantic_macro")
-        if not symbol or not macro:
+        if symbol is None or not macro:
             unverifiable.append((index, decision, "missing notation metadata"))
             continue
 
-        search_key = (symbol, json.dumps(decision.get("expression_config"), sort_keys=True))
+        direct_classification = decision.get("candidate_classification")
+        search_key = (symbol, json.dumps(decision.get("expression_config"), sort_keys=True),
+                      bool(direct_classification))
         if search_key not in candidates_by_symbol:
-            candidates_by_symbol[search_key] = (
-                find_expression_candidates(symbol, decision["expression_config"], records)
-                if "expression_config" in decision else find_generic_candidates(symbol, records))
+            if direct_classification:
+                from notation_catalog import annotation_candidates, build_catalog
+                candidates_by_symbol[search_key] = annotation_candidates(build_catalog(
+                    records, decision.get("expression_config", default_config)))
+            else:
+                candidates_by_symbol[search_key] = (
+                    find_expression_candidates(symbol, decision["expression_config"], records)
+                    if "expression_config" in decision else find_generic_candidates(symbol, records))
         candidate = _select_candidate(decision, candidates_by_symbol[search_key])
         if candidate is None:
             unverifiable.append((index, decision, "semantic candidate not found uniquely"))
@@ -91,11 +116,19 @@ def validate_decisions(decisions, records=None, papers_dir=PAPERS_DIR):
         if "expression_config" in decision:
             classification["expression_config"] = decision["expression_config"]
         if candidate_key not in occurrences_by_candidate:
+            if "expression_config" in decision or "source_start" in decision:
+                from expression_document import parse_papers, find_ast_occurrences
+                from expression_metadata import build_expression_config
+                expression_config = build_expression_config(
+                    decision.get("expression_config", default_config), records)
+                matches = find_ast_occurrences(
+                    parse_papers(papers_dir, expression_config), classification,
+                    expression_config, candidate)
+            else:
+                matches = find_notation_occurrences(classification, papers_dir)
             occurrences_by_candidate[candidate_key] = {
                 match_occurrence_key(match, Path(papers_dir)): match
-                for match in find_notation_occurrences(
-                    classification, papers_dir
-                )
+                for match in matches
             }
 
         item = (index, decision)

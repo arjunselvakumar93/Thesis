@@ -3,7 +3,7 @@
   "operators": [
     {"token": "+", "precedence": 10, "associativity": "left", "arity": "variable"},
     {"token": "-", "precedence": 10, "associativity": "left", "arity": "variable"},
-    {"token": "*", "precedence": 20, "associativity": "left"},
+    {"token": "*", "variants": ["\\cdot"], "precedence": 20, "associativity": "left"},
     {"token": "/", "precedence": 20, "associativity": "left"},
     {"token": "+", "precedence": 30, "associativity": "right", "fixity": "prefix", "arity": 1},
     {"token": "-", "precedence": 30, "associativity": "right", "fixity": "prefix", "arity": 1},
@@ -11,13 +11,53 @@
     {"token": "\\ne", "precedence": 1, "associativity": "none"},
     {"token": "\\wedge", "variants": ["\\land"], "precedence": 6, "associativity": "left"},
     {"token": "\\vee", "precedence": 5, "associativity": "left"},
-    {"token": "\\cup", "precedence": 10, "associativity": "left"},
+    {"token": "\\cup", "precedence": 10, "associativity": "sequence", "arity": "variable"},
     {"token": "\\cap", "precedence": 20, "associativity": "left"},
     {"token": "\\in", "precedence": 1, "associativity": "none"},
     {"token": "\\subseteq", "precedence": 1, "associativity": "none"},
     {"token": "\\pm", "precedence": 10, "associativity": "left"},
     {"token": "\\pm", "precedence": 30, "associativity": "right", "fixity": "prefix", "arity": 1}
+    ,{"token": "−", "precedence": 10, "associativity": "left", "arity": "variable", "source": "Unicode structural grammar"}
+    ,{"token": "−", "precedence": 30, "associativity": "right", "fixity": "prefix", "arity": 1, "source": "Unicode structural grammar"}
+    ,{"token": "×", "precedence": 20, "associativity": "left", "source": "Unicode structural grammar"}
+    ,{"token": "÷", "precedence": 20, "associativity": "left", "source": "Unicode structural grammar"}
+    ,{"token": "∪", "precedence": 10, "associativity": "sequence", "arity": "variable", "source": "Unicode structural grammar"}
+    ,{"token": "∩", "precedence": 20, "associativity": "left", "source": "Unicode structural grammar"}
+    ,{"token": "∧", "precedence": 6, "associativity": "left", "source": "Unicode structural grammar"}
+    ,{"token": "∨", "precedence": 5, "associativity": "left", "source": "Unicode structural grammar"}
+    ,{"token": "⇒", "precedence": 2, "associativity": "right", "source": "Unicode structural grammar"}
+    ,{"token": "→", "precedence": 2, "associativity": "right", "source": "Unicode structural grammar"}
+    ,{"token": "≤", "precedence": 1, "associativity": "none", "source": "Unicode structural grammar"}
+    ,{"token": "≥", "precedence": 1, "associativity": "none", "source": "Unicode structural grammar"}
+    ,{"token": "≠", "precedence": 1, "associativity": "none", "source": "Unicode structural grammar"}
+    ,{"token": "≈", "precedence": 1, "associativity": "none", "source": "Unicode structural grammar"}
+    ,{"token": "≡", "precedence": 1, "associativity": "none", "source": "Unicode structural grammar"}
+    ,{"token": "∈", "precedence": 1, "associativity": "none", "source": "Unicode structural grammar"}
+    ,{"token": "∉", "precedence": 1, "associativity": "none", "source": "Unicode structural grammar"}
+    ,{"token": "⊂", "precedence": 1, "associativity": "none", "source": "Unicode structural grammar"}
+    ,{"token": "⊆", "precedence": 1, "associativity": "none", "source": "Unicode structural grammar"}
+    ,{"token": "⊃", "precedence": 1, "associativity": "none", "source": "Unicode structural grammar"}
+    ,{"token": "⊇", "precedence": 1, "associativity": "none", "source": "Unicode structural grammar"}
+    ,{"token": "√", "precedence": 30, "associativity": "right", "fixity": "prefix", "arity": 1, "source": "Unicode structural grammar"}
   ],
+  "review_labels": {
+    "*": "multiplication",
+    "\\cup": "union",
+    "\\cap": "intersection",
+    "\\subseteq": "subset relation",
+    "\\in": "membership relation"
+    ,"∈": "membership relation"
+    ,"∪": "union"
+  },
+  "review_argument_labels": {
+    "\\in": {"left": "element", "right": "set"}
+  },
+  "review_unavailable_status": {
+    "\\cup": "real set-theory semantic metadata unavailable locally",
+    "\\cap": "real set-theory semantic metadata unavailable locally",
+    "\\subseteq": "real set-theory semantic metadata unavailable locally",
+    "\\in": "real set-theory semantic metadata unavailable locally"
+  },
   "commands": {
     "\\aplus": {"arity": 1, "semantic": true, "argument_types": ["sequence"]},
     "\\eq": {"arity": 1, "semantic": true, "argument_types": ["sequence"]},
@@ -32,11 +72,15 @@
     ,"\\mathrm": {"arity": 1, "roles": ["content"]}
     ,"\\operatorname": {"arity": 1, "roles": ["content"]}
     ,"\\sin": {"arity": 0, "callable": true}
+    ,"\\dots": {"arity": 0}
+    ,"\\cdots": {"arity": 0}
+    ,"\\text": {"arity": 1, "argument_types": ["opaque"], "roles": ["content"]}
     ,"\\pi": {"arity": 0}
   },
   "bound_constructs": {
     "\\sum": {
       "node_kind": "BigOperatorApplication",
+      "name": "summation",
       "scripts": {"_": "lower", "^": "upper"},
       "body_role": "body",
       "body_precedence": 11
@@ -80,11 +124,56 @@
       "leading_roles": ["variable"],
       "body_role": "body",
       "body_precedence": 0
+    },
+    "∑": {
+      "node_kind": "BigOperatorApplication",
+      "name": "summation",
+      "scripts": {"_": "lower", "^": "upper"},
+      "body_role": "body",
+      "body_precedence": 11,
+      "source": "Unicode structural grammar"
+    },
+    "∏": {
+      "node_kind": "BigOperatorApplication",
+      "name": "product",
+      "scripts": {"_": "lower", "^": "upper"},
+      "body_role": "body",
+      "body_precedence": 11,
+      "source": "Unicode structural grammar"
+    },
+    "∫": {
+      "node_kind": "BoundExpression",
+      "name": "integral",
+      "scripts": {"_": "lower", "^": "upper"},
+      "body_role": "body",
+      "body_precedence": 0,
+      "trailing_forms": [{"prefix": "d"}, {"separator": ",", "prefix": "d"}],
+      "source": "Unicode structural grammar"
+    },
+    "∀": {
+      "node_kind": "BinderApplication",
+      "name": "universal binder",
+      "leading_roles": ["variable"],
+      "body_role": "body",
+      "body_precedence": 0,
+      "source": "Unicode structural grammar"
+    },
+    "∃": {
+      "node_kind": "BinderApplication",
+      "name": "existential binder",
+      "leading_roles": ["variable"],
+      "body_role": "body",
+      "body_precedence": 0,
+      "source": "Unicode structural grammar"
     }
   },
   "syntax": {
-    "functions": ["f", "g", "P"],
-    "alignment_environments": ["align", "align*", "aligned", "alignedat", "eqnarray", "eqnarray*"],
+    "delimiter_pairs": {"(": ")", "[": "]", "{": "}", "⟨": "⟩"},
+    "literal_operator_classes": [
+      {"characters": "<>", "precedence": 1, "associativity": "none"}
+    ],
+    "functions": ["f", "g", "h", "p", "q", "P", "F"],
+    "alignment_environments": ["align", "align*", "aligned", "alignedat", "eqnarray", "eqnarray*", "gather", "gather*", "multline", "multline*"],
     "ignored_commands": {"\\label": 1, "\\,": 0},
     "trailing_punctuation": [",", ";", ":", "."],
     "script_precedence": 40,

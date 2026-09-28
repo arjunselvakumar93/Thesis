@@ -1,0 +1,43 @@
+{
+  "description": "TEST/DEMO CONFIGURATION ONLY. This is not real SMGloM metadata and does not assert that raw * is equivalent to \\times.",
+  "demo_only": true,
+  "review_labels": {
+    "*": "multiplication"
+  },
+  "operators": [
+    {
+      "token": "+",
+      "precedence": 10,
+      "associativity": "left",
+      "arity": "variable"
+    },
+    {
+      "token": "-",
+      "precedence": 10,
+      "associativity": "left",
+      "arity": "variable"
+    },
+    {
+      "token": "*",
+      "precedence": 20,
+      "associativity": "left",
+      "arity": 2,
+      "semantic_macro": "fooTimes",
+      "source": "test/demo configuration; not real SMGloM"
+    }
+  ],
+  "commands": {},
+  "syntax": {
+    "functions": ["p", "q"],
+    "alignment_environments": [],
+    "ignored_commands": {},
+    "trailing_punctuation": [",", ";", ":", "."],
+    "script_precedence": 40,
+    "application_precedence": 50,
+    "implicit_operator": {
+      "token": "juxtaposition",
+      "precedence": 20,
+      "associativity": "left"
+    }
+  }
+}

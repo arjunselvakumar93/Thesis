@@ -45,6 +45,57 @@ LaTeX source
 
 Earlier token and notation matchers remain for compatibility and focused workflows. Current whole-expression evaluation uses math-region extraction, the registry-driven parser, AST matching, validated decisions, and source-span application.
 
+## Structural fallback hierarchy
+
+The parser keeps structural recognition separate from semantic claims:
+
+```text
+known configured construct
+  -> precise structural AST
+
+unknown bare alphabetic control word
+  -> SymbolAtom
+
+unknown command followed by explicit groups
+  -> OpaqueCommandApplication with generic group roles
+
+complete TeX environment
+  -> EnvironmentExpression containing source-positioned rows and cells
+  -> OpaqueEnvironmentBody if a cell cannot be parsed safely
+
+known operator or configured literal-operator class
+  -> precedence-aware operator AST
+
+unknown semantics
+  -> structural representation only; no semantic candidate or annotation claim
+```
+
+Environment parsing treats top-level `&` and `\\` as cell and row separators. It does not assign matrix or domain-specific meaning to an environment name. Expressions inside recoverable cells use the normal parser and can expose their own review scopes independently.
+
+## Limitations
+
+- Full arbitrary TeX programming and macro expansion are not supported.
+- Environment parsing preserves structural row/cell containers; it does not reproduce every package-specific environment behavior.
+- Semantic availability depends on installed SMGloM repositories or explicit configuration.
+- Opaque preservation prevents loss of source structure but is not semantic understanding.
+
+## Coverage levels
+
+**LEVEL 1 — SOURCE PRESERVED**
+
+The input survives with exact source spans. Opaque preservation at this level
+does not imply full structural understanding.
+
+**LEVEL 2 — STRUCTURALLY UNDERSTOOD**
+
+The system knows expression structure, scope, nesting, and arguments. This does
+not imply that it knows the mathematical meaning.
+
+**LEVEL 3 — SEMANTICALLY ANNOTATABLE**
+
+A validated semantic candidate and argument mapping are available from SMGloM
+or explicitly supplied configuration.
+
 ## Quick demo
 
 ```powershell

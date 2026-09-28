@@ -41,7 +41,7 @@
         100.0
       ]
     },
-    "candidate_set_precision_percent": 31.0,
+    "candidate_set_precision_percent": 30.3,
     "top_1_recall": {
       "successes": 44,
       "total": 44,
@@ -268,12 +268,224 @@
         ]
       },
       "note": "The original annotation-ready metric uses all extracted math regions; the eligible metric uses proposal-eligible semantic gold targets."
+    },
+    "region_annotation_coverage": {
+      "readiness_definitions": {
+        "structurally_ready": "valid AST with an exact source span",
+        "review_ready": "at least one supported semantic candidate with complete arguments and a safe span after explicit human selection",
+        "automatically_ready": "review-ready and sufficiently determined by semantic evidence without a human semantic choice"
+      },
+      "total_math_regions": 141,
+      "regions_with_semantic_notation_recognized": 119,
+      "regions_with_semantic_candidates": 104,
+      "annotation_eligible_regions": 107,
+      "supported_annotation_eligible_regions": 99,
+      "annotation_ready_regions": 88,
+      "review_ready_regions": 99,
+      "automatically_ready_regions": 88,
+      "human_selection_required_regions": 11,
+      "unsupported_annotation_eligible_regions": 8,
+      "already_semantic_regions": 2,
+      "intentionally_no_proposal_regions": 5,
+      "regions_where_annotation_should_not_be_attempted": 42,
+      "raw_annotation_ready_coverage_percent": 62.4,
+      "eligible_annotation_coverage_percent": 82.2,
+      "supported_annotation_coverage_percent": 88.9,
+      "supported_review_coverage_percent": 100.0,
+      "reviewer_effort": {
+        "review_ready_candidate_count_distribution": {
+          "1": 6,
+          "2-3": 1,
+          "4-6": 24,
+          "7+": 68
+        },
+        "human_selection_candidate_count_distribution": {
+          "1": 1,
+          "2-3": 1,
+          "4-6": 6,
+          "7+": 3
+        },
+        "average_candidates_per_human_selection_region": 6.45,
+        "median_candidates_per_human_selection_region": 6
+      },
+      "gap_categories": {
+        "A": 22,
+        "B": 2,
+        "C": 2,
+        "D": 7,
+        "E": 0,
+        "F": 0,
+        "G": 0,
+        "H": 0,
+        "I": 1,
+        "J": 0,
+        "K": 0,
+        "L": 3,
+        "M": 16,
+        "N": 0
+      },
+      "gap_category_definitions": {
+        "A": "no semantic notation present",
+        "B": "already-semantic expression",
+        "C": "semantic mapping unavailable",
+        "D": "missing SMGloM repository",
+        "E": "notation record exists but extractor missed it",
+        "F": "notation classified but grammar adapter missing",
+        "G": "AST matcher failed",
+        "H": "argument mapping incomplete",
+        "I": "semantic signature contains hidden/non-visible arguments",
+        "J": "source notation variant or alias mismatch",
+        "K": "unsafe replacement scope",
+        "L": "structural-only TeX",
+        "M": "intentional no-proposal or review-required case",
+        "N": "other genuine implementation defect"
+      },
+      "gap_blockers": {
+        "already_semantic_correctly_skipped": 2,
+        "contextual_support_required": 2,
+        "intentional_no_proposal_case": 5,
+        "missing_repository": 7,
+        "no_semantic_notation_present": 22,
+        "semantic_ambiguity_requires_human_review": 9,
+        "semantic_mapping_unavailable": 2,
+        "semantic_signature_has_hidden_arguments": 1,
+        "structural_only_tex": 3
+      },
+      "priority_table": [
+        {
+          "blocker": "no_semantic_notation_present",
+          "affected_regions": 22,
+          "generic_fix_possible": false,
+          "risk": "none",
+          "recommended_action": "no change"
+        },
+        {
+          "blocker": "semantic_ambiguity_requires_human_review",
+          "affected_regions": 9,
+          "generic_fix_possible": false,
+          "risk": "high",
+          "recommended_action": "retain candidates for human selection"
+        },
+        {
+          "blocker": "missing_repository",
+          "affected_regions": 7,
+          "generic_fix_possible": false,
+          "risk": "none",
+          "recommended_action": "install and evaluate the named repository"
+        },
+        {
+          "blocker": "intentional_no_proposal_case",
+          "affected_regions": 5,
+          "generic_fix_possible": false,
+          "risk": "none",
+          "recommended_action": "no change"
+        },
+        {
+          "blocker": "structural_only_tex",
+          "affected_regions": 3,
+          "generic_fix_possible": false,
+          "risk": "none",
+          "recommended_action": "no change"
+        },
+        {
+          "blocker": "contextual_support_required",
+          "affected_regions": 2,
+          "generic_fix_possible": true,
+          "risk": "high",
+          "recommended_action": "collect semantic context; do not auto-select"
+        },
+        {
+          "blocker": "already_semantic_correctly_skipped",
+          "affected_regions": 2,
+          "generic_fix_possible": false,
+          "risk": "none",
+          "recommended_action": "no change"
+        },
+        {
+          "blocker": "semantic_mapping_unavailable",
+          "affected_regions": 2,
+          "generic_fix_possible": false,
+          "risk": "none",
+          "recommended_action": "add only evidence-backed semantic metadata"
+        },
+        {
+          "blocker": "semantic_signature_has_hidden_arguments",
+          "affected_regions": 1,
+          "generic_fix_possible": false,
+          "risk": "medium",
+          "recommended_action": "keep blocked until arguments are recoverable"
+        }
+      ],
+      "waterfall": [
+        {
+          "stage": "total_math_regions",
+          "regions": 141
+        },
+        {
+          "stage": "annotation_eligible",
+          "regions": 107,
+          "excluded": 34
+        },
+        {
+          "stage": "semantic_mapping_available",
+          "regions": 99,
+          "excluded": 8
+        },
+        {
+          "stage": "review_ready",
+          "regions": 99,
+          "excluded": 0
+        },
+        {
+          "stage": "automatically_ready",
+          "regions": 88,
+          "human_selection_required": 11
+        }
+      ],
+      "per_document": [
+        {
+          "document": "quadratic-paper",
+          "math_regions": 70,
+          "annotation_eligible": 47,
+          "mapping_available": 47,
+          "review_ready": 47,
+          "automatic_ready": 37,
+          "human_selection_required": 10,
+          "annotation_ready": 37,
+          "already_semantic": 0,
+          "unsupported_or_missing_semantic_data": 0
+        },
+        {
+          "document": "general-expressions",
+          "math_regions": 63,
+          "annotation_eligible": 52,
+          "mapping_available": 45,
+          "review_ready": 45,
+          "automatic_ready": 44,
+          "human_selection_required": 1,
+          "annotation_ready": 44,
+          "already_semantic": 2,
+          "unsupported_or_missing_semantic_data": 9
+        },
+        {
+          "document": "configured-integrals",
+          "math_regions": 8,
+          "annotation_eligible": 8,
+          "mapping_available": 7,
+          "review_ready": 7,
+          "automatic_ready": 7,
+          "human_selection_required": 0,
+          "annotation_ready": 7,
+          "already_semantic": 0,
+          "unsupported_or_missing_semantic_data": 0
+        }
+      ]
     }
   },
   "breakdown": {
     "candidate_count": {
       "1": {
-        "occurrences": 6,
+        "occurrences": 5,
         "top_1_percent": 100.0,
         "mrr": 1.0
       },
@@ -283,7 +495,7 @@
         "mrr": 1.0
       },
       "7+": {
-        "occurrences": 13,
+        "occurrences": 14,
         "top_1_percent": 100.0,
         "mrr": 1.0
       }
@@ -293,7 +505,7 @@
         "occurrences": 33,
         "top_1_percent": 100.0,
         "mrr": 1.0,
-        "average_candidate_count": 5.36
+        "average_candidate_count": 5.55
       },
       "fallback_only": {
         "occurrences": 11,

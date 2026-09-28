@@ -1,0 +1,44 @@
+{
+  "description": "TEST/DEMO CONFIGURATION ONLY. This visible lower-condition/body mapping is not real SMGloM sum semantics.",
+  "demo_only": true,
+  "review_labels": {
+    "\\sum": "summation"
+  },
+  "review_argument_labels": {
+    "\\sum": {
+      "lower": "index/domain"
+    }
+  },
+  "operators": [
+    {"token": "+", "precedence": 10, "associativity": "left", "arity": "variable"},
+    {"token": "=", "precedence": 1, "associativity": "sequence", "arity": "variable"},
+    {"token": "\\in", "precedence": 1, "associativity": "none"}
+  ],
+  "commands": {
+    "\\omega": {"arity": 0},
+    "\\dots": {"arity": 0}
+  },
+  "bound_constructs": {
+    "\\sum": {
+      "node_kind": "BigOperatorApplication",
+      "semantic_macro": "fooSum",
+      "semantic_argument_roles": ["lower", "body"],
+      "semantic_module": "demo-summation",
+      "semantic_repository": "test",
+      "source": "test/demo configuration; not real SMGloM",
+      "name": "summation",
+      "scripts": {"_": "lower", "^": "upper"},
+      "body_role": "body",
+      "body_precedence": 11
+    }
+  },
+  "syntax": {
+    "functions": ["P", "f"],
+    "alignment_environments": [],
+    "ignored_commands": {},
+    "trailing_punctuation": [",", ";", ":", "."],
+    "script_precedence": 40,
+    "application_precedence": 50,
+    "implicit_operator": {"token": "juxtaposition", "precedence": 20, "associativity": "left"}
+  }
+}

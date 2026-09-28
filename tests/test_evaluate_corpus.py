@@ -132,8 +132,29 @@ class TestCorpusEvaluation(unittest.TestCase):
             self.assertEqual(main(["--corpus", str(self.manifest),
                                    "--output", directory]), 0)
             expected = {"corpus_summary.json", "per_document_metrics.json",
-                        "ambiguity_report.json", "error_analysis.json"}
+                        "ambiguity_report.json", "error_analysis.json",
+                        "annotation_coverage_gaps.json"}
             self.assertEqual({path.name for path in Path(directory).glob("*.json")}, expected)
+
+    def test_every_non_ready_region_has_a_pipeline_explanation(self):
+        audit = self.errors["annotation_coverage_audit"]
+        summary, gaps = audit["summary"], audit["gaps"]
+        self.assertEqual(summary["total_math_regions"], 141)
+        self.assertEqual(summary["annotation_ready_regions"], 88)
+        self.assertEqual(len(gaps), 141 - 88)
+        self.assertEqual(sum(summary["gap_categories"].values()), len(gaps))
+        self.assertEqual(len(summary["per_document"]), 3)
+        required = {"document", "file", "line", "full_expression", "ast_summary",
+                    "notation_nodes", "semantic_candidates", "candidate_provenance",
+                    "blocker", "pipeline_stage", "annotation_should_be_possible",
+                    "annotation_should_not_be_attempted"}
+        self.assertTrue(all(required <= gap.keys() for gap in gaps))
+        self.assertEqual(sum(gap["blocker"] == "already_semantic_correctly_skipped"
+                             for gap in gaps), 2)
+        self.assertTrue(any(gap["requires_repository"] == "sets" for gap in gaps))
+        integral = next(gap for gap in gaps if gap["full_expression"] == r"\int f(x)\,dx")
+        self.assertEqual(integral["argument_mapping"]["hidden_or_missing"],
+                         ["lower", "upper"])
 
     def test_production_ranker_has_no_gold_or_evaluation_dependency(self):
         source = (ROOT / "src" / "semantic_candidate_ranker.py").read_text(encoding="utf-8")

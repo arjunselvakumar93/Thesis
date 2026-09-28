@@ -8,14 +8,13 @@ from pathlib import Path
 import re
 import shutil
 
-from expression_annotation import match_ast
-from expression_document import parse_papers
+from expression_annotation import match_candidate
+from expression_document import _without_alignment_markers, parse_papers
 from expression_metadata import build_expression_config
 from expression_registry import NotationRegistry
-from notation_adapters import match_adapter_expression
 from notation_catalog import annotation_candidates, build_catalog
 from notation_matcher import normalize_math_expression
-from notation_scanner import _source_location
+from notation_scanner import _source_location, mask_latex_comments
 from proposal_eligibility import proposal_eligibility, assess_proposal_candidates
 from semantic_candidate_ranker import document_context, policy_dict, rank_candidates
 from smglom_notation_extractor import scan_available_smglom
@@ -26,6 +25,7 @@ ROOT = Path(__file__).resolve().parents[1]
 EVALUATION_DIR = ROOT / "evaluation"
 GOLD_FILE = EVALUATION_DIR / "gold_annotations.json"
 DECISIONS_FILE = ROOT / "decisions" / "review_results.json"
+DEFAULT_EVALUATION_PAPERS = ROOT / "evaluation" / "frozen_papers"
 
 
 def _node_json(node):
@@ -48,7 +48,10 @@ def _node_arguments(node):
 
 def _relative(path, root):
     if Path(root).is_file():
-        return Path(path).name
+        try:
+            return str(Path(path).relative_to(ROOT / "papers")).replace("\\", "/")
+        except ValueError:
+            return Path(path).name
     return str(Path(path).relative_to(root)).replace("\\", "/")
 
 
@@ -56,17 +59,17 @@ def _candidate_matches(region, candidates, registry):
     found = []
     for candidate in candidates:
         rule = candidate["classification"]
-        if rule.get("grammar_adapter"):
-            match = match_adapter_expression(region.tree.text, rule)
-            matches = [match] if match else []
-        else:
-            matches = match_ast(region.tree, rule, registry)
+        matches = match_candidate(region.tree, candidate, registry)
         for match in matches:
             eligibility = proposal_eligibility(region.tree, match["start"], match["end"])
             if not eligibility["eligible"]:
                 continue
+            source_start = region.start + match["start"]
+            source_end = region.start + match["end"]
+            line, column, source_line = _source_location(region.source, source_start)
             found.append({"semantic_macro": candidate.get("macro"),
                           "macro": candidate.get("macro"), "name": candidate.get("name"),
+                          "args": candidate.get("args"),
                           "module": candidate.get("module"),
                           "repository": candidate.get("repository"),
                           "source": candidate.get("source"), "classification": dict(rule),
@@ -77,9 +80,21 @@ def _candidate_matches(region, candidates, registry):
                               and match.get("matched_visible_notation") in candidate.get("variants", ())),
                           "pattern_type": rule.get("pattern_type"),
                           "grammar_adapter": rule.get("grammar_adapter"),
-                          "arguments": match["arguments"], "start": match["start"],
-                          "end": match["end"], "matched_expression": match["matched_expression"],
+                          "start": match["start"],
+                          "end": match["end"], "matched_expression": normalize_math_expression(
+                              _without_alignment_markers(mask_latex_comments(
+                                  match["matched_expression"]))),
                           "matched_visible_notation": match.get("matched_visible_notation"),
+                          "source_start": source_start, "source_end": source_end,
+                          "raw_source": region.source[source_start:source_end],
+                          "source_expression": region.source[source_start:source_end],
+                          "file": str(region.file), "line": line, "column": column,
+                          "source_line": source_line, "ast_node": match["ast_node"],
+                          "adapter_family": match["adapter_family"],
+                          "argument_roles": match["argument_roles"],
+                          "arguments": [normalize_math_expression(
+                              _without_alignment_markers(mask_latex_comments(argument)))
+                                        for argument in match["arguments"]],
                           "annotation_ready": True,
                           "proposal_eligibility": eligibility})
     unique = {(item["semantic_macro"], item["start"], item["end"], tuple(item["arguments"])):
@@ -321,7 +336,8 @@ def _output_sanity(root):
             "passed": not any((unreadable, unbalanced_braces, unbalanced_math, duplicate_modules))}
 
 
-def evaluate(papers_dir=PAPERS_DIR, config_path=ROOT / "expression-config.example.json",
+def evaluate(papers_dir=DEFAULT_EVALUATION_PAPERS,
+             config_path=ROOT / "expression-config.example.json",
              gold_path=GOLD_FILE, apply=False):
     raw_config = json.loads(Path(config_path).read_text(encoding="utf-8-sig"))
     config = build_expression_config(raw_config)

@@ -95,7 +95,76 @@ def find_expression_candidates(symbol, configuration, records=None):
                    (candidate.get("macro"), candidate.get("module"), candidate.get("repository"))
                    for item in candidates):
             candidates.append(candidate)
+    for candidate in candidates:
+        rule = candidate.get("classification", {})
+        visible = next((rule.get(key) for key in
+                        ("operator", "separator", "command", "token") if rule.get(key)), symbol)
+        review_label = configuration.get("review_labels", {}).get(visible)
+        argument_labels = configuration.get("review_argument_labels", {}).get(visible)
+        if review_label or argument_labels:
+            additions = {}
+            if review_label:
+                additions["structural_name"] = review_label
+            if argument_labels:
+                additions["review_argument_labels"] = dict(argument_labels)
+            candidate["classification"] = dict(candidate["classification"], **additions)
     return candidates
+
+
+def structural_review_classification(symbol, configuration):
+    """Return display-only structural metadata for explicitly reviewable syntax.
+
+    The opt-in ``review_labels`` entry is deliberately separate from semantic
+    mappings.  It lets the UI explain a parsed scope when its real semantic
+    catalogue is unavailable, without producing an annotation candidate.
+    """
+    from expression_registry import NotationRegistry
+    if symbol not in configuration.get("review_labels", {}):
+        return None
+    registry = NotationRegistry.from_config(configuration)
+    operator = registry.operators.get((symbol, "infix"))
+    if operator is None:
+        return None
+    pattern = "sequence" if operator.arity == "variable" else "binary_infix"
+    rule = {
+        "pattern_type": pattern,
+        "separator" if pattern == "sequence" else "operator": operator.token,
+        "argument_count": 2,
+        "structural_name": configuration["review_labels"][symbol],
+    }
+    labels = configuration.get("review_argument_labels", {}).get(symbol)
+    if labels:
+        rule["review_argument_labels"] = dict(labels)
+    status = configuration.get("review_unavailable_status", {}).get(symbol)
+    if status:
+        rule["semantic_unavailable_status"] = status
+    return rule
+
+
+def run_structural_preview(symbol, papers_dir=PAPERS_DIR, expression_config=None,
+                           parsed_regions=None, show_ast=False, scope_order="innermost",
+                           semantic_status=None):
+    """Render parsed scopes with no semantic candidate and never write decisions."""
+    if expression_config is None:
+        expression_config = json.loads(
+            (PROJECT_DIR / "expression-config.example.json").read_text(encoding="utf-8-sig"))
+    from expression_metadata import build_expression_config
+    from expression_document import find_structural_occurrences, parse_papers
+    if "selected" not in expression_config:
+        expression_config = build_expression_config(expression_config)
+    regions = parsed_regions if parsed_regions is not None else parse_papers(
+        papers_dir, expression_config)
+    matches = find_structural_occurrences(
+        regions, symbol, expression_config, semantic_status)
+    from review_scope import build_review_scopes, render_review_scope
+    scopes = build_review_scopes(matches, (), scope_order, include_structural=True)
+    if not scopes:
+        return 0
+    print(f"Found {len(scopes)} structural review scope(s) in the paper collection.")
+    for number, scope in enumerate(scopes, 1):
+        print(render_review_scope(scope, number, len(scopes), show_ast))
+    print("\nPreview mode: no decisions were written.")
+    return len(scopes)
 
 def generate_classified_suggestion(match, candidate):
     """Build a semantic macro call from a classified notation match."""
@@ -127,12 +196,64 @@ def generate_classified_suggestion(match, candidate):
     return None
 
 
+def build_review_decision(match, selected, classification, papers_dir, decision="accepted"):
+    """Build the persisted record after an explicit human candidate choice."""
+    suggestion = generate_classified_suggestion(match, selected)
+    if suggestion is None:
+        return None
+    macro = selected.get("macro", selected.get("semantic_macro"))
+    base = Path(papers_dir)
+    match_file = Path(match["file"])
+    relative = match_file.name if base.is_file() else str(match_file.relative_to(base))
+    record = {
+        "visible_symbol": (match.get("matched_visible_notation")
+                           if match.get("matched_visible_notation") is not None
+                           else classification.get("separator", "")),
+        "semantic_macro": macro,
+        "semantic_meaning": selected.get("name", macro),
+        "semantic_module": selected.get("module"),
+        "semantic_repository": selected.get("repository"),
+        "pattern_type": match["pattern_type"],
+        "argument_count": len(match["arguments"]),
+        "arguments": match["arguments"],
+        "file": relative,
+        "line": match["line"], "column": match["column"],
+        "full_text": match["text"],
+        "matched_expression": match["matched_expression"],
+        "semantic_suggestion": suggestion,
+        "decision": decision,
+        "argument_roles": list(classification.get("argument_roles", [])),
+        "configuration_source": selected.get(
+            "semantic_source", selected.get("source", "SMGloM" if selected.get("record") else
+                                             "user configuration")),
+        "candidate_classification": dict(selected["classification"]),
+        "adapter_family": selected["classification"].get("grammar_adapter"),
+        "candidate_provenance": list(selected.get(
+            "provenance", (selected.get("source"),) if selected.get("source") else ())),
+    }
+    if "expression_config" in classification:
+        record["expression_config"] = classification["expression_config"]
+    for field in ("source_start", "source_end", "source_expression"):
+        if field in match:
+            record[field] = match[field]
+    source_snapshot = record.get("source_expression", match["matched_expression"])
+    record["source_hash"] = hashlib.sha256(source_snapshot.encode("utf-8")).hexdigest()
+    identity = "\0".join((record["file"], str(record.get("source_start", "")),
+                            str(record.get("source_end", "")), macro, source_snapshot))
+    record["decision_id"] = hashlib.sha256(identity.encode("utf-8")).hexdigest()
+    return record
+
+
 def run_generic_review(symbol, candidates, papers_dir=PAPERS_DIR, expression_config=None,
-                       parsed_regions=None):
+                       parsed_regions=None, preview=False, show_ast=False,
+                       scope_order="innermost"):
     """Review classified matches and persist the human's decisions."""
     # Whole-region grammar is established before the semantic choice. The old
     # selected-notation configuration remains a compatibility path only.
-    if expression_config is not None and "selected" not in expression_config:
+    if expression_config is None:
+        expression_config = json.loads(
+            (PROJECT_DIR / "expression-config.example.json").read_text(encoding="utf-8-sig"))
+    if "selected" not in expression_config:
         from expression_metadata import build_expression_config
         from expression_document import parse_papers
         expression_config = build_expression_config(expression_config)
@@ -155,11 +276,12 @@ def run_generic_review(symbol, candidates, papers_dir=PAPERS_DIR, expression_con
         accepted = [item for item in load_existing_decisions() if item.get("decision") == "accepted"]
         history = materialize_valid_decisions(validate_decisions(accepted, records, papers_dir))
     candidates = rank_candidates(candidates, occurrence, context, history)
-    display_semantic_candidates(candidates)
-    selected = choose_candidate(candidates)
-    if selected is None:
-        print("No semantic candidate selected.")
+    if not candidates:
+        print("No semantic candidates were found.")
         return 0
+    # Ranked candidates in one review group share the structural notation.
+    # Semantic selection happens only after the exact source scope is shown.
+    selected = candidates[0]
 
     classification = dict(selected["classification"])
     if expression_config is not None:
@@ -171,63 +293,55 @@ def run_generic_review(symbol, candidates, papers_dir=PAPERS_DIR, expression_con
         matches = find_notation_occurrences(classification, papers_dir)
     else:
         from expression_document import find_ast_occurrences
-        matches = find_ast_occurrences(parsed_regions, classification, expression_config)
+        matches = find_ast_occurrences(
+            parsed_regions, classification, expression_config, selected)
+        if not matches:
+            # A valid SMGloM rule need not yet be present in the project-wide
+            # expression registry. Preserve the generic matcher as the
+            # compatibility path for those rules; registered rules continue
+            # to use complete AST scopes above.
+            matches = find_notation_occurrences(selected["classification"], papers_dir)
+            if matches:
+                classification.pop("expression_config", None)
     if not matches:
         print("No matching occurrences were found in the papers.")
         return 0
 
-    print(f"Found {len(matches)} occurrence(s) in the paper collection.")
+    for match in matches:
+        match.setdefault("classification", dict(classification))
+        match.setdefault("argument_roles", list(classification.get("argument_roles", ())))
+    from review_scope import build_review_scopes, render_review_scope
+    scopes = build_review_scopes(matches, candidates, scope_order)
+    if not scopes:
+        print("No review-ready occurrences were found in the papers.")
+        return 0
+
+    print(f"Found {len(scopes)} review scope(s) in the paper collection.")
     decisions = []
-    for number, match in enumerate(matches, start=1):
+    for number, scope in enumerate(scopes, start=1):
+        match = scope.match
+        print(render_review_scope(scope, number, len(scopes), show_ast))
+        selected = scope.semantic_candidates[0] if preview else choose_candidate(
+            list(scope.semantic_candidates))
+        if selected is None:
+            print("Review stopped without selecting a semantic meaning for this scope.")
+            break
         suggestion = generate_classified_suggestion(match, selected)
         if suggestion is None:
             continue
-        print("=" * 60)
-        print(f"Candidate {number} of {len(matches)}")
-        print(f"File: {match['file'].name}")
-        print(f"Line: {match['line']}  Column: {match['column']}")
-        print(f"Full text: {match['text']}")
-        print(f"Matched expression: {match['matched_expression']}")
-        print(f"Matched visible notation: {match['matched_visible_notation']}")
-        print(f"Extracted arguments: {match['arguments']}")
-        print(f"Semantic sTeX suggestion: {suggestion}")
+        print(f"\nSelected semantic macro: \\{selected['macro']}")
+        print(f"Proposed annotation: {suggestion}")
+        if preview:
+            continue
         decision = ask_for_decision()
         if decision == "quit":
             break
-        decisions.append({
-            "visible_symbol": match["matched_visible_notation"],
-            "semantic_macro": selected["macro"],
-            "semantic_meaning": selected["name"],
-            "semantic_module": selected["module"],
-            "semantic_repository": selected["repository"],
-            "pattern_type": match["pattern_type"],
-            "argument_count": len(match["arguments"]),
-            "arguments": match["arguments"],
-            "file": (match["file"].name if Path(papers_dir).is_file()
-                     else str(match["file"].relative_to(papers_dir))),
-            "line": match["line"],
-            "column": match["column"],
-            "full_text": match["text"],
-            "matched_expression": match["matched_expression"],
-            "semantic_suggestion": suggestion,
-            "decision": decision,
-        })
-        if "expression_config" in classification:
-            decisions[-1]["expression_config"] = classification["expression_config"]
-        for field in ("source_start", "source_end", "source_expression"):
-            if field in match:
-                decisions[-1][field] = match[field]
-        decisions[-1]["argument_roles"] = list(classification.get("argument_roles", []))
-        decisions[-1]["configuration_source"] = selected.get(
-            "semantic_source", selected.get("source", "SMGloM" if selected.get("record") else "user configuration"))
-        source_snapshot = decisions[-1].get("source_expression", match["matched_expression"])
-        decisions[-1]["source_hash"] = hashlib.sha256(
-            source_snapshot.encode("utf-8")).hexdigest()
-        identity = "\0".join((
-            decisions[-1]["file"], str(decisions[-1].get("source_start", "")),
-            str(decisions[-1].get("source_end", "")), selected["macro"], source_snapshot))
-        decisions[-1]["decision_id"] = hashlib.sha256(identity.encode("utf-8")).hexdigest()
+        decisions.append(build_review_decision(
+            match, selected, classification, papers_dir, decision))
 
+    if preview:
+        print("\nPreview mode: no decisions were written.")
+        return len(scopes)
     total = save_decisions(decisions)
     print(f"Saved {len(decisions)} decision(s). Total stored: {total}")
     print(f"Decision file: {DECISION_FILE}")
@@ -426,8 +540,21 @@ def display_semantic_candidates(
 
 
 def main():
+    # Windows terminals commonly default to a legacy code page. Preserve
+    # direct Unicode mathematical input and output without source rewriting.
+    for stream in (sys.stdin, sys.stdout):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8", errors="backslashreplace")
 
     papers_target = PAPERS_DIR
+    preview = "--preview" in sys.argv
+    show_ast = "--show-ast" in sys.argv
+    scope_order = "innermost"
+    if "--scope-order" in sys.argv:
+        index = sys.argv.index("--scope-order")
+        if index + 1 >= len(sys.argv) or sys.argv[index + 1] not in {"innermost", "outermost"}:
+            raise ValueError("--scope-order requires innermost or outermost")
+        scope_order = sys.argv[index + 1]
     paper_option = "--paper" in sys.argv
     if paper_option:
         index = sys.argv.index("--paper")
@@ -504,21 +631,46 @@ def main():
         generic_candidates = (find_expression_candidates(symbol, configuration)
                               if parsed_regions is not None else find_generic_candidates(symbol))
         if generic_candidates:
+            review_options = {}
+            if preview:
+                review_options["preview"] = True
+            if show_ast:
+                review_options["show_ast"] = True
+            if scope_order != "innermost":
+                review_options["scope_order"] = scope_order
             if configuration is None:
                 if paper_option:
-                    run_generic_review(symbol, generic_candidates, papers_dir=papers_target)
+                    run_generic_review(symbol, generic_candidates, papers_dir=papers_target,
+                                       **review_options)
                 else:
-                    run_generic_review(symbol, generic_candidates)
+                    run_generic_review(symbol, generic_candidates, **review_options)
             else:
                 if paper_option:
                     run_generic_review(symbol, generic_candidates, papers_dir=papers_target,
-                                       expression_config=configuration, parsed_regions=parsed_regions)
+                                       expression_config=configuration, parsed_regions=parsed_regions,
+                                       **review_options)
                 else:
                     run_generic_review(symbol, generic_candidates, expression_config=configuration,
-                                       parsed_regions=parsed_regions)
+                                       parsed_regions=parsed_regions, **review_options)
             return
         from notation_catalog import build_catalog, search_catalog, display_catalog
         matches = search_catalog(build_catalog(scan_available_smglom(), configuration), symbol)
+        status = None
+        if matches:
+            blockers = {item.get("classification", {}).get("annotation_blocker")
+                        for item in matches}
+            status = ("Real semantic candidates exist, but required argument mapping is incomplete."
+                      if "missing_argument_mapping" in blockers else
+                      "Semantic catalogue records exist, but they are not annotation-ready.")
+        structural_config = configuration
+        structural_regions = parsed_regions
+        if structural_config is None:
+            structural_config = json.loads(
+                (PROJECT_DIR / "expression-config.example.json").read_text(encoding="utf-8-sig"))
+        if run_structural_preview(
+                symbol, papers_target, structural_config, structural_regions,
+                show_ast, scope_order, status):
+            return
         if matches:
             display_catalog(matches)
             print("These records need annotation metadata or a grammar adapter before review.")

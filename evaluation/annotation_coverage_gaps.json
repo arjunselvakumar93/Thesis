@@ -1,0 +1,6160 @@
+{
+  "summary": {
+    "readiness_definitions": {
+      "structurally_ready": "valid AST with an exact source span",
+      "review_ready": "at least one supported semantic candidate with complete arguments and a safe span after explicit human selection",
+      "automatically_ready": "review-ready and sufficiently determined by semantic evidence without a human semantic choice"
+    },
+    "total_math_regions": 141,
+    "regions_with_semantic_notation_recognized": 119,
+    "regions_with_semantic_candidates": 104,
+    "annotation_eligible_regions": 107,
+    "supported_annotation_eligible_regions": 99,
+    "annotation_ready_regions": 88,
+    "review_ready_regions": 99,
+    "automatically_ready_regions": 88,
+    "human_selection_required_regions": 11,
+    "unsupported_annotation_eligible_regions": 8,
+    "already_semantic_regions": 2,
+    "intentionally_no_proposal_regions": 5,
+    "regions_where_annotation_should_not_be_attempted": 42,
+    "raw_annotation_ready_coverage_percent": 62.4,
+    "eligible_annotation_coverage_percent": 82.2,
+    "supported_annotation_coverage_percent": 88.9,
+    "supported_review_coverage_percent": 100.0,
+    "reviewer_effort": {
+      "review_ready_candidate_count_distribution": {
+        "1": 6,
+        "2-3": 1,
+        "4-6": 24,
+        "7+": 68
+      },
+      "human_selection_candidate_count_distribution": {
+        "1": 1,
+        "2-3": 1,
+        "4-6": 6,
+        "7+": 3
+      },
+      "average_candidates_per_human_selection_region": 6.45,
+      "median_candidates_per_human_selection_region": 6
+    },
+    "gap_categories": {
+      "A": 22,
+      "B": 2,
+      "C": 2,
+      "D": 7,
+      "E": 0,
+      "F": 0,
+      "G": 0,
+      "H": 0,
+      "I": 1,
+      "J": 0,
+      "K": 0,
+      "L": 3,
+      "M": 16,
+      "N": 0
+    },
+    "gap_category_definitions": {
+      "A": "no semantic notation present",
+      "B": "already-semantic expression",
+      "C": "semantic mapping unavailable",
+      "D": "missing SMGloM repository",
+      "E": "notation record exists but extractor missed it",
+      "F": "notation classified but grammar adapter missing",
+      "G": "AST matcher failed",
+      "H": "argument mapping incomplete",
+      "I": "semantic signature contains hidden/non-visible arguments",
+      "J": "source notation variant or alias mismatch",
+      "K": "unsafe replacement scope",
+      "L": "structural-only TeX",
+      "M": "intentional no-proposal or review-required case",
+      "N": "other genuine implementation defect"
+    },
+    "gap_blockers": {
+      "already_semantic_correctly_skipped": 2,
+      "contextual_support_required": 2,
+      "intentional_no_proposal_case": 5,
+      "missing_repository": 7,
+      "no_semantic_notation_present": 22,
+      "semantic_ambiguity_requires_human_review": 9,
+      "semantic_mapping_unavailable": 2,
+      "semantic_signature_has_hidden_arguments": 1,
+      "structural_only_tex": 3
+    },
+    "priority_table": [
+      {
+        "blocker": "no_semantic_notation_present",
+        "affected_regions": 22,
+        "generic_fix_possible": false,
+        "risk": "none",
+        "recommended_action": "no change"
+      },
+      {
+        "blocker": "semantic_ambiguity_requires_human_review",
+        "affected_regions": 9,
+        "generic_fix_possible": false,
+        "risk": "high",
+        "recommended_action": "retain candidates for human selection"
+      },
+      {
+        "blocker": "missing_repository",
+        "affected_regions": 7,
+        "generic_fix_possible": false,
+        "risk": "none",
+        "recommended_action": "install and evaluate the named repository"
+      },
+      {
+        "blocker": "intentional_no_proposal_case",
+        "affected_regions": 5,
+        "generic_fix_possible": false,
+        "risk": "none",
+        "recommended_action": "no change"
+      },
+      {
+        "blocker": "structural_only_tex",
+        "affected_regions": 3,
+        "generic_fix_possible": false,
+        "risk": "none",
+        "recommended_action": "no change"
+      },
+      {
+        "blocker": "contextual_support_required",
+        "affected_regions": 2,
+        "generic_fix_possible": true,
+        "risk": "high",
+        "recommended_action": "collect semantic context; do not auto-select"
+      },
+      {
+        "blocker": "already_semantic_correctly_skipped",
+        "affected_regions": 2,
+        "generic_fix_possible": false,
+        "risk": "none",
+        "recommended_action": "no change"
+      },
+      {
+        "blocker": "semantic_mapping_unavailable",
+        "affected_regions": 2,
+        "generic_fix_possible": false,
+        "risk": "none",
+        "recommended_action": "add only evidence-backed semantic metadata"
+      },
+      {
+        "blocker": "semantic_signature_has_hidden_arguments",
+        "affected_regions": 1,
+        "generic_fix_possible": false,
+        "risk": "medium",
+        "recommended_action": "keep blocked until arguments are recoverable"
+      }
+    ],
+    "waterfall": [
+      {
+        "stage": "total_math_regions",
+        "regions": 141
+      },
+      {
+        "stage": "annotation_eligible",
+        "regions": 107,
+        "excluded": 34
+      },
+      {
+        "stage": "semantic_mapping_available",
+        "regions": 99,
+        "excluded": 8
+      },
+      {
+        "stage": "review_ready",
+        "regions": 99,
+        "excluded": 0
+      },
+      {
+        "stage": "automatically_ready",
+        "regions": 88,
+        "human_selection_required": 11
+      }
+    ],
+    "per_document": [
+      {
+        "document": "quadratic-paper",
+        "math_regions": 70,
+        "annotation_eligible": 47,
+        "mapping_available": 47,
+        "review_ready": 47,
+        "automatic_ready": 37,
+        "human_selection_required": 10,
+        "annotation_ready": 37,
+        "already_semantic": 0,
+        "unsupported_or_missing_semantic_data": 0
+      },
+      {
+        "document": "general-expressions",
+        "math_regions": 63,
+        "annotation_eligible": 52,
+        "mapping_available": 45,
+        "review_ready": 45,
+        "automatic_ready": 44,
+        "human_selection_required": 1,
+        "annotation_ready": 44,
+        "already_semantic": 2,
+        "unsupported_or_missing_semantic_data": 9
+      },
+      {
+        "document": "configured-integrals",
+        "math_regions": 8,
+        "annotation_eligible": 8,
+        "mapping_available": 7,
+        "review_ready": 7,
+        "automatic_ready": 7,
+        "human_selection_required": 0,
+        "annotation_ready": 7,
+        "already_semantic": 0,
+        "unsupported_or_missing_semantic_data": 0
+      }
+    ]
+  },
+  "gaps": [
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 84,
+      "column": 18,
+      "full_expression": "x",
+      "ast_summary": "Atom(x)",
+      "notation_nodes": [],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "A",
+      "blocker": "no_semantic_notation_present",
+      "pipeline_stage": "semantic notation recognition",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 86,
+      "column": 56,
+      "full_expression": "R",
+      "ast_summary": "Atom(R)",
+      "notation_nodes": [],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "A",
+      "blocker": "no_semantic_notation_present",
+      "pipeline_stage": "semantic notation recognition",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 86,
+      "column": 64,
+      "full_expression": "S",
+      "ast_summary": "Atom(S)",
+      "notation_nodes": [],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "A",
+      "blocker": "no_semantic_notation_present",
+      "pipeline_stage": "semantic notation recognition",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 87,
+      "column": 14,
+      "full_expression": "C",
+      "ast_summary": "Atom(C)",
+      "notation_nodes": [],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "A",
+      "blocker": "no_semantic_notation_present",
+      "pipeline_stage": "semantic notation recognition",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 87,
+      "column": 25,
+      "full_expression": "\\{R, S\\}",
+      "ast_summary": "GroupedExpression(\\{)[Atom(R), Atom(S)]",
+      "notation_nodes": [],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "A",
+      "blocker": "no_semantic_notation_present",
+      "pipeline_stage": "semantic notation recognition",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 98,
+      "column": 5,
+      "full_expression": "C",
+      "ast_summary": "Atom(C)",
+      "notation_nodes": [],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "A",
+      "blocker": "no_semantic_notation_present",
+      "pipeline_stage": "semantic notation recognition",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 98,
+      "column": 16,
+      "full_expression": "z",
+      "ast_summary": "Atom(z)",
+      "notation_nodes": [],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "A",
+      "blocker": "no_semantic_notation_present",
+      "pipeline_stage": "semantic notation recognition",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 106,
+      "column": 6,
+      "full_expression": "z",
+      "ast_summary": "Atom(z)",
+      "notation_nodes": [],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "A",
+      "blocker": "no_semantic_notation_present",
+      "pipeline_stage": "semantic notation recognition",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 108,
+      "column": 41,
+      "full_expression": "C",
+      "ast_summary": "Atom(C)",
+      "notation_nodes": [],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "A",
+      "blocker": "no_semantic_notation_present",
+      "pipeline_stage": "semantic notation recognition",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 112,
+      "column": 44,
+      "full_expression": "z",
+      "ast_summary": "Atom(z)",
+      "notation_nodes": [],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "A",
+      "blocker": "no_semantic_notation_present",
+      "pipeline_stage": "semantic notation recognition",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 118,
+      "column": 2,
+      "full_expression": "z",
+      "ast_summary": "Atom(z)",
+      "notation_nodes": [],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "A",
+      "blocker": "no_semantic_notation_present",
+      "pipeline_stage": "semantic notation recognition",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 119,
+      "column": 28,
+      "full_expression": "R",
+      "ast_summary": "Atom(R)",
+      "notation_nodes": [],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "A",
+      "blocker": "no_semantic_notation_present",
+      "pipeline_stage": "semantic notation recognition",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 119,
+      "column": 36,
+      "full_expression": "S",
+      "ast_summary": "Atom(S)",
+      "notation_nodes": [],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "A",
+      "blocker": "no_semantic_notation_present",
+      "pipeline_stage": "semantic notation recognition",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 126,
+      "column": 9,
+      "full_expression": "\\Box",
+      "ast_summary": "Command(\\Box)",
+      "notation_nodes": [
+        {
+          "kind": "Command",
+          "value": "\\Box",
+          "start": 0,
+          "end": 4,
+          "text": "\\Box",
+          "roles": []
+        }
+      ],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "L",
+      "blocker": "structural_only_tex",
+      "pipeline_stage": "semantic notation recognition",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 133,
+      "column": 18,
+      "full_expression": "x^2",
+      "ast_summary": "ScriptedExpression(scripts)[Atom(x), Number(2)]",
+      "notation_nodes": [
+        {
+          "kind": "ScriptedExpression",
+          "value": "scripts",
+          "start": 0,
+          "end": 3,
+          "text": "x^2",
+          "roles": [
+            "base",
+            "^"
+          ]
+        }
+      ],
+      "semantic_candidates": [
+        "comppower",
+        "intpower",
+        "natpower",
+        "power",
+        "ratpower",
+        "realpower"
+      ],
+      "candidate_provenance": [
+        {
+          "macro": "comppower",
+          "repository": "arithmetics",
+          "module": "comparith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "intpower",
+          "repository": "arithmetics",
+          "module": "intarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "natpower",
+          "repository": "arithmetics",
+          "module": "natarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "power",
+          "repository": "arithmetics",
+          "module": "arithmetics",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "ratpower",
+          "repository": "arithmetics",
+          "module": "ratarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "realpower",
+          "repository": "arithmetics",
+          "module": "realarith",
+          "source": "SMGloM"
+        }
+      ],
+      "category": "M",
+      "blocker": "semantic_ambiguity_requires_human_review",
+      "pipeline_stage": "automatic proposal policy",
+      "proposal_policy_statuses": [
+        "ambiguous_candidate_set"
+      ],
+      "review_options": [
+        {
+          "matched_expression": "x^2",
+          "start": 0,
+          "end": 3,
+          "ast_node": {
+            "kind": "ScriptedExpression",
+            "value": "scripts",
+            "start": 0,
+            "end": 3,
+            "text": "x^2"
+          },
+          "candidate_count": 6,
+          "candidate_macros": [
+            "comppower",
+            "intpower",
+            "natpower",
+            "power",
+            "ratpower",
+            "realpower"
+          ],
+          "arguments": [
+            "x",
+            "2"
+          ],
+          "automatic_selection_blocker": "ambiguous_candidate_set",
+          "classification": "multiple domain-specific candidates",
+          "explicit_human_selection_is_safe": true,
+          "ranked_candidates": [
+            {
+              "macro": "comppower",
+              "module": "comparith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "intpower",
+              "module": "intarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "natpower",
+              "module": "natarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "power",
+              "module": "arithmetics",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "ratpower",
+              "module": "ratarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "realpower",
+              "module": "realarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "annotation_should_be_possible": true,
+      "annotation_should_not_be_attempted": false,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null,
+      "production_path_proof": {
+        "decision_id": "c2c76ed2fce27a345d2a7d7e36e3935e21bc7a7427e9ae77e934d100ee18626e",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 133,
+        "source": "x^2",
+        "selected_candidate_for_test_only": "comppower",
+        "automatic_ready": false,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      }
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 140,
+      "column": 57,
+      "full_expression": "x^2",
+      "ast_summary": "ScriptedExpression(scripts)[Atom(x), Number(2)]",
+      "notation_nodes": [
+        {
+          "kind": "ScriptedExpression",
+          "value": "scripts",
+          "start": 0,
+          "end": 3,
+          "text": "x^2",
+          "roles": [
+            "base",
+            "^"
+          ]
+        }
+      ],
+      "semantic_candidates": [
+        "comppower",
+        "intpower",
+        "natpower",
+        "power",
+        "ratpower",
+        "realpower"
+      ],
+      "candidate_provenance": [
+        {
+          "macro": "comppower",
+          "repository": "arithmetics",
+          "module": "comparith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "intpower",
+          "repository": "arithmetics",
+          "module": "intarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "natpower",
+          "repository": "arithmetics",
+          "module": "natarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "power",
+          "repository": "arithmetics",
+          "module": "arithmetics",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "ratpower",
+          "repository": "arithmetics",
+          "module": "ratarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "realpower",
+          "repository": "arithmetics",
+          "module": "realarith",
+          "source": "SMGloM"
+        }
+      ],
+      "category": "M",
+      "blocker": "semantic_ambiguity_requires_human_review",
+      "pipeline_stage": "automatic proposal policy",
+      "proposal_policy_statuses": [
+        "ambiguous_candidate_set"
+      ],
+      "review_options": [
+        {
+          "matched_expression": "x^2",
+          "start": 0,
+          "end": 3,
+          "ast_node": {
+            "kind": "ScriptedExpression",
+            "value": "scripts",
+            "start": 0,
+            "end": 3,
+            "text": "x^2"
+          },
+          "candidate_count": 6,
+          "candidate_macros": [
+            "comppower",
+            "intpower",
+            "natpower",
+            "power",
+            "ratpower",
+            "realpower"
+          ],
+          "arguments": [
+            "x",
+            "2"
+          ],
+          "automatic_selection_blocker": "ambiguous_candidate_set",
+          "classification": "multiple domain-specific candidates",
+          "explicit_human_selection_is_safe": true,
+          "ranked_candidates": [
+            {
+              "macro": "comppower",
+              "module": "comparith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "intpower",
+              "module": "intarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "natpower",
+              "module": "natarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "power",
+              "module": "arithmetics",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "ratpower",
+              "module": "ratarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "realpower",
+              "module": "realarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "annotation_should_be_possible": true,
+      "annotation_should_not_be_attempted": false,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null,
+      "production_path_proof": {
+        "decision_id": "b5e7fdc855efd83a2862bfdc47b8acb71345f92c2be5e470cd2dce383eb4d7d5",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 140,
+        "source": "x^2",
+        "selected_candidate_for_test_only": "comppower",
+        "automatic_ready": false,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      }
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 147,
+      "column": 24,
+      "full_expression": "z",
+      "ast_summary": "Atom(z)",
+      "notation_nodes": [],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "A",
+      "blocker": "no_semantic_notation_present",
+      "pipeline_stage": "semantic notation recognition",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 147,
+      "column": 62,
+      "full_expression": "1 \\pm z",
+      "ast_summary": "BinaryOperator(\\pm)[Number(1), Atom(z)]",
+      "notation_nodes": [
+        {
+          "kind": "BinaryOperator",
+          "value": "\\pm",
+          "start": 0,
+          "end": 7,
+          "text": "1 \\pm z",
+          "roles": []
+        }
+      ],
+      "semantic_candidates": [
+        "aplusminus"
+      ],
+      "candidate_provenance": [
+        {
+          "macro": "aplusminus",
+          "repository": "arithmetics",
+          "module": "plusminus",
+          "source": "SMGloM"
+        }
+      ],
+      "category": "M",
+      "blocker": "contextual_support_required",
+      "pipeline_stage": "automatic proposal policy",
+      "proposal_policy_statuses": [
+        "contextual_support_required"
+      ],
+      "review_options": [
+        {
+          "matched_expression": "1 \\pm z",
+          "start": 0,
+          "end": 7,
+          "ast_node": {
+            "kind": "BinaryOperator",
+            "value": "\\pm",
+            "start": 0,
+            "end": 7,
+            "text": "1 \\pm z"
+          },
+          "candidate_count": 1,
+          "candidate_macros": [
+            "aplusminus"
+          ],
+          "arguments": [
+            "1",
+            "z"
+          ],
+          "automatic_selection_blocker": "contextual_support_required",
+          "classification": "insufficient local context",
+          "explicit_human_selection_is_safe": true,
+          "ranked_candidates": [
+            {
+              "macro": "aplusminus",
+              "module": "plusminus",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "exact_visible_notation",
+                  "weight": 1.0
+                },
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "annotation_should_be_possible": true,
+      "annotation_should_not_be_attempted": false,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null,
+      "production_path_proof": {
+        "decision_id": "3ba6e9dd847d9a649f27369152acfc2221105b623d46990c4cabb973e3fb611b",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 147,
+        "source": "1 \\pm z",
+        "selected_candidate_for_test_only": "aplusminus",
+        "automatic_ready": false,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      }
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 154,
+      "column": 47,
+      "full_expression": "i \\sqrt{3}",
+      "ast_summary": "BinaryOperator(juxtaposition)[Atom(i), Command(\\sqrt)[GroupedExpression({)[Number(3)]]]",
+      "notation_nodes": [
+        {
+          "kind": "BinaryOperator",
+          "value": "juxtaposition",
+          "start": 0,
+          "end": 10,
+          "text": "i \\sqrt{3}",
+          "roles": []
+        },
+        {
+          "kind": "Command",
+          "value": "\\sqrt",
+          "start": 2,
+          "end": 10,
+          "text": "\\sqrt{3}",
+          "roles": [
+            "radicand"
+          ]
+        }
+      ],
+      "semantic_candidates": [
+        "asqrt",
+        "atimes",
+        "compsqrt",
+        "comptimes",
+        "intsqrt",
+        "inttimes",
+        "natsqrt",
+        "nattimes",
+        "ratsqrt",
+        "rattimes",
+        "realsqrt",
+        "realtimes"
+      ],
+      "candidate_provenance": [
+        {
+          "macro": "asqrt",
+          "repository": "arithmetics",
+          "module": "arithmetics",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "atimes",
+          "repository": "arithmetics",
+          "module": "arithmetics",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "compsqrt",
+          "repository": "arithmetics",
+          "module": "comparith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "comptimes",
+          "repository": "arithmetics",
+          "module": "comparith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "intsqrt",
+          "repository": "arithmetics",
+          "module": "intarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "inttimes",
+          "repository": "arithmetics",
+          "module": "intarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "natsqrt",
+          "repository": "arithmetics",
+          "module": "natarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "nattimes",
+          "repository": "arithmetics",
+          "module": "natarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "ratsqrt",
+          "repository": "arithmetics",
+          "module": "ratarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "rattimes",
+          "repository": "arithmetics",
+          "module": "ratarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "realsqrt",
+          "repository": "arithmetics",
+          "module": "realarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "realtimes",
+          "repository": "arithmetics",
+          "module": "realarith",
+          "source": "SMGloM"
+        }
+      ],
+      "category": "M",
+      "blocker": "semantic_ambiguity_requires_human_review",
+      "pipeline_stage": "automatic proposal policy",
+      "proposal_policy_statuses": [
+        "ambiguous_candidate_set"
+      ],
+      "review_options": [
+        {
+          "matched_expression": "i \\sqrt{3}",
+          "start": 0,
+          "end": 10,
+          "ast_node": {
+            "kind": "BinaryOperator",
+            "value": "juxtaposition",
+            "start": 0,
+            "end": 10,
+            "text": "i \\sqrt{3}"
+          },
+          "candidate_count": 6,
+          "candidate_macros": [
+            "atimes",
+            "comptimes",
+            "inttimes",
+            "nattimes",
+            "rattimes",
+            "realtimes"
+          ],
+          "arguments": [
+            "i",
+            "\\sqrt{3}"
+          ],
+          "automatic_selection_blocker": "ambiguous_candidate_set",
+          "classification": "multiple domain-specific candidates",
+          "explicit_human_selection_is_safe": true,
+          "ranked_candidates": [
+            {
+              "macro": "atimes",
+              "module": "arithmetics",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "comptimes",
+              "module": "comparith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "inttimes",
+              "module": "intarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "nattimes",
+              "module": "natarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "rattimes",
+              "module": "ratarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "realtimes",
+              "module": "realarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "matched_expression": "\\sqrt{3}",
+          "start": 2,
+          "end": 10,
+          "ast_node": {
+            "kind": "Command",
+            "value": "\\sqrt",
+            "start": 2,
+            "end": 10,
+            "text": "\\sqrt{3}"
+          },
+          "candidate_count": 6,
+          "candidate_macros": [
+            "asqrt",
+            "compsqrt",
+            "intsqrt",
+            "natsqrt",
+            "ratsqrt",
+            "realsqrt"
+          ],
+          "arguments": [
+            "3"
+          ],
+          "automatic_selection_blocker": "ambiguous_candidate_set",
+          "classification": "multiple domain-specific candidates",
+          "explicit_human_selection_is_safe": true,
+          "ranked_candidates": [
+            {
+              "macro": "asqrt",
+              "module": "arithmetics",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "exact_visible_notation",
+                  "weight": 1.0
+                },
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "compsqrt",
+              "module": "comparith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "exact_visible_notation",
+                  "weight": 1.0
+                },
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "intsqrt",
+              "module": "intarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "exact_visible_notation",
+                  "weight": 1.0
+                },
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "natsqrt",
+              "module": "natarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "exact_visible_notation",
+                  "weight": 1.0
+                },
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "ratsqrt",
+              "module": "ratarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "exact_visible_notation",
+                  "weight": 1.0
+                },
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "realsqrt",
+              "module": "realarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "exact_visible_notation",
+                  "weight": 1.0
+                },
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "annotation_should_be_possible": true,
+      "annotation_should_not_be_attempted": false,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": {
+        "should_propose": true,
+        "semantic_status": "ambiguous",
+        "valid_semantic_macros": [
+          "atimes",
+          "comptimes",
+          "inttimes",
+          "nattimes",
+          "rattimes",
+          "realtimes"
+        ]
+      },
+      "production_path_proof": {
+        "decision_id": "19ae18ad1dad6c1325eb3c7070dda41ec4126d39d7b3152ff74ac69b81c998aa",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 154,
+        "source": "i \\sqrt{3}",
+        "selected_candidate_for_test_only": "atimes",
+        "automatic_ready": false,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      }
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 154,
+      "column": 64,
+      "full_expression": "z",
+      "ast_summary": "Atom(z)",
+      "notation_nodes": [],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "A",
+      "blocker": "no_semantic_notation_present",
+      "pipeline_stage": "semantic notation recognition",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 155,
+      "column": 38,
+      "full_expression": "1 \\pm i \\sqrt{3}",
+      "ast_summary": "BinaryOperator(\\pm)[Number(1), BinaryOperator(juxtaposition)[Atom(i), Command(\\sqrt)[GroupedExpression({)[Number(3)]]]]",
+      "notation_nodes": [
+        {
+          "kind": "BinaryOperator",
+          "value": "\\pm",
+          "start": 0,
+          "end": 16,
+          "text": "1 \\pm i \\sqrt{3}",
+          "roles": []
+        },
+        {
+          "kind": "BinaryOperator",
+          "value": "juxtaposition",
+          "start": 6,
+          "end": 16,
+          "text": "i \\sqrt{3}",
+          "roles": []
+        },
+        {
+          "kind": "Command",
+          "value": "\\sqrt",
+          "start": 8,
+          "end": 16,
+          "text": "\\sqrt{3}",
+          "roles": [
+            "radicand"
+          ]
+        }
+      ],
+      "semantic_candidates": [
+        "aplusminus",
+        "asqrt",
+        "atimes",
+        "compsqrt",
+        "comptimes",
+        "intsqrt",
+        "inttimes",
+        "natsqrt",
+        "nattimes",
+        "ratsqrt",
+        "rattimes",
+        "realsqrt",
+        "realtimes"
+      ],
+      "candidate_provenance": [
+        {
+          "macro": "aplusminus",
+          "repository": "arithmetics",
+          "module": "plusminus",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "asqrt",
+          "repository": "arithmetics",
+          "module": "arithmetics",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "atimes",
+          "repository": "arithmetics",
+          "module": "arithmetics",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "compsqrt",
+          "repository": "arithmetics",
+          "module": "comparith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "comptimes",
+          "repository": "arithmetics",
+          "module": "comparith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "intsqrt",
+          "repository": "arithmetics",
+          "module": "intarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "inttimes",
+          "repository": "arithmetics",
+          "module": "intarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "natsqrt",
+          "repository": "arithmetics",
+          "module": "natarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "nattimes",
+          "repository": "arithmetics",
+          "module": "natarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "ratsqrt",
+          "repository": "arithmetics",
+          "module": "ratarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "rattimes",
+          "repository": "arithmetics",
+          "module": "ratarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "realsqrt",
+          "repository": "arithmetics",
+          "module": "realarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "realtimes",
+          "repository": "arithmetics",
+          "module": "realarith",
+          "source": "SMGloM"
+        }
+      ],
+      "category": "M",
+      "blocker": "semantic_ambiguity_requires_human_review",
+      "pipeline_stage": "automatic proposal policy",
+      "proposal_policy_statuses": [
+        "ambiguous_candidate_set",
+        "contextual_support_required"
+      ],
+      "review_options": [
+        {
+          "matched_expression": "1 \\pm i \\sqrt{3}",
+          "start": 0,
+          "end": 16,
+          "ast_node": {
+            "kind": "BinaryOperator",
+            "value": "\\pm",
+            "start": 0,
+            "end": 16,
+            "text": "1 \\pm i \\sqrt{3}"
+          },
+          "candidate_count": 1,
+          "candidate_macros": [
+            "aplusminus"
+          ],
+          "arguments": [
+            "1",
+            "i \\sqrt{3}"
+          ],
+          "automatic_selection_blocker": "contextual_support_required",
+          "classification": "insufficient local context",
+          "explicit_human_selection_is_safe": true,
+          "ranked_candidates": [
+            {
+              "macro": "aplusminus",
+              "module": "plusminus",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "exact_visible_notation",
+                  "weight": 1.0
+                },
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "matched_expression": "i \\sqrt{3}",
+          "start": 6,
+          "end": 16,
+          "ast_node": {
+            "kind": "BinaryOperator",
+            "value": "juxtaposition",
+            "start": 6,
+            "end": 16,
+            "text": "i \\sqrt{3}"
+          },
+          "candidate_count": 6,
+          "candidate_macros": [
+            "atimes",
+            "comptimes",
+            "inttimes",
+            "nattimes",
+            "rattimes",
+            "realtimes"
+          ],
+          "arguments": [
+            "i",
+            "\\sqrt{3}"
+          ],
+          "automatic_selection_blocker": "ambiguous_candidate_set",
+          "classification": "multiple domain-specific candidates",
+          "explicit_human_selection_is_safe": true,
+          "ranked_candidates": [
+            {
+              "macro": "atimes",
+              "module": "arithmetics",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "comptimes",
+              "module": "comparith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "inttimes",
+              "module": "intarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "nattimes",
+              "module": "natarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "rattimes",
+              "module": "ratarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "realtimes",
+              "module": "realarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "matched_expression": "\\sqrt{3}",
+          "start": 8,
+          "end": 16,
+          "ast_node": {
+            "kind": "Command",
+            "value": "\\sqrt",
+            "start": 8,
+            "end": 16,
+            "text": "\\sqrt{3}"
+          },
+          "candidate_count": 6,
+          "candidate_macros": [
+            "asqrt",
+            "compsqrt",
+            "intsqrt",
+            "natsqrt",
+            "ratsqrt",
+            "realsqrt"
+          ],
+          "arguments": [
+            "3"
+          ],
+          "automatic_selection_blocker": "ambiguous_candidate_set",
+          "classification": "multiple domain-specific candidates",
+          "explicit_human_selection_is_safe": true,
+          "ranked_candidates": [
+            {
+              "macro": "asqrt",
+              "module": "arithmetics",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "exact_visible_notation",
+                  "weight": 1.0
+                },
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "compsqrt",
+              "module": "comparith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "exact_visible_notation",
+                  "weight": 1.0
+                },
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "intsqrt",
+              "module": "intarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "exact_visible_notation",
+                  "weight": 1.0
+                },
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "natsqrt",
+              "module": "natarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "exact_visible_notation",
+                  "weight": 1.0
+                },
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "ratsqrt",
+              "module": "ratarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "exact_visible_notation",
+                  "weight": 1.0
+                },
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "realsqrt",
+              "module": "realarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "exact_visible_notation",
+                  "weight": 1.0
+                },
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "annotation_should_be_possible": true,
+      "annotation_should_not_be_attempted": false,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null,
+      "production_path_proof": {
+        "decision_id": "3eecc5bff635199ad36046e402703f6fdfad0ed694bf078f7a0c43a01ae6cace",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 155,
+        "source": "1 \\pm i \\sqrt{3}",
+        "selected_candidate_for_test_only": "aplusminus",
+        "automatic_ready": false,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      }
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 169,
+      "column": 4,
+      "full_expression": "\\boldsymbol{x^2}",
+      "ast_summary": "Command(\\boldsymbol)[GroupedExpression({)[ScriptedExpression(scripts)[Atom(x), Number(2)]]]",
+      "notation_nodes": [
+        {
+          "kind": "Command",
+          "value": "\\boldsymbol",
+          "start": 0,
+          "end": 16,
+          "text": "\\boldsymbol{x^2}",
+          "roles": [
+            "content"
+          ]
+        },
+        {
+          "kind": "ScriptedExpression",
+          "value": "scripts",
+          "start": 12,
+          "end": 15,
+          "text": "x^2",
+          "roles": [
+            "base",
+            "^"
+          ]
+        }
+      ],
+      "semantic_candidates": [
+        "comppower",
+        "intpower",
+        "natpower",
+        "power",
+        "ratpower",
+        "realpower"
+      ],
+      "candidate_provenance": [
+        {
+          "macro": "comppower",
+          "repository": "arithmetics",
+          "module": "comparith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "intpower",
+          "repository": "arithmetics",
+          "module": "intarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "natpower",
+          "repository": "arithmetics",
+          "module": "natarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "power",
+          "repository": "arithmetics",
+          "module": "arithmetics",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "ratpower",
+          "repository": "arithmetics",
+          "module": "ratarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "realpower",
+          "repository": "arithmetics",
+          "module": "realarith",
+          "source": "SMGloM"
+        }
+      ],
+      "category": "M",
+      "blocker": "semantic_ambiguity_requires_human_review",
+      "pipeline_stage": "automatic proposal policy",
+      "proposal_policy_statuses": [
+        "ambiguous_candidate_set"
+      ],
+      "review_options": [
+        {
+          "matched_expression": "x^2",
+          "start": 12,
+          "end": 15,
+          "ast_node": {
+            "kind": "ScriptedExpression",
+            "value": "scripts",
+            "start": 12,
+            "end": 15,
+            "text": "x^2"
+          },
+          "candidate_count": 6,
+          "candidate_macros": [
+            "comppower",
+            "intpower",
+            "natpower",
+            "power",
+            "ratpower",
+            "realpower"
+          ],
+          "arguments": [
+            "x",
+            "2"
+          ],
+          "automatic_selection_blocker": "ambiguous_candidate_set",
+          "classification": "multiple domain-specific candidates",
+          "explicit_human_selection_is_safe": true,
+          "ranked_candidates": [
+            {
+              "macro": "comppower",
+              "module": "comparith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "intpower",
+              "module": "intarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "natpower",
+              "module": "natarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "power",
+              "module": "arithmetics",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "ratpower",
+              "module": "ratarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "realpower",
+              "module": "realarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "annotation_should_be_possible": true,
+      "annotation_should_not_be_attempted": false,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null,
+      "production_path_proof": {
+        "decision_id": "17dc73e19deed117616dd4158d25c855039f5e9466af590fa2e76992e0485acd",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 169,
+        "source": "\\boldsymbol{x^2}",
+        "selected_candidate_for_test_only": "comppower",
+        "automatic_ready": false,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      }
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 173,
+      "column": 14,
+      "full_expression": "a",
+      "ast_summary": "Atom(a)",
+      "notation_nodes": [],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "A",
+      "blocker": "no_semantic_notation_present",
+      "pipeline_stage": "semantic notation recognition",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 178,
+      "column": 47,
+      "full_expression": "B",
+      "ast_summary": "Atom(B)",
+      "notation_nodes": [],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "A",
+      "blocker": "no_semantic_notation_present",
+      "pipeline_stage": "semantic notation recognition",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 178,
+      "column": 55,
+      "full_expression": "C",
+      "ast_summary": "Atom(C)",
+      "notation_nodes": [],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "A",
+      "blocker": "no_semantic_notation_present",
+      "pipeline_stage": "semantic notation recognition",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 187,
+      "column": 9,
+      "full_expression": "\\Box",
+      "ast_summary": "Command(\\Box)",
+      "notation_nodes": [
+        {
+          "kind": "Command",
+          "value": "\\Box",
+          "start": 0,
+          "end": 4,
+          "text": "\\Box",
+          "roles": []
+        }
+      ],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "L",
+      "blocker": "structural_only_tex",
+      "pipeline_stage": "semantic notation recognition",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 248,
+      "column": 19,
+      "full_expression": "x^2",
+      "ast_summary": "ScriptedExpression(scripts)[Atom(x), Number(2)]",
+      "notation_nodes": [
+        {
+          "kind": "ScriptedExpression",
+          "value": "scripts",
+          "start": 0,
+          "end": 3,
+          "text": "x^2",
+          "roles": [
+            "base",
+            "^"
+          ]
+        }
+      ],
+      "semantic_candidates": [
+        "comppower",
+        "intpower",
+        "natpower",
+        "power",
+        "ratpower",
+        "realpower"
+      ],
+      "candidate_provenance": [
+        {
+          "macro": "comppower",
+          "repository": "arithmetics",
+          "module": "comparith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "intpower",
+          "repository": "arithmetics",
+          "module": "intarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "natpower",
+          "repository": "arithmetics",
+          "module": "natarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "power",
+          "repository": "arithmetics",
+          "module": "arithmetics",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "ratpower",
+          "repository": "arithmetics",
+          "module": "ratarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "realpower",
+          "repository": "arithmetics",
+          "module": "realarith",
+          "source": "SMGloM"
+        }
+      ],
+      "category": "M",
+      "blocker": "semantic_ambiguity_requires_human_review",
+      "pipeline_stage": "automatic proposal policy",
+      "proposal_policy_statuses": [
+        "ambiguous_candidate_set"
+      ],
+      "review_options": [
+        {
+          "matched_expression": "x^2",
+          "start": 0,
+          "end": 3,
+          "ast_node": {
+            "kind": "ScriptedExpression",
+            "value": "scripts",
+            "start": 0,
+            "end": 3,
+            "text": "x^2"
+          },
+          "candidate_count": 6,
+          "candidate_macros": [
+            "comppower",
+            "intpower",
+            "natpower",
+            "power",
+            "ratpower",
+            "realpower"
+          ],
+          "arguments": [
+            "x",
+            "2"
+          ],
+          "automatic_selection_blocker": "ambiguous_candidate_set",
+          "classification": "multiple domain-specific candidates",
+          "explicit_human_selection_is_safe": true,
+          "ranked_candidates": [
+            {
+              "macro": "comppower",
+              "module": "comparith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "intpower",
+              "module": "intarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "natpower",
+              "module": "natarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "power",
+              "module": "arithmetics",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "ratpower",
+              "module": "ratarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "realpower",
+              "module": "realarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "annotation_should_be_possible": true,
+      "annotation_should_not_be_attempted": false,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null,
+      "production_path_proof": {
+        "decision_id": "f3d8d71af012115d5fa774c751c4c2df5282fa411762943a09e4c1afe0fd5cc8",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 248,
+        "source": "x^2",
+        "selected_candidate_for_test_only": "comppower",
+        "automatic_ready": false,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      }
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 248,
+      "column": 29,
+      "full_expression": "Bx",
+      "ast_summary": "BinaryOperator(juxtaposition)[Atom(B), Atom(x)]",
+      "notation_nodes": [
+        {
+          "kind": "BinaryOperator",
+          "value": "juxtaposition",
+          "start": 0,
+          "end": 2,
+          "text": "Bx",
+          "roles": []
+        }
+      ],
+      "semantic_candidates": [
+        "atimes",
+        "comptimes",
+        "inttimes",
+        "nattimes",
+        "rattimes",
+        "realtimes"
+      ],
+      "candidate_provenance": [
+        {
+          "macro": "atimes",
+          "repository": "arithmetics",
+          "module": "arithmetics",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "comptimes",
+          "repository": "arithmetics",
+          "module": "comparith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "inttimes",
+          "repository": "arithmetics",
+          "module": "intarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "nattimes",
+          "repository": "arithmetics",
+          "module": "natarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "rattimes",
+          "repository": "arithmetics",
+          "module": "ratarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "realtimes",
+          "repository": "arithmetics",
+          "module": "realarith",
+          "source": "SMGloM"
+        }
+      ],
+      "category": "M",
+      "blocker": "semantic_ambiguity_requires_human_review",
+      "pipeline_stage": "automatic proposal policy",
+      "proposal_policy_statuses": [
+        "ambiguous_candidate_set"
+      ],
+      "review_options": [
+        {
+          "matched_expression": "Bx",
+          "start": 0,
+          "end": 2,
+          "ast_node": {
+            "kind": "BinaryOperator",
+            "value": "juxtaposition",
+            "start": 0,
+            "end": 2,
+            "text": "Bx"
+          },
+          "candidate_count": 6,
+          "candidate_macros": [
+            "atimes",
+            "comptimes",
+            "inttimes",
+            "nattimes",
+            "rattimes",
+            "realtimes"
+          ],
+          "arguments": [
+            "B",
+            "x"
+          ],
+          "automatic_selection_blocker": "ambiguous_candidate_set",
+          "classification": "multiple domain-specific candidates",
+          "explicit_human_selection_is_safe": true,
+          "ranked_candidates": [
+            {
+              "macro": "atimes",
+              "module": "arithmetics",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "comptimes",
+              "module": "comparith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "inttimes",
+              "module": "intarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "nattimes",
+              "module": "natarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "rattimes",
+              "module": "ratarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "realtimes",
+              "module": "realarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "annotation_should_be_possible": true,
+      "annotation_should_not_be_attempted": false,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null,
+      "production_path_proof": {
+        "decision_id": "458c08a41e2622f1da569752db3f520e15042d5cf3adcf200498faf988798867",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 248,
+        "source": "Bx",
+        "selected_candidate_for_test_only": "atimes",
+        "automatic_ready": false,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      }
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 259,
+      "column": 19,
+      "full_expression": "\\{\\pm \\sqrt{K}\\}",
+      "ast_summary": "GroupedExpression(\\{)[UnaryOperator(\\pm)[Command(\\sqrt)[GroupedExpression({)[Atom(K)]]]]",
+      "notation_nodes": [
+        {
+          "kind": "UnaryOperator",
+          "value": "\\pm",
+          "start": 2,
+          "end": 14,
+          "text": "\\pm \\sqrt{K}",
+          "roles": []
+        },
+        {
+          "kind": "Command",
+          "value": "\\sqrt",
+          "start": 6,
+          "end": 14,
+          "text": "\\sqrt{K}",
+          "roles": [
+            "radicand"
+          ]
+        }
+      ],
+      "semantic_candidates": [
+        "aposneg",
+        "asqrt",
+        "compsqrt",
+        "intsqrt",
+        "natsqrt",
+        "ratsqrt",
+        "realsqrt"
+      ],
+      "candidate_provenance": [
+        {
+          "macro": "aposneg",
+          "repository": "arithmetics",
+          "module": "plusminus",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "asqrt",
+          "repository": "arithmetics",
+          "module": "arithmetics",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "compsqrt",
+          "repository": "arithmetics",
+          "module": "comparith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "intsqrt",
+          "repository": "arithmetics",
+          "module": "intarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "natsqrt",
+          "repository": "arithmetics",
+          "module": "natarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "ratsqrt",
+          "repository": "arithmetics",
+          "module": "ratarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "realsqrt",
+          "repository": "arithmetics",
+          "module": "realarith",
+          "source": "SMGloM"
+        }
+      ],
+      "category": "M",
+      "blocker": "semantic_ambiguity_requires_human_review",
+      "pipeline_stage": "automatic proposal policy",
+      "proposal_policy_statuses": [
+        "ambiguous_candidate_set",
+        "contextual_support_required"
+      ],
+      "review_options": [
+        {
+          "matched_expression": "\\pm \\sqrt{K}",
+          "start": 2,
+          "end": 14,
+          "ast_node": {
+            "kind": "UnaryOperator",
+            "value": "\\pm",
+            "start": 2,
+            "end": 14,
+            "text": "\\pm \\sqrt{K}"
+          },
+          "candidate_count": 1,
+          "candidate_macros": [
+            "aposneg"
+          ],
+          "arguments": [
+            "\\sqrt{K}"
+          ],
+          "automatic_selection_blocker": "contextual_support_required",
+          "classification": "insufficient local context",
+          "explicit_human_selection_is_safe": true,
+          "ranked_candidates": [
+            {
+              "macro": "aposneg",
+              "module": "plusminus",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "exact_visible_notation",
+                  "weight": 1.0
+                },
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "matched_expression": "\\sqrt{K}",
+          "start": 6,
+          "end": 14,
+          "ast_node": {
+            "kind": "Command",
+            "value": "\\sqrt",
+            "start": 6,
+            "end": 14,
+            "text": "\\sqrt{K}"
+          },
+          "candidate_count": 6,
+          "candidate_macros": [
+            "asqrt",
+            "compsqrt",
+            "intsqrt",
+            "natsqrt",
+            "ratsqrt",
+            "realsqrt"
+          ],
+          "arguments": [
+            "K"
+          ],
+          "automatic_selection_blocker": "ambiguous_candidate_set",
+          "classification": "multiple domain-specific candidates",
+          "explicit_human_selection_is_safe": true,
+          "ranked_candidates": [
+            {
+              "macro": "asqrt",
+              "module": "arithmetics",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "exact_visible_notation",
+                  "weight": 1.0
+                },
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "compsqrt",
+              "module": "comparith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "exact_visible_notation",
+                  "weight": 1.0
+                },
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "intsqrt",
+              "module": "intarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "exact_visible_notation",
+                  "weight": 1.0
+                },
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "natsqrt",
+              "module": "natarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "exact_visible_notation",
+                  "weight": 1.0
+                },
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "ratsqrt",
+              "module": "ratarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "exact_visible_notation",
+                  "weight": 1.0
+                },
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "realsqrt",
+              "module": "realarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "exact_visible_notation",
+                  "weight": 1.0
+                },
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "annotation_should_be_possible": true,
+      "annotation_should_not_be_attempted": false,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null,
+      "production_path_proof": {
+        "decision_id": "30d04a1f195aa4e65af29bcf951c51ab01e39f4b3c5e9f772b7760a58d105a34",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 259,
+        "source": "\\{\\pm \\sqrt{K}\\}",
+        "selected_candidate_for_test_only": "aposneg",
+        "automatic_ready": false,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      }
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 261,
+      "column": 31,
+      "full_expression": "x",
+      "ast_summary": "Atom(x)",
+      "notation_nodes": [],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "A",
+      "blocker": "no_semantic_notation_present",
+      "pipeline_stage": "semantic notation recognition",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 277,
+      "column": 57,
+      "full_expression": "z",
+      "ast_summary": "Atom(z)",
+      "notation_nodes": [],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "A",
+      "blocker": "no_semantic_notation_present",
+      "pipeline_stage": "semantic notation recognition",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 279,
+      "column": 69,
+      "full_expression": "z^2",
+      "ast_summary": "ScriptedExpression(scripts)[Atom(z), Number(2)]",
+      "notation_nodes": [
+        {
+          "kind": "ScriptedExpression",
+          "value": "scripts",
+          "start": 0,
+          "end": 3,
+          "text": "z^2",
+          "roles": [
+            "base",
+            "^"
+          ]
+        }
+      ],
+      "semantic_candidates": [
+        "comppower",
+        "intpower",
+        "natpower",
+        "power",
+        "ratpower",
+        "realpower"
+      ],
+      "candidate_provenance": [
+        {
+          "macro": "comppower",
+          "repository": "arithmetics",
+          "module": "comparith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "intpower",
+          "repository": "arithmetics",
+          "module": "intarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "natpower",
+          "repository": "arithmetics",
+          "module": "natarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "power",
+          "repository": "arithmetics",
+          "module": "arithmetics",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "ratpower",
+          "repository": "arithmetics",
+          "module": "ratarith",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "realpower",
+          "repository": "arithmetics",
+          "module": "realarith",
+          "source": "SMGloM"
+        }
+      ],
+      "category": "M",
+      "blocker": "semantic_ambiguity_requires_human_review",
+      "pipeline_stage": "automatic proposal policy",
+      "proposal_policy_statuses": [
+        "ambiguous_candidate_set"
+      ],
+      "review_options": [
+        {
+          "matched_expression": "z^2",
+          "start": 0,
+          "end": 3,
+          "ast_node": {
+            "kind": "ScriptedExpression",
+            "value": "scripts",
+            "start": 0,
+            "end": 3,
+            "text": "z^2"
+          },
+          "candidate_count": 6,
+          "candidate_macros": [
+            "comppower",
+            "intpower",
+            "natpower",
+            "power",
+            "ratpower",
+            "realpower"
+          ],
+          "arguments": [
+            "z",
+            "2"
+          ],
+          "automatic_selection_blocker": "ambiguous_candidate_set",
+          "classification": "multiple domain-specific candidates",
+          "explicit_human_selection_is_safe": true,
+          "ranked_candidates": [
+            {
+              "macro": "comppower",
+              "module": "comparith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "intpower",
+              "module": "intarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "natpower",
+              "module": "natarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "power",
+              "module": "arithmetics",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "ratpower",
+              "module": "ratarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "realpower",
+              "module": "realarith",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "annotation_should_be_possible": true,
+      "annotation_should_not_be_attempted": false,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null,
+      "production_path_proof": {
+        "decision_id": "a0eb63d6a7b921109540f9d9ffadbdb78c8c58c96f3a6adce2b876dc9940e039",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 279,
+        "source": "z^2",
+        "selected_candidate_for_test_only": "comppower",
+        "automatic_ready": false,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      }
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 390,
+      "column": 64,
+      "full_expression": "C",
+      "ast_summary": "Atom(C)",
+      "notation_nodes": [],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "A",
+      "blocker": "no_semantic_notation_present",
+      "pipeline_stage": "semantic notation recognition",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 16,
+      "column": 2,
+      "full_expression": "x_i",
+      "ast_summary": "ScriptedExpression(scripts)[Atom(x), Atom(i)]",
+      "notation_nodes": [
+        {
+          "kind": "ScriptedExpression",
+          "value": "scripts",
+          "start": 0,
+          "end": 3,
+          "text": "x_i",
+          "roles": [
+            "base",
+            "_"
+          ]
+        }
+      ],
+      "semantic_candidates": [
+        "natbasebencoding",
+        "pnsinbase",
+        "realbaseencoding",
+        "seqsel"
+      ],
+      "candidate_provenance": [
+        {
+          "macro": "natbasebencoding",
+          "repository": "arithmetics",
+          "module": "natpns",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "pnsinbase",
+          "repository": "arithmetics",
+          "module": "positional-number-system",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "realbaseencoding",
+          "repository": "arithmetics",
+          "module": "realpns",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "seqsel",
+          "repository": "mv",
+          "module": "sequence",
+          "source": "SMGloM"
+        }
+      ],
+      "category": "M",
+      "blocker": "intentional_no_proposal_case",
+      "pipeline_stage": "automatic proposal policy",
+      "proposal_policy_statuses": [
+        "ambiguous_candidate_set"
+      ],
+      "review_options": [
+        {
+          "matched_expression": "x_i",
+          "start": 0,
+          "end": 3,
+          "ast_node": {
+            "kind": "ScriptedExpression",
+            "value": "scripts",
+            "start": 0,
+            "end": 3,
+            "text": "x_i"
+          },
+          "candidate_count": 4,
+          "candidate_macros": [
+            "natbasebencoding",
+            "pnsinbase",
+            "realbaseencoding",
+            "seqsel"
+          ],
+          "arguments": [
+            "x",
+            "i"
+          ],
+          "automatic_selection_blocker": "ambiguous_candidate_set",
+          "classification": "multiple domain-specific candidates",
+          "explicit_human_selection_is_safe": true,
+          "ranked_candidates": [
+            {
+              "macro": "natbasebencoding",
+              "module": "natpns",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "pnsinbase",
+              "module": "positional-number-system",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "realbaseencoding",
+              "module": "realpns",
+              "repository": "arithmetics",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            },
+            {
+              "macro": "seqsel",
+              "module": "sequence",
+              "repository": "mv",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "structural_compatibility",
+                  "weight": 0.5
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": {
+        "should_propose": false,
+        "semantic_status": null,
+        "valid_semantic_macros": []
+      }
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 26,
+      "column": 2,
+      "full_expression": "\\notequal{a}{0}",
+      "ast_summary": "SemanticCommand(\\notequal)[GroupedExpression({)[Atom(a)], GroupedExpression({)[Number(0)]]",
+      "notation_nodes": [
+        {
+          "kind": "SemanticCommand",
+          "value": "\\notequal",
+          "start": 0,
+          "end": 15,
+          "text": "\\notequal{a}{0}",
+          "roles": [
+            "argument1",
+            "argument2"
+          ]
+        }
+      ],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "B",
+      "blocker": "already_semantic_correctly_skipped",
+      "pipeline_stage": "proposal eligibility",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": {
+        "should_propose": true,
+        "semantic_status": null,
+        "valid_semantic_macros": [
+          "notequal"
+        ]
+      }
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 27,
+      "column": 2,
+      "full_expression": "\\eq{x,y}",
+      "ast_summary": "SemanticCommand(\\eq)[GroupedExpression({)[Atom(x), Atom(y)]]",
+      "notation_nodes": [
+        {
+          "kind": "SemanticCommand",
+          "value": "\\eq",
+          "start": 0,
+          "end": 8,
+          "text": "\\eq{x,y}",
+          "roles": [
+            "argument1"
+          ]
+        }
+      ],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "B",
+      "blocker": "already_semantic_correctly_skipped",
+      "pipeline_stage": "proposal eligibility",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": {
+        "should_propose": true,
+        "semantic_status": null,
+        "valid_semantic_macros": [
+          "eq"
+        ]
+      }
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 28,
+      "column": 2,
+      "full_expression": "A\\wedge B",
+      "ast_summary": "BinaryOperator(\\wedge)[Atom(A), Atom(B)]",
+      "notation_nodes": [
+        {
+          "kind": "BinaryOperator",
+          "value": "\\wedge",
+          "start": 0,
+          "end": 9,
+          "text": "A\\wedge B",
+          "roles": []
+        }
+      ],
+      "semantic_candidates": [
+        "conj"
+      ],
+      "candidate_provenance": [
+        {
+          "macro": "conj",
+          "repository": "mv",
+          "module": "mv",
+          "source": "SMGloM"
+        }
+      ],
+      "category": "M",
+      "blocker": "intentional_no_proposal_case",
+      "pipeline_stage": "automatic proposal policy",
+      "proposal_policy_statuses": [
+        "contextual_support_required"
+      ],
+      "review_options": [
+        {
+          "matched_expression": "A\\wedge B",
+          "start": 0,
+          "end": 9,
+          "ast_node": {
+            "kind": "BinaryOperator",
+            "value": "\\wedge",
+            "start": 0,
+            "end": 9,
+            "text": "A\\wedge B"
+          },
+          "candidate_count": 1,
+          "candidate_macros": [
+            "conj"
+          ],
+          "arguments": [
+            "A",
+            "B"
+          ],
+          "automatic_selection_blocker": "contextual_support_required",
+          "classification": "insufficient local context",
+          "explicit_human_selection_is_safe": true,
+          "ranked_candidates": [
+            {
+              "macro": "conj",
+              "module": "mv",
+              "repository": "mv",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "exact_visible_notation",
+                  "weight": 1.0
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": {
+        "should_propose": false,
+        "semantic_status": null,
+        "valid_semantic_macros": []
+      }
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 29,
+      "column": 2,
+      "full_expression": "A\\land B",
+      "ast_summary": "BinaryOperator(\\wedge)[Atom(A), Atom(B)]",
+      "notation_nodes": [
+        {
+          "kind": "BinaryOperator",
+          "value": "\\wedge",
+          "start": 0,
+          "end": 8,
+          "text": "A\\land B",
+          "roles": []
+        }
+      ],
+      "semantic_candidates": [
+        "conj"
+      ],
+      "candidate_provenance": [
+        {
+          "macro": "conj",
+          "repository": "mv",
+          "module": "mv",
+          "source": "SMGloM"
+        }
+      ],
+      "category": "M",
+      "blocker": "intentional_no_proposal_case",
+      "pipeline_stage": "automatic proposal policy",
+      "proposal_policy_statuses": [
+        "contextual_support_required"
+      ],
+      "review_options": [
+        {
+          "matched_expression": "A\\land B",
+          "start": 0,
+          "end": 8,
+          "ast_node": {
+            "kind": "BinaryOperator",
+            "value": "\\wedge",
+            "start": 0,
+            "end": 8,
+            "text": "A\\land B"
+          },
+          "candidate_count": 1,
+          "candidate_macros": [
+            "conj"
+          ],
+          "arguments": [
+            "A",
+            "B"
+          ],
+          "automatic_selection_blocker": "contextual_support_required",
+          "classification": "insufficient local context",
+          "explicit_human_selection_is_safe": true,
+          "ranked_candidates": [
+            {
+              "macro": "conj",
+              "module": "mv",
+              "repository": "mv",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "exact_visible_notation",
+                  "weight": 1.0
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": {
+        "should_propose": false,
+        "semantic_status": null,
+        "valid_semantic_macros": []
+      }
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 30,
+      "column": 2,
+      "full_expression": "A\\wedge(B\\vee C)",
+      "ast_summary": "BinaryOperator(\\wedge)[Atom(A), GroupedExpression(()[BinaryOperator(\\vee)[Atom(B), Atom(C)]]]",
+      "notation_nodes": [
+        {
+          "kind": "BinaryOperator",
+          "value": "\\wedge",
+          "start": 0,
+          "end": 16,
+          "text": "A\\wedge(B\\vee C)",
+          "roles": []
+        },
+        {
+          "kind": "BinaryOperator",
+          "value": "\\vee",
+          "start": 8,
+          "end": 15,
+          "text": "B\\vee C",
+          "roles": []
+        }
+      ],
+      "semantic_candidates": [
+        "conj",
+        "disj"
+      ],
+      "candidate_provenance": [
+        {
+          "macro": "conj",
+          "repository": "mv",
+          "module": "mv",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "disj",
+          "repository": "mv",
+          "module": "mv",
+          "source": "SMGloM"
+        }
+      ],
+      "category": "M",
+      "blocker": "intentional_no_proposal_case",
+      "pipeline_stage": "automatic proposal policy",
+      "proposal_policy_statuses": [
+        "contextual_support_required"
+      ],
+      "review_options": [
+        {
+          "matched_expression": "A\\wedge(B\\vee C)",
+          "start": 0,
+          "end": 16,
+          "ast_node": {
+            "kind": "BinaryOperator",
+            "value": "\\wedge",
+            "start": 0,
+            "end": 16,
+            "text": "A\\wedge(B\\vee C)"
+          },
+          "candidate_count": 1,
+          "candidate_macros": [
+            "conj"
+          ],
+          "arguments": [
+            "A",
+            "(B\\vee C)"
+          ],
+          "automatic_selection_blocker": "contextual_support_required",
+          "classification": "insufficient local context",
+          "explicit_human_selection_is_safe": true,
+          "ranked_candidates": [
+            {
+              "macro": "conj",
+              "module": "mv",
+              "repository": "mv",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "exact_visible_notation",
+                  "weight": 1.0
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "matched_expression": "B\\vee C",
+          "start": 8,
+          "end": 15,
+          "ast_node": {
+            "kind": "BinaryOperator",
+            "value": "\\vee",
+            "start": 8,
+            "end": 15,
+            "text": "B\\vee C"
+          },
+          "candidate_count": 1,
+          "candidate_macros": [
+            "disj"
+          ],
+          "arguments": [
+            "B",
+            "C"
+          ],
+          "automatic_selection_blocker": "contextual_support_required",
+          "classification": "insufficient local context",
+          "explicit_human_selection_is_safe": true,
+          "ranked_candidates": [
+            {
+              "macro": "disj",
+              "module": "mv",
+              "repository": "mv",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "exact_visible_notation",
+                  "weight": 1.0
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": {
+        "should_propose": false,
+        "semantic_status": null,
+        "valid_semantic_macros": []
+      }
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 31,
+      "column": 2,
+      "full_expression": "(A\\wedge B)\\vee C",
+      "ast_summary": "BinaryOperator(\\vee)[GroupedExpression(()[BinaryOperator(\\wedge)[Atom(A), Atom(B)]], Atom(C)]",
+      "notation_nodes": [
+        {
+          "kind": "BinaryOperator",
+          "value": "\\vee",
+          "start": 0,
+          "end": 17,
+          "text": "(A\\wedge B)\\vee C",
+          "roles": []
+        },
+        {
+          "kind": "BinaryOperator",
+          "value": "\\wedge",
+          "start": 1,
+          "end": 10,
+          "text": "A\\wedge B",
+          "roles": []
+        }
+      ],
+      "semantic_candidates": [
+        "conj",
+        "disj"
+      ],
+      "candidate_provenance": [
+        {
+          "macro": "conj",
+          "repository": "mv",
+          "module": "mv",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "disj",
+          "repository": "mv",
+          "module": "mv",
+          "source": "SMGloM"
+        }
+      ],
+      "category": "M",
+      "blocker": "intentional_no_proposal_case",
+      "pipeline_stage": "automatic proposal policy",
+      "proposal_policy_statuses": [
+        "contextual_support_required"
+      ],
+      "review_options": [
+        {
+          "matched_expression": "(A\\wedge B)\\vee C",
+          "start": 0,
+          "end": 17,
+          "ast_node": {
+            "kind": "BinaryOperator",
+            "value": "\\vee",
+            "start": 0,
+            "end": 17,
+            "text": "(A\\wedge B)\\vee C"
+          },
+          "candidate_count": 1,
+          "candidate_macros": [
+            "disj"
+          ],
+          "arguments": [
+            "(A\\wedge B)",
+            "C"
+          ],
+          "automatic_selection_blocker": "contextual_support_required",
+          "classification": "insufficient local context",
+          "explicit_human_selection_is_safe": true,
+          "ranked_candidates": [
+            {
+              "macro": "disj",
+              "module": "mv",
+              "repository": "mv",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "exact_visible_notation",
+                  "weight": 1.0
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "matched_expression": "A\\wedge B",
+          "start": 1,
+          "end": 10,
+          "ast_node": {
+            "kind": "BinaryOperator",
+            "value": "\\wedge",
+            "start": 1,
+            "end": 10,
+            "text": "A\\wedge B"
+          },
+          "candidate_count": 1,
+          "candidate_macros": [
+            "conj"
+          ],
+          "arguments": [
+            "A",
+            "B"
+          ],
+          "automatic_selection_blocker": "contextual_support_required",
+          "classification": "insufficient local context",
+          "explicit_human_selection_is_safe": true,
+          "ranked_candidates": [
+            {
+              "macro": "conj",
+              "module": "mv",
+              "repository": "mv",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "exact_visible_notation",
+                  "weight": 1.0
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": {
+        "should_propose": false,
+        "semantic_status": null,
+        "valid_semantic_macros": []
+      }
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 32,
+      "column": 2,
+      "full_expression": "A\\cup B",
+      "ast_summary": "NaryOperator(\\cup)[Atom(A), Atom(B)]",
+      "notation_nodes": [
+        {
+          "kind": "NaryOperator",
+          "value": "\\cup",
+          "start": 0,
+          "end": 7,
+          "text": "A\\cup B",
+          "roles": []
+        }
+      ],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "D",
+      "blocker": "missing_repository",
+      "pipeline_stage": "SMGloM repository availability",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": true,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": "sets",
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": {
+        "should_propose": false,
+        "semantic_status": null,
+        "valid_semantic_macros": []
+      }
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 33,
+      "column": 2,
+      "full_expression": "A\\cap B",
+      "ast_summary": "BinaryOperator(\\cap)[Atom(A), Atom(B)]",
+      "notation_nodes": [
+        {
+          "kind": "BinaryOperator",
+          "value": "\\cap",
+          "start": 0,
+          "end": 7,
+          "text": "A\\cap B",
+          "roles": []
+        }
+      ],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "D",
+      "blocker": "missing_repository",
+      "pipeline_stage": "SMGloM repository availability",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": true,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": "sets",
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": {
+        "should_propose": false,
+        "semantic_status": null,
+        "valid_semantic_macros": []
+      }
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 34,
+      "column": 2,
+      "full_expression": "A\\cup(B\\cap C)",
+      "ast_summary": "NaryOperator(\\cup)[Atom(A), GroupedExpression(()[BinaryOperator(\\cap)[Atom(B), Atom(C)]]]",
+      "notation_nodes": [
+        {
+          "kind": "NaryOperator",
+          "value": "\\cup",
+          "start": 0,
+          "end": 14,
+          "text": "A\\cup(B\\cap C)",
+          "roles": []
+        },
+        {
+          "kind": "BinaryOperator",
+          "value": "\\cap",
+          "start": 6,
+          "end": 13,
+          "text": "B\\cap C",
+          "roles": []
+        }
+      ],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "D",
+      "blocker": "missing_repository",
+      "pipeline_stage": "SMGloM repository availability",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": true,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": "sets",
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 35,
+      "column": 2,
+      "full_expression": "(A\\cup B)\\cap C",
+      "ast_summary": "BinaryOperator(\\cap)[GroupedExpression(()[NaryOperator(\\cup)[Atom(A), Atom(B)]], Atom(C)]",
+      "notation_nodes": [
+        {
+          "kind": "BinaryOperator",
+          "value": "\\cap",
+          "start": 0,
+          "end": 15,
+          "text": "(A\\cup B)\\cap C",
+          "roles": []
+        },
+        {
+          "kind": "NaryOperator",
+          "value": "\\cup",
+          "start": 1,
+          "end": 8,
+          "text": "A\\cup B",
+          "roles": []
+        }
+      ],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "D",
+      "blocker": "missing_repository",
+      "pipeline_stage": "SMGloM repository availability",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": true,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": "sets",
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 36,
+      "column": 2,
+      "full_expression": "x\\in A",
+      "ast_summary": "BinaryOperator(\\in)[Atom(x), Atom(A)]",
+      "notation_nodes": [
+        {
+          "kind": "BinaryOperator",
+          "value": "\\in",
+          "start": 0,
+          "end": 6,
+          "text": "x\\in A",
+          "roles": []
+        }
+      ],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "D",
+      "blocker": "missing_repository",
+      "pipeline_stage": "SMGloM repository availability",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": true,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": "sets",
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 37,
+      "column": 2,
+      "full_expression": "A\\subseteq B",
+      "ast_summary": "BinaryOperator(\\subseteq)[Atom(A), Atom(B)]",
+      "notation_nodes": [
+        {
+          "kind": "BinaryOperator",
+          "value": "\\subseteq",
+          "start": 0,
+          "end": 12,
+          "text": "A\\subseteq B",
+          "roles": []
+        }
+      ],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "D",
+      "blocker": "missing_repository",
+      "pipeline_stage": "SMGloM repository availability",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": true,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": "sets",
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 38,
+      "column": 2,
+      "full_expression": "\\mathcal{P}(X)",
+      "ast_summary": "FunctionApplication(application)[Command(\\mathcal)[GroupedExpression({)[Atom(P)]], GroupedExpression(()[Atom(X)]]",
+      "notation_nodes": [
+        {
+          "kind": "Command",
+          "value": "\\mathcal",
+          "start": 0,
+          "end": 11,
+          "text": "\\mathcal{P}",
+          "roles": [
+            "argument1"
+          ]
+        }
+      ],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "C",
+      "blocker": "semantic_mapping_unavailable",
+      "pipeline_stage": "catalogue semantic mapping",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 39,
+      "column": 2,
+      "full_expression": "\\mathfrak{P}(X)",
+      "ast_summary": "FunctionApplication(application)[Command(\\mathfrak)[GroupedExpression({)[Atom(P)]], GroupedExpression(()[Atom(X)]]",
+      "notation_nodes": [
+        {
+          "kind": "Command",
+          "value": "\\mathfrak",
+          "start": 0,
+          "end": 12,
+          "text": "\\mathfrak{P}",
+          "roles": [
+            "argument1"
+          ]
+        }
+      ],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "C",
+      "blocker": "semantic_mapping_unavailable",
+      "pipeline_stage": "catalogue semantic mapping",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 43,
+      "column": 2,
+      "full_expression": "A\\cup(B\\cap(C\\cup D))",
+      "ast_summary": "NaryOperator(\\cup)[Atom(A), GroupedExpression(()[BinaryOperator(\\cap)[Atom(B), GroupedExpression(()[NaryOperator(\\cup)[Atom(C), Atom(D)]]]]]",
+      "notation_nodes": [
+        {
+          "kind": "NaryOperator",
+          "value": "\\cup",
+          "start": 0,
+          "end": 21,
+          "text": "A\\cup(B\\cap(C\\cup D))",
+          "roles": []
+        },
+        {
+          "kind": "BinaryOperator",
+          "value": "\\cap",
+          "start": 6,
+          "end": 20,
+          "text": "B\\cap(C\\cup D)",
+          "roles": []
+        },
+        {
+          "kind": "NaryOperator",
+          "value": "\\cup",
+          "start": 12,
+          "end": 19,
+          "text": "C\\cup D",
+          "roles": []
+        }
+      ],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "D",
+      "blocker": "missing_repository",
+      "pipeline_stage": "SMGloM repository availability",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": true,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": "sets",
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 44,
+      "column": 2,
+      "full_expression": "A\\wedge(B\\vee(C\\wedge D))",
+      "ast_summary": "BinaryOperator(\\wedge)[Atom(A), GroupedExpression(()[BinaryOperator(\\vee)[Atom(B), GroupedExpression(()[BinaryOperator(\\wedge)[Atom(C), Atom(D)]]]]]",
+      "notation_nodes": [
+        {
+          "kind": "BinaryOperator",
+          "value": "\\wedge",
+          "start": 0,
+          "end": 25,
+          "text": "A\\wedge(B\\vee(C\\wedge D))",
+          "roles": []
+        },
+        {
+          "kind": "BinaryOperator",
+          "value": "\\vee",
+          "start": 8,
+          "end": 24,
+          "text": "B\\vee(C\\wedge D)",
+          "roles": []
+        },
+        {
+          "kind": "BinaryOperator",
+          "value": "\\wedge",
+          "start": 14,
+          "end": 23,
+          "text": "C\\wedge D",
+          "roles": []
+        }
+      ],
+      "semantic_candidates": [
+        "conj",
+        "disj"
+      ],
+      "candidate_provenance": [
+        {
+          "macro": "conj",
+          "repository": "mv",
+          "module": "mv",
+          "source": "SMGloM"
+        },
+        {
+          "macro": "disj",
+          "repository": "mv",
+          "module": "mv",
+          "source": "SMGloM"
+        }
+      ],
+      "category": "M",
+      "blocker": "contextual_support_required",
+      "pipeline_stage": "automatic proposal policy",
+      "proposal_policy_statuses": [
+        "contextual_support_required"
+      ],
+      "review_options": [
+        {
+          "matched_expression": "A\\wedge(B\\vee(C\\wedge D))",
+          "start": 0,
+          "end": 25,
+          "ast_node": {
+            "kind": "BinaryOperator",
+            "value": "\\wedge",
+            "start": 0,
+            "end": 25,
+            "text": "A\\wedge(B\\vee(C\\wedge D))"
+          },
+          "candidate_count": 1,
+          "candidate_macros": [
+            "conj"
+          ],
+          "arguments": [
+            "A",
+            "(B\\vee(C\\wedge D))"
+          ],
+          "automatic_selection_blocker": "contextual_support_required",
+          "classification": "insufficient local context",
+          "explicit_human_selection_is_safe": true,
+          "ranked_candidates": [
+            {
+              "macro": "conj",
+              "module": "mv",
+              "repository": "mv",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "exact_visible_notation",
+                  "weight": 1.0
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "matched_expression": "B\\vee(C\\wedge D)",
+          "start": 8,
+          "end": 24,
+          "ast_node": {
+            "kind": "BinaryOperator",
+            "value": "\\vee",
+            "start": 8,
+            "end": 24,
+            "text": "B\\vee(C\\wedge D)"
+          },
+          "candidate_count": 1,
+          "candidate_macros": [
+            "disj"
+          ],
+          "arguments": [
+            "B",
+            "(C\\wedge D)"
+          ],
+          "automatic_selection_blocker": "contextual_support_required",
+          "classification": "insufficient local context",
+          "explicit_human_selection_is_safe": true,
+          "ranked_candidates": [
+            {
+              "macro": "disj",
+              "module": "mv",
+              "repository": "mv",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "exact_visible_notation",
+                  "weight": 1.0
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "matched_expression": "C\\wedge D",
+          "start": 14,
+          "end": 23,
+          "ast_node": {
+            "kind": "BinaryOperator",
+            "value": "\\wedge",
+            "start": 14,
+            "end": 23,
+            "text": "C\\wedge D"
+          },
+          "candidate_count": 1,
+          "candidate_macros": [
+            "conj"
+          ],
+          "arguments": [
+            "C",
+            "D"
+          ],
+          "automatic_selection_blocker": "contextual_support_required",
+          "classification": "insufficient local context",
+          "explicit_human_selection_is_safe": true,
+          "ranked_candidates": [
+            {
+              "macro": "conj",
+              "module": "mv",
+              "repository": "mv",
+              "rank": 1,
+              "evidence": [
+                {
+                  "signal": "exact_visible_notation",
+                  "weight": 1.0
+                },
+                {
+                  "signal": "fallback_only",
+                  "weight": 0.0
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "annotation_should_be_possible": true,
+      "annotation_should_not_be_attempted": false,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null,
+      "production_path_proof": {
+        "decision_id": "03d106c47f65c5300761fe96817b8170cd3654f1d14600ed7545baa77ac0acae",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 44,
+        "source": "A\\wedge(B\\vee(C\\wedge D))",
+        "selected_candidate_for_test_only": "conj",
+        "automatic_ready": false,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      }
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 46,
+      "column": 2,
+      "full_expression": "g(a,b)",
+      "ast_summary": "FunctionApplication(application)[Atom(g), GroupedExpression(()[Atom(a), Atom(b)]]",
+      "notation_nodes": [],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "A",
+      "blocker": "no_semantic_notation_present",
+      "pipeline_stage": "semantic notation recognition",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 61,
+      "column": 2,
+      "full_expression": "\\#",
+      "ast_summary": "Command(\\#)",
+      "notation_nodes": [
+        {
+          "kind": "Command",
+          "value": "\\#",
+          "start": 0,
+          "end": 2,
+          "text": "\\#",
+          "roles": []
+        }
+      ],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "L",
+      "blocker": "structural_only_tex",
+      "pipeline_stage": "semantic notation recognition",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": false,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [],
+        "hidden_or_missing": []
+      },
+      "gold_policy": null
+    },
+    {
+      "document": "configured-integrals",
+      "file": "integral_expressions.tex",
+      "line": 3,
+      "column": 2,
+      "full_expression": "\\int f(x)\\,dx",
+      "ast_summary": "BoundExpression(\\int)[FunctionApplication(application)[Atom(f), GroupedExpression(()[Atom(x)]], Atom(x)]",
+      "notation_nodes": [
+        {
+          "kind": "BoundExpression",
+          "value": "\\int",
+          "start": 0,
+          "end": 13,
+          "text": "\\int f(x)\\,dx",
+          "roles": [
+            "body",
+            "variable"
+          ]
+        }
+      ],
+      "semantic_candidates": [],
+      "candidate_provenance": [],
+      "category": "I",
+      "blocker": "semantic_signature_has_hidden_arguments",
+      "pipeline_stage": "argument mapping",
+      "proposal_policy_statuses": [],
+      "review_options": [],
+      "annotation_should_be_possible": true,
+      "annotation_should_not_be_attempted": true,
+      "requires_repository": null,
+      "argument_mapping": {
+        "recoverable": [
+          "body",
+          "variable"
+        ],
+        "hidden_or_missing": [
+          "lower",
+          "upper"
+        ]
+      },
+      "gold_policy": {
+        "should_propose": false,
+        "semantic_status": null,
+        "valid_semantic_macros": []
+      }
+    }
+  ],
+  "production_path_proof": {
+    "cases": [
+      {
+        "decision_id": "81e83d0d35e758f8ab7911c54262ad974a01db8a3576d8549a26738eaf92cce8",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 80,
+        "source": "\n  \\label{eq:monic}\n  x^2 + Bx + C = (x-R)(x-S),\n",
+        "selected_candidate_for_test_only": "eq",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "301e88107424a0aa50b72b9088666938c7b1986b14af37f30d07e6e1a61d43a2",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 85,
+        "source": "x = R",
+        "selected_candidate_for_test_only": "eq",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "09b91daf200f8cff1297a4d30261911e13d882b3ada1caf82ed03fd1cfef11e1",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 85,
+        "source": "x = S",
+        "selected_candidate_for_test_only": "eq",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "174f806aa1d0e2fc666ad311a41aa6dcc42375d21b5e97c0952ee7a9185bb03f",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 86,
+        "source": "-B",
+        "selected_candidate_for_test_only": "auminus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "8314c5fa1632011675c637450ed961e9383ab1f2d39c67ff58a0d6e4c52edf02",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 96,
+        "source": "-B",
+        "selected_candidate_for_test_only": "auminus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "6c38aebaf8848708d23ab98101b1d8473382486540d0c23a49607d809c23695d",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 96,
+        "source": "-\\frac{B}{2}",
+        "selected_candidate_for_test_only": "auminus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "17a94e954bf22bbafc193c80f3238d3051f476f8be7fe17ba8700163893399f8",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 97,
+        "source": "-\\frac{B}{2} \\pm z",
+        "selected_candidate_for_test_only": "auminus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "22944a63b0ac5b273fdf44133dab4a6ea255098cd8927a33484b0f24b38244fe",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 106,
+        "source": "R = S = -\\frac{B}{2}",
+        "selected_candidate_for_test_only": "eq",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "2030e20573f25fc3ca1b711b7502f37c9ead8e4d7c35d42313eb9e886cf91736",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 107,
+        "source": "(-\\frac{B}{2} + z)(-\\frac{B}{2} - z)",
+        "selected_candidate_for_test_only": "aplus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "52c6b7b4c582ba872d833e33bc2da8b287cf10a87bf2bab6b5aa80881b844433",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 117,
+        "source": "\\frac{B^2}{4} - C",
+        "selected_candidate_for_test_only": "aminus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "b7234d140f52b5ae819075062d21e90c2317d3055e010c5dc4affd78c198d5d4",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 119,
+        "source": "-\\frac{B}{2} \\pm z",
+        "selected_candidate_for_test_only": "auminus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "64a2f91fbbde2d1c3c754201af2774d68efe3846f381f3e80858e95d5868de7e",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 121,
+        "source": "\n  \\label{eq:formula-monic}\n  -\\frac{B}{2} \\pm \\sqrt{\\frac{B^2}{4} - C}\n",
+        "selected_candidate_for_test_only": "aminus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "c2c76ed2fce27a345d2a7d7e36e3935e21bc7a7427e9ae77e934d100ee18626e",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 133,
+        "source": "x^2",
+        "selected_candidate_for_test_only": "comppower",
+        "automatic_ready": false,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "b5e7fdc855efd83a2862bfdc47b8acb71345f92c2be5e470cd2dce383eb4d7d5",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 140,
+        "source": "x^2",
+        "selected_candidate_for_test_only": "comppower",
+        "automatic_ready": false,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "3ba6e9dd847d9a649f27369152acfc2221105b623d46990c4cabb973e3fb611b",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 147,
+        "source": "1 \\pm z",
+        "selected_candidate_for_test_only": "aplusminus",
+        "automatic_ready": false,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "ffde3505895f59fa3eee49d09f80ed505c3ed509d12c6c360ab0c0969c657d8b",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 150,
+        "source": "\n  1 - z^2 &= 4 \\\\\n  z^2 &= -3.\n",
+        "selected_candidate_for_test_only": "eq",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "19ae18ad1dad6c1325eb3c7070dda41ec4126d39d7b3152ff74ac69b81c998aa",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 154,
+        "source": "i \\sqrt{3}",
+        "selected_candidate_for_test_only": "atimes",
+        "automatic_ready": false,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "3eecc5bff635199ad36046e402703f6fdfad0ed694bf078f7a0c43a01ae6cace",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 155,
+        "source": "1 \\pm i \\sqrt{3}",
+        "selected_candidate_for_test_only": "aplusminus",
+        "automatic_ready": false,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "17dc73e19deed117616dd4158d25c855039f5e9466af590fa2e76992e0485acd",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 169,
+        "source": "\\boldsymbol{x^2}",
+        "selected_candidate_for_test_only": "comppower",
+        "automatic_ready": false,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "8be43a41c014223f49e9d11661e7b8004fc391248fe96d53eddc4f2a96a9913a",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 172,
+        "source": "ax^2 + bx\n+ c = 0",
+        "selected_candidate_for_test_only": "eq",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "0f8113ae426547402a4ec5715fce4cb9405744a3f71c613588376f69cad1db13",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 178,
+        "source": "\\frac{b}{a}",
+        "selected_candidate_for_test_only": "adivide",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "e76f236c668e93c56604b31b1b86829696ffd55b51930886b07da638e72a77c8",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 178,
+        "source": "\\frac{c}{a}",
+        "selected_candidate_for_test_only": "adivide",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "e54f9dfb9093198fb352184abd8010477c1e3e7129d536261917cc4d4cf1d377",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 196,
+        "source": "ax + b = 0",
+        "selected_candidate_for_test_only": "eq",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "033fb1a13fc54e74a74dc795a1b3a9c379bd7bceeb50e29a26c0cd5dad34044b",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 196,
+        "source": "x = -\\frac{b}{a}",
+        "selected_candidate_for_test_only": "eq",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "8e24e52169fb1cc87d337afe9597b6d3a8cf623212afd9a70852a3f52e6e0bc7",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 196,
+        "source": "a \\neq 0",
+        "selected_candidate_for_test_only": "notequal",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "ff5f61b46c09a01f063e9b946b3a8f272e4935892a25a36a5208b8fd1dca6bab",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 206,
+        "source": "(u + v)^2 = u^2 + 2uv +\nv^2",
+        "selected_candidate_for_test_only": "eq",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "738c21e2df6010b7e7ef40f16195d2719c1e399dab95a9c4fd6750f099984413",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 207,
+        "source": "(u+v)(u-v) = u^2 - v^2",
+        "selected_candidate_for_test_only": "eq",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "92be7fb9d284ac0d66b59d6de4addba846f262f3d1441fd1c656f0ad27c4f67c",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 211,
+        "source": "\\frac{1}{\\sqrt{3} - \\sqrt{2}}",
+        "selected_candidate_for_test_only": "adivide",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "af45fc9978c7b187745b2c160a8b17482ebe9d49042e40222d5c8041b07603b1",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 212,
+        "source": "\\sqrt{3} + \\sqrt{2}",
+        "selected_candidate_for_test_only": "aplus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "45e5999c6f38f640148dc39b932e4f5911c027c7d7df652513c078e98086978f",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 246,
+        "source": "x^2 + Bx + C = 0",
+        "selected_candidate_for_test_only": "eq",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "f3d8d71af012115d5fa774c751c4c2df5282fa411762943a09e4c1afe0fd5cc8",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 248,
+        "source": "x^2",
+        "selected_candidate_for_test_only": "comppower",
+        "automatic_ready": false,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "458c08a41e2622f1da569752db3f520e15042d5cf3adcf200498faf988798867",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 248,
+        "source": "Bx",
+        "selected_candidate_for_test_only": "atimes",
+        "automatic_ready": false,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "21d40d8f1319f8c090adfb779c29a90235f1843814bd5c211cccb15326a69fec",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 249,
+        "source": "(x + D)^2",
+        "selected_candidate_for_test_only": "aplus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "3a554cf73cec2304e178eb38e48b90cd09fa8728b81d4133958c69950860209b",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 249,
+        "source": "(u+v)^2 = u^2\n    + 2uv + v^2",
+        "selected_candidate_for_test_only": "eq",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "29ec6318bf22e12beed8829b15368909053a5fe461c9fe7783513aeb61699500",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 251,
+        "source": "u^2 + 2uv",
+        "selected_candidate_for_test_only": "aplus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "0a299ad7ee7b15711e57935ee0c17d15896598b53aca094997fc55df7517b287",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 253,
+        "source": "(\\frac{B}{2})^2",
+        "selected_candidate_for_test_only": "adivide",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "77282180aae2ba82871b09102fd45b66cf8522633e8e90bd3b5bad487b10eb99",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 255,
+        "source": "(x + \\frac{B}{2})^2",
+        "selected_candidate_for_test_only": "aplus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "aec751302b545fb5e69ee0b6b744627e529c17efce751d142f31e3a8ce782289",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 259,
+        "source": "x^2 = K",
+        "selected_candidate_for_test_only": "eq",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "30d04a1f195aa4e65af29bcf951c51ab01e39f4b3c5e9f772b7760a58d105a34",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 259,
+        "source": "\\{\\pm \\sqrt{K}\\}",
+        "selected_candidate_for_test_only": "aposneg",
+        "automatic_ready": false,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "98c55a185fceb26fc44b92d7b4f547576bab39ea66b7c5a1613dba3399b5cf38",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 261,
+        "source": "x^2 = K",
+        "selected_candidate_for_test_only": "eq",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "ec86241f06828b0e6d4dca4b9580cb0a3d5ac9e08f801c708254c4f9eabaf55a",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 266,
+        "source": "+\\frac{B^2}{4} - \\frac{B^2}{4}",
+        "selected_candidate_for_test_only": "aminus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "8592a71e2e834485abff5a6b05a308bcc2eb674c46980b3f623d1736372d7883",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 277,
+        "source": "\\frac{B^2}{4}",
+        "selected_candidate_for_test_only": "adivide",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "a55b702c983d1923de8fe22bce406e1bf7bbc64ad85ef4041ee5f430f6510914",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 279,
+        "source": "(u+v)(u-v) = u^2 - v^2",
+        "selected_candidate_for_test_only": "eq",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "a0eb63d6a7b921109540f9d9ffadbdb78c8c58c96f3a6adce2b876dc9940e039",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 279,
+        "source": "z^2",
+        "selected_candidate_for_test_only": "comppower",
+        "automatic_ready": false,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "d7e12c76b34a1a414d3206deeb066b372f56780d594be260191b445ec78cb9b2",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 352,
+        "source": "(x+p)(x+q)",
+        "selected_candidate_for_test_only": "aplus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "0e12e145a5db4e7730577c5b4d5cb366f026a2ac17b5369d7637044948000486",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 388,
+        "source": "x^2 + Bx + C = (x - R)(x - S)",
+        "selected_candidate_for_test_only": "eq",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "3968cd9091c0cac2efbe89961cf1f6c9c26c527a50788073108e5e3cd2ac2c9b",
+        "document": "quadratic-paper",
+        "file": "1910.06709/quadratic-20121216.tex",
+        "line": 390,
+        "source": "-B",
+        "selected_candidate_for_test_only": "auminus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "5bccb7b591a437906290e4db829af132e2cd1c4881013656eef2c1f2ff8d35df",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 4,
+        "source": "a+b",
+        "selected_candidate_for_test_only": "aplus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "d48695a51c9942a2d62c9b136de3a469bfe0ff760047fa4fb25cb912cace38df",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 5,
+        "source": "a-b",
+        "selected_candidate_for_test_only": "aminus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "52477c3dab38c44c0b2a9406ce49700c25bcae9ca88cc6c868babf716da4b1b9",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 6,
+        "source": "a*b",
+        "selected_candidate_for_test_only": "atimes",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "329f8502b3f46b94ba5c97d26a78b88a5c9e3c7b63ead3452893b93a569fb103",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 7,
+        "source": "a/b",
+        "selected_candidate_for_test_only": "adivide",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "986a5deced36be05fe1f6498fd7bbad68acb37262707148337649456b0dfcb4c",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 8,
+        "source": "a+b*c",
+        "selected_candidate_for_test_only": "aplus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "7faf988acf5d14fb6929f94b86642b0dbcd970d49f6a2fdf46b2e80768a4acbb",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 9,
+        "source": "(a+b)*c",
+        "selected_candidate_for_test_only": "atimes",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "89e5da1aa71967f1f95b793bc56b844c5f6d267f0810528f30f0520925b4529f",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 10,
+        "source": "a*b+c",
+        "selected_candidate_for_test_only": "aplus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "b4a3511b4704007630abb21b32b6f0285db07c3c4fd09c62fb033ddef238bf1b",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 11,
+        "source": "a+b-c",
+        "selected_candidate_for_test_only": "aminus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "5153ff747fef00f931ed7247ece96ed152076affefd630e478801b8661611de2",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 12,
+        "source": "a-b-c",
+        "selected_candidate_for_test_only": "aminus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "13d4d7f763529d434872009b36baad16535cb8276388bb96f44d91c0645f8eb8",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 13,
+        "source": "a+(b-c)",
+        "selected_candidate_for_test_only": "aplus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "ea4f3d72d6291da39edf6d21e2df8e4ac57cd2d2ef1557e304affdce90e6cde0",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 14,
+        "source": "(a+b)-c",
+        "selected_candidate_for_test_only": "aminus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "94cccead37bb280ea8b883527f79d2d33180ff5932676847d18e978fe458f991",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 15,
+        "source": "x^2",
+        "selected_candidate_for_test_only": "power",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "e741946852040b2cee00b470a8efa9cc77e95fdd55d042c6f5824818d86ae9ac",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 17,
+        "source": "x_i^2",
+        "selected_candidate_for_test_only": "power",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "03b7367403cddcbd755b4a3dd414f625fff597606ea50fc8d14c844d957ce12c",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 18,
+        "source": "x^2_i",
+        "selected_candidate_for_test_only": "power",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "c9b3920f78269d4c1ccac1c1074d5ca55a47da3667c9cfa9c40c3aaf4692f326",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 19,
+        "source": "x^{n+1}",
+        "selected_candidate_for_test_only": "power",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "62bd7048e65413dd7d6de7f9cac9d468ba60663b59760e2c8c63a7f84af3d594",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 20,
+        "source": "x_{i+1}",
+        "selected_candidate_for_test_only": "aplus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "4d882d9d670e8c2123bd935f29f1bd291a907b4d8057c46a1813d448b03e0568",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 21,
+        "source": "\\frac{a+b}{c-d}",
+        "selected_candidate_for_test_only": "adivide",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "c665ff00a1a5b110d4707e7b655a2e5ca632f924e2d53d786e75d82850512c58",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 22,
+        "source": "\\sqrt{x^2+y^2}",
+        "selected_candidate_for_test_only": "asqrt",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "7d4579cf16b3b3da3cdfde94f4cdefa592318a21b152d1277799cfd93be04b83",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 23,
+        "source": "\\aplus{a,b}*c",
+        "selected_candidate_for_test_only": "atimes",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "8e313661c6e48fa30413868a8176c11f160b5e272da401edcd50e3b4b02d220d",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 24,
+        "source": "a+\\aplus{b,c}",
+        "selected_candidate_for_test_only": "aplus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "ef5f8e1508acacfa1cc35a59d77408b9c33acab3f7185328114e141a8a2f52cc",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 25,
+        "source": "\\aplus{a,b*c}-\\frac{x}{y}",
+        "selected_candidate_for_test_only": "aminus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "38d6cfc5c78060b9f5961d9d08fa7d4a731d888734b1be61438f627b7868c4b9",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 40,
+        "source": "\\frac{x_i^2+a*b}{\\sqrt{c-d}} = y^{n+1}",
+        "selected_candidate_for_test_only": "eq",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "5e1e6f616d488746d1d1b03be6cbe16ca21dcced2581d9e90c6c183e5a6734a1",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 41,
+        "source": "a+b*c-d/e",
+        "selected_candidate_for_test_only": "aminus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "1a9cdf33793e4a7f5cb51436a0353e89338e99aae2f60867db63eb45cf70b2b3",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 42,
+        "source": "(a+b*c)/(d-e*f)",
+        "selected_candidate_for_test_only": "adivide",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "03d106c47f65c5300761fe96817b8170cd3654f1d14600ed7545baa77ac0acae",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 44,
+        "source": "A\\wedge(B\\vee(C\\wedge D))",
+        "selected_candidate_for_test_only": "conj",
+        "automatic_ready": false,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "c31fd790192e0e59de2f871c3b1f7325b101a9e07a74cba5292b4b5527e87f7f",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 45,
+        "source": "f(x^2+a*b)+g(y)",
+        "selected_candidate_for_test_only": "aplus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "613430b60b34b0046aa1d08678b48e3cfd1bdf170334e15546e5c5d86a928cc6",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 47,
+        "source": "\\frac{a+b*c}{d-e} + \\sqrt{x^2+y^2}",
+        "selected_candidate_for_test_only": "aplus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "9c0604250cfc30ee252f7e34d6cf6bdbcbab43a743ad93710fe4868c8b6f0e3a",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 48,
+        "source": "\\left(a+b\\right)*c",
+        "selected_candidate_for_test_only": "atimes",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "87d83f34a2803c0be3d762c6014eede32a7e5e9c7c298c7cff84f707761188c1",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 49,
+        "source": "x-R",
+        "selected_candidate_for_test_only": "aminus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "a0ad9191828c176a2b7d4c9c49b6d25f0ef58e967ee1d515094b18766c4c3ff1",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 50,
+        "source": "-\\frac{B}{2} - z",
+        "selected_candidate_for_test_only": "aminus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "fe49f040f29058b6a427db3064b22d27a6f986e22eeb7388de7906a0d6fee796",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 51,
+        "source": "\\frac{B^2}{4} - C",
+        "selected_candidate_for_test_only": "aminus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "e6422e55364eaa328d7236e420bf59aa075ced24755fd2454a25ccbe208e20b0",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 52,
+        "source": "1 - z^2",
+        "selected_candidate_for_test_only": "aminus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "9b7c173b95eb818d5537b3f68ee2f47acef0f7c1aa864f50529696fa27c8e5b3",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 53,
+        "source": "u^2 - v^2",
+        "selected_candidate_for_test_only": "aminus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "06ce259f5c3ca585923e10a5a564fe75b3aa1d683e4aa524ff9e73c48d041e30",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 54,
+        "source": "\\sqrt{3} - \\sqrt{2}",
+        "selected_candidate_for_test_only": "aminus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "af86c4aaed869c6fd5174d80b49e0b27c394df9c0d44753359882d376e75ab6f",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 55,
+        "source": "+\\frac{B^2}{4} - \\frac{B^2}{4}",
+        "selected_candidate_for_test_only": "aminus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "6bc4dffe4ffccbeb29cb9859c1b4a7ff501afddedb88f0f2c43312e54349565a",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 56,
+        "source": "x^2 + Bx + C = (x-R)(x-S)",
+        "selected_candidate_for_test_only": "eq",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "04aa1123fdca202f12835591fe210049d3707c1d3accf7299884ea97d8776fe2",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 57,
+        "source": "a \\neq b",
+        "selected_candidate_for_test_only": "notequal",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "b84f2a010f4e3e948dec6d496095972a33de64d937daedea9d798b83a94a3bef",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 58,
+        "source": "a = b+c",
+        "selected_candidate_for_test_only": "eq",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "415c52722a664e889afaa5867366264404d94d1e582ac9518d8499983adf1a33",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 59,
+        "source": "R=S=T",
+        "selected_candidate_for_test_only": "eq",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "ec3af4e8f6731f57ed6d284d59682fe9b59133430230be8b96d2f9e8c2f6024f",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 60,
+        "source": "50\\%",
+        "selected_candidate_for_test_only": "atimes",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "c7b7c4179af4735e4f62337b7621b5b9a7529ca9987decff7b5116c26b9d37fb",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 62,
+        "source": "a+b",
+        "selected_candidate_for_test_only": "aplus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "3a6e6ba1a6075f0351421b85b706a7d667e0dc892ef2b05fcd121115f366f27d",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 63,
+        "source": "2x + 3y",
+        "selected_candidate_for_test_only": "aplus",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "0e7cd3f52e6ffda56ff24be5ac5274847b6d11086849001346599eaa1e3c1b5a",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 64,
+        "source": "(a+b)(c-d)",
+        "selected_candidate_for_test_only": "atimes",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "8baef401749e5abccdeddd4b25d438485c888b5cba1579518da9931e59bea381",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 65,
+        "source": "\\sum_{i=1}^{n} a_i",
+        "selected_candidate_for_test_only": "eq",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "4bc109c9c2f613316755a741839e46421669344c95eb8610c754079c7d68ddb3",
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 66,
+        "source": "\\int_0^1 f(x)\\,dx",
+        "selected_candidate_for_test_only": "power",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "ebd112ba064978a968b9e0c9fdbab6efe5109cba7517c7d15f45ff6a15cc2355",
+        "document": "configured-integrals",
+        "file": "integral_expressions.tex",
+        "line": 4,
+        "source": "\\int_0^1 f(x)\\,dx",
+        "selected_candidate_for_test_only": "fooIntegral",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "623bf49589ff873749c3927c9597b171ca40b0641112ed98743645f898248763",
+        "document": "configured-integrals",
+        "file": "integral_expressions.tex",
+        "line": 5,
+        "source": "\\int_a^b f(t)\\,dt",
+        "selected_candidate_for_test_only": "fooIntegral",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "b8435e142c2b2f255e52b9df33e85135cc0112c8b2ce84cba13b3ab60b86201b",
+        "document": "configured-integrals",
+        "file": "integral_expressions.tex",
+        "line": 6,
+        "source": "\\int_0^1 (a+b*x)\\,dx",
+        "selected_candidate_for_test_only": "fooIntegral",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "a2cd44ffab244078a394535662db3f0f3ba665336fcc77e83748547d39b6c471",
+        "document": "configured-integrals",
+        "file": "integral_expressions.tex",
+        "line": 7,
+        "source": "\\int_0^1 \\frac{x^2+1}{\\sqrt{1-x}}\\,dx",
+        "selected_candidate_for_test_only": "fooIntegral",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "24f414e7079404d1578628b6fbbc17721da5388b42f90277fe34c425fae21fcb",
+        "document": "configured-integrals",
+        "file": "integral_expressions.tex",
+        "line": 8,
+        "source": "a+\\int_0^1 f(x)\\,dx",
+        "selected_candidate_for_test_only": "fooIntegral",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "f0ed8a973122239f9ff0516bb37e5b8758a106180f0c9ff315deae090bc78125",
+        "document": "configured-integrals",
+        "file": "integral_expressions.tex",
+        "line": 9,
+        "source": "\\frac{\\int_0^1 f(x)\\,dx}{2}",
+        "selected_candidate_for_test_only": "fooIntegral",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      },
+      {
+        "decision_id": "c074e9a3aed2724fa7f160e7eea25281b1e3d9802c049cee34a5725dbbf8c0eb",
+        "document": "configured-integrals",
+        "file": "integral_expressions.tex",
+        "line": 10,
+        "source": "\\int_0^1 \\left(\\int_0^x f(t)\\,dt\\right)\\,dx",
+        "selected_candidate_for_test_only": "fooIntegral",
+        "automatic_ready": true,
+        "decision_constructible": true,
+        "decision_validates": true,
+        "application_plan_safe": true,
+        "application_plan_renderable": true,
+        "review_ready": true
+      }
+    ],
+    "per_document": [
+      {
+        "document": "quadratic-paper",
+        "supported_checked": 47,
+        "review_ready": 47
+      },
+      {
+        "document": "general-expressions",
+        "supported_checked": 45,
+        "review_ready": 45
+      },
+      {
+        "document": "configured-integrals",
+        "supported_checked": 7,
+        "review_ready": 7
+      }
+    ],
+    "supported_checked": 99,
+    "review_ready": 99
+  }
+}

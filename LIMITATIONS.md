@@ -10,3 +10,10 @@
 - The current quantitative real-paper evaluation covers one small paper corpus and should not be generalized to all mathematical TeX.
 - The extractor handles declaration syntax rather than arbitrary macro expansion. Unsupported declarations are reported by repository health checks.
 - Source application depends on stored source spans remaining current; stale decisions are rejected rather than guessed.
+- Unicode and LaTeX input can be source-preserved or structurally understood
+  without being semantically annotatable. No semantic equivalence is inferred
+  from visual similarity alone.
+- Unregistered Unicode mathematical symbols are preserved opaquely when safe;
+  opaque preservation does not provide operator fixity, precedence, or meaning.
+- OCR and image-to-mathematics conversion are separate preprocessing tasks and
+  are not part of this textual parser.

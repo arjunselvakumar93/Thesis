@@ -2,6 +2,7 @@
 
 from dataclasses import dataclass
 import re
+import unicodedata
 
 
 @dataclass(frozen=True)
@@ -10,6 +11,21 @@ class Token:
     text: str
     start: int
     end: int
+
+
+def unicode_script(character):
+    """Return (TeX-style role, plain value) for Unicode sub/superscripts."""
+    decomposition = unicodedata.decomposition(character)
+    if not decomposition:
+        return None
+    parts = decomposition.split()
+    if not parts or parts[0] not in {"<sub>", "<super>"}:
+        return None
+    try:
+        value = "".join(chr(int(code, 16)) for code in parts[1:])
+    except ValueError:
+        return None
+    return ("_" if parts[0] == "<sub>" else "^", value)
 
 
 def tokenize(source, registry):
@@ -40,18 +56,25 @@ def tokenize(source, registry):
                 kind = "sized_open" if found.group() == r"\left" else "sized_close"
             elif found and found.group() in {r"\{", r"\}"}:
                 kind = "open" if found.group() == r"\{" else "close"
+        elif unicode_script(character):
+            position += 1
+            kind = "unicode_script"
         elif character.isdecimal():
             found = re.match(r"\d+(?:\.\d+)?", source[position:])
             position += len(found.group())
             kind = "number"
-        elif character.isalpha():
+        elif character.isalpha() or unicodedata.category(character).startswith("L"):
             position += 1
             kind = "atom"
         else:
             position += 1
-            kind = {"(": "open", "[": "open", "{": "open",
-                    ")": "close", "]": "close", "}": "close",
-                    "^": "script", "_": "script", ",": "comma"}.get(character, "unknown")
+            kind = ("open" if character in registry.open_delimiters else
+                    "close" if character in registry.close_delimiters else
+                    {"^": "script", "_": "script", ",": "comma"}.get(character))
+            if kind is None:
+                category = unicodedata.category(character)
+                kind = ("combining" if category.startswith("M") else
+                        "math_symbol" if category in {"Sm", "So"} else "unknown")
         tokens.append(Token(kind, source[start:position], start, position))
     tokens.append(Token("end", "", len(source), len(source)))
     return tokens

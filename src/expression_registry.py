@@ -56,8 +56,9 @@ class BoundConstruct:
     source: str = "user configuration"
 
     def __post_init__(self):
-        if not re.fullmatch(r"\\(?:[A-Za-z]+|[^A-Za-z])", self.token):
-            raise ValueError("Bound constructs require a TeX control sequence")
+        if not (re.fullmatch(r"\\(?:[A-Za-z]+|[^A-Za-z])", self.token)
+                or (len(self.token) == 1 and not self.token.isspace())):
+            raise ValueError("Bound constructs require a TeX control sequence or Unicode head")
         if self.node_kind not in {"BigOperatorApplication", "BinderApplication", "BoundExpression"}:
             raise ValueError("Unsupported bound construct node kind")
         scripts = dict(self.scripts or {})
@@ -83,9 +84,18 @@ class BoundConstruct:
 class NotationRegistry:
     def __init__(self, operators=(), commands=None, syntax=None, bound_constructs=None,
                  notation_aliases=None):
+        raw_syntax = deepcopy(syntax or {})
         self.notation_aliases = deepcopy(notation_aliases or {})
         self.operators = {}
-        for item in operators:
+        configured_operators = list(operators)
+        for operator_class in raw_syntax.get("literal_operator_classes", ()):
+            characters = operator_class.get("characters", "")
+            if (not isinstance(characters, str) or not characters
+                    or any(character.isspace() or character == "\\" for character in characters)):
+                raise ValueError("Literal operator classes require non-space literal characters")
+            shared = {key: value for key, value in operator_class.items() if key != "characters"}
+            configured_operators.extend(dict(shared, token=character) for character in characters)
+        for item in configured_operators:
             op = item if isinstance(item, Operator) else Operator(**item)
             for variant in (op.token, *op.variants):
                 if not isinstance(variant, str) or not variant or any(char.isspace() for char in variant):
@@ -123,12 +133,21 @@ class NotationRegistry:
             if construct.token in self.bound_constructs:
                 raise ValueError("Conflicting bound construct metadata: " + construct.token)
             self.bound_constructs[construct.token] = construct
-        self.syntax = deepcopy(syntax or {})
+        self.syntax = raw_syntax
         self.script_precedence = self.syntax.get("script_precedence", 100)
         self.application_precedence = self.syntax.get("application_precedence", 100)
         if type(self.script_precedence) is not int or type(self.application_precedence) is not int:
             raise ValueError("Syntax binding powers must be integers")
         self.functions = set(self.syntax.get("functions", ()))
+        pairs = self.syntax.get("delimiter_pairs", {"(": ")", "[": "]", "{": "}"})
+        if not isinstance(pairs, dict) or any(not isinstance(a, str) or not isinstance(b, str)
+                                              or len(a) != 1 or len(b) != 1
+                                              for a, b in pairs.items()):
+            raise ValueError("delimiter_pairs must map single characters")
+        self.delimiter_pairs = dict(pairs)
+        self.open_delimiters = set(pairs)
+        self.close_delimiters = set(pairs.values())
+        self.symbolic_calls = bool(self.syntax.get("symbolic_calls", False))
         punctuation = self.syntax.get("trailing_punctuation", ())
         if (not isinstance(punctuation, (list, tuple))
                 or any(not isinstance(item, str) or len(item) != 1 for item in punctuation)):

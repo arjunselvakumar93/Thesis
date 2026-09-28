@@ -1,46 +1,47 @@
 {
   "math_region_extraction": {
-    "total_extracted": 70,
+    "total_extracted": 386,
     "gold_regions_located": 20,
     "gold_regions": 20
   },
   "structural_parser": {
-    "parsed": 70,
-    "unsupported": 0,
-    "coverage_percent": 100.0
+    "parsed": 335,
+    "unsupported": 51,
+    "coverage_percent": 86.8
   },
   "notation_recognition": {
-    "regions": 49,
-    "coverage_percent": 70.0
+    "regions": 207,
+    "coverage_percent": 53.6
   },
   "semantic_candidate_coverage": {
-    "regions": 46,
-    "coverage_percent": 65.7
+    "regions": 212,
+    "coverage_percent": 54.9
   },
   "annotation_ready_coverage": {
-    "regions": 46,
-    "coverage_percent": 65.7
+    "regions": 58,
+    "coverage_percent": 15.0
   },
-  "semantic_ambiguity_regions": 42,
+  "semantic_ambiguity_regions": 174,
   "semantic_ranking": {
     "top_1_recall_percent": 100.0,
     "top_3_recall_percent": 100.0,
     "top_5_recall_percent": 100.0,
     "mean_reciprocal_rank": 1.0,
     "precision_at_1_percent": 100.0,
-    "precision_at_3_percent": 66.7,
-    "precision_at_5_percent": 59.0,
-    "average_candidate_count": 10.029,
-    "median_candidate_count": 6.0,
+    "precision_at_3_percent": 63.4,
+    "precision_at_5_percent": 55.4,
+    "average_candidate_count": 7.769,
+    "median_candidate_count": 1.0,
     "duplicates_removed": 0,
     "occurrences_with_contextual_evidence": 37,
-    "fallback_only_occurrences": 9,
+    "fallback_only_occurrences": 175,
     "signal_usage": {
-      "exact_visible_notation": 474,
-      "fallback_only": 615,
+      "configured_notation_alias": 1,
+      "exact_visible_notation": 1282,
+      "fallback_only": 2912,
       "same_document_macro_history": 74,
       "same_document_module_history": 13,
-      "structural_compatibility": 504
+      "structural_compatibility": 1832
     },
     "policy": {
       "exact_visible": 1.0,
@@ -56,6 +57,11 @@
   },
   "gold": {
     "size": 20,
+    "structurally_labeled": 20,
+    "semantically_labeled": 17,
+    "argument_labeled": 20,
+    "correct_arguments": 20,
+    "argument_accuracy_percent": 100.0,
     "exact_scope": 20,
     "partial_or_incorrect_scope": 0,
     "scope_accuracy_percent": 100.0,
@@ -66,8 +72,8 @@
     },
     "semantic_candidate_precision": {
       "relevant": 41,
-      "generated_on_labeled_gold": 252,
-      "percent": 16.3
+      "generated_on_labeled_gold": 258,
+      "percent": 15.9
     },
     "semantic_ranking": {
       "top_1_recall_percent": 100.0,
@@ -75,60 +81,32 @@
       "top_5_recall_percent": 100.0,
       "mean_reciprocal_rank": 1.0,
       "precision_at_1_percent": 100.0,
-      "precision_at_3_percent": 66.7,
-      "precision_at_5_percent": 59.0
+      "precision_at_3_percent": 63.4,
+      "precision_at_5_percent": 55.4
     },
     "ambiguous_cases": 6
   },
   "review": {
-    "stored_decisions": 143,
-    "accepted": 143,
+    "stored_decisions": 144,
+    "accepted": 144,
     "validated_current": 59,
-    "stale": 84,
+    "stale": 85,
     "unverifiable": 0
   },
   "application": {
-    "requested": true,
-    "accepted": 143,
-    "applied": 59,
+    "requested": false,
+    "accepted": 144,
+    "applied": 0,
     "failed": 0,
     "original_sources_unchanged": true,
     "validated_current": 59,
-    "stale": 84,
+    "stale": 85,
     "unverifiable": 0,
-    "compilation": "not run; no usable compiler was invoked",
-    "eligible_current_decisions": 59,
-    "unique_source_nodes": 59,
-    "same_span_conflicts": 0,
-    "partial_overlap_conflicts": 0,
-    "nested_relationships": 24,
-    "nested_compositions": 16,
-    "independent_replacements": 19,
-    "successfully_rendered_decisions": 59,
-    "successfully_written_files": 1,
-    "failure_reasons": {},
-    "modules_inserted": [
-      {
-        "repository": "arithmetics",
-        "module": "arithmetics"
-      },
-      {
-        "repository": "mv",
-        "module": "equal"
-      }
-    ],
-    "sanity": {
-      "files_checked": 1,
-      "unreadable_files": [],
-      "unbalanced_brace_files": [],
-      "unbalanced_math_delimiter_files": [],
-      "duplicate_module_files": [],
-      "passed": true
-    },
-    "compiler_available": false
+    "compilation": "not run; no usable compiler was invoked"
   },
   "blockers": {
-    "missing_argument_mapping": 20,
+    "missing user metadata": 3,
+    "missing_argument_mapping": 31,
     "multi_part_command": 2,
     "no_deterministic_source_pattern": 4,
     "unsupported_replacement_scope": 1,
@@ -245,13 +223,19 @@
           "aminus",
           "compdivide",
           "compminus",
+          "comppower",
           "fraction",
           "intminus",
+          "intpower",
           "natminus",
+          "natpower",
+          "power",
           "ratdivide",
           "ratminus",
+          "ratpower",
           "realdivide",
-          "realminus"
+          "realminus",
+          "realpower"
         ]
       }
     ],
@@ -481,6 +465,90 @@
         "module": "sequence",
         "notation": "#1",
         "reason": "unsupported_template"
+      },
+      {
+        "semantic_macro": null,
+        "module": null,
+        "notation": "\\aplus",
+        "reason": null
+      },
+      {
+        "semantic_macro": null,
+        "module": null,
+        "notation": "\\eq",
+        "reason": null
+      },
+      {
+        "semantic_macro": null,
+        "module": null,
+        "notation": "\\notequal",
+        "reason": null
+      },
+      {
+        "semantic_macro": null,
+        "module": null,
+        "notation": "\\sum",
+        "reason": "missing_argument_mapping"
+      },
+      {
+        "semantic_macro": null,
+        "module": null,
+        "notation": "\\prod",
+        "reason": "missing_argument_mapping"
+      },
+      {
+        "semantic_macro": null,
+        "module": null,
+        "notation": "\\int",
+        "reason": "missing_argument_mapping"
+      },
+      {
+        "semantic_macro": null,
+        "module": null,
+        "notation": "\\lim",
+        "reason": "missing_argument_mapping"
+      },
+      {
+        "semantic_macro": null,
+        "module": null,
+        "notation": "\\forall",
+        "reason": "missing_argument_mapping"
+      },
+      {
+        "semantic_macro": null,
+        "module": null,
+        "notation": "\\exists",
+        "reason": "missing_argument_mapping"
+      },
+      {
+        "semantic_macro": null,
+        "module": null,
+        "notation": "\u2211",
+        "reason": "missing_argument_mapping"
+      },
+      {
+        "semantic_macro": null,
+        "module": null,
+        "notation": "\u220f",
+        "reason": "missing_argument_mapping"
+      },
+      {
+        "semantic_macro": null,
+        "module": null,
+        "notation": "\u222b",
+        "reason": "missing_argument_mapping"
+      },
+      {
+        "semantic_macro": null,
+        "module": null,
+        "notation": "\u2200",
+        "reason": "missing_argument_mapping"
+      },
+      {
+        "semantic_macro": null,
+        "module": null,
+        "notation": "\u2203",
+        "reason": "missing_argument_mapping"
       }
     ]
   }

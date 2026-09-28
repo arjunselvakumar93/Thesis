@@ -1,7 +1,7 @@
 [
   {
     "id": "quadratic-paper",
-    "path": "../papers",
+    "path": "frozen_papers",
     "description": "Current real-paper evaluation corpus",
     "math_regions": 70,
     "parsed": 70,
@@ -30,8 +30,8 @@
     },
     "candidate_precision": {
       "relevant": 41,
-      "generated_on_labeled_gold": 252,
-      "percent": 16.3
+      "generated_on_labeled_gold": 258,
+      "percent": 15.9
     },
     "legacy_ranking": {
       "top_1_recall_percent": 100.0,
@@ -39,8 +39,8 @@
       "top_5_recall_percent": 100.0,
       "mean_reciprocal_rank": 1.0,
       "precision_at_1_percent": 100.0,
-      "precision_at_3_percent": 66.7,
-      "precision_at_5_percent": 59.0
+      "precision_at_3_percent": 63.4,
+      "precision_at_5_percent": 55.4
     },
     "ranking": {
       "top_1_recall": {
@@ -78,10 +78,10 @@
     },
     "argument_accuracy_percent": 100.0,
     "decision_validation": {
-      "stored_decisions": 143,
-      "accepted": 143,
+      "stored_decisions": 144,
+      "accepted": 144,
       "validated_current": 59,
-      "stale": 84,
+      "stale": 85,
       "unverifiable": 0
     },
     "semantic_evaluation": {
@@ -119,6 +119,18 @@
       },
       "already_semantic_cases": 0,
       "already_semantic_correctly_skipped": 0
+    },
+    "region_annotation_coverage": {
+      "document": "quadratic-paper",
+      "math_regions": 70,
+      "annotation_eligible": 47,
+      "mapping_available": 47,
+      "review_ready": 47,
+      "automatic_ready": 37,
+      "human_selection_required": 10,
+      "annotation_ready": 37,
+      "already_semantic": 0,
+      "unsupported_or_missing_semantic_data": 0
     }
   },
   {
@@ -152,8 +164,8 @@
     },
     "candidate_precision": {
       "relevant": 113,
-      "generated_on_labeled_gold": 190,
-      "percent": 59.5
+      "generated_on_labeled_gold": 196,
+      "percent": 57.7
     },
     "legacy_ranking": {
       "top_1_recall_percent": 90.9,
@@ -200,10 +212,10 @@
     },
     "argument_accuracy_percent": null,
     "decision_validation": {
-      "stored_decisions": 143,
-      "accepted": 143,
+      "stored_decisions": 144,
+      "accepted": 144,
       "validated_current": 0,
-      "stale": 143,
+      "stale": 144,
       "unverifiable": 0
     },
     "semantic_evaluation": {
@@ -241,6 +253,18 @@
       },
       "already_semantic_cases": 2,
       "already_semantic_correctly_skipped": 2
+    },
+    "region_annotation_coverage": {
+      "document": "general-expressions",
+      "math_regions": 63,
+      "annotation_eligible": 52,
+      "mapping_available": 45,
+      "review_ready": 45,
+      "automatic_ready": 44,
+      "human_selection_required": 1,
+      "annotation_ready": 44,
+      "already_semantic": 2,
+      "unsupported_or_missing_semantic_data": 9
     }
   },
   {
@@ -322,10 +346,10 @@
     },
     "argument_accuracy_percent": null,
     "decision_validation": {
-      "stored_decisions": 143,
-      "accepted": 143,
+      "stored_decisions": 144,
+      "accepted": 144,
       "validated_current": 0,
-      "stale": 143,
+      "stale": 144,
       "unverifiable": 0
     },
     "semantic_evaluation": {
@@ -363,6 +387,18 @@
       },
       "already_semantic_cases": 0,
       "already_semantic_correctly_skipped": 0
+    },
+    "region_annotation_coverage": {
+      "document": "configured-integrals",
+      "math_regions": 8,
+      "annotation_eligible": 8,
+      "mapping_available": 7,
+      "review_ready": 7,
+      "automatic_ready": 7,
+      "human_selection_required": 0,
+      "annotation_ready": 7,
+      "already_semantic": 0,
+      "unsupported_or_missing_semantic_data": 0
     }
   }
 ]

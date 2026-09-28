@@ -1,8 +1,9 @@
 ﻿"""Notation-independent, source-preserving Pratt parser of complete expressions."""
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
+import re
 from expression_registry import NotationRegistry, Operator
-from expression_tokenizer import tokenize, Token
+from expression_tokenizer import tokenize, Token, unicode_script
 
 
 class ParseError(ValueError):
@@ -42,6 +43,12 @@ class ExpressionParser:
 
     def parse(self, source):
         self.source = source
+        environment = self._environment_expression()
+        if environment is not None:
+            return environment
+        sequence = self._independent_whitespace_sequence()
+        if sequence is not None:
+            return sequence
         self.tokens = tokenize(source, self.registry)
         self.index = 0
         self.stop_tokens = []
@@ -62,6 +69,136 @@ class ExpressionParser:
             self._locate_error(error)
             raise error
         return result
+
+    def _independent_whitespace_sequence(self):
+        """Preserve independently complete top-level fragments honestly.
+
+        TeX whitespace normally has no mathematical meaning, so ordinary
+        adjacency remains governed by configured juxtaposition.  When a
+        top-level whitespace boundary separates complete expressions and a
+        later fragment is itself a relation, however, joining the preceding
+        fragment into that relation would invent a connection.  Represent
+        those fragments as a neutral MathSequence container instead.
+        """
+        depth, boundaries, start = 0, [], 0
+        position = 0
+        while position < len(self.source):
+            char = self.source[position]
+            if char in "{([⟨":
+                depth += 1
+            elif char in "})]⟩" and depth:
+                depth -= 1
+            elif depth == 0 and char.isspace():
+                end = position
+                while position < len(self.source) and self.source[position].isspace():
+                    position += 1
+                boundaries.append((start, end))
+                start = position
+                continue
+            position += 1
+        boundaries.append((start, len(self.source)))
+        spans = [(a, b) for a, b in boundaries if self.source[a:b]]
+        if len(spans) < 2:
+            return None
+
+        def rebase(node, offset):
+            return replace(node, start=node.start + offset, end=node.end + offset,
+                           operator_start=(node.operator_start + offset
+                                           if node.operator_start >= 0 else -1),
+                           source=self.source,
+                           children=tuple(rebase(child, offset) for child in node.children))
+        children = []
+        try:
+            for begin, end in spans:
+                child = ExpressionParser(registry=self.registry).parse(self.source[begin:end])
+                children.append(rebase(child, begin))
+        except ParseError:
+            return None
+        relational = any(
+            child.kind in {"BinaryOperator", "NaryOperator"}
+            and isinstance(child.metadata, Operator)
+            and child.metadata.precedence <= 2
+            for child in children[1:])
+        if not relational:
+            return None
+        return self._node("MathSequence", children[0].start, children[-1].end,
+                          "independent fragments", children,
+                          roles=tuple("fragment" for _ in children),
+                          metadata={"semantic_mapping_available": False,
+                                    "source": "top-level whitespace separation"})
+
+    def _environment_expression(self):
+        """Parse one complete TeX environment as a source-preserving container."""
+        match = re.fullmatch(
+            r"\s*\\begin\{([^{}]+)\}([\s\S]*)\\end\{\1\}\s*", self.source)
+        if match is None:
+            return None
+        name = match.group(1)
+        body_start, body_end = match.start(2), match.end(2)
+
+        def spans(start, end, separator):
+            depth, item_start, position = 0, start, start
+            while position < end:
+                character = self.source[position]
+                if character in "{([":
+                    depth += 1
+                elif character in "})]" and depth:
+                    depth -= 1
+                elif depth == 0 and self.source.startswith(separator, position):
+                    yield item_start, position
+                    position += len(separator)
+                    item_start = position
+                    continue
+                position += 1
+            yield item_start, end
+
+        def trimmed(start, end):
+            while start < end and self.source[start].isspace():
+                start += 1
+            while end > start and self.source[end - 1].isspace():
+                end -= 1
+            return start, end
+
+        def rebase(node, offset):
+            return replace(
+                node, start=node.start + offset, end=node.end + offset,
+                operator_start=(node.operator_start + offset
+                                if node.operator_start >= 0 else -1),
+                source=self.source,
+                children=tuple(rebase(child, offset) for child in node.children))
+
+        rows = []
+        try:
+            for row_start, row_end in spans(body_start, body_end, r"\\"):
+                content_start, content_end = trimmed(row_start, row_end)
+                if content_start == content_end:
+                    continue
+                cells = []
+                for cell_start, cell_end in spans(content_start, content_end, "&"):
+                    expression_start, expression_end = trimmed(cell_start, cell_end)
+                    if expression_start == expression_end:
+                        raise ParseError("Environment contains an empty cell")
+                    child_source = self.source[expression_start:expression_end]
+                    child = ExpressionParser(registry=self.registry).parse(child_source)
+                    child = rebase(child, expression_start)
+                    cells.append(self._node("Cell", cell_start, cell_end, "cell", (child,),
+                                            roles=("expression",)))
+                rows.append(self._node("Row", row_start, row_end, "row", cells,
+                                       roles=tuple("cell" for _ in cells)))
+        except ParseError as error:
+            opaque = self._node(
+                "OpaqueEnvironmentBody", body_start, body_end, "body",
+                metadata={"opaque": True, "error": str(error),
+                          "semantic_mapping_available": False})
+            return self._node(
+                "EnvironmentExpression", match.start(), match.end(), name, (opaque,),
+                roles=("body",), metadata={"environment": name, "opaque": True,
+                                           "semantic_mapping_available": False})
+        return self._node(
+            "EnvironmentExpression", match.start(), match.end(), name, rows,
+            roles=tuple("row" for _ in rows),
+            metadata={"environment": name, "opaque": False,
+                      "semantic_mapping_available": False})
 
     def _locate_error(self, error):
         import re
@@ -123,6 +260,9 @@ class ExpressionParser:
                     raise ParseError("Ignored command has an unclosed argument")
 
     def _expression(self, minimum):
+        # Layout commands can occur at the start of any recursively parsed
+        # expression, including binder bodies and grouped subexpressions.
+        self._skip_ignored_commands()
         prefix = self._operator("prefix")
         if prefix:
             token = self._take()
@@ -138,20 +278,35 @@ class ExpressionParser:
             token = self.current
             if token.text in self.stop_tokens:
                 break
-            if token.kind == "script" and self.registry.script_precedence >= minimum:
+            if token.kind == "combining":
+                mark = self._take()
+                left = self._node("DecoratedExpression", left.start, mark.end, mark.text,
+                                  (left,), roles=("base",), notation=mark.text,
+                                  metadata={"source": "Unicode combining mark",
+                                            "semantic_mapping_available": False})
+                continue
+            if token.kind in {"script", "unicode_script"} and self.registry.script_precedence >= minimum:
                 self._take()
-                argument = self._tex_argument()
-                if left.kind == "ScriptedExpression" and token.text in left.roles[1:]:
+                marker = token.text
+                if token.kind == "unicode_script":
+                    marker, value = unicode_script(token.text)
+                    argument = self._node("Atom", token.start, token.end, value,
+                                          metadata={"raw_unicode_script": token.text})
+                else:
+                    argument = self._tex_argument()
+                if left.kind == "ScriptedExpression" and marker in left.roles[1:]:
                     raise ParseError("Repeated script requires explicit grouping")
                 if left.kind == "ScriptedExpression":
-                    children, roles = (*left.children, argument), (*left.roles, token.text)
+                    children, roles = (*left.children, argument), (*left.roles, marker)
                 else:
-                    children, roles = (left, argument), ("base", token.text)
+                    children, roles = (left, argument), ("base", marker)
                 left = self._node("ScriptedExpression", left.start, argument.end, "scripts", children,
                                   roles=roles, metadata={"precedence": self.registry.script_precedence})
                 continue
-            if token.text == "(" and self.registry.application_precedence >= minimum and self._callable(left):
-                group = self._group(allow_list=True)
+            if (self._starts_call_group() and self.registry.application_precedence >= minimum
+                    and self._callable(left)):
+                group = (self._sized_group() if token.kind == "sized_open"
+                         else self._group(allow_list=True))
                 left = self._node("FunctionApplication", left.start, group.end, "application", (left, group),
                                   roles=("function", "arguments"),
                                   metadata={"precedence": self.registry.application_precedence})
@@ -191,11 +346,19 @@ class ExpressionParser:
         return left
 
     def _callable(self, node):
-        return ((node.kind == "Atom" and node.value in self.registry.functions)
+        return ((node.kind == "Atom" and (self.registry.symbolic_calls
+                                          or node.value in self.registry.functions))
                 or (node.kind == "Command" and bool((node.metadata or {}).get("callable"))))
 
+    def _starts_call_group(self):
+        if self.current.text == "(":
+            return True
+        return (self.current.kind == "sized_open"
+                and self.index + 1 < len(self.tokens)
+                and self.tokens[self.index + 1].text == "(")
+
     def _starts_primary(self):
-        return self.current.kind in {"atom", "number", "command", "sized_open"} or self.current.text in {"(", "["}
+        return self.current.kind in {"atom", "number", "command", "sized_open", "math_symbol", "open"}
 
     def _sized_group(self):
         start = self._take().start
@@ -216,7 +379,10 @@ class ExpressionParser:
 
     def _group(self, allow_list=False):
         opening = self._take()
-        closing = {"(": ")", "[": "]", "{": "}", r"\{": r"\}"}[opening.text]
+        closing = ({r"\{": r"\}"}.get(opening.text)
+                   or self.registry.delimiter_pairs.get(opening.text))
+        if closing is None:
+            raise ParseError(f"Unsupported delimiter at offset {opening.start}")
         children = [self._expression(float("-inf"))]
         while allow_list and self.current.kind == "comma":
             self._take()
@@ -239,6 +405,9 @@ class ExpressionParser:
 
     def _primary(self):
         token = self.current
+        construct = self.registry.bound_constructs.get(token.text)
+        if construct is not None:
+            return self._bound_construct(construct)
         if token.kind == "sized_open":
             return self._sized_group()
         if token.kind == "open":
@@ -246,17 +415,54 @@ class ExpressionParser:
         if token.kind in {"atom", "number"}:
             self._take()
             return self._node("Number" if token.kind == "number" else "Atom", token.start, token.end, token.text)
+        if token.kind == "math_symbol":
+            self._take()
+            return self._node("OpaqueMathToken", token.start, token.end, token.text,
+                              notation=token.text,
+                              metadata={"source": "generic Unicode symbol fallback",
+                                        "opaque": True,
+                                        "semantic_mapping_available": False})
         if token.kind == "command":
-            construct = self.registry.bound_constructs.get(token.text)
-            if construct is not None:
-                return self._bound_construct(construct)
             self._take()
             spec = self.registry.commands.get(token.text)
             if spec is None:
                 if token.text in {r"\%", r"\#", r"\$", r"\&", r"\_", r"\{", r"\}"}:
                     return self._node("Command", token.start, token.end, token.text,
                                       notation=token.text)
-                raise ParseError(f"Unknown command {token.text} at offset {token.start}; configure its arguments")
+                # An alphabetic control sequence is safe to preserve without
+                # assigning meaning. Consecutive explicit groups are retained
+                # as generically named children; their mathematical contents
+                # are still parsed, but their command-specific roles are not
+                # guessed. Configured commands and bound constructs have
+                # already taken their higher-priority paths above.
+                if not re.fullmatch(r"\\[A-Za-z]+", token.text):
+                    raise ParseError(
+                        f"Unknown command {token.text} at offset {token.start}; "
+                        "configure its arguments")
+                children, roles = [], []
+                optional_number = argument_number = 0
+                while self.current.text in {"[", "{"}:
+                    if self.current.text == "[":
+                        optional_number += 1
+                        roles.append(f"optional{optional_number}")
+                    else:
+                        argument_number += 1
+                        roles.append(f"arg{argument_number}")
+                    children.append(self._group(allow_list=True))
+                if children:
+                    return self._node(
+                        "OpaqueCommandApplication", token.start, children[-1].end,
+                        token.text, children, roles=tuple(roles), notation=token.text,
+                        metadata={"source": "structural unknown-command fallback",
+                                  "opaque": True,
+                                  "semantic_mapping_available": False,
+                                  "argument_roles_known": False})
+                return self._node(
+                    "SymbolAtom", token.start, token.end, token.text,
+                    notation=token.text,
+                    metadata={"source": "structural unknown-command fallback",
+                              "semantic_mapping_available": False,
+                              "uncertain_arity": True})
             children, roles = [], []
             if spec.get("optional_arguments") and self.current.text == "[":
                 children.append(self._group())
@@ -271,7 +477,9 @@ class ExpressionParser:
                             raise ParseError("Semantic arguments require braces")
                         children.append(self._group(allow_list=kinds[number] == "sequence"))
                 else:
-                    children.append(self._tex_argument())
+                    kinds = spec.get("argument_types", ["expression"] * spec["arity"])
+                    children.append(self._opaque_argument() if kinds[number] == "opaque"
+                                    else self._tex_argument())
                 names = spec.get("roles", ())
                 roles.append(names[number] if number < len(names) else f"argument{number + 1}")
             end = children[-1].end if children else token.end
@@ -285,12 +493,22 @@ class ExpressionParser:
         head = self._take()
         children, roles = [], []
         seen_scripts = set()
-        while self.current.kind == "script" and self.current.text in spec.scripts:
-            marker = self._take().text
+        while self.current.kind in {"script", "unicode_script"}:
+            token = self.current
+            marker = (unicode_script(token.text)[0]
+                      if token.kind == "unicode_script" else token.text)
+            if marker not in spec.scripts:
+                break
+            self._take()
             if marker in seen_scripts:
                 raise ParseError("Repeated bound-operator script requires explicit grouping")
             seen_scripts.add(marker)
-            children.append(self._tex_argument())
+            if token.kind == "unicode_script":
+                value = unicode_script(token.text)[1]
+                children.append(self._node("Atom", token.start, token.end, value,
+                                           metadata={"raw_unicode_script": token.text}))
+            else:
+                children.append(self._tex_argument())
             roles.append(spec.scripts[marker])
         for role in spec.leading_roles:
             children.append(self._tex_argument())

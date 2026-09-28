@@ -27,6 +27,406 @@ ERROR_CATEGORIES = (
     "missing semantic metadata",
 )
 
+SET_NOTATIONS = {r"\cup", r"\cap", r"\in", r"\subseteq"}
+STRUCTURAL_COMMANDS = {r"\Box", r"\#"}
+GAP_CATEGORY_DEFINITIONS = {
+    "A": "no semantic notation present",
+    "B": "already-semantic expression",
+    "C": "semantic mapping unavailable",
+    "D": "missing SMGloM repository",
+    "E": "notation record exists but extractor missed it",
+    "F": "notation classified but grammar adapter missing",
+    "G": "AST matcher failed",
+    "H": "argument mapping incomplete",
+    "I": "semantic signature contains hidden/non-visible arguments",
+    "J": "source notation variant or alias mismatch",
+    "K": "unsafe replacement scope",
+    "L": "structural-only TeX",
+    "M": "intentional no-proposal or review-required case",
+    "N": "other genuine implementation defect",
+}
+
+
+def _ast_summary(node):
+    """Return a compact, source-preserving structural summary."""
+    if not node:
+        return None
+    children = node.get("children", [])
+    head = f"{node.get('kind')}({node.get('value')})"
+    return head if not children else head + "[" + ", ".join(
+        _ast_summary(child) for child in children) + "]"
+
+
+def _ast_node_at(node, start, end):
+    if not node:
+        return None
+    if node.get("start") == start and node.get("end") == end:
+        return node
+    return next((found for child in node.get("children", [])
+                 if (found := _ast_node_at(child, start, end)) is not None), None)
+
+
+def _review_options(occurrence):
+    options = []
+    for status in occurrence["proposal_statuses"]:
+        if status["automatic_candidates"]:
+            continue
+        candidates = [item for item in occurrence["ranked_candidates"]
+                      if item["start"] == status["start"] and item["end"] == status["end"]]
+        if not candidates:
+            continue
+        macros = sorted({item["semantic_macro"] for item in candidates})
+        modules = sorted({item.get("module") for item in candidates if item.get("module")})
+        reason = ("insufficient local context" if status["status"] == "contextual_support_required"
+                  else "multiple domain-specific candidates" if len(modules) > 1
+                  else "semantic ambiguity")
+        node = _ast_node_at(occurrence["ast"], status["start"], status["end"])
+        options.append({
+            "matched_expression": status["expression"],
+            "start": status["start"], "end": status["end"],
+            "ast_node": None if node is None else {
+                key: node.get(key) for key in ("kind", "value", "start", "end", "text")},
+            "candidate_count": len(macros), "candidate_macros": macros,
+            "arguments": candidates[0].get("arguments", []),
+            "automatic_selection_blocker": status["status"],
+            "classification": reason,
+            "explicit_human_selection_is_safe": all(
+                item.get("proposal_eligibility", {}).get("eligible") for item in candidates),
+            "ranked_candidates": [{
+                "macro": item["semantic_macro"], "module": item.get("module"),
+                "repository": item.get("repository"), "rank": item.get("rank"),
+                "evidence": item.get("evidence", []),
+            } for item in candidates],
+        })
+    return options
+
+
+def _matching_gold(occurrence, gold):
+    expression = normalize_math_expression(occurrence["source_expression"])
+    matches = [item for item in gold
+               if item.get("file", "").replace("\\", "/") == occurrence["file"]
+               and item.get("line") == occurrence["line"]]
+    return next((item for item in matches
+                 if normalize_math_expression(item["source_expression"]) == expression), None)
+
+
+def _coverage_gap(document_id, occurrence, gold):
+    """Explain the first pipeline stage blocking one non-ready region."""
+    nodes = occurrence["recognized_notation_nodes"]
+    candidates = occurrence["semantic_candidates"]
+    statuses = sorted({status["status"] for status in occurrence["proposal_statuses"]
+                       if not status["automatic_candidates"]})
+    values = {node["value"] for node in nodes}
+    kinds = {node["kind"] for node in nodes}
+    already_semantic = "SemanticCommand" in kinds
+    negative_gold = bool(gold and not gold.get("should_propose", False))
+    requires_repository = None
+    recoverable, hidden = [], []
+
+    if already_semantic:
+        category, blocker = "B", "already_semantic_correctly_skipped"
+        stage = "proposal eligibility"
+        possible, should_not = False, True
+    elif candidates:
+        category = "M"
+        blocker = ("intentional_no_proposal_case" if negative_gold else
+                   "semantic_ambiguity_requires_human_review" if "ambiguous_candidate_set" in statuses else
+                   "contextual_support_required")
+        stage = "automatic proposal policy"
+        possible, should_not = not negative_gold, negative_gold
+    elif values & SET_NOTATIONS:
+        category, blocker = "D", "missing_repository"
+        stage, requires_repository = "SMGloM repository availability", "sets"
+        possible, should_not = True, True
+    elif "BoundExpression" in kinds:
+        category, blocker = "I", "semantic_signature_has_hidden_arguments"
+        stage = "argument mapping"
+        recoverable = ["body", "variable"]
+        hidden = ["lower", "upper"]
+        possible, should_not = True, True
+    elif r"\boldsymbol" in values:
+        category, blocker = "K", "unsupported_replacement_scope"
+        stage = "safe replacement scope"
+        possible, should_not = False, True
+    elif values and values <= STRUCTURAL_COMMANDS:
+        category, blocker = "L", "structural_only_tex"
+        stage = "semantic notation recognition"
+        possible, should_not = False, True
+    elif values & {r"\mathcal", r"\mathfrak"}:
+        category, blocker = "C", "semantic_mapping_unavailable"
+        stage = "catalogue semantic mapping"
+        possible, should_not = False, True
+    elif not nodes:
+        category, blocker = "A", "no_semantic_notation_present"
+        stage = "semantic notation recognition"
+        possible, should_not = False, True
+    else:
+        category, blocker = "C", "semantic_mapping_unavailable"
+        stage = "catalogue semantic mapping"
+        possible, should_not = False, True
+
+    provenance = sorted({(item.get("semantic_macro"), item.get("repository"),
+                          item.get("module"), item.get("source")) for item in candidates})
+    return {
+        "document": document_id, "file": occurrence["file"],
+        "line": occurrence["line"], "column": occurrence["column"],
+        "full_expression": occurrence["source_expression"],
+        "ast_summary": _ast_summary(occurrence["ast"]),
+        "notation_nodes": nodes,
+        "semantic_candidates": sorted({item.get("semantic_macro") for item in candidates}),
+        "candidate_provenance": [{"macro": macro, "repository": repository,
+                                  "module": module, "source": source}
+                                 for macro, repository, module, source in provenance],
+        "category": category, "blocker": blocker, "pipeline_stage": stage,
+        "proposal_policy_statuses": statuses,
+        "review_options": _review_options(occurrence),
+        "annotation_should_be_possible": possible,
+        "annotation_should_not_be_attempted": should_not,
+        "requires_repository": requires_repository,
+        "argument_mapping": {"recoverable": recoverable, "hidden_or_missing": hidden},
+        "gold_policy": (None if gold is None else {
+            "should_propose": gold.get("should_propose"),
+            "semantic_status": gold.get("semantic_status"),
+            "valid_semantic_macros": gold.get("valid_semantic_macros", []),
+        }),
+    }
+
+
+def annotation_coverage_audit(documents):
+    """Calculate honest annotation denominators and explain every gap."""
+    gaps, per_document, supported_candidate_counts, human_candidate_counts = [], [], [], []
+    totals = Counter()
+    for document in documents:
+        occurrences, gold = document["occurrences"], document["gold"]
+        document_gaps = []
+        ready = sum(bool(item["annotation_candidates"]) for item in occurrences)
+        already = sum(any(node["kind"] == "SemanticCommand"
+                          for node in item["recognized_notation_nodes"])
+                      and not item["annotation_candidates"] for item in occurrences)
+        eligible = ready
+        supported = ready
+        review_ready = ready
+        for occurrence in occurrences:
+            if occurrence["annotation_candidates"]:
+                supported_candidate_counts.append(len({
+                    item["semantic_macro"] for item in occurrence["semantic_candidates"]}))
+        for occurrence in occurrences:
+            if occurrence["annotation_candidates"]:
+                continue
+            matched_gold = _matching_gold(occurrence, gold)
+            gap = _coverage_gap(document["id"], occurrence, matched_gold)
+            document_gaps.append(gap)
+            if gap["annotation_should_be_possible"]:
+                eligible += 1
+                if gap["semantic_candidates"]:
+                    supported += 1
+                    if (gap["review_options"] and all(
+                            option["explicit_human_selection_is_safe"]
+                            for option in gap["review_options"])):
+                        review_ready += 1
+                        count = len(gap["semantic_candidates"])
+                        supported_candidate_counts.append(count)
+                        human_candidate_counts.append(count)
+        gaps.extend(document_gaps)
+        missing = sum(gap["blocker"] in {"missing_repository", "semantic_mapping_unavailable"}
+                      for gap in document_gaps)
+        row = {"document": document["id"], "math_regions": len(occurrences),
+               "annotation_eligible": eligible, "mapping_available": supported,
+               "review_ready": review_ready, "automatic_ready": ready,
+               "human_selection_required": review_ready - ready,
+               "annotation_ready": ready, "already_semantic": already,
+               "unsupported_or_missing_semantic_data": missing}
+        per_document.append(row)
+        totals.update(math_regions=len(occurrences), annotation_eligible=eligible,
+                      mapping_available=supported, annotation_ready=ready,
+                      review_ready=review_ready,
+                      already_semantic=already, unsupported_or_missing=missing)
+    categories = Counter(gap["category"] for gap in gaps)
+    blockers = Counter(gap["blocker"] for gap in gaps)
+    eligible = totals["annotation_eligible"]
+    supported = totals["mapping_available"]
+    ready = totals["annotation_ready"]
+    review_ready = totals["review_ready"]
+    def candidate_buckets(values):
+        return {"1": sum(value == 1 for value in values),
+                "2-3": sum(2 <= value <= 3 for value in values),
+                "4-6": sum(4 <= value <= 6 for value in values),
+                "7+": sum(value >= 7 for value in values)}
+    ordered_human_counts = sorted(human_candidate_counts)
+    human_median = (ordered_human_counts[len(ordered_human_counts) // 2]
+                    if len(ordered_human_counts) % 2 else
+                    sum(ordered_human_counts[len(ordered_human_counts) // 2 - 1:
+                                             len(ordered_human_counts) // 2 + 1]) / 2)
+    if not ordered_human_counts:
+        human_median = 0
+    summary = {
+        "readiness_definitions": {
+            "structurally_ready": "valid AST with an exact source span",
+            "review_ready": ("at least one supported semantic candidate with complete arguments "
+                             "and a safe span after explicit human selection"),
+            "automatically_ready": ("review-ready and sufficiently determined by semantic evidence "
+                                    "without a human semantic choice"),
+        },
+        "total_math_regions": totals["math_regions"],
+        "regions_with_semantic_notation_recognized": sum(
+            bool(item["recognized_notation_nodes"])
+            for document in documents for item in document["occurrences"]),
+        "regions_with_semantic_candidates": sum(
+            bool(item["semantic_candidates"])
+            for document in documents for item in document["occurrences"]),
+        "annotation_eligible_regions": eligible,
+        "supported_annotation_eligible_regions": supported,
+        "annotation_ready_regions": ready,
+        "review_ready_regions": review_ready,
+        "automatically_ready_regions": ready,
+        "human_selection_required_regions": review_ready - ready,
+        "unsupported_annotation_eligible_regions": eligible - supported,
+        "already_semantic_regions": totals["already_semantic"],
+        "intentionally_no_proposal_regions": sum(
+            gap["blocker"] == "intentional_no_proposal_case" for gap in gaps),
+        "regions_where_annotation_should_not_be_attempted": sum(
+            gap["annotation_should_not_be_attempted"] for gap in gaps),
+        "raw_annotation_ready_coverage_percent": round(100 * ready / totals["math_regions"], 1),
+        "eligible_annotation_coverage_percent": round(100 * ready / eligible, 1) if eligible else None,
+        "supported_annotation_coverage_percent": round(100 * ready / supported, 1) if supported else None,
+        "supported_review_coverage_percent": round(100 * review_ready / supported, 1)
+        if supported else None,
+        "reviewer_effort": {
+            "review_ready_candidate_count_distribution": candidate_buckets(supported_candidate_counts),
+            "human_selection_candidate_count_distribution": candidate_buckets(human_candidate_counts),
+            "average_candidates_per_human_selection_region": round(
+                sum(human_candidate_counts) / len(human_candidate_counts), 2)
+            if human_candidate_counts else 0,
+            "median_candidates_per_human_selection_region": human_median,
+        },
+        "gap_categories": {key: categories[key] for key in GAP_CATEGORY_DEFINITIONS},
+        "gap_category_definitions": GAP_CATEGORY_DEFINITIONS,
+        "gap_blockers": dict(sorted(blockers.items())),
+        "priority_table": [{
+            "blocker": blocker,
+            "affected_regions": count,
+            "generic_fix_possible": blocker in {
+                "unsupported_replacement_scope", "contextual_support_required"},
+            "risk": ("high" if blocker in {"semantic_ambiguity_requires_human_review",
+                                            "contextual_support_required"}
+                     else "medium" if blocker in {"unsupported_replacement_scope",
+                                                   "semantic_signature_has_hidden_arguments"}
+                     else "none"),
+            "recommended_action": {
+                "semantic_ambiguity_requires_human_review": "retain candidates for human selection",
+                "contextual_support_required": "collect semantic context; do not auto-select",
+                "intentional_no_proposal_case": "no change",
+                "missing_repository": "install and evaluate the named repository",
+                "no_semantic_notation_present": "no change",
+                "semantic_mapping_unavailable": "add only evidence-backed semantic metadata",
+                "semantic_signature_has_hidden_arguments": "keep blocked until arguments are recoverable",
+                "structural_only_tex": "no change",
+                "unsupported_replacement_scope": "generalize exact nested AST matching",
+                "already_semantic_correctly_skipped": "no change",
+            }.get(blocker, "investigate the recorded first failing stage"),
+        } for blocker, count in blockers.most_common()],
+        "waterfall": [
+            {"stage": "total_math_regions", "regions": totals["math_regions"]},
+            {"stage": "annotation_eligible", "regions": eligible,
+             "excluded": totals["math_regions"] - eligible},
+            {"stage": "semantic_mapping_available", "regions": supported,
+             "excluded": eligible - supported},
+            {"stage": "review_ready", "regions": review_ready,
+             "excluded": 0},
+            {"stage": "automatically_ready", "regions": ready,
+             "human_selection_required": review_ready - ready},
+        ],
+        "per_document": per_document,
+    }
+    return {"summary": summary, "gaps": gaps}
+
+
+def production_review_readiness(documents, records):
+    """Prove one explicit candidate per supported region through production paths."""
+    from apply_annotations import build_application_plan, render_application_plan
+    from decision_validator import materialize_valid_decisions, validate_decisions
+    from review_workflow import build_review_decision
+
+    proofs, per_document = [], []
+    for document in documents:
+        target, config = document["target"], document["config"]
+        decisions, metadata = [], []
+        for occurrence in document["occurrences"]:
+            gold = _matching_gold(occurrence, document["gold"])
+            gap = None if occurrence["annotation_candidates"] else _coverage_gap(
+                document["id"], occurrence, gold)
+            if gap is not None and not (gap["annotation_should_be_possible"]
+                                        and gap["semantic_candidates"]):
+                continue
+            if occurrence["annotation_candidates"]:
+                # Prove the maximal stable scope for a region. Progressive
+                # child scopes remain reviewable independently, but the
+                # validator deliberately canonicalizes variable sequences.
+                selected = max(occurrence["annotation_candidates"],
+                               key=lambda item: (item["end"] - item["start"],
+                                                 -item.get("rank", 1)))
+            else:
+                option = gap["review_options"][0]
+                selected = next(item for item in occurrence["ranked_candidates"]
+                                if item["start"] == option["start"]
+                                and item["end"] == option["end"]
+                                and item["semantic_macro"] == option["candidate_macros"][0])
+            match = {
+                "file": selected["file"], "line": selected["line"],
+                "column": selected["column"], "text": selected["source_line"],
+                "pattern_type": selected["pattern_type"],
+                "matched_expression": selected["matched_expression"],
+                "matched_visible_notation": selected.get("matched_visible_notation"),
+                "arguments": selected["arguments"],
+                "source_start": selected["source_start"],
+                "source_end": selected["source_end"],
+                "source_expression": selected["source_expression"],
+            }
+            classification = dict(selected["classification"], expression_config=config)
+            decision = build_review_decision(match, selected, classification, target)
+            if decision is None:
+                continue
+            decisions.append(decision)
+            metadata.append({"decision_id": decision["decision_id"],
+                             "document": document["id"], "file": occurrence["file"],
+                             "line": occurrence["line"],
+                             "source": occurrence["source_expression"],
+                             "selected_candidate_for_test_only": decision["semantic_macro"],
+                             "automatic_ready": bool(occurrence["annotation_candidates"])})
+
+        validation = validate_decisions(decisions, records, target)
+        current = materialize_valid_decisions(validation)
+        valid_ids = {item["decision_id"] for item in current}
+        safe_ids, renderable_ids = set(), set()
+        grouped = defaultdict(list)
+        for decision in current:
+            grouped[decision["file"]].append(decision)
+        for relative, file_decisions in grouped.items():
+            source_file = target if target.is_file() else target / relative
+            source = source_file.read_text(encoding="utf-8")
+            plan = build_application_plan(source, file_decisions, relative)
+            safe_ids.update(item.decision_id for item in plan["safe"])
+            _, _, failures, _ = render_application_plan(source, plan)
+            failed_ids = {item["decision"].get("decision_id") for item in failures}
+            renderable_ids.update(item.decision_id for item in plan["safe"]
+                                  if item.decision_id not in failed_ids)
+        for item in metadata:
+            identifier = item["decision_id"]
+            item.update(decision_constructible=True,
+                        decision_validates=identifier in valid_ids,
+                        application_plan_safe=identifier in safe_ids,
+                        application_plan_renderable=identifier in renderable_ids)
+            item["review_ready"] = all(item[key] for key in (
+                "decision_constructible", "decision_validates",
+                "application_plan_safe", "application_plan_renderable"))
+            proofs.append(item)
+        per_document.append({"document": document["id"],
+                             "supported_checked": len(metadata),
+                             "review_ready": sum(item["review_ready"] for item in metadata)})
+    return {"cases": proofs, "per_document": per_document,
+            "supported_checked": len(proofs),
+            "review_ready": sum(item["review_ready"] for item in proofs)}
+
 
 def wilson(successes, total, z=1.96):
     if not total:
@@ -183,6 +583,7 @@ def evaluate_corpus(manifest_path):
     per_document, all_rows, ambiguity = [], [], []
     semantic_case_analysis, semantic_misses = [], []
     already_semantic_cases, false_proposals = [], []
+    coverage_documents = []
     error_counts = Counter({category: 0 for category in ERROR_CATEGORIES})
     family_counts = defaultdict(lambda: Counter(total=0, top1=0))
     candidate_buckets = defaultdict(lambda: Counter(total=0, top1=0, reciprocal_sum=0))
@@ -199,7 +600,11 @@ def evaluate_corpus(manifest_path):
         gold_path = (base / item["gold"]).resolve()
         config_path = (base / item.get("config", "../expression-config.example.json")).resolve()
         summary, occurrences, details = evaluate(target, config_path, gold_path, apply=False)
+        document_gold = json.loads(gold_path.read_text(encoding="utf-8"))
         config = json.loads(config_path.read_text(encoding="utf-8"))
+        coverage_documents.append({"id": item["id"], "occurrences": occurrences,
+                                   "gold": document_gold, "target": target,
+                                   "config": config})
         catalog = build_catalog(repository_records, config)
         rows = _gold_rows(details, occurrences, item["id"])
         for row in rows:
@@ -394,6 +799,27 @@ def evaluate_corpus(manifest_path):
                     "top_ranked_candidate": top.get("semantic_macro"),
                     "top_ranked_is_valid": top.get("semantic_macro") in row["valid"]})
 
+    coverage_audit = annotation_coverage_audit(coverage_documents)
+    readiness_proof = production_review_readiness(coverage_documents, repository_records)
+    coverage_audit["production_path_proof"] = readiness_proof
+    proof_index = {(item["document"], item["file"], item["line"], item["source"]): item
+                   for item in readiness_proof["cases"]}
+    for gap in coverage_audit["gaps"]:
+        proof = proof_index.get((gap["document"], gap["file"], gap["line"],
+                                 gap["full_expression"]))
+        if proof:
+            gap["production_path_proof"] = proof
+    coverage_audit["summary"]["review_ready_regions"] = readiness_proof["review_ready"]
+    coverage_audit["summary"]["supported_review_coverage_percent"] = round(
+        100 * readiness_proof["review_ready"] /
+        coverage_audit["summary"]["supported_annotation_eligible_regions"], 1)
+    proof_by_document = {item["document"]: item for item in readiness_proof["per_document"]}
+    for item in coverage_audit["summary"]["per_document"]:
+        item["review_ready"] = proof_by_document[item["document"]]["review_ready"]
+    coverage_by_document = {item["document"]: item
+                            for item in coverage_audit["summary"]["per_document"]}
+    for document in per_document:
+        document["region_annotation_coverage"] = coverage_by_document[document["id"]]
     semantic_rows = [row for row in all_rows if row["evaluation"]["proposal_eligible"]]
     supported_rows = [row for row in semantic_rows if row["evaluation"]["mapping_available"]]
     top_hits = {cutoff: sum(bool(row["valid"] & {item["semantic_macro"]
@@ -482,6 +908,7 @@ def evaluate_corpus(manifest_path):
             "note": ("The original annotation-ready metric uses all extracted math regions; "
                      "the eligible metric uses proposal-eligible semantic gold targets."),
         },
+        "region_annotation_coverage": coverage_audit["summary"],
     }
     breakdown = {
         "candidate_count": {key: {"occurrences": value["total"],
@@ -578,6 +1005,7 @@ def evaluate_corpus(manifest_path):
                 "other_partial": 0,
             },
         },
+        "annotation_coverage_audit": coverage_audit,
     }, breakdown
 
 
@@ -641,10 +1069,13 @@ def main(argv=None):
     args = parser.parse_args(argv)
     summary, documents, ambiguity, errors, breakdown = evaluate_corpus(args.corpus)
     args.output.mkdir(parents=True, exist_ok=True)
+    error_output = dict(errors)
+    coverage_output = error_output.pop("annotation_coverage_audit")
     outputs = {"corpus_summary.json": {"aggregate": summary, "breakdown": breakdown},
                "per_document_metrics.json": documents,
                "ambiguity_report.json": ambiguity,
-               "error_analysis.json": errors}
+               "error_analysis.json": error_output,
+               "annotation_coverage_gaps.json": coverage_output}
     for name, content in outputs.items():
         (args.output / name).write_text(json.dumps(content, indent=2, ensure_ascii=False), encoding="utf-8")
     if args.json:

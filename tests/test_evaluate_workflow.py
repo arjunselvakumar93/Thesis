@@ -50,6 +50,19 @@ class TestWorkflowEvaluation(unittest.TestCase):
             self.assertTrue(report["unbalanced_brace_files"])
             self.assertTrue(report["unbalanced_math_delimiter_files"])
 
+    def test_adapter_candidates_are_found_inside_structural_wrappers(self):
+        _, occurrences, _ = evaluate()
+        styled = next(item for item in occurrences
+                      if item["source_expression"] == r"\boldsymbol{x^2}")
+        power = [candidate for candidate in styled["semantic_candidates"]
+                 if candidate["semantic_macro"] in
+                 {"power", "comppower", "intpower", "ratpower", "realpower"}]
+        self.assertTrue(power)
+        self.assertTrue(all(candidate["matched_expression"] == "x^2" for candidate in power))
+        self.assertTrue(all(styled["ast"]["start"] < candidate["start"]
+                            and candidate["end"] < styled["ast"]["end"]
+                            for candidate in power))
+
 
 if __name__ == "__main__":
     unittest.main()

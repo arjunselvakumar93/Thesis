@@ -1,0 +1,1019 @@
+﻿{
+    "version":  1,
+    "source_manifest":  {
+                            "version":  1,
+                            "documents":  [
+                                              {
+                                                  "id":  "quadratic-paper",
+                                                  "path":  "frozen_papers",
+                                                  "description":  "Current real-paper evaluation corpus",
+                                                  "gold":  "gold_v1.json",
+                                                  "config":  "../expression-config.example.json",
+                                                  "enabled":  true
+                                              },
+                                              {
+                                                  "id":  "general-expressions",
+                                                  "path":  "../tests/fixtures/general_math_expressions.tex",
+                                                  "description":  "Hand-authored cross-family expression fixture",
+                                                  "gold":  "gold_general_v2.json",
+                                                  "config":  "../expression-config.example.json",
+                                                  "enabled":  true
+                                              },
+                                              {
+                                                  "id":  "configured-integrals",
+                                                  "path":  "../tests/fixtures/integral_expressions.tex",
+                                                  "description":  "Hand-authored configured integral expressions",
+                                                  "gold":  "gold_integrals_v2.json",
+                                                  "config":  "../integral-config.example.json",
+                                                  "enabled":  true
+                                              }
+                                          ]
+                        },
+    "frozen_gold":  {
+                        "quadratic_paper":  {
+                                                "value":  [
+                                                              {
+                                                                  "file":  "1910.06709/quadratic-20121216.tex",
+                                                                  "line":  80,
+                                                                  "source_expression":  "x^2 + Bx + C = (x-R)(x-S)",
+                                                                  "expected_root":  "=",
+                                                                  "expected_arguments":  [
+                                                                                             "x^2 + Bx + C",
+                                                                                             "(x-R)(x-S)"
+                                                                                         ],
+                                                                  "semantic_status":  "known",
+                                                                  "valid_semantic_macros":  [
+                                                                                                "eq"
+                                                                                            ],
+                                                                  "should_propose":  true,
+                                                                  "expected_annotation":  "\\eq{x^2 + Bx + C,(x-R)(x-S)}"
+                                                              },
+                                                              {
+                                                                  "file":  "1910.06709/quadratic-20121216.tex",
+                                                                  "line":  85,
+                                                                  "source_expression":  "x = R",
+                                                                  "expected_root":  "=",
+                                                                  "expected_arguments":  [
+                                                                                             "x",
+                                                                                             "R"
+                                                                                         ],
+                                                                  "semantic_status":  "known",
+                                                                  "valid_semantic_macros":  [
+                                                                                                "eq"
+                                                                                            ],
+                                                                  "should_propose":  true,
+                                                                  "expected_annotation":  "\\eq{x,R}"
+                                                              },
+                                                              {
+                                                                  "file":  "1910.06709/quadratic-20121216.tex",
+                                                                  "line":  97,
+                                                                  "source_expression":  "-\\frac{B}{2} \\pm z",
+                                                                  "expected_root":  "\\pm",
+                                                                  "expected_arguments":  [
+                                                                                             "-\\frac{B}{2}",
+                                                                                             "z"
+                                                                                         ],
+                                                                  "semantic_status":  "ambiguous",
+                                                                  "valid_semantic_macros":  [
+
+                                                                                            ],
+                                                                  "should_propose":  false,
+                                                                  "expected_annotation":  null
+                                                              },
+                                                              {
+                                                                  "file":  "1910.06709/quadratic-20121216.tex",
+                                                                  "line":  106,
+                                                                  "source_expression":  "R = S = -\\frac{B}{2}",
+                                                                  "expected_root":  "=",
+                                                                  "expected_arguments":  [
+                                                                                             "R",
+                                                                                             "S",
+                                                                                             "-\\frac{B}{2}"
+                                                                                         ],
+                                                                  "semantic_status":  "known",
+                                                                  "valid_semantic_macros":  [
+                                                                                                "eq"
+                                                                                            ],
+                                                                  "should_propose":  true,
+                                                                  "expected_annotation":  "\\eq{R,S,-\\frac{B}{2}}"
+                                                              },
+                                                              {
+                                                                  "file":  "1910.06709/quadratic-20121216.tex",
+                                                                  "line":  107,
+                                                                  "source_expression":  "(-\\frac{B}{2} + z)(-\\frac{B}{2} - z)",
+                                                                  "expected_root":  "juxtaposition",
+                                                                  "expected_arguments":  [
+                                                                                             "(-\\frac{B}{2} + z)",
+                                                                                             "(-\\frac{B}{2} - z)"
+                                                                                         ],
+                                                                  "semantic_status":  "ambiguous",
+                                                                  "valid_semantic_macros":  [
+                                                                                                "atimes",
+                                                                                                "comptimes",
+                                                                                                "inttimes",
+                                                                                                "nattimes",
+                                                                                                "rattimes",
+                                                                                                "realtimes"
+                                                                                            ],
+                                                                  "should_propose":  true,
+                                                                  "expected_annotation":  null
+                                                              },
+                                                              {
+                                                                  "file":  "1910.06709/quadratic-20121216.tex",
+                                                                  "line":  117,
+                                                                  "source_expression":  "\\frac{B^2}{4} - C",
+                                                                  "expected_root":  "-",
+                                                                  "expected_arguments":  [
+                                                                                             "\\frac{B^2}{4}",
+                                                                                             "C"
+                                                                                         ],
+                                                                  "semantic_status":  "ambiguous",
+                                                                  "valid_semantic_macros":  [
+                                                                                                "aminus",
+                                                                                                "natminus",
+                                                                                                "intminus",
+                                                                                                "ratminus",
+                                                                                                "realminus",
+                                                                                                "compminus"
+                                                                                            ],
+                                                                  "should_propose":  true,
+                                                                  "expected_annotation":  null
+                                                              },
+                                                              {
+                                                                  "file":  "1910.06709/quadratic-20121216.tex",
+                                                                  "line":  121,
+                                                                  "source_expression":  "-\\frac{B}{2} \\pm \\sqrt{\\frac{B^2}{4} - C}",
+                                                                  "expected_root":  "\\pm",
+                                                                  "expected_arguments":  [
+                                                                                             "-\\frac{B}{2}",
+                                                                                             "\\sqrt{\\frac{B^2}{4} - C}"
+                                                                                         ],
+                                                                  "semantic_status":  "ambiguous",
+                                                                  "valid_semantic_macros":  [
+
+                                                                                            ],
+                                                                  "should_propose":  false,
+                                                                  "expected_annotation":  null
+                                                              },
+                                                              {
+                                                                  "file":  "1910.06709/quadratic-20121216.tex",
+                                                                  "line":  150,
+                                                                  "source_expression":  "1 - z^2 \u0026= 4 \\\\ z^2 \u0026= -3.",
+                                                                  "expected_root":  "align*",
+                                                                  "expected_arguments":  [
+                                                                                             "1 - z^2 \u0026= 4",
+                                                                                             "z^2 \u0026= -3."
+                                                                                         ],
+                                                                  "semantic_status":  "structural_only",
+                                                                  "valid_semantic_macros":  [
+
+                                                                                            ],
+                                                                  "should_propose":  false,
+                                                                  "expected_annotation":  null
+                                                              },
+                                                              {
+                                                                  "file":  "1910.06709/quadratic-20121216.tex",
+                                                                  "line":  154,
+                                                                  "source_expression":  "i \\sqrt{3}",
+                                                                  "expected_root":  "juxtaposition",
+                                                                  "expected_arguments":  [
+                                                                                             "i",
+                                                                                             "\\sqrt{3}"
+                                                                                         ],
+                                                                  "semantic_status":  "ambiguous",
+                                                                  "valid_semantic_macros":  [
+                                                                                                "atimes",
+                                                                                                "comptimes",
+                                                                                                "inttimes",
+                                                                                                "nattimes",
+                                                                                                "rattimes",
+                                                                                                "realtimes"
+                                                                                            ],
+                                                                  "should_propose":  true,
+                                                                  "expected_annotation":  null
+                                                              },
+                                                              {
+                                                                  "file":  "1910.06709/quadratic-20121216.tex",
+                                                                  "line":  172,
+                                                                  "source_expression":  "ax^2 + bx + c = 0",
+                                                                  "expected_root":  "=",
+                                                                  "expected_arguments":  [
+                                                                                             "ax^2 + bx + c",
+                                                                                             "0"
+                                                                                         ],
+                                                                  "semantic_status":  "known",
+                                                                  "valid_semantic_macros":  [
+                                                                                                "eq"
+                                                                                            ],
+                                                                  "should_propose":  true,
+                                                                  "expected_annotation":  "\\eq{ax^2 + bx + c,0}"
+                                                              },
+                                                              {
+                                                                  "file":  "1910.06709/quadratic-20121216.tex",
+                                                                  "line":  196,
+                                                                  "source_expression":  "ax + b = 0",
+                                                                  "expected_root":  "=",
+                                                                  "expected_arguments":  [
+                                                                                             "ax + b",
+                                                                                             "0"
+                                                                                         ],
+                                                                  "semantic_status":  "known",
+                                                                  "valid_semantic_macros":  [
+                                                                                                "eq"
+                                                                                            ],
+                                                                  "should_propose":  true,
+                                                                  "expected_annotation":  "\\eq{ax + b,0}"
+                                                              },
+                                                              {
+                                                                  "file":  "1910.06709/quadratic-20121216.tex",
+                                                                  "line":  196,
+                                                                  "source_expression":  "x = -\\frac{b}{a}",
+                                                                  "expected_root":  "=",
+                                                                  "expected_arguments":  [
+                                                                                             "x",
+                                                                                             "-\\frac{b}{a}"
+                                                                                         ],
+                                                                  "semantic_status":  "known",
+                                                                  "valid_semantic_macros":  [
+                                                                                                "eq"
+                                                                                            ],
+                                                                  "should_propose":  true,
+                                                                  "expected_annotation":  "\\eq{x,-\\frac{b}{a}}"
+                                                              },
+                                                              {
+                                                                  "file":  "1910.06709/quadratic-20121216.tex",
+                                                                  "line":  196,
+                                                                  "source_expression":  "a \\neq 0",
+                                                                  "expected_root":  "\\ne",
+                                                                  "expected_arguments":  [
+                                                                                             "a",
+                                                                                             "0"
+                                                                                         ],
+                                                                  "semantic_status":  "known",
+                                                                  "valid_semantic_macros":  [
+                                                                                                "notequal"
+                                                                                            ],
+                                                                  "should_propose":  true,
+                                                                  "expected_annotation":  "\\notequal{a}{0}"
+                                                              },
+                                                              {
+                                                                  "file":  "1910.06709/quadratic-20121216.tex",
+                                                                  "line":  206,
+                                                                  "source_expression":  "(u + v)^2 = u^2 + 2uv + v^2",
+                                                                  "expected_root":  "=",
+                                                                  "expected_arguments":  [
+                                                                                             "(u + v)^2",
+                                                                                             "u^2 + 2uv + v^2"
+                                                                                         ],
+                                                                  "semantic_status":  "known",
+                                                                  "valid_semantic_macros":  [
+                                                                                                "eq"
+                                                                                            ],
+                                                                  "should_propose":  true,
+                                                                  "expected_annotation":  "\\eq{(u + v)^2,u^2 + 2uv + v^2}"
+                                                              },
+                                                              {
+                                                                  "file":  "1910.06709/quadratic-20121216.tex",
+                                                                  "line":  207,
+                                                                  "source_expression":  "(u+v)(u-v) = u^2 - v^2",
+                                                                  "expected_root":  "=",
+                                                                  "expected_arguments":  [
+                                                                                             "(u+v)(u-v)",
+                                                                                             "u^2 - v^2"
+                                                                                         ],
+                                                                  "semantic_status":  "known",
+                                                                  "valid_semantic_macros":  [
+                                                                                                "eq"
+                                                                                            ],
+                                                                  "should_propose":  true,
+                                                                  "expected_annotation":  "\\eq{(u+v)(u-v),u^2 - v^2}"
+                                                              },
+                                                              {
+                                                                  "file":  "1910.06709/quadratic-20121216.tex",
+                                                                  "line":  211,
+                                                                  "source_expression":  "\\frac{1}{\\sqrt{3} - \\sqrt{2}}",
+                                                                  "expected_root":  "\\frac",
+                                                                  "expected_arguments":  [
+                                                                                             "1",
+                                                                                             "\\sqrt{3} - \\sqrt{2}"
+                                                                                         ],
+                                                                  "semantic_status":  "known",
+                                                                  "valid_semantic_macros":  [
+                                                                                                "adivide"
+                                                                                            ],
+                                                                  "should_propose":  true,
+                                                                  "expected_annotation":  "\\adivide{1}{\\sqrt{3} - \\sqrt{2}}"
+                                                              },
+                                                              {
+                                                                  "file":  "1910.06709/quadratic-20121216.tex",
+                                                                  "line":  249,
+                                                                  "source_expression":  "(x + D)^2",
+                                                                  "expected_root":  "scripts",
+                                                                  "expected_arguments":  [
+                                                                                             "(x + D)",
+                                                                                             "2"
+                                                                                         ],
+                                                                  "semantic_status":  "known",
+                                                                  "valid_semantic_macros":  [
+                                                                                                "power",
+                                                                                                "comppower",
+                                                                                                "intpower",
+                                                                                                "ratpower",
+                                                                                                "realpower"
+                                                                                            ],
+                                                                  "should_propose":  true,
+                                                                  "expected_annotation":  null
+                                                              },
+                                                              {
+                                                                  "file":  "1910.06709/quadratic-20121216.tex",
+                                                                  "line":  259,
+                                                                  "source_expression":  "x^2 = K",
+                                                                  "expected_root":  "=",
+                                                                  "expected_arguments":  [
+                                                                                             "x^2",
+                                                                                             "K"
+                                                                                         ],
+                                                                  "semantic_status":  "known",
+                                                                  "valid_semantic_macros":  [
+                                                                                                "eq"
+                                                                                            ],
+                                                                  "should_propose":  true,
+                                                                  "expected_annotation":  "\\eq{x^2,K}"
+                                                              },
+                                                              {
+                                                                  "file":  "1910.06709/quadratic-20121216.tex",
+                                                                  "line":  352,
+                                                                  "source_expression":  "(x+p)(x+q)",
+                                                                  "expected_root":  "juxtaposition",
+                                                                  "expected_arguments":  [
+                                                                                             "(x+p)",
+                                                                                             "(x+q)"
+                                                                                         ],
+                                                                  "semantic_status":  "ambiguous",
+                                                                  "valid_semantic_macros":  [
+                                                                                                "atimes",
+                                                                                                "comptimes",
+                                                                                                "inttimes",
+                                                                                                "nattimes",
+                                                                                                "rattimes",
+                                                                                                "realtimes"
+                                                                                            ],
+                                                                  "should_propose":  true,
+                                                                  "expected_annotation":  null
+                                                              },
+                                                              {
+                                                                  "file":  "1910.06709/quadratic-20121216.tex",
+                                                                  "line":  388,
+                                                                  "source_expression":  "x^2 + Bx + C = (x - R)(x - S)",
+                                                                  "expected_root":  "=",
+                                                                  "expected_arguments":  [
+                                                                                             "x^2 + Bx + C",
+                                                                                             "(x - R)(x - S)"
+                                                                                         ],
+                                                                  "semantic_status":  "known",
+                                                                  "valid_semantic_macros":  [
+                                                                                                "eq"
+                                                                                            ],
+                                                                  "should_propose":  true,
+                                                                  "expected_annotation":  "\\eq{x^2 + Bx + C,(x - R)(x - S)}"
+                                                              }
+                                                          ],
+                                                "Count":  20
+                                            },
+                        "general_expressions":  {
+                                                    "value":  [
+                                                                  {
+                                                                      "document_id":  "general-expressions",
+                                                                      "file":  "general_math_expressions.tex",
+                                                                      "line":  4,
+                                                                      "math_region":  1,
+                                                                      "start":  null,
+                                                                      "end":  null,
+                                                                      "source_expression":  "a+b",
+                                                                      "expected_root":  "+",
+                                                                      "valid_semantic_macros":  [
+                                                                                                    "aplus",
+                                                                                                    "natplus",
+                                                                                                    "intplus",
+                                                                                                    "ratplus",
+                                                                                                    "realplus",
+                                                                                                    "compplus"
+                                                                                                ],
+                                                                      "should_propose":  true
+                                                                  },
+                                                                  {
+                                                                      "document_id":  "general-expressions",
+                                                                      "file":  "general_math_expressions.tex",
+                                                                      "line":  5,
+                                                                      "math_region":  2,
+                                                                      "start":  null,
+                                                                      "end":  null,
+                                                                      "source_expression":  "a-b",
+                                                                      "expected_root":  "-",
+                                                                      "valid_semantic_macros":  [
+                                                                                                    "aminus",
+                                                                                                    "natminus",
+                                                                                                    "intminus",
+                                                                                                    "ratminus",
+                                                                                                    "realminus",
+                                                                                                    "compminus"
+                                                                                                ],
+                                                                      "should_propose":  true
+                                                                  },
+                                                                  {
+                                                                      "document_id":  "general-expressions",
+                                                                      "file":  "general_math_expressions.tex",
+                                                                      "line":  6,
+                                                                      "math_region":  3,
+                                                                      "start":  null,
+                                                                      "end":  null,
+                                                                      "source_expression":  "a*b",
+                                                                      "expected_root":  "*",
+                                                                      "valid_semantic_macros":  [
+                                                                                                    "atimes",
+                                                                                                    "nattimes",
+                                                                                                    "inttimes",
+                                                                                                    "rattimes",
+                                                                                                    "realtimes",
+                                                                                                    "comptimes"
+                                                                                                ],
+                                                                      "should_propose":  true
+                                                                  },
+                                                                  {
+                                                                      "document_id":  "general-expressions",
+                                                                      "file":  "general_math_expressions.tex",
+                                                                      "line":  7,
+                                                                      "math_region":  4,
+                                                                      "start":  null,
+                                                                      "end":  null,
+                                                                      "source_expression":  "a/b",
+                                                                      "expected_root":  "/",
+                                                                      "valid_semantic_macros":  [
+                                                                                                    "adivide",
+                                                                                                    "compdivide",
+                                                                                                    "ratdivide",
+                                                                                                    "realdivide"
+                                                                                                ],
+                                                                      "should_propose":  true
+                                                                  },
+                                                                  {
+                                                                      "document_id":  "general-expressions",
+                                                                      "file":  "general_math_expressions.tex",
+                                                                      "line":  8,
+                                                                      "math_region":  5,
+                                                                      "start":  null,
+                                                                      "end":  null,
+                                                                      "source_expression":  "a+b*c",
+                                                                      "expected_root":  "+",
+                                                                      "valid_semantic_macros":  [
+                                                                                                    "aplus",
+                                                                                                    "natplus",
+                                                                                                    "intplus",
+                                                                                                    "ratplus",
+                                                                                                    "realplus",
+                                                                                                    "compplus"
+                                                                                                ],
+                                                                      "should_propose":  true
+                                                                  },
+                                                                  {
+                                                                      "document_id":  "general-expressions",
+                                                                      "file":  "general_math_expressions.tex",
+                                                                      "line":  9,
+                                                                      "math_region":  6,
+                                                                      "start":  null,
+                                                                      "end":  null,
+                                                                      "source_expression":  "(a+b)*c",
+                                                                      "expected_root":  "*",
+                                                                      "valid_semantic_macros":  [
+                                                                                                    "atimes",
+                                                                                                    "nattimes",
+                                                                                                    "inttimes",
+                                                                                                    "rattimes",
+                                                                                                    "realtimes",
+                                                                                                    "comptimes"
+                                                                                                ],
+                                                                      "should_propose":  true
+                                                                  },
+                                                                  {
+                                                                      "document_id":  "general-expressions",
+                                                                      "file":  "general_math_expressions.tex",
+                                                                      "line":  10,
+                                                                      "math_region":  7,
+                                                                      "start":  null,
+                                                                      "end":  null,
+                                                                      "source_expression":  "a*b+c",
+                                                                      "expected_root":  "+",
+                                                                      "valid_semantic_macros":  [
+                                                                                                    "aplus",
+                                                                                                    "natplus",
+                                                                                                    "intplus",
+                                                                                                    "ratplus",
+                                                                                                    "realplus",
+                                                                                                    "compplus"
+                                                                                                ],
+                                                                      "should_propose":  true
+                                                                  },
+                                                                  {
+                                                                      "document_id":  "general-expressions",
+                                                                      "file":  "general_math_expressions.tex",
+                                                                      "line":  11,
+                                                                      "math_region":  8,
+                                                                      "start":  null,
+                                                                      "end":  null,
+                                                                      "source_expression":  "a+b-c",
+                                                                      "expected_root":  "-",
+                                                                      "valid_semantic_macros":  [
+                                                                                                    "aminus",
+                                                                                                    "natminus",
+                                                                                                    "intminus",
+                                                                                                    "ratminus",
+                                                                                                    "realminus",
+                                                                                                    "compminus"
+                                                                                                ],
+                                                                      "should_propose":  true
+                                                                  },
+                                                                  {
+                                                                      "document_id":  "general-expressions",
+                                                                      "file":  "general_math_expressions.tex",
+                                                                      "line":  12,
+                                                                      "math_region":  9,
+                                                                      "start":  null,
+                                                                      "end":  null,
+                                                                      "source_expression":  "a-b-c",
+                                                                      "expected_root":  "-",
+                                                                      "valid_semantic_macros":  [
+                                                                                                    "aminus",
+                                                                                                    "natminus",
+                                                                                                    "intminus",
+                                                                                                    "ratminus",
+                                                                                                    "realminus",
+                                                                                                    "compminus"
+                                                                                                ],
+                                                                      "should_propose":  true
+                                                                  },
+                                                                  {
+                                                                      "document_id":  "general-expressions",
+                                                                      "file":  "general_math_expressions.tex",
+                                                                      "line":  13,
+                                                                      "math_region":  10,
+                                                                      "start":  null,
+                                                                      "end":  null,
+                                                                      "source_expression":  "a+(b-c)",
+                                                                      "expected_root":  "+",
+                                                                      "valid_semantic_macros":  [
+                                                                                                    "aplus",
+                                                                                                    "natplus",
+                                                                                                    "intplus",
+                                                                                                    "ratplus",
+                                                                                                    "realplus",
+                                                                                                    "compplus"
+                                                                                                ],
+                                                                      "should_propose":  true
+                                                                  },
+                                                                  {
+                                                                      "document_id":  "general-expressions",
+                                                                      "file":  "general_math_expressions.tex",
+                                                                      "line":  14,
+                                                                      "math_region":  11,
+                                                                      "start":  null,
+                                                                      "end":  null,
+                                                                      "source_expression":  "(a+b)-c",
+                                                                      "expected_root":  "-",
+                                                                      "valid_semantic_macros":  [
+                                                                                                    "aminus",
+                                                                                                    "natminus",
+                                                                                                    "intminus",
+                                                                                                    "ratminus",
+                                                                                                    "realminus",
+                                                                                                    "compminus"
+                                                                                                ],
+                                                                      "should_propose":  true
+                                                                  },
+                                                                  {
+                                                                      "document_id":  "general-expressions",
+                                                                      "file":  "general_math_expressions.tex",
+                                                                      "line":  15,
+                                                                      "math_region":  12,
+                                                                      "start":  null,
+                                                                      "end":  null,
+                                                                      "source_expression":  "x^2",
+                                                                      "expected_root":  "scripts",
+                                                                      "valid_semantic_macros":  [
+                                                                                                    "power",
+                                                                                                    "comppower",
+                                                                                                    "intpower",
+                                                                                                    "ratpower",
+                                                                                                    "realpower"
+                                                                                                ],
+                                                                      "should_propose":  true
+                                                                  },
+                                                                  {
+                                                                      "document_id":  "general-expressions",
+                                                                      "file":  "general_math_expressions.tex",
+                                                                      "line":  16,
+                                                                      "math_region":  13,
+                                                                      "start":  null,
+                                                                      "end":  null,
+                                                                      "source_expression":  "x_i",
+                                                                      "expected_root":  "scripts",
+                                                                      "should_propose":  false
+                                                                  },
+                                                                  {
+                                                                      "document_id":  "general-expressions",
+                                                                      "file":  "general_math_expressions.tex",
+                                                                      "line":  17,
+                                                                      "math_region":  14,
+                                                                      "start":  null,
+                                                                      "end":  null,
+                                                                      "source_expression":  "x_i^2",
+                                                                      "expected_root":  "scripts",
+                                                                      "valid_semantic_macros":  [
+                                                                                                    "power",
+                                                                                                    "comppower",
+                                                                                                    "intpower",
+                                                                                                    "ratpower",
+                                                                                                    "realpower"
+                                                                                                ],
+                                                                      "should_propose":  true
+                                                                  },
+                                                                  {
+                                                                      "document_id":  "general-expressions",
+                                                                      "file":  "general_math_expressions.tex",
+                                                                      "line":  18,
+                                                                      "math_region":  15,
+                                                                      "start":  null,
+                                                                      "end":  null,
+                                                                      "source_expression":  "x^2_i",
+                                                                      "expected_root":  "scripts",
+                                                                      "valid_semantic_macros":  [
+                                                                                                    "power",
+                                                                                                    "comppower",
+                                                                                                    "intpower",
+                                                                                                    "ratpower",
+                                                                                                    "realpower"
+                                                                                                ],
+                                                                      "should_propose":  true
+                                                                  },
+                                                                  {
+                                                                      "document_id":  "general-expressions",
+                                                                      "file":  "general_math_expressions.tex",
+                                                                      "line":  19,
+                                                                      "math_region":  16,
+                                                                      "start":  null,
+                                                                      "end":  null,
+                                                                      "source_expression":  "x^{n+1}",
+                                                                      "expected_root":  "scripts",
+                                                                      "valid_semantic_macros":  [
+                                                                                                    "power",
+                                                                                                    "comppower",
+                                                                                                    "intpower",
+                                                                                                    "ratpower",
+                                                                                                    "realpower"
+                                                                                                ],
+                                                                      "should_propose":  true
+                                                                  },
+                                                                  {
+                                                                      "document_id":  "general-expressions",
+                                                                      "file":  "general_math_expressions.tex",
+                                                                      "line":  20,
+                                                                      "math_region":  17,
+                                                                      "start":  null,
+                                                                      "end":  null,
+                                                                      "source_expression":  "x_{i+1}",
+                                                                      "expected_root":  "scripts",
+                                                                      "should_propose":  false
+                                                                  },
+                                                                  {
+                                                                      "document_id":  "general-expressions",
+                                                                      "file":  "general_math_expressions.tex",
+                                                                      "line":  21,
+                                                                      "math_region":  18,
+                                                                      "start":  null,
+                                                                      "end":  null,
+                                                                      "source_expression":  "\\frac{a+b}{c-d}",
+                                                                      "expected_root":  "\\frac",
+                                                                      "valid_semantic_macros":  [
+                                                                                                    "adivide",
+                                                                                                    "compdivide",
+                                                                                                    "fraction",
+                                                                                                    "ratdivide",
+                                                                                                    "realdivide"
+                                                                                                ],
+                                                                      "should_propose":  true
+                                                                  },
+                                                                  {
+                                                                      "document_id":  "general-expressions",
+                                                                      "file":  "general_math_expressions.tex",
+                                                                      "line":  22,
+                                                                      "math_region":  19,
+                                                                      "start":  null,
+                                                                      "end":  null,
+                                                                      "source_expression":  "\\sqrt{x^2+y^2}",
+                                                                      "expected_root":  "\\sqrt",
+                                                                      "valid_semantic_macros":  [
+                                                                                                    "asqrt",
+                                                                                                    "natsqrt",
+                                                                                                    "intsqrt",
+                                                                                                    "ratsqrt",
+                                                                                                    "realsqrt",
+                                                                                                    "compsqrt"
+                                                                                                ],
+                                                                      "should_propose":  true
+                                                                  },
+                                                                  {
+                                                                      "document_id":  "general-expressions",
+                                                                      "file":  "general_math_expressions.tex",
+                                                                      "line":  23,
+                                                                      "math_region":  20,
+                                                                      "start":  null,
+                                                                      "end":  null,
+                                                                      "source_expression":  "\\aplus{a,b}*c",
+                                                                      "expected_root":  "*",
+                                                                      "valid_semantic_macros":  [
+                                                                                                    "atimes",
+                                                                                                    "nattimes",
+                                                                                                    "inttimes",
+                                                                                                    "rattimes",
+                                                                                                    "realtimes",
+                                                                                                    "comptimes"
+                                                                                                ],
+                                                                      "should_propose":  true
+                                                                  },
+                                                                  {
+                                                                      "document_id":  "general-expressions",
+                                                                      "file":  "general_math_expressions.tex",
+                                                                      "line":  24,
+                                                                      "math_region":  21,
+                                                                      "start":  null,
+                                                                      "end":  null,
+                                                                      "source_expression":  "a+\\aplus{b,c}",
+                                                                      "expected_root":  "+",
+                                                                      "valid_semantic_macros":  [
+                                                                                                    "aplus",
+                                                                                                    "natplus",
+                                                                                                    "intplus",
+                                                                                                    "ratplus",
+                                                                                                    "realplus",
+                                                                                                    "compplus"
+                                                                                                ],
+                                                                      "should_propose":  true
+                                                                  },
+                                                                  {
+                                                                      "document_id":  "general-expressions",
+                                                                      "file":  "general_math_expressions.tex",
+                                                                      "line":  25,
+                                                                      "math_region":  22,
+                                                                      "start":  null,
+                                                                      "end":  null,
+                                                                      "source_expression":  "\\aplus{a,b*c}-\\frac{x}{y}",
+                                                                      "expected_root":  "-",
+                                                                      "valid_semantic_macros":  [
+                                                                                                    "aminus",
+                                                                                                    "natminus",
+                                                                                                    "intminus",
+                                                                                                    "ratminus",
+                                                                                                    "realminus",
+                                                                                                    "compminus"
+                                                                                                ],
+                                                                      "should_propose":  true
+                                                                  },
+                                                                  {
+                                                                      "document_id":  "general-expressions",
+                                                                      "file":  "general_math_expressions.tex",
+                                                                      "line":  26,
+                                                                      "math_region":  23,
+                                                                      "start":  null,
+                                                                      "end":  null,
+                                                                      "source_expression":  "\\notequal{a}{0}",
+                                                                      "expected_root":  "\\notequal",
+                                                                      "valid_semantic_macros":  [
+                                                                                                    "notequal"
+                                                                                                ],
+                                                                      "should_propose":  true
+                                                                  },
+                                                                  {
+                                                                      "document_id":  "general-expressions",
+                                                                      "file":  "general_math_expressions.tex",
+                                                                      "line":  27,
+                                                                      "math_region":  24,
+                                                                      "start":  null,
+                                                                      "end":  null,
+                                                                      "source_expression":  "\\eq{x,y}",
+                                                                      "expected_root":  "\\eq",
+                                                                      "valid_semantic_macros":  [
+                                                                                                    "eq"
+                                                                                                ],
+                                                                      "should_propose":  true
+                                                                  },
+                                                                  {
+                                                                      "document_id":  "general-expressions",
+                                                                      "file":  "general_math_expressions.tex",
+                                                                      "line":  28,
+                                                                      "math_region":  25,
+                                                                      "start":  null,
+                                                                      "end":  null,
+                                                                      "source_expression":  "A\\wedge B",
+                                                                      "expected_root":  "\\wedge",
+                                                                      "valid_semantic_macros":  [
+
+                                                                                                ],
+                                                                      "should_propose":  false
+                                                                  },
+                                                                  {
+                                                                      "document_id":  "general-expressions",
+                                                                      "file":  "general_math_expressions.tex",
+                                                                      "line":  29,
+                                                                      "math_region":  26,
+                                                                      "start":  null,
+                                                                      "end":  null,
+                                                                      "source_expression":  "A\\land B",
+                                                                      "expected_root":  "\\wedge",
+                                                                      "valid_semantic_macros":  [
+
+                                                                                                ],
+                                                                      "should_propose":  false
+                                                                  },
+                                                                  {
+                                                                      "document_id":  "general-expressions",
+                                                                      "file":  "general_math_expressions.tex",
+                                                                      "line":  30,
+                                                                      "math_region":  27,
+                                                                      "start":  null,
+                                                                      "end":  null,
+                                                                      "source_expression":  "A\\wedge(B\\vee C)",
+                                                                      "expected_root":  "\\wedge",
+                                                                      "valid_semantic_macros":  [
+
+                                                                                                ],
+                                                                      "should_propose":  false
+                                                                  },
+                                                                  {
+                                                                      "document_id":  "general-expressions",
+                                                                      "file":  "general_math_expressions.tex",
+                                                                      "line":  31,
+                                                                      "math_region":  28,
+                                                                      "start":  null,
+                                                                      "end":  null,
+                                                                      "source_expression":  "(A\\wedge B)\\vee C",
+                                                                      "expected_root":  "\\vee",
+                                                                      "valid_semantic_macros":  [
+
+                                                                                                ],
+                                                                      "should_propose":  false
+                                                                  },
+                                                                  {
+                                                                      "document_id":  "general-expressions",
+                                                                      "file":  "general_math_expressions.tex",
+                                                                      "line":  32,
+                                                                      "math_region":  29,
+                                                                      "start":  null,
+                                                                      "end":  null,
+                                                                      "source_expression":  "A\\cup B",
+                                                                      "expected_root":  "\\cup",
+                                                                      "valid_semantic_macros":  [
+
+                                                                                                ],
+                                                                      "should_propose":  false
+                                                                  },
+                                                                  {
+                                                                      "document_id":  "general-expressions",
+                                                                      "file":  "general_math_expressions.tex",
+                                                                      "line":  33,
+                                                                      "math_region":  30,
+                                                                      "start":  null,
+                                                                      "end":  null,
+                                                                      "source_expression":  "A\\cap B",
+                                                                      "expected_root":  "\\cap",
+                                                                      "valid_semantic_macros":  [
+
+                                                                                                ],
+                                                                      "should_propose":  false
+                                                                  }
+                                                              ],
+                                                    "Count":  30
+                                                },
+                        "configured_integrals":  {
+                                                     "value":  [
+                                                                   {
+                                                                       "document_id":  "configured-integrals",
+                                                                       "file":  "integral_expressions.tex",
+                                                                       "line":  3,
+                                                                       "math_region":  1,
+                                                                       "start":  null,
+                                                                       "end":  null,
+                                                                       "source_expression":  "\\int f(x)\\,dx",
+                                                                       "expected_root":  "\\int",
+                                                                       "should_propose":  false
+                                                                   },
+                                                                   {
+                                                                       "document_id":  "configured-integrals",
+                                                                       "file":  "integral_expressions.tex",
+                                                                       "line":  4,
+                                                                       "math_region":  2,
+                                                                       "start":  null,
+                                                                       "end":  null,
+                                                                       "source_expression":  "\\int_0^1 f(x)\\,dx",
+                                                                       "expected_root":  "\\int",
+                                                                       "valid_semantic_macros":  [
+                                                                                                     "fooIntegral"
+                                                                                                 ],
+                                                                       "should_propose":  true
+                                                                   },
+                                                                   {
+                                                                       "document_id":  "configured-integrals",
+                                                                       "file":  "integral_expressions.tex",
+                                                                       "line":  5,
+                                                                       "math_region":  3,
+                                                                       "start":  null,
+                                                                       "end":  null,
+                                                                       "source_expression":  "\\int_a^b f(t)\\,dt",
+                                                                       "expected_root":  "\\int",
+                                                                       "valid_semantic_macros":  [
+                                                                                                     "fooIntegral"
+                                                                                                 ],
+                                                                       "should_propose":  true
+                                                                   },
+                                                                   {
+                                                                       "document_id":  "configured-integrals",
+                                                                       "file":  "integral_expressions.tex",
+                                                                       "line":  6,
+                                                                       "math_region":  4,
+                                                                       "start":  null,
+                                                                       "end":  null,
+                                                                       "source_expression":  "\\int_0^1 (a+b*x)\\,dx",
+                                                                       "expected_root":  "\\int",
+                                                                       "valid_semantic_macros":  [
+                                                                                                     "fooIntegral"
+                                                                                                 ],
+                                                                       "should_propose":  true
+                                                                   },
+                                                                   {
+                                                                       "document_id":  "configured-integrals",
+                                                                       "file":  "integral_expressions.tex",
+                                                                       "line":  7,
+                                                                       "math_region":  5,
+                                                                       "start":  null,
+                                                                       "end":  null,
+                                                                       "source_expression":  "\\int_0^1 \\frac{x^2+1}{\\sqrt{1-x}}\\,dx",
+                                                                       "expected_root":  "\\int",
+                                                                       "valid_semantic_macros":  [
+                                                                                                     "fooIntegral"
+                                                                                                 ],
+                                                                       "should_propose":  true
+                                                                   },
+                                                                   {
+                                                                       "document_id":  "configured-integrals",
+                                                                       "file":  "integral_expressions.tex",
+                                                                       "line":  8,
+                                                                       "math_region":  6,
+                                                                       "start":  null,
+                                                                       "end":  null,
+                                                                       "source_expression":  "a+\\int_0^1 f(x)\\,dx",
+                                                                       "expected_root":  "+",
+                                                                       "valid_semantic_macros":  [
+                                                                                                     "aplus",
+                                                                                                     "natplus",
+                                                                                                     "intplus",
+                                                                                                     "ratplus",
+                                                                                                     "realplus",
+                                                                                                     "compplus"
+                                                                                                 ],
+                                                                       "should_propose":  true
+                                                                   },
+                                                                   {
+                                                                       "document_id":  "configured-integrals",
+                                                                       "file":  "integral_expressions.tex",
+                                                                       "line":  9,
+                                                                       "math_region":  7,
+                                                                       "start":  null,
+                                                                       "end":  null,
+                                                                       "source_expression":  "\\frac{\\int_0^1 f(x)\\,dx}{2}",
+                                                                       "expected_root":  "\\frac",
+                                                                       "valid_semantic_macros":  [
+                                                                                                     "adivide",
+                                                                                                     "compdivide",
+                                                                                                     "fraction",
+                                                                                                     "ratdivide",
+                                                                                                     "realdivide"
+                                                                                                 ],
+                                                                       "should_propose":  true
+                                                                   },
+                                                                   {
+                                                                       "document_id":  "configured-integrals",
+                                                                       "file":  "integral_expressions.tex",
+                                                                       "line":  10,
+                                                                       "math_region":  8,
+                                                                       "start":  null,
+                                                                       "end":  null,
+                                                                       "source_expression":  "\\int_0^1 \\left(\\int_0^x f(t)\\,dt\\right)\\,dx",
+                                                                       "expected_root":  "\\int",
+                                                                       "valid_semantic_macros":  [
+                                                                                                     "fooIntegral"
+                                                                                                 ],
+                                                                       "should_propose":  true
+                                                                   }
+                                                               ],
+                                                     "Count":  8
+                                                 }
+                    }
+}
