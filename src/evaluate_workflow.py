@@ -10,21 +10,21 @@ import shutil
 
 from expression_annotation import match_candidate
 from expression_document import _without_alignment_markers, parse_papers
-from expression_metadata import build_expression_config
-from expression_registry import NotationRegistry
+from notation_catalog import build_expression_config
+from expression_parser import NotationRegistry
 from notation_catalog import annotation_candidates, build_catalog
-from notation_matcher import normalize_math_expression
-from notation_scanner import _source_location, mask_latex_comments
-from proposal_eligibility import proposal_eligibility, assess_proposal_candidates
-from semantic_candidate_ranker import document_context, policy_dict, rank_candidates
+from expression_document import normalize_math_expression
+from expression_document import _source_location, mask_latex_comments
+from expression_annotation import proposal_eligibility, assess_proposal_candidates
+from expression_annotation import document_context, policy_dict, rank_candidates
 from smglom_notation_extractor import scan_available_smglom
-from symbol_scanner import PAPERS_DIR
+PAPERS_DIR = Path(__file__).resolve().parents[1] / "papers"
 
 
 ROOT = Path(__file__).resolve().parents[1]
 EVALUATION_DIR = ROOT / "evaluation"
 GOLD_FILE = EVALUATION_DIR / "gold_annotations.json"
-DECISIONS_FILE = ROOT / "decisions" / "review_results.json"
+DECISIONS_FILE = EVALUATION_DIR / "frozen_review_decisions.json"
 DEFAULT_EVALUATION_PAPERS = ROOT / "evaluation" / "frozen_papers"
 
 
@@ -34,16 +34,6 @@ def _node_json(node):
             "children": [_node_json(child) for child in node.children]}
 
 
-def _node_arguments(node):
-    if node.kind == "Alignment":
-        return [child.text.strip() for child in node.children]
-    result = []
-    for child in node.children:
-        text = child.text.strip()
-        if child.kind == "GroupedExpression" and child.value == "{" and text.startswith("{"):
-            text = text[1:-1]
-        result.append(normalize_math_expression(text))
-    return result
 
 
 def _relative(path, root):
@@ -345,7 +335,7 @@ def evaluate(papers_dir=DEFAULT_EVALUATION_PAPERS,
     catalogue = build_catalog(records, raw_config)
     decisions = json.loads(DECISIONS_FILE.read_text(encoding="utf-8")) if DECISIONS_FILE.exists() else []
     accepted = [item for item in decisions if item.get("decision") == "accepted"]
-    from decision_validator import materialize_valid_decisions, validate_decisions
+    from apply_annotations import materialize_valid_decisions, validate_decisions
     validation = validate_decisions(accepted, records, papers_dir)
     valid_accepted = materialize_valid_decisions(validation)
     occurrences = _region_records(Path(papers_dir), config, catalogue, valid_accepted)

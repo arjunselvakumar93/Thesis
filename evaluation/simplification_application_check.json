@@ -1,0 +1,40 @@
+{
+  "requested": true,
+  "accepted": 146,
+  "applied": 55,
+  "failed": 0,
+  "original_sources_unchanged": true,
+  "validated_current": 55,
+  "stale": 91,
+  "unverifiable": 0,
+  "compilation": "not run; no usable compiler was invoked",
+  "eligible_current_decisions": 55,
+  "unique_source_nodes": 55,
+  "same_span_conflicts": 0,
+  "partial_overlap_conflicts": 0,
+  "nested_relationships": 21,
+  "nested_compositions": 13,
+  "independent_replacements": 21,
+  "successfully_rendered_decisions": 55,
+  "successfully_written_files": 1,
+  "failure_reasons": {},
+  "modules_inserted": [
+    {
+      "repository": "arithmetics",
+      "module": "arithmetics"
+    },
+    {
+      "repository": "mv",
+      "module": "equal"
+    }
+  ],
+  "sanity": {
+    "files_checked": 1,
+    "unreadable_files": [],
+    "unbalanced_brace_files": [],
+    "unbalanced_math_delimiter_files": [],
+    "duplicate_module_files": [],
+    "passed": true
+  },
+  "compiler_available": false
+}

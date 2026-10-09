@@ -3,11 +3,127 @@
 from dataclasses import dataclass, replace
 from pathlib import Path
 from expression_parser import ExpressionParser, ParseError
-from expression_registry import NotationRegistry
+from expression_parser import NotationRegistry
 from expression_annotation import match_candidate, match_classification
-from notation_scanner import extract_math_regions, _source_location, mask_latex_comments
-from notation_matcher import normalize_math_expression
-from proposal_eligibility import proposal_eligibility
+import re
+from expression_annotation import proposal_eligibility
+
+
+MATH_ENVIRONMENTS = {
+    "equation", "equation*", "align", "align*",
+    "gather", "gather*", "multline", "multline*",
+    "aligned", "alignedat", "eqnarray", "eqnarray*",
+}
+BEGIN_ENVIRONMENT = re.compile(r"\\begin\{([^{}]+)\}")
+
+
+def _is_escaped(text, position):
+    """Return whether the character at position has an odd backslash prefix."""
+    backslashes = 0
+    position -= 1
+    while position >= 0 and text[position] == "\\":
+        backslashes += 1
+        position -= 1
+    return backslashes % 2 == 1
+
+
+def uncommented_prefix(line):
+    """Keep escaped percent signs and stop at the first TeX comment."""
+    for index, character in enumerate(line):
+        if character == "%" and not _is_escaped(line, index):
+            return line[:index]
+    return line
+
+
+def mask_latex_comments(source):
+    """Replace comments with spaces while preserving every source offset."""
+    masked = []
+    for line in source.splitlines(keepends=True):
+        content = line.rstrip("\r\n")
+        ending = line[len(content):]
+        prefix = uncommented_prefix(content)
+        masked.append(prefix + " " * (len(content) - len(prefix)) + ending)
+    return "".join(masked)
+
+
+def _find_unescaped(text, token, start):
+    """Find a delimiter that is not escaped by a preceding backslash."""
+    position = text.find(token, start)
+    while position != -1:
+        if not _is_escaped(text, position):
+            return position
+        position = text.find(token, position + len(token))
+    return -1
+
+
+def extract_math_regions(source):
+    """Return math contents and their offsets in the original LaTeX source.
+
+    Comments are masked before delimiter parsing, so commented delimiters never
+    create regions. The returned offsets still index the unchanged source.
+    """
+    text = mask_latex_comments(source)
+    regions = []
+    position = 0
+
+    while position < len(text):
+        if text.startswith(r"\(", position) and not _is_escaped(text, position):
+            closing = _find_unescaped(text, r"\)", position + 2)
+            if closing != -1:
+                regions.append({"text": text[position + 2:closing], "start": position + 2})
+                position = closing + 2
+                continue
+
+        if text.startswith(r"\[", position) and not _is_escaped(text, position):
+            closing = _find_unescaped(text, r"\]", position + 2)
+            if closing != -1:
+                regions.append({"text": text[position + 2:closing], "start": position + 2})
+                position = closing + 2
+                continue
+
+        environment = BEGIN_ENVIRONMENT.match(text, position)
+        if environment and not _is_escaped(text, position):
+            name = environment.group(1)
+            if name in MATH_ENVIRONMENTS:
+                closing_token = rf"\end{{{name}}}"
+                content_start = environment.end()
+                closing = text.find(closing_token, content_start)
+                if closing != -1:
+                    regions.append({"text": text[content_start:closing], "start": content_start,
+                                    "environment": name})
+                    position = closing + len(closing_token)
+                    continue
+
+        if text[position] == "$" and not _is_escaped(text, position):
+            delimiter = "$$" if text.startswith("$$", position) else "$"
+            content_start = position + len(delimiter)
+            closing = _find_unescaped(text, delimiter, content_start)
+            if closing != -1:
+                regions.append({"text": text[content_start:closing], "start": content_start})
+                position = closing + len(delimiter)
+                continue
+
+        position += 1
+
+    return regions
+
+
+def _source_location(source, offset):
+    """Map an absolute source offset to a one-based line and column."""
+    line_start = source.rfind("\n", 0, offset) + 1
+    line_end = source.find("\n", offset)
+    if line_end == -1:
+        line_end = len(source)
+    original_line = source[line_start:line_end].rstrip("\r")
+    return source.count("\n", 0, offset) + 1, offset - line_start + 1, original_line
+
+
+PHYSICAL_LINE_BREAK = re.compile(r"[ \t\r]*\n[ \t\r]*")
+
+
+def normalize_math_expression(value):
+    """Replace source-formatting line breaks with one mathematical space."""
+    return PHYSICAL_LINE_BREAK.sub(" ", value)
 
 
 def _without_alignment_markers(text):
@@ -25,6 +141,7 @@ class ParsedRegion:
     error: str = ""
     file: object = None
     diagnostic: object = None
+
 
 
 def parse_math_regions(source, registry, file=None):
@@ -149,8 +266,8 @@ def find_ast_occurrences(regions, classification, configuration, candidate=None)
             start, end = region.start + match["start"], region.start + match["end"]
             line, column, text = _source_location(region.source, start)
             match["source_start"], match["source_end"] = start, end
+            match["document_source"] = region.source
             match["source_expression"] = region.source[start:end]
-            match["raw_source"] = match["source_expression"]
             match["math_region_start"], match["math_region_end"] = region.start, region.end
             match["full_math_region"] = region.source[region.start:region.end]
             containing = [node for node in region.tree.walk()
@@ -158,6 +275,11 @@ def find_ast_occurrences(regions, classification, configuration, candidate=None)
             match["ast_depth"] = max(0, len(containing) - 1)
             node = min(containing, key=lambda item: item.end - item.start) if containing else None
             if node is not None:
+                # Keep the public match schema serializable.  Review range
+                # selection also needs the live node, so retain it under a
+                # private runtime-only key instead of changing ``ast_node``.
+                match["_ast_node_object"] = node
+                match["region_tree"] = region.tree
                 if (not match.get("argument_roles")
                         and len(node.roles) == len(match.get("arguments", ()))):
                     match["argument_roles"] = list(node.roles)
@@ -206,6 +328,7 @@ def find_structural_occurrences(regions, query, configuration, semantic_status=N
                 "EnvironmentExpression": "environment",
                 "BinaryOperator": "binary operator",
                 "NaryOperator": "operator sequence",
+                "UncertainOperatorChain": "uncertain operator chain",
                 "UnaryOperator": "unary operator",
                 "Command": "command application",
             }.get(node.kind, node.kind.replace("_", " ").lower())
@@ -250,16 +373,22 @@ def find_structural_occurrences(regions, query, configuration, semantic_status=N
                 "file": region.file, "line": line, "column": column, "text": text,
                 "source_start": start, "source_end": end,
                 "source_expression": region.source[start:end],
-                "raw_source": region.source[start:end],
                 "matched_expression": region.source[start:end],
                 "arguments": arguments, "argument_roles": roles,
                 "pattern_type": "structural", "classification": rule,
                 "math_region_start": region.start, "math_region_end": region.end,
                 "full_math_region": region.source[region.start:region.end],
+                "document_source": region.source,
                 "ast_depth": max(0, sum(1 for parent in region.tree.walk()
                                          if parent.start <= node.start and parent.end >= node.end) - 1),
                 "ast_debug": f"{node.kind}({node.value})",
                 "structural_node": True,
                 "proposal_eligibility": {"eligible": True},
+                "ast_node": {
+                    "kind": node.kind, "value": node.value,
+                    "start": node.start, "end": node.end, "text": node.text,
+                    "roles": list(node.roles),
+                },
+                "_ast_node_object": node, "region_tree": region.tree,
             })
     return occurrences

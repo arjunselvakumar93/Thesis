@@ -17,3 +17,8 @@
   opaque preservation does not provide operator fixity, precedence, or meaning.
 - OCR and image-to-mathematics conversion are separate preprocessing tasks and
   are not part of this textual parser.
+- Automatic precedence follows available registry metadata. Operators marked
+  non-associative or uncertain expose complete alternative review ranges rather
+  than claiming an unstated grouping.
+- Range correction is limited to complete, reparsable source boundaries derived
+  from the surrounding expression; arbitrary partial TeX ranges are rejected.

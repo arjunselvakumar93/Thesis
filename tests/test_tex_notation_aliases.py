@@ -12,9 +12,9 @@ sys.path.insert(0, str(SRC_DIR))
 
 
 import review_workflow
-from notation_scanner import find_notation_occurrences
+from ast_test_helpers import scan_rule as find_notation_occurrences
 from smglom_notation_extractor import SMGLOM_REPOSITORIES, scan_repository
-from tex_notation_aliases import (
+from expression_parser import (
     canonicalize_tex_notation,
     get_equivalent_tex_notations,
 )

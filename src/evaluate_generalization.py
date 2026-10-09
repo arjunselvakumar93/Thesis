@@ -7,8 +7,8 @@ from pathlib import Path
 
 from expression_annotation import match_candidate, match_classification
 from expression_document import parse_math_regions
-from expression_metadata import build_expression_config
-from expression_registry import NotationRegistry
+from notation_catalog import build_expression_config
+from expression_parser import NotationRegistry
 from notation_catalog import annotation_candidates, build_catalog
 from smglom_notation_extractor import scan_available_smglom
 

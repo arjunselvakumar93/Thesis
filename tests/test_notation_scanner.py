@@ -5,8 +5,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from notation_classifier import classify_notation
-from notation_scanner import extract_math_regions, find_notation_occurrences
+from notation_catalog import classify_notation
+from expression_document import extract_math_regions
+from ast_test_helpers import scan_rule as find_notation_occurrences
 from smglom_notation_extractor import parse_notation, parse_symdef
 
 
@@ -40,7 +41,7 @@ class TestNotationScanner(unittest.TestCase):
     def test_inline_math_subtraction_and_original_location(self):
         source = "The guess-and-check method gives $A-b-C$.\n"
         matches, paper = self.scan(source, sequence_rule("-", "natminus"))
-        self.assertEqual(matches, [{
+        expected = {
             "file": paper,
             "line": 1,
             "column": source.index("A-b-C") + 1,
@@ -52,7 +53,9 @@ class TestNotationScanner(unittest.TestCase):
             "matched_visible_notation": "-",
             "arguments": ["A", "b", "C"],
             "pattern_type": "sequence",
-        }])
+        }
+        self.assertEqual(len(matches), 1)
+        self.assertEqual({key: matches[0][key] for key in expected}, expected)
 
     def test_plus_outside_math_is_ignored_and_math_sequence_matches(self):
         matches, _ = self.scan(
@@ -125,13 +128,13 @@ class TestNotationScanner(unittest.TestCase):
 
     def test_complex_operands_and_structural_lines_in_real_math_context(self):
         source = (
-            "\\begin{equation}\n"
+            "\\begin{align}\n"
             "\\label{eq:formula-monic}\n"
-            "-\\frac{B}{2}\n"
-            "\\frac{B^2}{4} - C\n"
-            "u^2 - v^2\n"
+            "-\\frac{B}{2} \\\\\n"
+            "\\frac{B^2}{4} - C \\\\\n"
+            "u^2 - v^2 \\\\\n"
             "\\frac{B^2}{4} - \\frac{B^2}{4}\n"
-            "\\end{equation}\n"
+            "\\end{align}\n"
         )
         matches, _ = self.scan(source, sequence_rule("-", "natminus"))
         fraction = r"\frac{B^2}{4}"

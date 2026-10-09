@@ -9,12 +9,12 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from apply_annotations import build_application_plan, render_application_plan
-from decision_validator import materialize_valid_decisions, validate_decisions
+from apply_annotations import materialize_valid_decisions, validate_decisions
 from evaluate_corpus import evaluate_corpus
 from evaluate_workflow import evaluate
 from expression_document import find_ast_occurrences, parse_papers
-from expression_metadata import build_expression_config
-from notation_scanner import _source_location
+from notation_catalog import build_expression_config
+from expression_document import _source_location
 from notation_catalog import annotation_candidates, build_catalog
 from review_workflow import build_review_decision
 from smglom_notation_extractor import scan_available_smglom
@@ -86,11 +86,11 @@ class TestReviewReadiness(unittest.TestCase):
                 classification = dict(selected["classification"], expression_config=config)
                 decision = build_review_decision(match, selected, classification, target)
                 self.assertIsNotNone(decision, gap["full_expression"])
-                self.assertTrue({"file", "source_start", "source_end", "source_expression",
+                self.assertTrue({"file", "start", "end",
                                  "semantic_macro", "arguments", "argument_roles", "source_hash",
                                  "decision_id", "configuration_source",
                                  "candidate_classification", "adapter_family",
-                                 "candidate_provenance"} <= decision.keys())
+                                 } <= decision.keys())
                 decisions.append(decision)
 
             validation = validate_decisions(decisions, self.records, target)

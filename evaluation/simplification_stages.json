@@ -1,0 +1,65 @@
+[
+  {
+    "stage": "baseline",
+    "src_modules": 33,
+    "src_loc": 11274,
+    "tests_modules": 31,
+    "tests_loc": 5623
+  },
+  {
+    "stage": "1: remove legacy CLI and lookup",
+    "src_modules": 32,
+    "src_loc": 10484,
+    "tests_modules": 31,
+    "tests_loc": 5507
+  },
+  {
+    "stage": "2: remove shared models and flatten review item",
+    "src_modules": 31,
+    "src_loc": 10185,
+    "tests_modules": 31,
+    "tests_loc": 5473
+  },
+  {
+    "stage": "3: simplify range alternatives",
+    "src_modules": 31,
+    "src_loc": 10158,
+    "tests_modules": 31,
+    "tests_loc": 5472
+  },
+  {
+    "stage": "4: candidates use dictionaries and plain provenance",
+    "src_modules": 31,
+    "src_loc": 10148,
+    "tests_modules": 32,
+    "tests_loc": 5507
+  },
+  {
+    "stage": "5: retire the duplicate text parser and scanner",
+    "src_modules": 26,
+    "src_loc": 8372,
+    "tests_modules": 30,
+    "tests_loc": 4797
+  },
+  {
+    "stage": "6: consolidate parser, catalogue, matcher and application responsibilities",
+    "src_modules": 17,
+    "src_loc": 7912,
+    "tests_modules": 30,
+    "tests_loc": 4793
+  },
+  {
+    "stage": "7: canonical start/end decisions and direct persistence",
+    "src_modules": 17,
+    "src_loc": 7776,
+    "tests_modules": 30,
+    "tests_loc": 4804
+  },
+  {
+    "stage": "8: remove duplicate prototype tests; organize merged modules",
+    "src_modules": 17,
+    "src_loc": 7748,
+    "tests_modules": 29,
+    "tests_loc": 4661
+  }
+]

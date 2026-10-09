@@ -22,3 +22,7 @@ reference/
 
 # Windows
 Thumbs.db
+
+# Local backups of the pre-simplification working tree
+/simplification-backup.zip
+/pre-decision-simplification.zip

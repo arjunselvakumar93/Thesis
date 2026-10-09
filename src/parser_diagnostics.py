@@ -5,9 +5,9 @@ from collections import Counter
 import json
 from pathlib import Path
 from expression_document import parse_papers
-from expression_metadata import build_expression_config
-from symbol_scanner import PAPERS_DIR
-from tex_notation_aliases import canonicalize_tex_notation
+from notation_catalog import build_expression_config
+PAPERS_DIR = Path(__file__).resolve().parents[1] / "papers"
+from expression_parser import canonicalize_tex_notation
 
 
 def coverage_report(regions, catalogue=None):

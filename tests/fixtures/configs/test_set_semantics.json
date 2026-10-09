@@ -1,6 +1,6 @@
 {
-  "demo_only": true,
-  "description": "Test/demo configuration; not real SMGloM set semantics.",
+  "test_only": true,
+  "description": "Synthetic test configuration; not real SMGloM set semantics.",
   "operators": [
     {
       "token": "\\cup",
@@ -8,28 +8,28 @@
       "associativity": "sequence",
       "arity": "variable",
       "semantic_macro": "fooUnion",
-      "source": "test/demo configuration; not real SMGloM"
+      "source": "synthetic test configuration; not real SMGloM"
     },
     {
       "token": "\\cap",
       "precedence": 20,
       "associativity": "left",
       "semantic_macro": "fooIntersection",
-      "source": "test/demo configuration; not real SMGloM"
+      "source": "synthetic test configuration; not real SMGloM"
     },
     {
       "token": "\\in",
       "precedence": 1,
       "associativity": "none",
       "semantic_macro": "fooMembership",
-      "source": "test/demo configuration; not real SMGloM"
+      "source": "synthetic test configuration; not real SMGloM"
     },
     {
       "token": "\\subseteq",
       "precedence": 1,
       "associativity": "none",
       "semantic_macro": "fooSubseteq",
-      "source": "test/demo configuration; not real SMGloM"
+      "source": "synthetic test configuration; not real SMGloM"
     }
   ],
   "commands": {

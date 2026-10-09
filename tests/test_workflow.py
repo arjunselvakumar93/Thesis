@@ -13,223 +13,20 @@ sys.path.insert(0, str(SRC_DIR))
 
 import review_workflow
 
-from symbol_scanner import (
-    remove_latex_comment,
-    extract_braced_expression,
-    extract_command_with_arguments,
-)
 
-from review_workflow import (
-    generate_semantic_suggestion,
-)
+
+
 
 from apply_annotations import (
     build_module_declaration,
     insert_required_modules,
 )
 
-from smglom_lookup import (
-    find_symbol_definitions,
-)
 
 
-class TestSymbolScanner(unittest.TestCase):
-
-    def test_remove_comment(self):
-
-        line = r"x = \sqrt{4} % comment"
-
-        result = remove_latex_comment(
-            line
-        )
-
-        self.assertEqual(
-            result,
-            r"x = \sqrt{4} "
-        )
-
-    def test_simple_sqrt_expression(self):
-
-        line = r"x = \sqrt{3}"
-
-        position = line.find(
-            r"\sqrt"
-        )
-
-        result = extract_braced_expression(
-            line,
-            position,
-            r"\sqrt"
-        )
-
-        self.assertEqual(
-            result,
-            r"\sqrt{3}"
-        )
-
-    def test_nested_sqrt_expression(self):
-
-        line = (
-            r"\sqrt{\frac{B^2}{4} - C}"
-        )
-
-        position = line.find(
-            r"\sqrt"
-        )
-
-        result = extract_braced_expression(
-            line,
-            position,
-            r"\sqrt"
-        )
-
-        self.assertEqual(
-            result,
-            r"\sqrt{\frac{B^2}{4} - C}"
-        )
-
-    def test_two_sqrt_expressions(self):
-
-        line = (
-            r"\sqrt{3} + \sqrt{2}"
-        )
-
-        first_position = line.find(
-            r"\sqrt"
-        )
-
-        second_position = line.find(
-            r"\sqrt",
-            first_position + 1
-        )
-
-        first = extract_braced_expression(
-            line,
-            first_position,
-            r"\sqrt"
-        )
-
-        second = extract_braced_expression(
-            line,
-            second_position,
-            r"\sqrt"
-        )
-
-        self.assertEqual(
-            first,
-            r"\sqrt{3}"
-        )
-
-        self.assertEqual(
-            second,
-            r"\sqrt{2}"
-        )
-
-    def test_simple_fraction_expression(self):
-
-        line = r"\frac{B}{2}"
-
-        position = line.find(
-            r"\frac"
-        )
-
-        (
-            expression,
-            arguments
-        ) = extract_command_with_arguments(
-            line,
-            position,
-            r"\frac",
-            2
-        )
-
-        self.assertEqual(
-            expression,
-            r"\frac{B}{2}"
-        )
-
-        self.assertEqual(
-            arguments,
-            [
-                "B",
-                "2"
-            ]
-        )
-
-    def test_nested_fraction_expression(self):
-
-        line = (
-            r"\frac{1}{\sqrt{3} - \sqrt{2}}"
-        )
-
-        position = line.find(
-            r"\frac"
-        )
-
-        (
-            expression,
-            arguments
-        ) = extract_command_with_arguments(
-            line,
-            position,
-            r"\frac",
-            2
-        )
-
-        self.assertEqual(
-            expression,
-            r"\frac{1}{\sqrt{3} - \sqrt{2}}"
-        )
-
-        self.assertEqual(
-            arguments,
-            [
-                "1",
-                r"\sqrt{3} - \sqrt{2}"
-            ]
-        )
 
 
-class TestSemanticSuggestion(unittest.TestCase):
 
-    def test_asqrt_suggestion(self):
-
-        result = generate_semantic_suggestion(
-            r"\sqrt",
-            r"\sqrt{3}",
-            "asqrt"
-        )
-
-        self.assertEqual(
-            result,
-            r"\asqrt{3}"
-        )
-
-    def test_realsqrt_suggestion(self):
-
-        result = generate_semantic_suggestion(
-            r"\sqrt",
-            r"\sqrt{x}",
-            "realsqrt"
-        )
-
-        self.assertEqual(
-            result,
-            r"\realsqrt{x}"
-        )
-
-    def test_adivide_suggestion(self):
-
-        result = generate_semantic_suggestion(
-            r"\frac",
-            r"\frac{B}{2}",
-            "adivide"
-        )
-
-        self.assertEqual(
-            result,
-            r"\adivide{B}{2}"
-        )
 
 
 class TestModuleHandling(unittest.TestCase):
@@ -277,78 +74,6 @@ class TestModuleHandling(unittest.TestCase):
         )
 
 
-class TestSMGloMLookup(unittest.TestCase):
-
-    def test_find_one_argument_sqrt_candidates(self):
-
-        results = find_symbol_definitions(
-            r"\sqrt",
-            required_args=1
-        )
-
-        macros = {
-            result["macro"]
-            for result in results
-        }
-
-        self.assertIn(
-            "asqrt",
-            macros
-        )
-
-        self.assertIn(
-            "realsqrt",
-            macros
-        )
-
-    def test_two_argument_root_is_filtered_out(self):
-
-        results = find_symbol_definitions(
-            r"\sqrt",
-            required_args=1
-        )
-
-        macros = {
-            result["macro"]
-            for result in results
-        }
-
-        self.assertNotIn(
-            "aroot",
-            macros
-        )
-
-        self.assertNotIn(
-            "realroot",
-            macros
-        )
-
-    def test_find_two_argument_fraction_candidates(self):
-
-        results = find_symbol_definitions(
-            r"\frac",
-            required_args=2
-        )
-
-        macros = {
-            result["macro"]
-            for result in results
-        }
-
-        self.assertIn(
-            "adivide",
-            macros
-        )
-
-        self.assertIn(
-            "fraction",
-            macros
-        )
-
-        self.assertIn(
-            "realdivide",
-            macros
-        )
 
 
 class TestDecisionPersistence(unittest.TestCase):
@@ -399,7 +124,7 @@ class TestDecisionPersistence(unittest.TestCase):
             "semantic_macro": "asqrt",
             "file": "paper.tex",
             "line": 10,
-            "column": 5,
+            "column": 5, "start": 100, "end": 110,
             "decision": "accepted"
         }
 
@@ -408,7 +133,7 @@ class TestDecisionPersistence(unittest.TestCase):
             "semantic_macro": "adivide",
             "file": "paper.tex",
             "line": 20,
-            "column": 8,
+            "column": 8, "start": 200, "end": 210,
             "decision": "accepted"
         }
 
@@ -466,7 +191,7 @@ class TestDecisionPersistence(unittest.TestCase):
             "semantic_macro": "adivide",
             "file": "paper.tex",
             "line": 20,
-            "column": 8,
+            "column": 8, "start": 200, "end": 210,
             "decision": "rejected"
         }
 
@@ -475,7 +200,7 @@ class TestDecisionPersistence(unittest.TestCase):
             "semantic_macro": "adivide",
             "file": "paper.tex",
             "line": 20,
-            "column": 8,
+            "column": 8, "start": 200, "end": 210,
             "decision": "accepted"
         }
 

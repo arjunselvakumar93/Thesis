@@ -1,9 +1,358 @@
-﻿"""Notation-independent, source-preserving Pratt parser of complete expressions."""
+"""Source-preserving expression grammar, tokenizer and Pratt parser."""
 
-from dataclasses import dataclass, field, replace
+from dataclasses import dataclass
+from copy import deepcopy
 import re
-from expression_registry import NotationRegistry, Operator
-from expression_tokenizer import tokenize, Token, unicode_script
+import unicodedata
+from dataclasses import dataclass, field, replace
+
+# TeX-syntax equivalences independent of SMGloM semantic meanings.
+
+
+# The first entry is the canonical spelling used for internal comparison.
+# Entries contain TeX tokens only; semantic macro names do not belong here.
+TEX_NOTATION_ALIAS_GROUPS = (
+    (r"\ne", r"\neq"),
+)
+
+
+_CANONICAL_BY_NOTATION = {
+    notation: group[0]
+    for group in TEX_NOTATION_ALIAS_GROUPS
+    for notation in group
+}
+
+_EQUIVALENTS_BY_CANONICAL = {
+    group[0]: group
+    for group in TEX_NOTATION_ALIAS_GROUPS
+}
+
+
+def _configured_groups(configured_aliases=None):
+    """Return validated, semantics-free alias groups from project configuration."""
+    if not configured_aliases:
+        return ()
+    if not isinstance(configured_aliases, dict):
+        raise ValueError("notation_aliases must map TeX spellings to TeX spellings")
+    groups = []
+    for alias, target in configured_aliases.items():
+        if not all(isinstance(item, str) and item and not any(c.isspace() for c in item)
+                   for item in (alias, target)):
+            raise ValueError("notation aliases require nonempty TeX tokens")
+        groups.append((target, alias))
+    return tuple(groups)
+
+
+def _alias_maps(configured_aliases=None):
+    groups = (*TEX_NOTATION_ALIAS_GROUPS, *_configured_groups(configured_aliases))
+    graph = {}
+    for group in groups:
+        for item in group:
+            graph.setdefault(item, set()).update(group)
+    canonical, equivalents = {}, {}
+    unseen = set(graph)
+    while unseen:
+        seed = unseen.pop()
+        component, pending = {seed}, [seed]
+        while pending:
+            item = pending.pop()
+            for neighbour in graph.get(item, ()):
+                if neighbour not in component:
+                    component.add(neighbour); unseen.discard(neighbour); pending.append(neighbour)
+        preferred = next((group[0] for group in groups if group[0] in component), min(component))
+        ordered = (preferred, *sorted(component - {preferred}))
+        equivalents[preferred] = ordered
+        canonical.update({item: preferred for item in component})
+    return canonical, equivalents
+
+
+def canonicalize_tex_notation(token, configured_aliases=None):
+    """Return the canonical TeX spelling for a visible notation token."""
+    canonical, _ = _alias_maps(configured_aliases)
+    return canonical.get(token, token)
+
+
+def get_equivalent_tex_notations(token, configured_aliases=None):
+    """Return equivalent TeX spellings, canonical spelling first."""
+    canonical_map, equivalents = _alias_maps(configured_aliases)
+    canonical = canonical_map.get(token, token)
+    return list(equivalents.get(canonical, (token,)))
+
+
+# Validated notation data shared by tokenization, parsing and annotation.
+
+
+STRUCTURAL_TOKENS = {"%", "#", "^", "_", "{", "}", "(", ")", "[", "]", ",", r"\left", r"\right"}
+
+
+@dataclass(frozen=True)
+class Operator:
+    token: str
+    precedence: int
+    associativity: str
+    fixity: str = "infix"
+    arity: object = 2
+    variants: tuple = ()
+    semantic_macro: str = ""
+    source: str = "user configuration"
+    uncertain_chain: bool = False
+    precedence_source: str = "configuration"
+    associativity_source: str = "configuration"
+
+    def __post_init__(self):
+        if not isinstance(self.token, str) or not self.token or type(self.precedence) is not int:
+            raise ValueError("Operators require a token and integer binding power")
+        if self.associativity not in {"left", "right", "none", "sequence"}:
+            raise ValueError("Associativity must be left, right, none, or sequence")
+        if self.associativity == "sequence" and (self.arity != "variable" or self.fixity != "infix"):
+            raise ValueError("Sequence grouping requires variable-arity infix metadata")
+        if self.fixity not in {"prefix", "infix", "postfix"}:
+            raise ValueError("Unsupported operator fixity")
+        if self.arity not in ({2, "variable"} if self.fixity == "infix" else {1}):
+            raise ValueError("Arity does not agree with fixity")
+        if not self.precedence_source or not self.associativity_source:
+            raise ValueError("Operator precedence and associativity sources must be explicit")
+        object.__setattr__(self, "variants", tuple(self.variants))
+
+
+    @property
+    def precedence_is_explicit(self):
+        return self.precedence_source not in {"", "default", "unknown"}
+
+
+@dataclass(frozen=True)
+class BoundConstruct:
+    """Declarative grammar for operators that bind a body or variables."""
+    token: str
+    node_kind: str
+    scripts: object = None
+    leading_roles: tuple = ()
+    body_role: str = "body"
+    body_precedence: int = 0
+    terminators: tuple = ()
+    trailing_prefix: str = ""
+    trailing_role: str = "variable"
+    trailing_forms: tuple = ()
+    semantic_macro: str = ""
+    semantic_argument_roles: tuple = ()
+    semantic_module: str = ""
+    semantic_repository: str = ""
+    name: str = ""
+    keywords: tuple = ()
+    description: str = ""
+    source: str = "user configuration"
+
+    def __post_init__(self):
+        if not (re.fullmatch(r"\\(?:[A-Za-z]+|[^A-Za-z])", self.token)
+                or (len(self.token) == 1 and not self.token.isspace())):
+            raise ValueError("Bound constructs require a TeX control sequence or Unicode head")
+        if self.node_kind not in {"BigOperatorApplication", "BinderApplication", "BoundExpression"}:
+            raise ValueError("Unsupported bound construct node kind")
+        scripts = dict(self.scripts or {})
+        if any(marker not in {"_", "^"} or not isinstance(role, str)
+               for marker, role in scripts.items()):
+            raise ValueError("Bound construct scripts must map _/^ to role names")
+        if type(self.body_precedence) is not int:
+            raise ValueError("Bound construct body precedence must be an integer")
+        object.__setattr__(self, "scripts", scripts)
+        object.__setattr__(self, "leading_roles", tuple(self.leading_roles))
+        object.__setattr__(self, "terminators", tuple(self.terminators))
+        forms = tuple(dict(form) for form in self.trailing_forms)
+        for form in forms:
+            if not (form.get("separator") or form.get("prefix") or form.get("prefix_command")):
+                raise ValueError("Trailing forms require a separator or prefix")
+            if type(form.get("variables", 1)) is not int or form.get("variables", 1) < 1:
+                raise ValueError("Trailing-form variable count must be positive")
+        object.__setattr__(self, "trailing_forms", forms)
+        object.__setattr__(self, "semantic_argument_roles", tuple(self.semantic_argument_roles))
+        object.__setattr__(self, "keywords", tuple(self.keywords))
+
+
+class NotationRegistry:
+    def __init__(self, operators=(), commands=None, syntax=None, bound_constructs=None,
+                 notation_aliases=None):
+        raw_syntax = deepcopy(syntax or {})
+        self.notation_aliases = deepcopy(notation_aliases or {})
+        self.operators = {}
+        configured_operators = list(operators)
+        for operator_class in raw_syntax.get("literal_operator_classes", ()):
+            characters = operator_class.get("characters", "")
+            if (not isinstance(characters, str) or not characters
+                    or any(character.isspace() or character == "\\" for character in characters)):
+                raise ValueError("Literal operator classes require non-space literal characters")
+            shared = {key: value for key, value in operator_class.items() if key != "characters"}
+            configured_operators.extend(dict(shared, token=character) for character in characters)
+        for item in configured_operators:
+            op = item if isinstance(item, Operator) else Operator(**item)
+            for variant in (op.token, *op.variants):
+                if not isinstance(variant, str) or not variant or any(char.isspace() for char in variant):
+                    raise ValueError("Operator spellings must be nonempty tokens")
+                if variant in STRUCTURAL_TOKENS:
+                    raise ValueError("TeX structural syntax cannot be registered as an operator")
+                for spelling in get_equivalent_tex_notations(variant, self.notation_aliases):
+                    key = spelling, op.fixity
+                    previous = self.operators.get(key)
+                    if previous is not None and previous != op:
+                        raise ValueError("Conflicting operator metadata: " + spelling)
+                    self.operators[key] = op
+        self.spellings = sorted({key[0] for key in self.operators}, key=lambda x: (-len(x), x))
+        self.commands = deepcopy(commands or {})
+        for command, spec in self.commands.items():
+            if not re.fullmatch(r"\\(?:[A-Za-z]+|[^A-Za-z])", command):
+                raise ValueError("Commands require a TeX control sequence")
+            if type(spec.get("arity")) is not int or spec["arity"] < 0:
+                raise ValueError("Commands require a nonnegative arity")
+            if spec.get("optional_arguments", 0) not in (0, 1):
+                raise ValueError("At most one leading optional argument is supported")
+            spec.setdefault("source", "user configuration")
+            argument_types = spec.get("argument_types", [])
+            if argument_types and (len(argument_types) != spec["arity"]
+                                   or any(kind not in {"expression", "sequence", "opaque"} for kind in argument_types)):
+                raise ValueError("argument_types must describe every command argument")
+        self.bound_constructs = {}
+        raw_constructs = bound_constructs or {}
+        items = raw_constructs.items() if isinstance(raw_constructs, dict) else (
+            (item.get("token"), item) for item in raw_constructs)
+        for token, raw in items:
+            spec = dict(raw)
+            spec.setdefault("token", token)
+            construct = BoundConstruct(**spec)
+            if construct.token in self.bound_constructs:
+                raise ValueError("Conflicting bound construct metadata: " + construct.token)
+            self.bound_constructs[construct.token] = construct
+        self.syntax = raw_syntax
+        self.script_precedence = self.syntax.get("script_precedence", 100)
+        self.application_precedence = self.syntax.get("application_precedence", 100)
+        if type(self.script_precedence) is not int or type(self.application_precedence) is not int:
+            raise ValueError("Syntax binding powers must be integers")
+        self.functions = set(self.syntax.get("functions", ()))
+        pairs = self.syntax.get("delimiter_pairs", {"(": ")", "[": "]", "{": "}"})
+        if not isinstance(pairs, dict) or any(not isinstance(a, str) or not isinstance(b, str)
+                                              or len(a) != 1 or len(b) != 1
+                                              for a, b in pairs.items()):
+            raise ValueError("delimiter_pairs must map single characters")
+        self.delimiter_pairs = dict(pairs)
+        self.open_delimiters = set(pairs)
+        self.close_delimiters = set(pairs.values())
+        self.symbolic_calls = bool(self.syntax.get("symbolic_calls", False))
+        punctuation = self.syntax.get("trailing_punctuation", ())
+        if (not isinstance(punctuation, (list, tuple))
+                or any(not isinstance(item, str) or len(item) != 1 for item in punctuation)):
+            raise ValueError("trailing_punctuation must contain single-character tokens")
+        self.trailing_punctuation = set(punctuation)
+        environments = self.syntax.get("alignment_environments", ())
+        if not isinstance(environments, (list, tuple)) or any(not isinstance(x, str) for x in environments):
+            raise ValueError("alignment_environments must be a list of names")
+        self.alignment_environments = set(environments)
+        ignored = self.syntax.get("ignored_commands", {})
+        if isinstance(ignored, list):
+            ignored = {command: 0 for command in ignored}
+        if not isinstance(ignored, dict):
+            raise ValueError("ignored_commands must map TeX commands to argument counts")
+        self.ignored_commands = {}
+        for command, arity in ignored.items():
+            if (not re.fullmatch(r"\\(?:[A-Za-z]+|[^A-Za-z])", command)
+                    or type(arity) is not int or arity < 0):
+                raise ValueError("Ignored TeX commands require a control sequence and nonnegative arity")
+            self.ignored_commands[command] = arity
+        self.implicit = None
+        if self.syntax.get("implicit_operator"):
+            self.implicit = Operator(**self.syntax["implicit_operator"])
+            if self.implicit.fixity != "infix":
+                raise ValueError("Implicit operator must be infix")
+
+    @classmethod
+    def from_config(cls, config):
+        return cls(config.get("operators", ()), config.get("commands"), config.get("syntax"),
+                   config.get("bound_constructs"), config.get("notation_aliases"))
+
+    def equivalent(self, visible, node_operator):
+        visible_forms = set(get_equivalent_tex_notations(visible, self.notation_aliases))
+        operator_forms = {node_operator.token, *node_operator.variants}
+        operator_forms = {form for item in operator_forms
+                          for form in get_equivalent_tex_notations(item, self.notation_aliases)}
+        return bool(visible_forms & operator_forms)
+
+
+# TeX lexical syntax only; mathematical meanings come from the registry.
+
+
+@dataclass(frozen=True)
+class Token:
+    kind: str
+    text: str
+    start: int
+    end: int
+
+
+def unicode_script(character):
+    """Return (TeX-style role, plain value) for Unicode sub/superscripts."""
+    decomposition = unicodedata.decomposition(character)
+    if not decomposition:
+        return None
+    parts = decomposition.split()
+    if not parts or parts[0] not in {"<sub>", "<super>"}:
+        return None
+    try:
+        value = "".join(chr(int(code, 16)) for code in parts[1:])
+    except ValueError:
+        return None
+    return ("_" if parts[0] == "<sub>" else "^", value)
+
+
+def tokenize(source, registry):
+    tokens = []
+    position = 0
+    while position < len(source):
+        start = position
+        character = source[position]
+        if character.isspace():
+            position += 1
+            continue
+        if character == "%":
+            end = source.find("\n", position)
+            position = len(source) if end == -1 else end
+            continue
+        spelling = next((item for item in registry.spellings
+                         if source.startswith(item, position)
+                         and not (item[-1].isalpha() and position + len(item) < len(source)
+                                  and source[position + len(item)].isalpha())), None)
+        if spelling:
+            position += len(spelling)
+            kind = "operator"
+        elif character == "\\":
+            found = re.match(r"\\(?:[A-Za-z]+|[^A-Za-z])", source[position:])
+            position += len(found.group()) if found else 1
+            kind = "command" if found else "unknown"
+            if found and found.group() in {r"\left", r"\right"}:
+                kind = "sized_open" if found.group() == r"\left" else "sized_close"
+            elif found and found.group() in {r"\{", r"\}"}:
+                kind = "open" if found.group() == r"\{" else "close"
+        elif unicode_script(character):
+            position += 1
+            kind = "unicode_script"
+        elif character.isdecimal():
+            found = re.match(r"\d+(?:\.\d+)?", source[position:])
+            position += len(found.group())
+            kind = "number"
+        elif character.isalpha() or unicodedata.category(character).startswith("L"):
+            position += 1
+            kind = "atom"
+        else:
+            position += 1
+            kind = ("open" if character in registry.open_delimiters else
+                    "close" if character in registry.close_delimiters else
+                    {"^": "script", "_": "script", ",": "comma"}.get(character))
+            if kind is None:
+                category = unicodedata.category(character)
+                kind = ("combining" if category.startswith("M") else
+                        "math_symbol" if category in {"Sm", "So"} else "unknown")
+        tokens.append(Token(kind, source[start:position], start, position))
+    tokens.append(Token("end", "", len(source), len(source)))
+    return tokens
+
+
+# Notation-independent, source-preserving Pratt parser of complete expressions.
 
 
 class ParseError(ValueError):
@@ -28,6 +377,13 @@ class Expression:
     @property
     def text(self):
         return self.source[self.start:self.end]
+
+
+    def named_children(self):
+        """Iterate structural children with stable, domain-specific roles."""
+        roles = self.roles or tuple(
+            f"argument_{index}" for index in range(1, len(self.children) + 1))
+        return tuple(zip(roles, self.children))
 
     def walk(self):
         stack = [self]
@@ -325,9 +681,21 @@ class ExpressionParser:
                 break
             if not implicit:
                 self._take()
-            if (left.kind in {"BinaryOperator", "NaryOperator"} and isinstance(left.metadata, Operator)
+            if (left.kind in {"BinaryOperator", "NaryOperator", "UncertainOperatorChain"}
+                    and isinstance(left.metadata, Operator)
                     and left.metadata.precedence == op.precedence
                     and (left.metadata.associativity == "none" or op.associativity == "none")):
+                if (left.metadata == op and op.associativity == "none"
+                        and op.uncertain_chain):
+                    right = self._expression(op.precedence + 1)
+                    children = ((*left.children, right)
+                                if left.kind == "UncertainOperatorChain" else (left, right))
+                    left = self._node(
+                        "UncertainOperatorChain", left.start, right.end, op.token, children,
+                        operator_start=token.start, metadata=op, notation=token.text,
+                        roles=tuple(f"alternative_operand_{index}"
+                                    for index in range(1, len(children) + 1)))
+                    continue
                 raise ParseError("Non-associative operators require explicit grouping")
             right = self._expression(op.precedence + (op.associativity != "right"))
             if (right.kind in {"BinaryOperator", "NaryOperator"} and isinstance(right.metadata, Operator)
@@ -592,14 +960,3 @@ class ExpressionParser:
                 if depth == 0:
                     return self._node("OpaqueArgument", start, token.end)
         raise ParseError("Unclosed semantic argument")
-
-
-def match_expression_scopes(text, classification, config):
-    """Compatibility adapter; annotation matching itself accepts an AST."""
-    from expression_annotation import match_ast
-    registry = NotationRegistry.from_config(config)
-    try:
-        root = ExpressionParser(registry=registry).parse(text)
-    except ParseError:
-        return []
-    return match_ast(root, classification, registry)

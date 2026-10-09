@@ -8,9 +8,9 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from expression_annotation import match_ast
-from expression_metadata import build_expression_config
+from notation_catalog import build_expression_config
 from expression_parser import ExpressionParser
-from expression_registry import NotationRegistry
+from expression_parser import NotationRegistry
 from notation_catalog import build_catalog, registry_from_catalog
 from smglom_dependencies import (
     compare_snapshots,

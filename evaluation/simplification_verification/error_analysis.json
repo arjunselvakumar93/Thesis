@@ -1,0 +1,1282 @@
+{
+  "counts": {
+    "annotation blocker": 122,
+    "application conflict": 0,
+    "argument extraction error": 0,
+    "correct candidate ranked below top-1": 0,
+    "correct semantic candidate absent": 0,
+    "missing repository": 16,
+    "missing semantic metadata": 0,
+    "notation recognition miss": 0,
+    "parser scope error": 0,
+    "stale decision": 85
+  },
+  "missing_repositories": [
+    "algebra",
+    "calculus",
+    "computing",
+    "constants",
+    "epistemology",
+    "grammar",
+    "linear-algebra",
+    "linguistics",
+    "logic",
+    "math",
+    "numbers",
+    "primes",
+    "sets",
+    "theocs",
+    "trigonometry",
+    "units"
+  ],
+  "semantic_candidate_summary": {
+    "semantic_gold_cases": 46,
+    "proposal_eligible_cases": 44,
+    "candidate_present": 44,
+    "proposal_candidate_absent": 0,
+    "already_semantic_cases": 2,
+    "already_semantic_correctly_skipped": 2,
+    "absent_by_failure_category": {},
+    "high_level_classifications": {
+      "already_semantic_correctly_skipped": 2
+    }
+  },
+  "semantic_gold_case_analysis": [
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 80,
+      "expression": "x^2 + Bx + C = (x-R)(x-S)",
+      "gold_semantics": [
+        "eq"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 85,
+      "expression": "x = R",
+      "gold_semantics": [
+        "eq"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 106,
+      "expression": "R = S = -\\frac{B}{2}",
+      "gold_semantics": [
+        "eq"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 107,
+      "expression": "(-\\frac{B}{2} + z)(-\\frac{B}{2} - z)",
+      "gold_semantics": [
+        "atimes",
+        "comptimes",
+        "inttimes",
+        "nattimes",
+        "rattimes",
+        "realtimes"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 117,
+      "expression": "\\frac{B^2}{4} - C",
+      "gold_semantics": [
+        "aminus",
+        "compminus",
+        "intminus",
+        "natminus",
+        "ratminus",
+        "realminus"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 154,
+      "expression": "i \\sqrt{3}",
+      "gold_semantics": [
+        "atimes",
+        "comptimes",
+        "inttimes",
+        "nattimes",
+        "rattimes",
+        "realtimes"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 172,
+      "expression": "ax^2 + bx + c = 0",
+      "gold_semantics": [
+        "eq"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 196,
+      "expression": "ax + b = 0",
+      "gold_semantics": [
+        "eq"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 196,
+      "expression": "x = -\\frac{b}{a}",
+      "gold_semantics": [
+        "eq"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 196,
+      "expression": "a \\neq 0",
+      "gold_semantics": [
+        "notequal"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 206,
+      "expression": "(u + v)^2 = u^2 + 2uv + v^2",
+      "gold_semantics": [
+        "eq"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 207,
+      "expression": "(u+v)(u-v) = u^2 - v^2",
+      "gold_semantics": [
+        "eq"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 211,
+      "expression": "\\frac{1}{\\sqrt{3} - \\sqrt{2}}",
+      "gold_semantics": [
+        "adivide"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 249,
+      "expression": "(x + D)^2",
+      "gold_semantics": [
+        "comppower",
+        "intpower",
+        "power",
+        "ratpower",
+        "realpower"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 259,
+      "expression": "x^2 = K",
+      "gold_semantics": [
+        "eq"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 352,
+      "expression": "(x+p)(x+q)",
+      "gold_semantics": [
+        "atimes",
+        "comptimes",
+        "inttimes",
+        "nattimes",
+        "rattimes",
+        "realtimes"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "quadratic-paper",
+      "file": "1910.06709/quadratic-20121216.tex",
+      "line": 388,
+      "expression": "x^2 + Bx + C = (x - R)(x - S)",
+      "gold_semantics": [
+        "eq"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 4,
+      "expression": "a+b",
+      "gold_semantics": [
+        "aplus",
+        "compplus",
+        "intplus",
+        "natplus",
+        "ratplus",
+        "realplus"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 5,
+      "expression": "a-b",
+      "gold_semantics": [
+        "aminus",
+        "compminus",
+        "intminus",
+        "natminus",
+        "ratminus",
+        "realminus"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 6,
+      "expression": "a*b",
+      "gold_semantics": [
+        "atimes",
+        "comptimes",
+        "inttimes",
+        "nattimes",
+        "rattimes",
+        "realtimes"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 7,
+      "expression": "a/b",
+      "gold_semantics": [
+        "adivide",
+        "compdivide",
+        "ratdivide",
+        "realdivide"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 8,
+      "expression": "a+b*c",
+      "gold_semantics": [
+        "aplus",
+        "compplus",
+        "intplus",
+        "natplus",
+        "ratplus",
+        "realplus"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 9,
+      "expression": "(a+b)*c",
+      "gold_semantics": [
+        "atimes",
+        "comptimes",
+        "inttimes",
+        "nattimes",
+        "rattimes",
+        "realtimes"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 10,
+      "expression": "a*b+c",
+      "gold_semantics": [
+        "aplus",
+        "compplus",
+        "intplus",
+        "natplus",
+        "ratplus",
+        "realplus"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 11,
+      "expression": "a+b-c",
+      "gold_semantics": [
+        "aminus",
+        "compminus",
+        "intminus",
+        "natminus",
+        "ratminus",
+        "realminus"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 12,
+      "expression": "a-b-c",
+      "gold_semantics": [
+        "aminus",
+        "compminus",
+        "intminus",
+        "natminus",
+        "ratminus",
+        "realminus"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 13,
+      "expression": "a+(b-c)",
+      "gold_semantics": [
+        "aplus",
+        "compplus",
+        "intplus",
+        "natplus",
+        "ratplus",
+        "realplus"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 14,
+      "expression": "(a+b)-c",
+      "gold_semantics": [
+        "aminus",
+        "compminus",
+        "intminus",
+        "natminus",
+        "ratminus",
+        "realminus"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 15,
+      "expression": "x^2",
+      "gold_semantics": [
+        "comppower",
+        "intpower",
+        "power",
+        "ratpower",
+        "realpower"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 17,
+      "expression": "x_i^2",
+      "gold_semantics": [
+        "comppower",
+        "intpower",
+        "power",
+        "ratpower",
+        "realpower"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 18,
+      "expression": "x^2_i",
+      "gold_semantics": [
+        "comppower",
+        "intpower",
+        "power",
+        "ratpower",
+        "realpower"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 19,
+      "expression": "x^{n+1}",
+      "gold_semantics": [
+        "comppower",
+        "intpower",
+        "power",
+        "ratpower",
+        "realpower"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 21,
+      "expression": "\\frac{a+b}{c-d}",
+      "gold_semantics": [
+        "adivide",
+        "compdivide",
+        "fraction",
+        "ratdivide",
+        "realdivide"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 22,
+      "expression": "\\sqrt{x^2+y^2}",
+      "gold_semantics": [
+        "asqrt",
+        "compsqrt",
+        "intsqrt",
+        "natsqrt",
+        "ratsqrt",
+        "realsqrt"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 23,
+      "expression": "\\aplus{a,b}*c",
+      "gold_semantics": [
+        "atimes",
+        "comptimes",
+        "inttimes",
+        "nattimes",
+        "rattimes",
+        "realtimes"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 24,
+      "expression": "a+\\aplus{b,c}",
+      "gold_semantics": [
+        "aplus",
+        "compplus",
+        "intplus",
+        "natplus",
+        "ratplus",
+        "realplus"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 25,
+      "expression": "\\aplus{a,b*c}-\\frac{x}{y}",
+      "gold_semantics": [
+        "aminus",
+        "compminus",
+        "intminus",
+        "natminus",
+        "ratminus",
+        "realminus"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 26,
+      "expression": "\\notequal{a}{0}",
+      "gold_semantics": [
+        "notequal"
+      ],
+      "gold_candidate_in_raw_candidate_set": false,
+      "rank": null,
+      "absence_reason": "The AST already contains the gold semantic command; proposal generation matches presentation notation and does not propose a second wrapper.",
+      "already_semantic": true,
+      "proposal_eligible": false,
+      "mapping_available": false,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": true,
+      "no_proposal_expected": true,
+      "correctly_suppressed": true
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 27,
+      "expression": "\\eq{x,y}",
+      "gold_semantics": [
+        "eq"
+      ],
+      "gold_candidate_in_raw_candidate_set": false,
+      "rank": null,
+      "absence_reason": "The AST already contains the gold semantic command; proposal generation matches presentation notation and does not propose a second wrapper.",
+      "already_semantic": true,
+      "proposal_eligible": false,
+      "mapping_available": false,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": true,
+      "no_proposal_expected": true,
+      "correctly_suppressed": true
+    },
+    {
+      "document": "configured-integrals",
+      "file": "integral_expressions.tex",
+      "line": 4,
+      "expression": "\\int_0^1 f(x)\\,dx",
+      "gold_semantics": [
+        "fooIntegral"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "configured-integrals",
+      "file": "integral_expressions.tex",
+      "line": 5,
+      "expression": "\\int_a^b f(t)\\,dt",
+      "gold_semantics": [
+        "fooIntegral"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "configured-integrals",
+      "file": "integral_expressions.tex",
+      "line": 6,
+      "expression": "\\int_0^1 (a+b*x)\\,dx",
+      "gold_semantics": [
+        "fooIntegral"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "configured-integrals",
+      "file": "integral_expressions.tex",
+      "line": 7,
+      "expression": "\\int_0^1 \\frac{x^2+1}{\\sqrt{1-x}}\\,dx",
+      "gold_semantics": [
+        "fooIntegral"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "configured-integrals",
+      "file": "integral_expressions.tex",
+      "line": 8,
+      "expression": "a+\\int_0^1 f(x)\\,dx",
+      "gold_semantics": [
+        "aplus",
+        "compplus",
+        "intplus",
+        "natplus",
+        "ratplus",
+        "realplus"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "configured-integrals",
+      "file": "integral_expressions.tex",
+      "line": 9,
+      "expression": "\\frac{\\int_0^1 f(x)\\,dx}{2}",
+      "gold_semantics": [
+        "adivide",
+        "compdivide",
+        "fraction",
+        "ratdivide",
+        "realdivide"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    },
+    {
+      "document": "configured-integrals",
+      "file": "integral_expressions.tex",
+      "line": 10,
+      "expression": "\\int_0^1 \\left(\\int_0^x f(t)\\,dt\\right)\\,dx",
+      "gold_semantics": [
+        "fooIntegral"
+      ],
+      "gold_candidate_in_raw_candidate_set": true,
+      "rank": 1,
+      "absence_reason": null,
+      "already_semantic": false,
+      "proposal_eligible": true,
+      "mapping_available": true,
+      "mapping_unavailable": false,
+      "already_semantic_correctly_skipped": false,
+      "no_proposal_expected": false,
+      "correctly_suppressed": false
+    }
+  ],
+  "semantic_candidate_misses": [],
+  "already_semantic_cases": [
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 26,
+      "math_region": 23,
+      "expression": "\\notequal{a}{0}",
+      "normalized_expression": "\\notequal{a}{0}",
+      "gold_semantics": [
+        "notequal"
+      ],
+      "visible_notation": "\\notequal",
+      "candidate_lookup_key": "\\notequal",
+      "ast_node_type": "SemanticCommand",
+      "ast_subtree": {
+        "kind": "SemanticCommand",
+        "value": "\\notequal",
+        "start": 0,
+        "end": 15,
+        "text": "\\notequal{a}{0}",
+        "roles": [
+          "argument1",
+          "argument2"
+        ],
+        "children": [
+          {
+            "kind": "GroupedExpression",
+            "value": "{",
+            "start": 9,
+            "end": 12,
+            "text": "{a}",
+            "roles": [],
+            "children": [
+              {
+                "kind": "Atom",
+                "value": "a",
+                "start": 10,
+                "end": 11,
+                "text": "a",
+                "roles": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "kind": "GroupedExpression",
+            "value": "{",
+            "start": 12,
+            "end": 15,
+            "text": "{0}",
+            "roles": [],
+            "children": [
+              {
+                "kind": "Number",
+                "value": "0",
+                "start": 13,
+                "end": 14,
+                "text": "0",
+                "roles": [],
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      "raw_candidates_returned": [],
+      "failure_category": [
+        "H"
+      ],
+      "pipeline_stage": "candidate generation for an already-semantic AST node",
+      "reason_candidate_is_absent": "The AST already contains the gold semantic command; proposal generation matches presentation notation and does not propose a second wrapper.",
+      "expected_repositories": [
+        "mv"
+      ],
+      "expected_modules": [
+        "equal"
+      ],
+      "gold_modules": [
+        "equal"
+      ],
+      "catalogue_visible_forms": [
+        "\\ne",
+        "\\neq"
+      ],
+      "catalogue_records_found": 1,
+      "catalogue_records_annotation_ready": 1,
+      "annotation_ready_status": false,
+      "detected_scope": {
+        "start": 0,
+        "end": 15,
+        "text": "\\notequal{a}{0}"
+      },
+      "recommended_resolution": "Treat the source as already annotated; presentation-notation proposal generation should not wrap the semantic command again.",
+      "requires_code_change": false,
+      "requires_repository": false,
+      "requires_manual_config": false,
+      "high_level_classification": "already_semantic_correctly_skipped"
+    },
+    {
+      "document": "general-expressions",
+      "file": "general_math_expressions.tex",
+      "line": 27,
+      "math_region": 24,
+      "expression": "\\eq{x,y}",
+      "normalized_expression": "\\eq{x,y}",
+      "gold_semantics": [
+        "eq"
+      ],
+      "visible_notation": "\\eq",
+      "candidate_lookup_key": "\\eq",
+      "ast_node_type": "SemanticCommand",
+      "ast_subtree": {
+        "kind": "SemanticCommand",
+        "value": "\\eq",
+        "start": 0,
+        "end": 8,
+        "text": "\\eq{x,y}",
+        "roles": [
+          "argument1"
+        ],
+        "children": [
+          {
+            "kind": "GroupedExpression",
+            "value": "{",
+            "start": 3,
+            "end": 8,
+            "text": "{x,y}",
+            "roles": [],
+            "children": [
+              {
+                "kind": "Atom",
+                "value": "x",
+                "start": 4,
+                "end": 5,
+                "text": "x",
+                "roles": [],
+                "children": []
+              },
+              {
+                "kind": "Atom",
+                "value": "y",
+                "start": 6,
+                "end": 7,
+                "text": "y",
+                "roles": [],
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      "raw_candidates_returned": [],
+      "failure_category": [
+        "H"
+      ],
+      "pipeline_stage": "candidate generation for an already-semantic AST node",
+      "reason_candidate_is_absent": "The AST already contains the gold semantic command; proposal generation matches presentation notation and does not propose a second wrapper.",
+      "expected_repositories": [
+        "mv"
+      ],
+      "expected_modules": [
+        "equal"
+      ],
+      "gold_modules": [
+        "equal"
+      ],
+      "catalogue_visible_forms": [
+        "="
+      ],
+      "catalogue_records_found": 1,
+      "catalogue_records_annotation_ready": 1,
+      "annotation_ready_status": false,
+      "detected_scope": {
+        "start": 0,
+        "end": 8,
+        "text": "\\eq{x,y}"
+      },
+      "recommended_resolution": "Treat the source as already annotated; presentation-notation proposal generation should not wrap the semantic command again.",
+      "requires_code_change": false,
+      "requires_repository": false,
+      "requires_manual_config": false,
+      "high_level_classification": "already_semantic_correctly_skipped"
+    }
+  ],
+  "false_proposals": [],
+  "false_proposal_summary": {
+    "count": 0,
+    "grouped_reasons": {},
+    "examples": []
+  },
+  "failure_category_definitions": {
+    "E": "visible notation mismatch: AST notation is not a declared or configured spelling",
+    "J": "missing user configuration: no explicit semantic mapping validates the surface spelling"
+  },
+  "gold_schema_audit": {
+    "migration_applied_to_frozen_gold": false,
+    "eligibility_rule": "proposal_eligible uses explicit proposal_eligible when present, otherwise legacy should_propose, and excludes a verified SemanticCommand root",
+    "legacy_already_semantic_records": [
+      {
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 26,
+        "expression": "\\notequal{a}{0}",
+        "old_should_propose": true,
+        "derived_proposal_eligible": false,
+        "reason": "source AST root is already semantic; a second wrapper is incorrect"
+      },
+      {
+        "document": "general-expressions",
+        "file": "general_math_expressions.tex",
+        "line": 27,
+        "expression": "\\eq{x,y}",
+        "old_should_propose": true,
+        "derived_proposal_eligible": false,
+        "reason": "source AST root is already semantic; a second wrapper is incorrect"
+      }
+    ]
+  },
+  "non_semantic_gold_summary": {
+    "total": 12,
+    "categories": {
+      "ambiguous notation with no approved semantic mapping": 2,
+      "required semantic arguments unavailable": 1,
+      "structural container only": 1,
+      "structural script with no semantic proposal expected": 2,
+      "unsupported semantic family or no candidate expected": 6
+    },
+    "label_audit": {
+      "structural_only": 12,
+      "already_semantic": 0,
+      "negative_or_no_proposal": 12,
+      "annotation_only": 0,
+      "other_partial": 0
+    }
+  }
+}

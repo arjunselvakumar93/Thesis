@@ -156,20 +156,9 @@ class TestGenericReviewIntegration(unittest.TestCase):
                      patch("builtins.input", return_value=symbol), \
                      patch.object(review_workflow, "find_generic_candidates",
                                   return_value=[candidate]), \
-                     patch.object(review_workflow, "run_generic_review") as generic, \
-                     patch.object(review_workflow, "find_symbol_definitions") as legacy:
+                     patch.object(review_workflow, "run_generic_review") as generic:
                     review_workflow.main()
                 generic.assert_called_once_with(symbol, [candidate])
-                legacy.assert_not_called()
-
-    def test_main_keeps_explicit_legacy_command_path(self):
-        with patch.object(sys, "argv", ["review_workflow.py", "--legacy"]), \
-             patch("builtins.input", return_value=r"\frac"), \
-             patch.object(review_workflow, "find_generic_candidates") as generic, \
-             patch.object(review_workflow, "find_symbol_definitions", return_value=[]) as legacy:
-            review_workflow.main()
-        generic.assert_not_called()
-        legacy.assert_called_once_with(r"\frac")
 
 
 if __name__ == "__main__":

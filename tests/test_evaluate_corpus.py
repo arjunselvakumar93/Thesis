@@ -157,7 +157,7 @@ class TestCorpusEvaluation(unittest.TestCase):
                          ["lower", "upper"])
 
     def test_production_ranker_has_no_gold_or_evaluation_dependency(self):
-        source = (ROOT / "src" / "semantic_candidate_ranker.py").read_text(encoding="utf-8")
+        source = (ROOT / "src" / "expression_annotation.py").read_text(encoding="utf-8")
         self.assertNotIn("gold_annotations", source)
         self.assertNotIn("gold_v1", source)
         self.assertNotIn("evaluate_corpus", source)

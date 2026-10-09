@@ -9,7 +9,7 @@ SRC_DIR = PROJECT_DIR / "src"
 sys.path.insert(0, str(SRC_DIR))
 
 
-from notation_classifier import (
+from notation_catalog import (
     classify_notation,
 )
 

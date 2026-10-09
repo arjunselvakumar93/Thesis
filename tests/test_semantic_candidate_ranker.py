@@ -6,7 +6,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-import semantic_candidate_ranker as ranker
+import expression_annotation as ranker
 
 
 def candidate(macro, module, source="SMGloM"):

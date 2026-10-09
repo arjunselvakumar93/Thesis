@@ -1,6 +1,6 @@
 """Command-line entry point for safe review-decision validation."""
 
-from decision_validator import main
+from apply_annotations import validate_main as main
 
 
 if __name__ == "__main__":

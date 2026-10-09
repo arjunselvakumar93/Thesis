@@ -1,3 +1,4 @@
+import hashlib
 import sys
 import tempfile
 import unittest
@@ -41,6 +42,9 @@ class TestApplyIntegration(unittest.TestCase):
                 decisions.append({
                     "file": "paper.tex", "line": line, "column": 1,
                     "matched_expression": expression,
+                    "start": original.index(expression),
+                    "end": original.index(expression) + len(expression),
+                    "source_hash": hashlib.sha256(expression.encode("utf-8")).hexdigest(),
                     "semantic_suggestion": suggestion,
                     "semantic_module": module,
                     "semantic_repository": repository,

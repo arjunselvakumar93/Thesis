@@ -67,7 +67,9 @@
         {"separator": "\\,", "prefix_command": "\\mathrm", "prefix_argument": "d"},
         {"prefix_command": "\\mathrm", "prefix_argument": "d"},
         {"separator": "\\,", "prefix_command": "\\operatorname", "prefix_argument": "d"},
-        {"prefix_command": "\\operatorname", "prefix_argument": "d"}
+        {"prefix_command": "\\operatorname", "prefix_argument": "d"},
+        {"separator": "\\,", "prefix_command": "\\text", "prefix_argument": "d"},
+        {"prefix_command": "\\text", "prefix_argument": "d"}
       ]
     },
     "\\fooIntegral": {

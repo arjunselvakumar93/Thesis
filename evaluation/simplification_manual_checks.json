@@ -1,0 +1,117 @@
+[
+  {
+    "expression": "a+b*c",
+    "exit_code": 0,
+    "output": "BinaryOperator(+) [0:5] notation=+ source=user configuration\n  Atom(a) [0:1]\n  BinaryOperator(*) [2:5] notation=* source=user configuration\n    Atom(b) [2:3]\n    Atom(c) [4:5]\n",
+    "stderr": ""
+  },
+  {
+    "expression": "p(x+y) * p(x-y)",
+    "exit_code": 0,
+    "output": "BinaryOperator(*) [0:15] notation=* source=user configuration\n  FunctionApplication(application) [0:6] roles=function,arguments\n    function: Atom(p) [0:1]\n    arguments: GroupedExpression(() [1:6]\n      BinaryOperator(+) [2:5] notation=+ source=user configuration\n        Atom(x) [2:3]\n        Atom(y) [4:5]\n  FunctionApplication(application) [9:15] roles=function,arguments\n    function: Atom(p) [9:10]\n    arguments: GroupedExpression(() [10:15]\n      BinaryOperator(-) [11:14] notation=- source=user configuration\n        Atom(x) [11:12]\n        Atom(y) [13:14]\n",
+    "stderr": ""
+  },
+  {
+    "expression": "x^{n+1}",
+    "exit_code": 0,
+    "output": "ScriptedExpression(scripts) [0:7] roles=base,^\n  base: Atom(x) [0:1]\n  ^: GroupedExpression({) [2:7]\n    BinaryOperator(+) [3:6] notation=+ source=user configuration\n      Atom(n) [3:4]\n      Number(1) [5:6]\n",
+    "stderr": ""
+  },
+  {
+    "expression": "x_i",
+    "exit_code": 0,
+    "output": "ScriptedExpression(scripts) [0:3] roles=base,_\n  base: Atom(x) [0:1]\n  _: Atom(i) [2:3]\n",
+    "stderr": ""
+  },
+  {
+    "expression": "a\\cdot b\\cdot c",
+    "exit_code": 0,
+    "output": "NaryOperator(\\cdot) [0:15] notation=\\cdot source=structural example configuration; semantic candidates are loaded separately from SMGloM\n  Atom(a) [0:1]\n  Atom(b) [7:8]\n  Atom(c) [14:15]\n",
+    "stderr": ""
+  },
+  {
+    "expression": "P(A)",
+    "exit_code": 0,
+    "output": "FunctionApplication(application) [0:4] roles=function,arguments\n  function: Atom(P) [0:1]\n  arguments: GroupedExpression(() [1:4]\n    Atom(A) [2:3]\n",
+    "stderr": ""
+  },
+  {
+    "expression": "P(A_1)+\\dots+P(A_k)",
+    "exit_code": 0,
+    "output": "BinaryOperator(+) [0:19] notation=+ source=user configuration\n  BinaryOperator(+) [0:12] notation=+ source=user configuration\n    FunctionApplication(application) [0:6] roles=function,arguments\n      function: Atom(P) [0:1]\n      arguments: GroupedExpression(() [1:6]\n        ScriptedExpression(scripts) [2:5] roles=base,_\n          base: Atom(A) [2:3]\n          _: Number(1) [4:5]\n    Command(\\dots) [7:12] notation=\\dots source=user configuration\n  FunctionApplication(application) [13:19] roles=function,arguments\n    function: Atom(P) [13:14]\n    arguments: GroupedExpression(() [14:19]\n      ScriptedExpression(scripts) [15:18] roles=base,_\n        base: Atom(A) [15:16]\n        _: Atom(k) [17:18]\n",
+    "stderr": ""
+  },
+  {
+    "expression": "f: A \\to B",
+    "exit_code": 0,
+    "output": "BinaryOperator(:) [0:10] notation=: source=structural grammar configuration\n  Atom(f) [0:1]\n  BinaryOperator(\\to) [3:10] notation=\\to source=structural grammar configuration\n    Atom(A) [3:4]\n    Atom(B) [9:10]\n",
+    "stderr": ""
+  },
+  {
+    "expression": "\\int_a^b f(x)\\text{d}x",
+    "exit_code": 0,
+    "output": "BoundExpression(\\int) [0:22] roles=lower,upper,body,variable notation=\\int source=user configuration\n  lower: Atom(a) [5:6]\n  upper: Atom(b) [7:8]\n  body: FunctionApplication(application) [9:13] roles=function,arguments\n    function: Atom(f) [9:10]\n    arguments: GroupedExpression(() [10:13]\n      Atom(x) [11:12]\n  variable: Atom(x) [21:22]\n",
+    "stderr": ""
+  },
+  {
+    "expression": "\\omega_i\\in\\Omega",
+    "exit_code": 0,
+    "output": "BinaryOperator(\\in) [0:17] notation=\\in source=user configuration\n  ScriptedExpression(scripts) [0:8] roles=base,_\n    base: SymbolAtom(\\omega) [0:6] notation=\\omega source=structural unknown-command fallback\n    _: Atom(i) [7:8]\n  SymbolAtom(\\Omega) [11:17] notation=\\Omega source=structural unknown-command fallback\n",
+    "stderr": ""
+  },
+  {
+    "expression": "P(ωᵢ)",
+    "exit_code": 0,
+    "output": "FunctionApplication(application) [0:5] roles=function,arguments\n  function: Atom(P) [0:1]\n  arguments: GroupedExpression(() [1:5]\n    ScriptedExpression(scripts) [2:4] roles=base,_\n      base: Atom(ω) [2:3]\n      _: Atom(i) [3:4]\n",
+    "stderr": ""
+  },
+  {
+    "expression": "A∪B",
+    "exit_code": 0,
+    "output": "NaryOperator(∪) [0:3] notation=∪ source=Unicode structural grammar\n  Atom(A) [0:1]\n  Atom(B) [2:3]\n",
+    "stderr": ""
+  },
+  {
+    "expression": "∑_{ωᵢ∈A} P(ωᵢ)",
+    "exit_code": 0,
+    "output": "BigOperatorApplication(∑) [0:14] roles=lower,body notation=∑ source=Unicode structural grammar\n  lower: GroupedExpression({) [2:8]\n    BinaryOperator(∈) [3:7] notation=∈ source=Unicode structural grammar\n      ScriptedExpression(scripts) [3:5] roles=base,_\n        base: Atom(ω) [3:4]\n        _: Atom(i) [4:5]\n      Atom(A) [6:7]\n  body: FunctionApplication(application) [9:14] roles=function,arguments\n    function: Atom(P) [9:10]\n    arguments: GroupedExpression(() [10:14]\n      ScriptedExpression(scripts) [11:13] roles=base,_\n        base: Atom(ω) [11:12]\n        _: Atom(i) [12:13]\n",
+    "stderr": ""
+  },
+  {
+    "expression": "\\foo{x}+y",
+    "exit_code": 0,
+    "output": "BinaryOperator(+) [0:9] notation=+ source=user configuration\n  OpaqueCommandApplication(\\foo) [0:7] roles=arg1 notation=\\foo source=structural unknown-command fallback\n    arg1: GroupedExpression({) [4:7]\n      Atom(x) [5:6]\n  Atom(y) [8:9]\n",
+    "stderr": ""
+  },
+  {
+    "review_query": "+",
+    "exit_code": 0,
+    "output": "Enter a mathematical notation, semantic macro, or search term (type ? to browse available notations): Scanning arithmetics: C:\\Users\\91812\\Thesis\\annotation_workflow\\reference\\arithmetics\\source\nScanning mv: C:\\Users\\91812\\Thesis\\annotation_workflow\\reference\\mv\\source\nFound 1 review scope(s) in the paper collection.\n============================================================\nReview 1 of 1\nFile: review_scope_cases.tex\nLine: 2  Column: 3\n\nOriginal formula:\np(x+y) * p(x - y)\n\nSuggested scope:\nx+y\n\nHighlighted:\np([x+y]) * p(x - y)\n\nStructure:\naddition\n\nReview state:\nANNOTATION_READY\n\nPrecedence confidence:\nconfiguration-dependent\n\nArguments:\n  left: x\n  right: y\n\nSemantic candidates:\n[1] \\aplus\n    module: arithmetics\n    source: SMGloM\n    evidence: exact_visible_notation, fallback_only\n[2] \\compplus\n    module: comparith\n    source: SMGloM\n    evidence: exact_visible_notation, fallback_only\n[3] \\intplus\n    module: intarith\n    source: SMGloM\n    evidence: exact_visible_notation, fallback_only\n[4] \\natplus\n    module: natarith\n    source: SMGloM\n    evidence: exact_visible_notation, fallback_only\n[5] \\ratplus\n    module: ratarith\n    source: SMGloM\n    evidence: exact_visible_notation, fallback_only\n[6] \\realplus\n    module: realarith\n    source: SMGloM\n    evidence: exact_visible_notation, fallback_only\n\nSelected semantic macro: \\aplus\nProposed annotation: \\aplus{x,y}\n\nPreview mode: no decisions were written.\n",
+    "stderr": ""
+  },
+  {
+    "review_query": "*",
+    "exit_code": 0,
+    "output": "Enter a mathematical notation, semantic macro, or search term (type ? to browse available notations): Scanning arithmetics: C:\\Users\\91812\\Thesis\\annotation_workflow\\reference\\arithmetics\\source\nScanning mv: C:\\Users\\91812\\Thesis\\annotation_workflow\\reference\\mv\\source\nScanning arithmetics: C:\\Users\\91812\\Thesis\\annotation_workflow\\reference\\arithmetics\\source\nScanning mv: C:\\Users\\91812\\Thesis\\annotation_workflow\\reference\\mv\\source\nFound 1 structural review scope(s) in the paper collection.\n============================================================\nReview 1 of 1\nFile: review_scope_cases.tex\nLine: 2  Column: 1\n\nOriginal formula:\np(x+y) * p(x - y)\n\nSuggested scope:\np(x+y) * p(x - y)\n\nHighlighted:\n[p(x+y) * p(x - y)]\n\nStructure:\nmultiplication\n\nReview state:\nSTRUCTURAL_ONLY\n\nPrecedence confidence:\nconfiguration-dependent\n\nArguments:\n  left: p(x+y)\n  right: p(x - y)\n\nSemantic status:\nNo semantic mapping is available in the loaded catalogue or configuration.\n\nAnnotation status:\nNot annotation-ready.\n\nPreview mode: no decisions were written.\n",
+    "stderr": ""
+  },
+  {
+    "review_query": "-",
+    "exit_code": 0,
+    "output": "Enter a mathematical notation, semantic macro, or search term (type ? to browse available notations): Scanning arithmetics: C:\\Users\\91812\\Thesis\\annotation_workflow\\reference\\arithmetics\\source\nScanning mv: C:\\Users\\91812\\Thesis\\annotation_workflow\\reference\\mv\\source\nFound 1 review scope(s) in the paper collection.\n============================================================\nReview 1 of 1\nFile: review_scope_cases.tex\nLine: 2  Column: 12\n\nOriginal formula:\np(x+y) * p(x - y)\n\nSuggested scope:\nx - y\n\nHighlighted:\np(x+y) * p([x - y])\n\nStructure:\nsubtraction\n\nReview state:\nANNOTATION_READY\n\nPrecedence confidence:\nconfiguration-dependent\n\nArguments:\n  left: x\n  right: y\n\nSemantic candidates:\n[1] \\aminus\n    module: arithmetics\n    source: SMGloM\n    evidence: exact_visible_notation, fallback_only\n[2] \\compminus\n    module: comparith\n    source: SMGloM\n    evidence: exact_visible_notation, fallback_only\n[3] \\intminus\n    module: intarith\n    source: SMGloM\n    evidence: exact_visible_notation, fallback_only\n[4] \\natminus\n    module: natarith\n    source: SMGloM\n    evidence: exact_visible_notation, fallback_only\n[5] \\ratminus\n    module: ratarith\n    source: SMGloM\n    evidence: exact_visible_notation, fallback_only\n[6] \\realminus\n    module: realarith\n    source: SMGloM\n    evidence: exact_visible_notation, fallback_only\n\nSelected semantic macro: \\aminus\nProposed annotation: \\aminus{x,y}\n\nPreview mode: no decisions were written.\n",
+    "stderr": ""
+  },
+  {
+    "check": "range correction",
+    "original": "x+y",
+    "alternatives": [
+      "p(x+y)",
+      "p(x+y) * p(x - y)"
+    ],
+    "selected": "p(x+y) * p(x - y)",
+    "highlighted": "[p(x+y) * p(x - y)]",
+    "review_state": "STRUCTURAL_ONLY",
+    "obsolete_candidates_removed": true,
+    "decisions_unchanged": true
+  }
+]

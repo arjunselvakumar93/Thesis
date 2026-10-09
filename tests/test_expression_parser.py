@@ -7,14 +7,13 @@ from unittest.mock import patch
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from expression_parser import ExpressionParser, Operator, ParseError
-from expression_metadata import prepare_expression_config
-from notation_matcher import match_notation
-from notation_scanner import find_notation_occurrences
+from ast_test_helpers import match_rule as match_notation
+from ast_test_helpers import scan_rule as find_notation_occurrences
 from smglom_notation_extractor import parse_symdef
 from review_workflow import find_generic_candidates, generate_classified_suggestion
 import review_workflow
 import apply_annotations
-from decision_validator import validate_decisions
+from apply_annotations import validate_decisions
 
 
 def config():
@@ -117,15 +116,6 @@ class TestExpressionPipeline(unittest.TestCase):
         self.record.update(repository="test", module="arithmetic")
         self.candidate = find_generic_candidates("+", [self.record])[0]
 
-    def test_smglom_precedence_requires_direction_and_associativity(self):
-        cfg = prepare_expression_config(self.candidate, {
-            "smglom_precedence_direction": "lower", "selected": {"associativity": "left"}})
-        self.assertEqual(cfg["operators"][0]["precedence"], -500)
-        self.assertEqual(cfg["commands"][r"\aplus"], {"arity": 1, "semantic": True})
-        for settings in ({}, {"selected": {"precedence": 10}},
-                         {"selected": {"associativity": "left"}}):
-            with self.assertRaises(ValueError):
-                prepare_expression_config(self.candidate, settings)
 
     def test_math_only_scanning_and_suggestion(self):
         rule = dict(self.candidate["classification"], expression_config=config())
@@ -138,7 +128,6 @@ class TestExpressionPipeline(unittest.TestCase):
 
     def test_review_and_validation_reuse_parser_configuration(self):
         settings = config()
-        settings["selected"] = {"precedence": 10, "associativity": "left"}
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             papers = root / "papers"

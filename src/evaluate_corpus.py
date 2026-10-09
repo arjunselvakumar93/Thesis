@@ -8,7 +8,7 @@ from pathlib import Path
 
 from evaluate_workflow import evaluate
 from notation_catalog import build_catalog
-from notation_matcher import normalize_math_expression
+from expression_document import normalize_math_expression
 from smglom_dependencies import dependency_report
 from smglom_notation_extractor import scan_available_smglom
 
@@ -344,7 +344,7 @@ def annotation_coverage_audit(documents):
 def production_review_readiness(documents, records):
     """Prove one explicit candidate per supported region through production paths."""
     from apply_annotations import build_application_plan, render_application_plan
-    from decision_validator import materialize_valid_decisions, validate_decisions
+    from apply_annotations import materialize_valid_decisions, validate_decisions
     from review_workflow import build_review_decision
 
     proofs, per_document = [], []

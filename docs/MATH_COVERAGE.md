@@ -35,3 +35,18 @@ retaining their original source span.
 Known Unicode operators, relations, binders, and big operators are configured
 declaratively. Unregistered Unicode mathematical symbols are retained as
 `OpaqueMathToken` nodes when they can safely occupy an operand position.
+
+The AST remains internal during review. An automatic source range is proposed
+first; the reviewer may replace it with one of a small number of complete,
+AST-derived and reparsed ranges. Semantic lookup and argument extraction run
+again for the selected range, followed by candidate reranking. Review state
+separates structural parsing, candidate availability, annotation readiness,
+semantic uncertainty, and unsupported input. Unknown or ambiguous semantics
+remain explicit.
+
+TeX superscripts and subscripts are structural syntax rather than standalone
+semantic operators. `\cdot` uses generic configured sequence structure, while
+its semantic candidates are independently backed by installed SMGloM metadata.
+Function signatures, biconditional grouping, and definite-integral differential
+forms are configuration-dependent structural support. Greek capital sigma `Σ` remains
+a letter, while mathematical summation `∑` uses big-operator metadata.

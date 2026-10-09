@@ -8,9 +8,9 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from expression_document import find_ast_occurrences, parse_math_regions
-from expression_metadata import build_expression_config
-from expression_registry import NotationRegistry
-from proposal_eligibility import proposal_eligibility, assess_proposal_candidates
+from notation_catalog import build_expression_config
+from expression_parser import NotationRegistry
+from expression_annotation import proposal_eligibility, assess_proposal_candidates
 
 
 class TestProposalEligibility(unittest.TestCase):

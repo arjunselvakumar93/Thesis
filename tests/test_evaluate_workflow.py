@@ -7,7 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from evaluate_workflow import GOLD_FILE, _output_sanity, evaluate
+from evaluate_workflow import DEFAULT_EVALUATION_PAPERS, GOLD_FILE, _output_sanity, evaluate
 
 
 class TestWorkflowEvaluation(unittest.TestCase):
@@ -16,7 +16,8 @@ class TestWorkflowEvaluation(unittest.TestCase):
         self.assertEqual(len(gold), 20)
         self.assertTrue(all(item.get("expected_root") and "semantic_status" in item for item in gold))
         self.assertTrue(any(item["semantic_status"] == "ambiguous" for item in gold))
-        self.assertTrue(all((ROOT / "papers" / item["file"]).exists() for item in gold))
+        self.assertTrue(all((DEFAULT_EVALUATION_PAPERS / item["file"]).exists()
+                            for item in gold))
 
     def test_real_evaluation_keeps_layers_separate(self):
         summary, occurrences, gold = evaluate()

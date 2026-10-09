@@ -6,7 +6,7 @@ from pathlib import Path
 import unittest
 
 from evaluate_workflow import EVALUATION_DIR, evaluate
-from expression_metadata import build_expression_config
+from notation_catalog import build_expression_config
 from notation_catalog import build_catalog, catalog_statistics, search_catalog
 from smglom_dependencies import dependency_report
 from smglom_notation_extractor import scan_available_smglom
@@ -115,12 +115,12 @@ def display_status(status):
         print(f"Gold MRR: {ranking['mean_reciprocal_rank']}")
 
 
-def display_professor_demo(status):
+def display_feature_summary(status):
     """Concise read-only presentation status assembled from existing reports."""
     display_status(status)
     unicode_path = EVALUATION_DIR / "unicode_stress_results.json"
     general_path = EVALUATION_DIR / "generalization_final.json"
-    print("\nProfessor demo\n--------------")
+    print("\nFeature summary\n--------------")
     print("Parser: LaTeX and Unicode source-preserving structural parsing available")
     print("Review: semantic candidates first; structural fallback otherwise")
     print("Semantics: metadata-driven; structural recognition does not imply meaning")
@@ -146,7 +146,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--json", action="store_true")
     parser.add_argument("--metrics", type=Path, help="Write the same current status as JSON")
-    parser.add_argument("--professor-demo", action="store_true",
+    parser.add_argument("--feature-summary", action="store_true",
                         help="Show concise parser, review, evaluation, and limitation status")
     args = parser.parse_args(argv)
     status = collect_status()
@@ -155,8 +155,8 @@ def main(argv=None):
         args.metrics.write_text(json.dumps(status, indent=2), encoding="utf-8")
     if args.json:
         print(json.dumps(status, indent=2))
-    elif args.professor_demo:
-        display_professor_demo(status)
+    elif args.feature_summary:
+        display_feature_summary(status)
     else:
         display_status(status)
     return 0

@@ -1,0 +1,4457 @@
+[
+  {
+    "visible_symbol": "\\frac",
+    "semantic_macro": "adivide",
+    "semantic_meaning": "division",
+    "semantic_module": "arithmetics",
+    "argument_count": 2,
+    "arguments": [
+      "B",
+      "2"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 96,
+    "column": 59,
+    "matched_expression": "\\frac{B}{2}",
+    "semantic_suggestion": "\\adivide{B}{2}",
+    "decision": "accepted",
+    "start": 4921,
+    "end": 4932,
+    "source_hash": "773d587d2ebe014f9bd259ee5eb4cf88096833fb05872302248315878ff0706f",
+    "decision_id": "0ad9aa4205c4c8b9c71ef006b3b348de4668a5a5e724684b8f321ee158ad8ce5"
+  },
+  {
+    "visible_symbol": "\\frac",
+    "semantic_macro": "adivide",
+    "semantic_meaning": "division",
+    "semantic_module": "arithmetics",
+    "argument_count": 2,
+    "arguments": [
+      "B",
+      "2"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 97,
+    "column": 47,
+    "matched_expression": "\\frac{B}{2}",
+    "semantic_suggestion": "\\adivide{B}{2}",
+    "decision": "accepted",
+    "start": 4988,
+    "end": 4999,
+    "source_hash": "773d587d2ebe014f9bd259ee5eb4cf88096833fb05872302248315878ff0706f",
+    "decision_id": "5b4a24f09239cd8c66152bb17a551ef46bef0f37268adc350225bc4b7d97cf9d"
+  },
+  {
+    "visible_symbol": "\\frac",
+    "semantic_macro": "adivide",
+    "semantic_meaning": "division",
+    "semantic_module": "arithmetics",
+    "argument_count": 2,
+    "arguments": [
+      "B",
+      "2"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 106,
+    "column": 58,
+    "matched_expression": "\\frac{B}{2}",
+    "semantic_suggestion": "\\adivide{B}{2}",
+    "decision": "accepted",
+    "start": 5692,
+    "end": 5703,
+    "source_hash": "773d587d2ebe014f9bd259ee5eb4cf88096833fb05872302248315878ff0706f",
+    "decision_id": "984b9b0cacbabc2221489e07f7c5adbc6fc52ad396cc82c6492e39bb036377ce"
+  },
+  {
+    "visible_symbol": "\\frac",
+    "semantic_macro": "adivide",
+    "semantic_meaning": "division",
+    "semantic_module": "arithmetics",
+    "argument_count": 2,
+    "arguments": [
+      "B",
+      "2"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 107,
+    "column": 12,
+    "matched_expression": "\\frac{B}{2}",
+    "semantic_suggestion": "\\adivide{B}{2}",
+    "decision": "accepted",
+    "start": 5722,
+    "end": 5733,
+    "source_hash": "773d587d2ebe014f9bd259ee5eb4cf88096833fb05872302248315878ff0706f",
+    "decision_id": "1aea6cfb330f16d59ec9dccd6ed6cc528194726207046bc5cee9b56c8a198fbe"
+  },
+  {
+    "visible_symbol": "\\frac",
+    "semantic_macro": "adivide",
+    "semantic_meaning": "division",
+    "semantic_module": "arithmetics",
+    "argument_count": 2,
+    "arguments": [
+      "B",
+      "2"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 107,
+    "column": 30,
+    "matched_expression": "\\frac{B}{2}",
+    "semantic_suggestion": "\\adivide{B}{2}",
+    "decision": "accepted",
+    "start": 5740,
+    "end": 5751,
+    "source_hash": "773d587d2ebe014f9bd259ee5eb4cf88096833fb05872302248315878ff0706f",
+    "decision_id": "5cdf50dc802e3be8f89a52c898d31cda15362a1dca83c275945d99d4271cae96"
+  },
+  {
+    "visible_symbol": "\\frac",
+    "semantic_macro": "adivide",
+    "semantic_meaning": "division",
+    "semantic_module": "arithmetics",
+    "argument_count": 2,
+    "arguments": [
+      "B",
+      "2"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 110,
+    "column": 11,
+    "matched_expression": "\\frac{B}{2}",
+    "semantic_suggestion": "\\adivide{B}{2}",
+    "decision": "accepted",
+    "start": 5876,
+    "end": 5887,
+    "source_hash": "773d587d2ebe014f9bd259ee5eb4cf88096833fb05872302248315878ff0706f",
+    "decision_id": "f72069516c7e6f8583ef228ac6252aec9a92fe4c2b07cfb0bdcd22d5b3301bb8"
+  },
+  {
+    "visible_symbol": "\\frac",
+    "semantic_macro": "adivide",
+    "semantic_meaning": "division",
+    "semantic_module": "arithmetics",
+    "argument_count": 2,
+    "arguments": [
+      "B^2",
+      "4"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 114,
+    "column": 9,
+    "matched_expression": "\\frac{B^2}{4}",
+    "semantic_suggestion": "\\adivide{B^2}{4}",
+    "decision": "accepted",
+    "start": 6017,
+    "end": 6030,
+    "source_hash": "941e1ad463ef7507587f06080e7621a34b8480dc20e5d5bf77aa05a3cec1084f",
+    "decision_id": "cdba4cdc506ae0ba210b6705a09160f072d382a64bb3c66a9239fbf67b63d4a7"
+  },
+  {
+    "visible_symbol": "\\frac",
+    "semantic_macro": "adivide",
+    "semantic_meaning": "division",
+    "semantic_module": "arithmetics",
+    "argument_count": 2,
+    "arguments": [
+      "B^2",
+      "4"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 117,
+    "column": 48,
+    "matched_expression": "\\frac{B^2}{4}",
+    "semantic_suggestion": "\\adivide{B^2}{4}",
+    "decision": "accepted",
+    "start": 6180,
+    "end": 6193,
+    "source_hash": "941e1ad463ef7507587f06080e7621a34b8480dc20e5d5bf77aa05a3cec1084f",
+    "decision_id": "dba6bc95df0d91bca6cae7dceed935519586801736daf0681c5ba4694072239f"
+  },
+  {
+    "visible_symbol": "\\frac",
+    "semantic_macro": "adivide",
+    "semantic_meaning": "division",
+    "semantic_module": "arithmetics",
+    "argument_count": 2,
+    "arguments": [
+      "B",
+      "2"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 119,
+    "column": 59,
+    "matched_expression": "\\frac{B}{2}",
+    "semantic_suggestion": "\\adivide{B}{2}",
+    "decision": "accepted",
+    "start": 6348,
+    "end": 6359,
+    "source_hash": "773d587d2ebe014f9bd259ee5eb4cf88096833fb05872302248315878ff0706f",
+    "decision_id": "06d2a3eb7fc4be1755d5fd530947b700d13f5f154e0f5766970f14da835aae89"
+  },
+  {
+    "visible_symbol": "\\frac",
+    "semantic_macro": "adivide",
+    "semantic_meaning": "division",
+    "semantic_module": "arithmetics",
+    "argument_count": 2,
+    "arguments": [
+      "B",
+      "2"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 123,
+    "column": 4,
+    "matched_expression": "\\frac{B}{2}",
+    "semantic_suggestion": "\\adivide{B}{2}",
+    "decision": "accepted",
+    "start": 6422,
+    "end": 6433,
+    "source_hash": "773d587d2ebe014f9bd259ee5eb4cf88096833fb05872302248315878ff0706f",
+    "decision_id": "53e457ce99cefcd790a85ef315db099881e82081be5638ac49f1f2485a657710"
+  },
+  {
+    "visible_symbol": "\\frac",
+    "semantic_macro": "adivide",
+    "semantic_meaning": "division",
+    "semantic_module": "arithmetics",
+    "argument_count": 2,
+    "arguments": [
+      "B^2",
+      "4"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 123,
+    "column": 26,
+    "matched_expression": "\\frac{B^2}{4}",
+    "semantic_suggestion": "\\adivide{B^2}{4}",
+    "decision": "accepted",
+    "start": 6444,
+    "end": 6457,
+    "source_hash": "941e1ad463ef7507587f06080e7621a34b8480dc20e5d5bf77aa05a3cec1084f",
+    "decision_id": "0dbc7fb6bb1e8309f64611037fe45964e91fb04c4b2775337fb1166f8b6eee0c"
+  },
+  {
+    "visible_symbol": "\\frac",
+    "semantic_macro": "adivide",
+    "semantic_meaning": "division",
+    "semantic_module": "arithmetics",
+    "argument_count": 2,
+    "arguments": [
+      "x^2",
+      "2"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 138,
+    "column": 3,
+    "matched_expression": "\\frac{x^2}{2}",
+    "semantic_suggestion": "\\adivide{x^2}{2}",
+    "decision": "accepted",
+    "start": 7003,
+    "end": 7016,
+    "source_hash": "6dce5b87dabe1183800726e32c67a703613882347433e44331740b91b2b900bc",
+    "decision_id": "b19379ba178a8b5910817b09d86f994c1059fd7130e3fe43b3982f7e4e372580"
+  },
+  {
+    "visible_symbol": "\\frac",
+    "semantic_macro": "adivide",
+    "semantic_meaning": "division",
+    "semantic_module": "arithmetics",
+    "argument_count": 2,
+    "arguments": [
+      "b",
+      "a"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 176,
+    "column": 16,
+    "matched_expression": "\\frac{b}{a}",
+    "semantic_suggestion": "\\adivide{b}{a}",
+    "decision": "accepted",
+    "start": 8606,
+    "end": 8617,
+    "source_hash": "5c1582dc7fd79aa74789f1271b9e3db9d4e9f876211826e866defa3d0ec0cd83",
+    "decision_id": "1574a5dfaae278a960d08b0315030d56f650d8b862b58de00055802d027a8d81"
+  },
+  {
+    "visible_symbol": "\\frac",
+    "semantic_macro": "adivide",
+    "semantic_meaning": "division",
+    "semantic_module": "arithmetics",
+    "argument_count": 2,
+    "arguments": [
+      "c",
+      "a"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 176,
+    "column": 47,
+    "matched_expression": "\\frac{c}{a}",
+    "semantic_suggestion": "\\adivide{c}{a}",
+    "decision": "accepted",
+    "start": 8637,
+    "end": 8648,
+    "source_hash": "3a0ed62a7eaa3f54e56fd9955d2db4ca4e449256ed967076a0cb502af4bc6919",
+    "decision_id": "e19fb27e867231ecfa475007ebf41d8d203315f1823d2d7b9e57fee25c671677"
+  },
+  {
+    "visible_symbol": "\\frac",
+    "semantic_macro": "adivide",
+    "semantic_meaning": "division",
+    "semantic_module": "arithmetics",
+    "argument_count": 2,
+    "arguments": [
+      "b",
+      "a"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 178,
+    "column": 11,
+    "matched_expression": "\\frac{b}{a}",
+    "semantic_suggestion": "\\adivide{b}{a}",
+    "decision": "accepted",
+    "start": 8690,
+    "end": 8701,
+    "source_hash": "5c1582dc7fd79aa74789f1271b9e3db9d4e9f876211826e866defa3d0ec0cd83",
+    "decision_id": "443186ec54a5515d89e5350c5225e49f1dba51774e85368cbf7b9892aca94a45"
+  },
+  {
+    "visible_symbol": "\\frac",
+    "semantic_macro": "adivide",
+    "semantic_meaning": "division",
+    "semantic_module": "arithmetics",
+    "argument_count": 2,
+    "arguments": [
+      "c",
+      "a"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 178,
+    "column": 29,
+    "matched_expression": "\\frac{c}{a}",
+    "semantic_suggestion": "\\adivide{c}{a}",
+    "decision": "accepted",
+    "start": 8708,
+    "end": 8719,
+    "source_hash": "3a0ed62a7eaa3f54e56fd9955d2db4ca4e449256ed967076a0cb502af4bc6919",
+    "decision_id": "4c1007ff7188d3ce090e4cac6ed830a3ea5e18213c102e4f68093b62cde48b22"
+  },
+  {
+    "visible_symbol": "\\frac",
+    "semantic_macro": "adivide",
+    "semantic_meaning": "division",
+    "semantic_module": "arithmetics",
+    "argument_count": 2,
+    "arguments": [
+      "b",
+      "2a"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 181,
+    "column": 4,
+    "matched_expression": "\\frac{b}{2a}",
+    "semantic_suggestion": "\\adivide{b}{2a}",
+    "decision": "accepted",
+    "start": 8804,
+    "end": 8816,
+    "source_hash": "358ba017080b3b45344d478e6e9e9a27651a10a46f01287badb7198d9cc4c42c",
+    "decision_id": "8d8523724df58b20fbdfe13a6125630538da4dcd712d6493933e76a3b3da9d34"
+  },
+  {
+    "visible_symbol": "\\frac",
+    "semantic_macro": "adivide",
+    "semantic_meaning": "division",
+    "semantic_module": "arithmetics",
+    "argument_count": 2,
+    "arguments": [
+      "b^2",
+      "4a^2"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 181,
+    "column": 27,
+    "matched_expression": "\\frac{b^2}{4a^2}",
+    "semantic_suggestion": "\\adivide{b^2}{4a^2}",
+    "decision": "accepted",
+    "start": 8827,
+    "end": 8843,
+    "source_hash": "6b5702f7db4642617a3932ceecf5cf5037b274583ceedc4401bdaa5fe244baf6",
+    "decision_id": "fe2cc76f3fce2594c58fd7bd2c714b5a02640aa21a79810b44d262d68e08dae6"
+  },
+  {
+    "visible_symbol": "\\frac",
+    "semantic_macro": "adivide",
+    "semantic_meaning": "division",
+    "semantic_module": "arithmetics",
+    "argument_count": 2,
+    "arguments": [
+      "c",
+      "a"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 181,
+    "column": 46,
+    "matched_expression": "\\frac{c}{a}",
+    "semantic_suggestion": "\\adivide{c}{a}",
+    "decision": "accepted",
+    "start": 8846,
+    "end": 8857,
+    "source_hash": "3a0ed62a7eaa3f54e56fd9955d2db4ca4e449256ed967076a0cb502af4bc6919",
+    "decision_id": "72ad26257e719cd922c359349124d30c85f389f929931a5c724f6cc330c45212"
+  },
+  {
+    "visible_symbol": "\\frac",
+    "semantic_macro": "adivide",
+    "semantic_meaning": "division",
+    "semantic_module": "arithmetics",
+    "argument_count": 2,
+    "arguments": [
+      "b",
+      "2a"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 183,
+    "column": 4,
+    "matched_expression": "\\frac{b}{2a}",
+    "semantic_suggestion": "\\adivide{b}{2a}",
+    "decision": "accepted",
+    "start": 8871,
+    "end": 8883,
+    "source_hash": "358ba017080b3b45344d478e6e9e9a27651a10a46f01287badb7198d9cc4c42c",
+    "decision_id": "cf912ae923dcac6232d8833d2169196ee7fcc092e5ef3c472aa3415ec2cabee5"
+  },
+  {
+    "visible_symbol": "\\frac",
+    "semantic_macro": "adivide",
+    "semantic_meaning": "division",
+    "semantic_module": "arithmetics",
+    "argument_count": 2,
+    "arguments": [
+      "b^2 - 4ac",
+      "4a^2"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 183,
+    "column": 27,
+    "matched_expression": "\\frac{b^2 - 4ac}{4a^2}",
+    "semantic_suggestion": "\\adivide{b^2 - 4ac}{4a^2}",
+    "decision": "accepted",
+    "start": 8894,
+    "end": 8916,
+    "source_hash": "885000f981aa15d44b300aa443ca1c517548336f560e847e262a0587f22bf278",
+    "decision_id": "66e98a7cdcd7d94151885545ecc39fadaf8d79ffa653de23353b9977b9291d4e"
+  },
+  {
+    "visible_symbol": "\\frac",
+    "semantic_macro": "adivide",
+    "semantic_meaning": "division",
+    "semantic_module": "arithmetics",
+    "argument_count": 2,
+    "arguments": [
+      "-b \\pm \\sqrt{b^2 - 4ac}",
+      "2a"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 185,
+    "column": 3,
+    "matched_expression": "\\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+    "semantic_suggestion": "\\adivide{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+    "decision": "accepted",
+    "start": 8929,
+    "end": 8963,
+    "source_hash": "ea6f9dc600bb023d52d96cd6783207baeeeef1a93219d3fb755036d547050ba2",
+    "decision_id": "9104668717d87cb3bcd53077c50756c96f4b95c67a7fa658f798ef7d3df5291b"
+  },
+  {
+    "visible_symbol": "\\frac",
+    "semantic_macro": "adivide",
+    "semantic_meaning": "division",
+    "semantic_module": "arithmetics",
+    "argument_count": 2,
+    "arguments": [
+      "b",
+      "a"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 196,
+    "column": 39,
+    "matched_expression": "\\frac{b}{a}",
+    "semantic_suggestion": "\\adivide{b}{a}",
+    "decision": "accepted",
+    "start": 9580,
+    "end": 9591,
+    "source_hash": "5c1582dc7fd79aa74789f1271b9e3db9d4e9f876211826e866defa3d0ec0cd83",
+    "decision_id": "0512ca7a12eb0bee5ac475ad12ebd98be9dade89ef8d30441e73d901d8a7a317"
+  },
+  {
+    "visible_symbol": "\\frac",
+    "semantic_macro": "adivide",
+    "semantic_meaning": "division",
+    "semantic_module": "arithmetics",
+    "argument_count": 2,
+    "arguments": [
+      "1",
+      "\\sqrt{3} - \\sqrt{2}"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 211,
+    "column": 37,
+    "matched_expression": "\\frac{1}{\\sqrt{3} - \\sqrt{2}}",
+    "semantic_suggestion": "\\adivide{1}{\\sqrt{3} - \\sqrt{2}}",
+    "decision": "accepted",
+    "start": 10265,
+    "end": 10294,
+    "source_hash": "62742b97c7be3e2dfec8bdeb87f76104266b320e7d2fe4ae9c6b7d4303d4e2c9",
+    "decision_id": "ce419f111a74b0c925e22cfefa70c6fd1cb43c633ebf70c1a62cc1e85211537b"
+  },
+  {
+    "visible_symbol": "\\frac",
+    "semantic_macro": "adivide",
+    "semantic_meaning": "division",
+    "semantic_module": "arithmetics",
+    "argument_count": 2,
+    "arguments": [
+      "B",
+      "2"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 253,
+    "column": 38,
+    "matched_expression": "\\frac{B}{2}",
+    "semantic_suggestion": "\\adivide{B}{2}",
+    "decision": "accepted",
+    "start": 12543,
+    "end": 12554,
+    "source_hash": "773d587d2ebe014f9bd259ee5eb4cf88096833fb05872302248315878ff0706f",
+    "decision_id": "2e80ad061bce12d9ab17be74caa59cb47159455da709016c4eaa61a76518c919"
+  },
+  {
+    "visible_symbol": "\\frac",
+    "semantic_macro": "adivide",
+    "semantic_meaning": "division",
+    "semantic_module": "arithmetics",
+    "argument_count": 2,
+    "arguments": [
+      "B",
+      "2"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 255,
+    "column": 11,
+    "matched_expression": "\\frac{B}{2}",
+    "semantic_suggestion": "\\adivide{B}{2}",
+    "decision": "accepted",
+    "start": 12648,
+    "end": 12659,
+    "source_hash": "773d587d2ebe014f9bd259ee5eb4cf88096833fb05872302248315878ff0706f",
+    "decision_id": "b18460445a9f6eb855b7bf1abcd2558e653dfb527c3ba2205dc37d1eb6348092"
+  },
+  {
+    "visible_symbol": "\\frac",
+    "semantic_macro": "adivide",
+    "semantic_meaning": "division",
+    "semantic_module": "arithmetics",
+    "argument_count": 2,
+    "arguments": [
+      "B^2",
+      "4"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 266,
+    "column": 3,
+    "matched_expression": "\\frac{B^2}{4}",
+    "semantic_suggestion": "\\adivide{B^2}{4}",
+    "decision": "accepted",
+    "start": 13352,
+    "end": 13365,
+    "source_hash": "941e1ad463ef7507587f06080e7621a34b8480dc20e5d5bf77aa05a3cec1084f",
+    "decision_id": "acd2476dc53204626f8c1f3899fc0601a5fffd8ac36af4c50a0de5fbffee1cf0"
+  },
+  {
+    "visible_symbol": "\\frac",
+    "semantic_macro": "adivide",
+    "semantic_meaning": "division",
+    "semantic_module": "arithmetics",
+    "argument_count": 2,
+    "arguments": [
+      "B^2",
+      "4"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 266,
+    "column": 19,
+    "matched_expression": "\\frac{B^2}{4}",
+    "semantic_suggestion": "\\adivide{B^2}{4}",
+    "decision": "accepted",
+    "start": 13368,
+    "end": 13381,
+    "source_hash": "941e1ad463ef7507587f06080e7621a34b8480dc20e5d5bf77aa05a3cec1084f",
+    "decision_id": "4075ee8cae6d1601cd20c510b51a6d2dbcffa176d74c129033f8b6e7cd73bbac"
+  },
+  {
+    "visible_symbol": "\\frac",
+    "semantic_macro": "adivide",
+    "semantic_meaning": "division",
+    "semantic_module": "arithmetics",
+    "argument_count": 2,
+    "arguments": [
+      "B^2",
+      "4"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 268,
+    "column": 14,
+    "matched_expression": "\\frac{B^2}{4}",
+    "semantic_suggestion": "\\adivide{B^2}{4}",
+    "decision": "accepted",
+    "start": 13464,
+    "end": 13477,
+    "source_hash": "941e1ad463ef7507587f06080e7621a34b8480dc20e5d5bf77aa05a3cec1084f",
+    "decision_id": "e5fbb186db6eddca7dc9e7769044550c48acdb19a0e2fdfab158b8d82c0ce8f8"
+  },
+  {
+    "visible_symbol": "\\frac",
+    "semantic_macro": "adivide",
+    "semantic_meaning": "division",
+    "semantic_module": "arithmetics",
+    "argument_count": 2,
+    "arguments": [
+      "B^2",
+      "4"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 268,
+    "column": 30,
+    "matched_expression": "\\frac{B^2}{4}",
+    "semantic_suggestion": "\\adivide{B^2}{4}",
+    "decision": "accepted",
+    "start": 13480,
+    "end": 13493,
+    "source_hash": "941e1ad463ef7507587f06080e7621a34b8480dc20e5d5bf77aa05a3cec1084f",
+    "decision_id": "12403898d03d5ee82edd383dbc9f5170866afb0e39d82a8df30ef5ea0e266eab"
+  },
+  {
+    "visible_symbol": "\\frac",
+    "semantic_macro": "adivide",
+    "semantic_meaning": "division",
+    "semantic_module": "arithmetics",
+    "argument_count": 2,
+    "arguments": [
+      "B^2",
+      "4"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 277,
+    "column": 2,
+    "matched_expression": "\\frac{B^2}{4}",
+    "semantic_suggestion": "\\adivide{B^2}{4}",
+    "decision": "accepted",
+    "start": 13987,
+    "end": 14000,
+    "source_hash": "941e1ad463ef7507587f06080e7621a34b8480dc20e5d5bf77aa05a3cec1084f",
+    "decision_id": "9f040904cd58b19ee4a0b66de60b02bf46dca829055a1fcf023b969bada8e4b9"
+  },
+  {
+    "visible_symbol": "+",
+    "semantic_macro": "aplus",
+    "semantic_meaning": "addition",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 3,
+    "arguments": [
+      "2",
+      "Bx",
+      "C"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 82,
+    "column": 5,
+    "matched_expression": "2 + Bx + C",
+    "semantic_suggestion": "\\aplus{2,Bx,C}",
+    "decision": "accepted",
+    "start": 4051,
+    "end": 4061,
+    "source_hash": "657c5195c943584284548498adddc5c1e2daa83484d5c9dc7220bf04322e30b4",
+    "decision_id": "1eb44ac25c51fa78b88c7228dfb4bcf9cc6fb9bbc12a958d68ca2f50ca55431b"
+  },
+  {
+    "visible_symbol": "+",
+    "semantic_macro": "aplus",
+    "semantic_meaning": "addition",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "2",
+      "z"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 107,
+    "column": 20,
+    "matched_expression": "{2} + z",
+    "semantic_suggestion": "\\aplus{2,z}",
+    "decision": "accepted",
+    "start": 5730,
+    "end": 5737,
+    "source_hash": "c45dfcb7bd51d5abc36ececd82b31f54a6d39cf4272f9d683e872ed2e8513d92",
+    "decision_id": "dcc843c58cf19715d67ea20cbffa6deea23e60d2192e7e91bcc983cb8cf6a7fa"
+  },
+  {
+    "visible_symbol": "+",
+    "semantic_macro": "aplus",
+    "semantic_meaning": "addition",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "x",
+      "2"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 138,
+    "column": 19,
+    "matched_expression": "x + 2",
+    "semantic_suggestion": "\\aplus{x,2}",
+    "decision": "accepted",
+    "start": 7019,
+    "end": 7024,
+    "source_hash": "7a5613bfc59301783fa131e826d2d7ea32687d2698ff21e976de6853d3e53b7e",
+    "decision_id": "445692bb9d62a389388c2a60eddffeffe68121b9910f6fb686757e608b86ef01"
+  },
+  {
+    "visible_symbol": "+",
+    "semantic_macro": "aplus",
+    "semantic_meaning": "addition",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "2x",
+      "4"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 143,
+    "column": 9,
+    "matched_expression": "2x + 4",
+    "semantic_suggestion": "\\aplus{2x,4}",
+    "decision": "accepted",
+    "start": 7183,
+    "end": 7189,
+    "source_hash": "b327b97b15a34414002cb950f6b2e5819c323e820bc7b0e42b870bcdc96fcc2c",
+    "decision_id": "a607e205da71243bf480ac62ed3a277e865848451dfdc3e404f3782e85099402"
+  },
+  {
+    "visible_symbol": "+",
+    "semantic_macro": "aplus",
+    "semantic_meaning": "addition",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "2",
+      "bx"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 172,
+    "column": 70,
+    "matched_expression": "2 + bx",
+    "semantic_suggestion": "\\aplus{2,bx}",
+    "decision": "accepted",
+    "start": 8454,
+    "end": 8460,
+    "source_hash": "cd475814a0691a010cc6b06239ba04cd56787faa7a82a2171c0423f1c2adc83a",
+    "decision_id": "a971661dbfee7a6ff1dedec57fc1fbe812e8c234049bb43d5129b27fb69a9cca"
+  },
+  {
+    "visible_symbol": "+",
+    "semantic_macro": "aplus",
+    "semantic_meaning": "addition",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "2",
+      "\\left"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 176,
+    "column": 5,
+    "matched_expression": "2 + \\left",
+    "semantic_suggestion": "\\aplus{2,\\left}",
+    "decision": "accepted",
+    "start": 8595,
+    "end": 8604,
+    "source_hash": "4f8fc66ee0ad9c685c656c621da5573f9adf27974214d35d0f5917db748bef9d",
+    "decision_id": "1c091bdeded97a8d2c44d6ad9009fceef55a167779877c737e0cd67b09abc232"
+  },
+  {
+    "visible_symbol": "+",
+    "semantic_macro": "aplus",
+    "semantic_meaning": "addition",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "x",
+      "\\left"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 176,
+    "column": 36,
+    "matched_expression": "x + \\left",
+    "semantic_suggestion": "\\aplus{x,\\left}",
+    "decision": "accepted",
+    "start": 8626,
+    "end": 8635,
+    "source_hash": "8185571925e5e716bafbf33ee1293fc59569825e8ce23a475ee86cca080e5e12",
+    "decision_id": "b62063ad2625235b728e6372839f60613194b663aaf894ca4094aaf450c0bc45"
+  },
+  {
+    "visible_symbol": "+",
+    "semantic_macro": "aplus",
+    "semantic_meaning": "addition",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "ax",
+      "b"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 196,
+    "column": 18,
+    "matched_expression": "ax + b",
+    "semantic_suggestion": "\\aplus{ax,b}",
+    "decision": "accepted",
+    "start": 9559,
+    "end": 9565,
+    "source_hash": "4d1ed466507b675ae8595fb51886842d9a809f9930d88d45a6336641fed934bd",
+    "decision_id": "73c72b9cef0d6f77110406a4f2b9762127bbb4e86f37f6524365f8839bd1cfc9"
+  },
+  {
+    "visible_symbol": "+",
+    "semantic_macro": "aplus",
+    "semantic_meaning": "addition",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "u",
+      "v"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 206,
+    "column": 53,
+    "matched_expression": "u + v",
+    "semantic_suggestion": "\\aplus{u,v}",
+    "decision": "accepted",
+    "start": 9918,
+    "end": 9923,
+    "source_hash": "9c6cb63a4090f56e4e087a8ed1ff3c57f30fc1aa2dbee7d72620a2a1bcbd63e4",
+    "decision_id": "bec078f2ad3d871f039a9e18475f79eedd3ff10182ff84684f3c690419b6c39c"
+  },
+  {
+    "visible_symbol": "+",
+    "semantic_macro": "aplus",
+    "semantic_meaning": "addition",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "u",
+      "v"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 207,
+    "column": 12,
+    "matched_expression": "u+v",
+    "semantic_suggestion": "\\aplus{u,v}",
+    "decision": "accepted",
+    "start": 9952,
+    "end": 9955,
+    "source_hash": "b8b9cb707259354fb16d32ea286074deb8d1cba08429d5cc9e1313f07569b7a0",
+    "decision_id": "46893562023c627c3ccc873b02c0141fb7389e534d0cf89877c6b3e0d8935477"
+  },
+  {
+    "visible_symbol": "+",
+    "semantic_macro": "aplus",
+    "semantic_meaning": "addition",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "3",
+      "\\sqrt"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 212,
+    "column": 52,
+    "matched_expression": "{3} + \\sqrt",
+    "semantic_suggestion": "\\aplus{3,\\sqrt}",
+    "decision": "accepted",
+    "start": 10350,
+    "end": 10361,
+    "source_hash": "c193c04d59afd536b0619c719e4605b0abb78c3a6f3f0b5b814393994e8d01fb",
+    "decision_id": "e452f57b863c543455a11ab319379ca11375131c4a5c0a3849646b630c323b4d"
+  },
+  {
+    "visible_symbol": "+",
+    "semantic_macro": "aplus",
+    "semantic_meaning": "addition",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "40",
+      "3"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 225,
+    "column": 19,
+    "matched_expression": "40 + 3",
+    "semantic_suggestion": "\\aplus{40,3}",
+    "decision": "accepted",
+    "start": 11061,
+    "end": 11067,
+    "source_hash": "37854d36e0aaecf20d838396dc80104018a6e40577ebc25972c3bd5b1d2ee21b",
+    "decision_id": "f96734361be51f580acfdaf3f753a9e488905b18c5f25f8bac2e81b47571245a"
+  },
+  {
+    "visible_symbol": "+",
+    "semantic_macro": "aplus",
+    "semantic_meaning": "addition",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 3,
+    "arguments": [
+      "2",
+      "Bx",
+      "C"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 246,
+    "column": 24,
+    "matched_expression": "2 + Bx + C",
+    "semantic_suggestion": "\\aplus{2,Bx,C}",
+    "decision": "accepted",
+    "start": 12099,
+    "end": 12109,
+    "source_hash": "657c5195c943584284548498adddc5c1e2daa83484d5c9dc7220bf04322e30b4",
+    "decision_id": "5039af7b11a28028b494ee5dc38adc4c08da69521aa06cbb32edeba29686c049"
+  },
+  {
+    "visible_symbol": "+",
+    "semantic_macro": "aplus",
+    "semantic_meaning": "addition",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "x",
+      "D"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 249,
+    "column": 16,
+    "matched_expression": "x + D",
+    "semantic_suggestion": "\\aplus{x,D}",
+    "decision": "accepted",
+    "start": 12265,
+    "end": 12270,
+    "source_hash": "06cee3b95b4ab5ca08dc67b55739b47e67ecf63dd1c306251af63a54acfa9717",
+    "decision_id": "fed5e52555f27af15b6052ee01488aed0b355789f301a3a0e427ed4a7f8e1a50"
+  },
+  {
+    "visible_symbol": "+",
+    "semantic_macro": "aplus",
+    "semantic_meaning": "addition",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "u",
+      "v"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 249,
+    "column": 64,
+    "matched_expression": "u+v",
+    "semantic_suggestion": "\\aplus{u,v}",
+    "decision": "accepted",
+    "start": 12313,
+    "end": 12316,
+    "source_hash": "b8b9cb707259354fb16d32ea286074deb8d1cba08429d5cc9e1313f07569b7a0",
+    "decision_id": "483b45c262763c326082c927b869d9053186e438da2390ad6ca2d9a34fe89f79"
+  },
+  {
+    "visible_symbol": "+",
+    "semantic_macro": "aplus",
+    "semantic_meaning": "addition",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "2uv",
+      "v"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 250,
+    "column": 7,
+    "matched_expression": "2uv + v",
+    "semantic_suggestion": "\\aplus{2uv,v}",
+    "decision": "accepted",
+    "start": 12332,
+    "end": 12339,
+    "source_hash": "bb100541ce56debb7cc997edf3bca67d70a547eed242af33e98073be3a3052ae",
+    "decision_id": "890f8eea82f048e64b622002a79e50da6db8f007fe6202ab0c0813ff91d5d184"
+  },
+  {
+    "visible_symbol": "+",
+    "semantic_macro": "aplus",
+    "semantic_meaning": "addition",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "2",
+      "2uv"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 251,
+    "column": 20,
+    "matched_expression": "2 + 2uv",
+    "semantic_suggestion": "\\aplus{2,2uv}",
+    "decision": "accepted",
+    "start": 12417,
+    "end": 12424,
+    "source_hash": "ef8dbcbf4fcaafa821c6e61db712a286599e46e2cc8b6ec26c81d405341e0656",
+    "decision_id": "e3e8fe08ab384d76519fad3570cef3f31ef41a9f8f30a612e56f3d8dd5448ee1"
+  },
+  {
+    "visible_symbol": "+",
+    "semantic_macro": "aplus",
+    "semantic_meaning": "addition",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "x",
+      "\\frac"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 255,
+    "column": 7,
+    "matched_expression": "x + \\frac",
+    "semantic_suggestion": "\\aplus{x,\\frac}",
+    "decision": "accepted",
+    "start": 12644,
+    "end": 12653,
+    "source_hash": "c5c90d5b656187f3c2f55d0fc0feeb90f3ec1402e537d09521b31e89792e028c",
+    "decision_id": "514d9dc569feab694eb505bc168033c0428eb5eef6387711380262155ffb99e2"
+  },
+  {
+    "visible_symbol": "+",
+    "semantic_macro": "aplus",
+    "semantic_meaning": "addition",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 3,
+    "arguments": [
+      "2",
+      "Bx",
+      "\\frac"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 268,
+    "column": 5,
+    "matched_expression": "2 + Bx + \\frac",
+    "semantic_suggestion": "\\aplus{2,Bx,\\frac}",
+    "decision": "accepted",
+    "start": 13455,
+    "end": 13469,
+    "source_hash": "a4553f5d9b934df7863914975f3355962fb7b9cf14b3e7ab85f2360d415552da",
+    "decision_id": "0e0a22f04477502c6589b348bf9ce90182a01c7fe4142fbb5e2907c6cc53eac2"
+  },
+  {
+    "visible_symbol": "+",
+    "semantic_macro": "aplus",
+    "semantic_meaning": "addition",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "4",
+      "C"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 268,
+    "column": 40,
+    "matched_expression": "{4} + C",
+    "semantic_suggestion": "\\aplus{4,C}",
+    "decision": "accepted",
+    "start": 13490,
+    "end": 13497,
+    "source_hash": "36143479dd6aea38ddcffd26bd13a01e846e29da849af9f3242619c8a34fa30d",
+    "decision_id": "55d2de3f0a0b11039314106a5132ec5f9070e862c1be13459ecbf8502e436fab"
+  },
+  {
+    "visible_symbol": "+",
+    "semantic_macro": "aplus",
+    "semantic_meaning": "addition",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "u",
+      "v"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 279,
+    "column": 12,
+    "matched_expression": "u+v",
+    "semantic_suggestion": "\\aplus{u,v}",
+    "decision": "accepted",
+    "start": 14155,
+    "end": 14158,
+    "source_hash": "b8b9cb707259354fb16d32ea286074deb8d1cba08429d5cc9e1313f07569b7a0",
+    "decision_id": "18a4e0605bcbe6dc21369fe73a0bd8ab213650162b2f1aa2988ebf34d46399e2"
+  },
+  {
+    "visible_symbol": "+",
+    "semantic_macro": "aplus",
+    "semantic_meaning": "addition",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "x",
+      "p"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 352,
+    "column": 12,
+    "matched_expression": "x+p",
+    "semantic_suggestion": "\\aplus{x,p}",
+    "decision": "accepted",
+    "start": 18606,
+    "end": 18609,
+    "source_hash": "13f9844f12b984d845dc03a0c94a25df99579f48b7b0822a8ac8674a015a9bad",
+    "decision_id": "f83c162165e56e798a3cba31353f5c19dc253e3696913596136ee059939c9459"
+  },
+  {
+    "visible_symbol": "+",
+    "semantic_macro": "aplus",
+    "semantic_meaning": "addition",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "x",
+      "q"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 352,
+    "column": 17,
+    "matched_expression": "x+q",
+    "semantic_suggestion": "\\aplus{x,q}",
+    "decision": "accepted",
+    "start": 18611,
+    "end": 18614,
+    "source_hash": "8639a50c42430a9e94a2afa2d8669f6e5cf3ff14977e4ddc45cca039c055a154",
+    "decision_id": "956f8ac1545c39b09e5f1318d54d62928d1c516debfe2c619810aebfe06a6bec"
+  },
+  {
+    "visible_symbol": "+",
+    "semantic_macro": "aplus",
+    "semantic_meaning": "addition",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 3,
+    "arguments": [
+      "2",
+      "Bx",
+      "C"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 388,
+    "column": 22,
+    "matched_expression": "2 + Bx + C",
+    "semantic_suggestion": "\\aplus{2,Bx,C}",
+    "decision": "accepted",
+    "start": 20884,
+    "end": 20894,
+    "source_hash": "657c5195c943584284548498adddc5c1e2daa83484d5c9dc7220bf04322e30b4",
+    "decision_id": "9869b185209119bf13bdd8eb6f193c7da80297542d4366a5f8eba4b6e5f44993"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 3,
+    "arguments": [
+      "guess",
+      "and",
+      "check"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 38,
+    "column": 1,
+    "matched_expression": "guess-and-check",
+    "semantic_suggestion": "\\aminus{guess,and,check}",
+    "decision": "accepted",
+    "start": 1545,
+    "end": 1560,
+    "source_hash": "a503750984021405e46d7efd2edab377890cda669aa3ca5c53ccfc441ffdac63",
+    "decision_id": "05c05d16373ec4f373b5f6954b858b4c2fc244f2a7a63b963332082e3d8cda42"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "first",
+      "time"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 43,
+    "column": 1,
+    "matched_expression": "first-time",
+    "semantic_suggestion": "\\aminus{first,time}",
+    "decision": "accepted",
+    "start": 1928,
+    "end": 1938,
+    "source_hash": "74f2c519e578bb5abef2d1e374b2a0ffa0bb9449a7d1ea81ff11ebaf30c68793",
+    "decision_id": "2c93207221451523f2671e2dabccf86f1da5c4e8178220d7d27f719ae3453fe3"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "computationally",
+      "efficient"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 47,
+    "column": 42,
+    "matched_expression": "computationally-efficient",
+    "semantic_suggestion": "\\aminus{computationally,efficient}",
+    "decision": "accepted",
+    "start": 2131,
+    "end": 2156,
+    "source_hash": "60dc1b97507dc2a40650f6e3dc5d9484dc2915e1a136e5e1c38cc64e2cc13919",
+    "decision_id": "2c8fba435f028ac854ec6a59c94f411d8925c07e03b94563b04b5be22c5934fd"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "previously",
+      "existing"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 55,
+    "column": 9,
+    "matched_expression": "previously-existing",
+    "semantic_suggestion": "\\aminus{previously,existing}",
+    "decision": "accepted",
+    "start": 2725,
+    "end": 2744,
+    "source_hash": "3d52c351df16dd890bd37e6fdbe3557537c4ece14c14cc19106ee042e557885d",
+    "decision_id": "9a35a36d3aa1aac40553b6f4f484fe02482cc45dc03c35485121f6e7ba793a49"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "publicly",
+      "shared"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 55,
+    "column": 29,
+    "matched_expression": "publicly-shared",
+    "semantic_suggestion": "\\aminus{publicly,shared}",
+    "decision": "accepted",
+    "start": 2745,
+    "end": 2760,
+    "source_hash": "6a8332ff90bebe43f1cb93799c7f77e4aa186a3277f1c56b3d5a55e9538475b2",
+    "decision_id": "4788150628957b16d629e6cab98187171ade4c24ebec78830b7c0b06503ad00a"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "previously",
+      "existing"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 60,
+    "column": 32,
+    "matched_expression": "previously-existing",
+    "semantic_suggestion": "\\aminus{previously,existing}",
+    "decision": "accepted",
+    "start": 3134,
+    "end": 3153,
+    "source_hash": "3d52c351df16dd890bd37e6fdbe3557537c4ece14c14cc19106ee042e557885d",
+    "decision_id": "c60ea93e23d4fedfb7abbd88781ec2bfe4a431f7df5191ec45d3bb58808e2f31"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "first",
+      "time"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 68,
+    "column": 63,
+    "matched_expression": "first-time",
+    "semantic_suggestion": "\\aminus{first,time}",
+    "decision": "accepted",
+    "start": 3470,
+    "end": 3480,
+    "source_hash": "74f2c519e578bb5abef2d1e374b2a0ffa0bb9449a7d1ea81ff11ebaf30c68793",
+    "decision_id": "1e205049c49f28d2fc0c8dc07c59fd75087f7bb6999d74801677837c62c6d512"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "x",
+      "R"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 82,
+    "column": 19,
+    "matched_expression": "x-R",
+    "semantic_suggestion": "\\aminus{x,R}",
+    "decision": "accepted",
+    "start": 4065,
+    "end": 4068,
+    "source_hash": "b1e45781498d905e3835ba5df31535f39d1b36a0b438d98509fde199d482ef19",
+    "decision_id": "ac9c40841b8ebd50c251334f40072a37db7659038eec201f91aab0572aa0bcd2"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "x",
+      "S"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 82,
+    "column": 24,
+    "matched_expression": "x-S",
+    "semantic_suggestion": "\\aminus{x,S}",
+    "decision": "accepted",
+    "start": 4070,
+    "end": 4073,
+    "source_hash": "ca4bfa46c343f2b4aa13da17e898aa34ddde9126a3f72f41dd218cdce5fe2ffb",
+    "decision_id": "915f72c0b9c9c1342b9520285ec0d7d1c9b50e9e0b3d07bf4c3d60e6b85b2852"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "Renaissance",
+      "era"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 104,
+    "column": 42,
+    "matched_expression": "Renaissance-era",
+    "semantic_suggestion": "\\aminus{Renaissance,era}",
+    "decision": "accepted",
+    "start": 5528,
+    "end": 5543,
+    "source_hash": "67f61506cc28f513961dbf8b0be083f4680efbb4ffd4d751b109e4ba83dc06d8",
+    "decision_id": "c5fdcf96224cab61be2247d166c1d902687336af096f6c57a99c1331eceef6d1"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "compminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "comparith",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "2",
+      "z"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 107,
+    "column": 38,
+    "matched_expression": "{2} - z",
+    "semantic_suggestion": "\\compminus{2,z}",
+    "decision": "accepted",
+    "start": 5748,
+    "end": 5755,
+    "source_hash": "aa2e98203e3f349ab076f60782e625a45248092c86483f126977e97c9484cc89",
+    "decision_id": "b154ce1de71329346fc6e1198ff89be06689d85a5a2d87904077e77198f02975"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "2",
+      "z"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 110,
+    "column": 31,
+    "matched_expression": "2 - z",
+    "semantic_suggestion": "\\aminus{2,z}",
+    "decision": "accepted",
+    "start": 5896,
+    "end": 5901,
+    "source_hash": "b51a9cabf3733ac225f9b9b28e5f97034a9d212c5aef00b4b3445e5d4ef49550",
+    "decision_id": "505e9161508a0dd6bb38e3e2f290b5b464adc5a08bde8b42f67eb4c4762d7199"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "4",
+      "C"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 114,
+    "column": 19,
+    "matched_expression": "{4} - C",
+    "semantic_suggestion": "\\aminus{4,C}",
+    "decision": "accepted",
+    "start": 6027,
+    "end": 6034,
+    "source_hash": "524c4420c2625b311dd9db6d8b1515583fff84a0e8f71268abb5738aae17f7c0",
+    "decision_id": "4f5612319046b54079fc2bd45f7001474174ad16e156c928a9e7ef9f6b58361d"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "compminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "comparith",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "4",
+      "C"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 117,
+    "column": 58,
+    "matched_expression": "{4} - C",
+    "semantic_suggestion": "\\compminus{4,C}",
+    "decision": "accepted",
+    "start": 6190,
+    "end": 6197,
+    "source_hash": "524c4420c2625b311dd9db6d8b1515583fff84a0e8f71268abb5738aae17f7c0",
+    "decision_id": "a2abb17249e430d4015a2a9fe22a07e025a9241e3f67d5fa93049fce0811a6f4"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "2",
+      "x"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 138,
+    "column": 13,
+    "matched_expression": "{2} - x",
+    "semantic_suggestion": "\\aminus{2,x}",
+    "decision": "accepted",
+    "start": 7013,
+    "end": 7020,
+    "source_hash": "cf01cb163ecbaf37e7417e8532648dea5931b7ca80b8b8c396b5b11fe3ad949a",
+    "decision_id": "7bc386916f2e59b3cea8b2855fd16c292bc537726be4c381695a3ad7083d5d52"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "2",
+      "2x"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 143,
+    "column": 5,
+    "matched_expression": "2 - 2x",
+    "semantic_suggestion": "\\aminus{2,2x}",
+    "decision": "accepted",
+    "start": 7179,
+    "end": 7185,
+    "source_hash": "a00bf1b91e577c077900c106ebd64a5643b748f1af9f29447ebc63be8348f055",
+    "decision_id": "5345395041fe145fc412063282be1f14c22a5190ae8d3d30ac1d905c1426c03a"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "1",
+      "z^2"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 151,
+    "column": 3,
+    "matched_expression": "1 - z^2",
+    "semantic_suggestion": "\\aminus{1,z^2}",
+    "decision": "accepted",
+    "start": 7573,
+    "end": 7580,
+    "source_hash": "51beffa53490fb27abdb0a3f0a4f21b76352bf74548c39a8df6611d673416aa5",
+    "decision_id": "55532d99f4aabb21502d1027f1cc8b73df6189434bf0325e2544b3fd74494c80"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "u",
+      "v"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 207,
+    "column": 17,
+    "matched_expression": "u-v",
+    "semantic_suggestion": "\\aminus{u,v}",
+    "decision": "accepted",
+    "start": 9957,
+    "end": 9960,
+    "source_hash": "690f26f320e2e3115d01163b3caea9481160a8129f3beeffc73984852e5510f7",
+    "decision_id": "070cc712e55aded756c1f17e1b5abcb486d1a67ae156f6f7c76151a1d19d8d50"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "compminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "comparith",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "2",
+      "v"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 207,
+    "column": 26,
+    "matched_expression": "2 - v",
+    "semantic_suggestion": "\\compminus{2,v}",
+    "decision": "accepted",
+    "start": 9966,
+    "end": 9971,
+    "source_hash": "d38f9327341b554de34faa11d5c8760e35f9d6abe0153e35469957460ebb925c",
+    "decision_id": "c1de10aa53f805366cb0afa4b871f0a622eb44cdb07ec924f1e765f74043910e"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "first",
+      "time"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 219,
+    "column": 5,
+    "matched_expression": "first-time",
+    "semantic_suggestion": "\\aminus{first,time}",
+    "decision": "accepted",
+    "start": 10666,
+    "end": 10676,
+    "source_hash": "74f2c519e578bb5abef2d1e374b2a0ffa0bb9449a7d1ea81ff11ebaf30c68793",
+    "decision_id": "efebd6812b4a0b2b959b66dbb8a992a512996fee7fecb414f0ec64d3baaf18ea"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "40",
+      "3"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 225,
+    "column": 27,
+    "matched_expression": "40 - 3",
+    "semantic_suggestion": "\\aminus{40,3}",
+    "decision": "accepted",
+    "start": 11069,
+    "end": 11075,
+    "source_hash": "af5fde561440bbfb8a864797bd3eb80cbe2c093014956782911c80cf7d7a6494",
+    "decision_id": "df64770f0b72e24944901a7f2ad93f1a5745956a78be27cd4c34aa9dae35dea5"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "2",
+      "3"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 225,
+    "column": 40,
+    "matched_expression": "2 - 3",
+    "semantic_suggestion": "\\aminus{2,3}",
+    "decision": "accepted",
+    "start": 11082,
+    "end": 11087,
+    "source_hash": "cee2fb40e8210e989ac9163784f73dd2ffb6560d1ba73e6b1e5ac1936b5c69db",
+    "decision_id": "54590f11558769670f3f22c0fb3b57062bddea4d8276d7c7ce84140bd61cf4ed"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "base",
+      "60"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 229,
+    "column": 46,
+    "matched_expression": "base-60",
+    "semantic_suggestion": "\\aminus{base,60}",
+    "decision": "accepted",
+    "start": 11236,
+    "end": 11243,
+    "source_hash": "846d698e5f1bfe215909a45c3744777b2ab7848fbe778ede1b6fb48fd3ce4cba",
+    "decision_id": "d9422e2e374694602a5389ead8e77ea7f650575d1a965afd4ce64dc6bfe127c5"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "al",
+      "Khwarizmi"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 243,
+    "column": 34,
+    "matched_expression": "al-Khwarizmi",
+    "semantic_suggestion": "\\aminus{al,Khwarizmi}",
+    "decision": "accepted",
+    "start": 11879,
+    "end": 11891,
+    "source_hash": "39a865e85bd2cb43b00d53b9e5103db7ad1b75de026069967a9209ebf3c0a683",
+    "decision_id": "f58d1514bf98a0c95457b02e3e5d0fb2b01363ca93171bf3ad5e5270e4faae1d"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "first",
+      "time"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 259,
+    "column": 64,
+    "matched_expression": "first-time",
+    "semantic_suggestion": "\\aminus{first,time}",
+    "decision": "accepted",
+    "start": 12993,
+    "end": 13003,
+    "source_hash": "74f2c519e578bb5abef2d1e374b2a0ffa0bb9449a7d1ea81ff11ebaf30c68793",
+    "decision_id": "901f919e1f6cd21425aad20e90c654e66568c46a458298c2478cf1b00c3b882c"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "compminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "comparith",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "4",
+      "\\frac"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 266,
+    "column": 13,
+    "matched_expression": "{4} - \\frac",
+    "semantic_suggestion": "\\compminus{4,\\frac}",
+    "decision": "accepted",
+    "start": 13362,
+    "end": 13373,
+    "source_hash": "50dc5e7df1448633d73a386f1c1123ce4d9a93bcac53bbebca066eddd9095699",
+    "decision_id": "0fba60239377933c3890cbe217bbda23902c2401e1dd8d1ef49dff17c6f825a1"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "4",
+      "\\frac"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 268,
+    "column": 24,
+    "matched_expression": "{4} - \\frac",
+    "semantic_suggestion": "\\aminus{4,\\frac}",
+    "decision": "accepted",
+    "start": 13474,
+    "end": 13485,
+    "source_hash": "50dc5e7df1448633d73a386f1c1123ce4d9a93bcac53bbebca066eddd9095699",
+    "decision_id": "e452ed2919ec0b1ce17ceebf67f6f56b2b61eba2e47c5c882ba640df55fe4a5e"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 3,
+    "arguments": [
+      "guess",
+      "and",
+      "check"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 274,
+    "column": 1,
+    "matched_expression": "guess-and-check",
+    "semantic_suggestion": "\\aminus{guess,and,check}",
+    "decision": "accepted",
+    "start": 13750,
+    "end": 13765,
+    "source_hash": "a503750984021405e46d7efd2edab377890cda669aa3ca5c53ccfc441ffdac63",
+    "decision_id": "9ed70664ed76d7654c0d0cc009237fc1381359ce96402cfd490a706a31614ac2"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "u",
+      "v"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 279,
+    "column": 17,
+    "matched_expression": "u-v",
+    "semantic_suggestion": "\\aminus{u,v}",
+    "decision": "accepted",
+    "start": 14160,
+    "end": 14163,
+    "source_hash": "690f26f320e2e3115d01163b3caea9481160a8129f3beeffc73984852e5510f7",
+    "decision_id": "615be6135eaa02ac5ba9f53a6071a02920e86c4ebc30a6c55acf71fd0ccae364"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "compminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "comparith",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "2",
+      "v"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 279,
+    "column": 26,
+    "matched_expression": "2 - v",
+    "semantic_suggestion": "\\compminus{2,v}",
+    "decision": "accepted",
+    "start": 14169,
+    "end": 14174,
+    "source_hash": "d38f9327341b554de34faa11d5c8760e35f9d6abe0153e35469957460ebb925c",
+    "decision_id": "216a2fc584adaff14867b38e040e9687f2bcbb00382b2d617b6b35f5cc2543c7"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "English",
+      "language"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 287,
+    "column": 16,
+    "matched_expression": "English-language",
+    "semantic_suggestion": "\\aminus{English,language}",
+    "decision": "accepted",
+    "start": 14432,
+    "end": 14448,
+    "source_hash": "a6c71cd196e81ef22bceb1556fec89cf9e02aaf836d5f3d6618aec98de1fe53c",
+    "decision_id": "6a3ba3704251efc11402b5c01c40aa23bf8ec1ee8b8687c39d729ec59d6219f3"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "al",
+      "Khwarizmi"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 290,
+    "column": 29,
+    "matched_expression": "al-Khwarizmi",
+    "semantic_suggestion": "\\aminus{al,Khwarizmi}",
+    "decision": "accepted",
+    "start": 14680,
+    "end": 14692,
+    "source_hash": "39a865e85bd2cb43b00d53b9e5103db7ad1b75de026069967a9209ebf3c0a683",
+    "decision_id": "7cdad338b755cf8bb893e1e2c8d73f35b41501dcb8ecd3d61dfe3f33584d82d8"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "one",
+      "variable"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 300,
+    "column": 41,
+    "matched_expression": "one-variable",
+    "semantic_suggestion": "\\aminus{one,variable}",
+    "decision": "accepted",
+    "start": 15378,
+    "end": 15390,
+    "source_hash": "268009478eede8e397e04a4d879300498f4c9a57d1f4af8da14694799a406ad8",
+    "decision_id": "7dd873e302311361c9f442cc55124cad03df6e1b495f180c471c58fd622efa9c"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "150",
+      "page"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 304,
+    "column": 57,
+    "matched_expression": "150-page",
+    "semantic_suggestion": "\\aminus{150,page}",
+    "decision": "accepted",
+    "start": 15703,
+    "end": 15711,
+    "source_hash": "e1fa35fa9285eb2129603f9bd3239eb67ac6d6e8f40959f03c9073e8178eb86f",
+    "decision_id": "e3fa662e8d34acc92b09f271c9384ffd33ccbf53f52f24fed90591a1d7f169c6"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "two",
+      "term"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 307,
+    "column": 72,
+    "matched_expression": "two-term",
+    "semantic_suggestion": "\\aminus{two,term}",
+    "decision": "accepted",
+    "start": 15947,
+    "end": 15955,
+    "source_hash": "a1cdd2f151cf60fe634fea3b78969389a2e8640e22c3c0d581fbd88eec0ab4cd",
+    "decision_id": "8f72ecb9dd4d3d1036bb158f8770346f5a1b646e391b84238d1b0ea05fa887ef"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "13th",
+      "century"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 316,
+    "column": 5,
+    "matched_expression": "13th-century",
+    "semantic_suggestion": "\\aminus{13th,century}",
+    "decision": "accepted",
+    "start": 16418,
+    "end": 16430,
+    "source_hash": "6940219c164540092882beddd24eeb3f1ea67a71a1f574bd7394b10aed11117e",
+    "decision_id": "27b2b6fe971856a0da5b94941cef78c5bfe9eb0751f79b802f1b9a0f7b9fbd1d"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "al",
+      "Khwarizmi"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 333,
+    "column": 27,
+    "matched_expression": "al-Khwarizmi",
+    "semantic_suggestion": "\\aminus{al,Khwarizmi}",
+    "decision": "accepted",
+    "start": 17399,
+    "end": 17411,
+    "source_hash": "39a865e85bd2cb43b00d53b9e5103db7ad1b75de026069967a9209ebf3c0a683",
+    "decision_id": "7e2f8a66097fb24b331e29f5c172ffc5b333f101b6d9b26636835f3b486d1bfd"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "first",
+      "time"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 362,
+    "column": 16,
+    "matched_expression": "first-time",
+    "semantic_suggestion": "\\aminus{first,time}",
+    "decision": "accepted",
+    "start": 19393,
+    "end": 19403,
+    "source_hash": "74f2c519e578bb5abef2d1e374b2a0ffa0bb9449a7d1ea81ff11ebaf30c68793",
+    "decision_id": "77fc964ad6cab08abb17b3c7dc9fbbe1619aec2d88fafb5bfd097cbdc92263d1"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "previously",
+      "existing"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 366,
+    "column": 44,
+    "matched_expression": "previously-existing",
+    "semantic_suggestion": "\\aminus{previously,existing}",
+    "decision": "accepted",
+    "start": 19591,
+    "end": 19610,
+    "source_hash": "3d52c351df16dd890bd37e6fdbe3557537c4ece14c14cc19106ee042e557885d",
+    "decision_id": "40047d63669b956280613e39d59bcd8eaba8584e455f0a937aa4244f16cd3878"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "sum",
+      "product"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 378,
+    "column": 35,
+    "matched_expression": "sum-product",
+    "semantic_suggestion": "\\aminus{sum,product}",
+    "decision": "accepted",
+    "start": 20196,
+    "end": 20207,
+    "source_hash": "cb658779bacde74d16efaafb66665a9602d9b2c4d47dfc9cae287896aa1651a7",
+    "decision_id": "6a9cbfcf4b793aad278dcb24e39fd5cb49162e238e8efceee5bc48feb476450a"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "well",
+      "known"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 380,
+    "column": 1,
+    "matched_expression": "well-known",
+    "semantic_suggestion": "\\aminus{well,known}",
+    "decision": "accepted",
+    "start": 20315,
+    "end": 20325,
+    "source_hash": "d91ec1b42e0801c146837d7ae69e2df582de1dfe4139ee82e1b02b3efd3a3b03",
+    "decision_id": "145c96d08890603f0ec30a237210d9063c6f5ad533ec7df72ab832f5977afad9"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "al",
+      "Khwarizmi"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 380,
+    "column": 46,
+    "matched_expression": "al-Khwarizmi",
+    "semantic_suggestion": "\\aminus{al,Khwarizmi}",
+    "decision": "accepted",
+    "start": 20360,
+    "end": 20372,
+    "source_hash": "39a865e85bd2cb43b00d53b9e5103db7ad1b75de026069967a9209ebf3c0a683",
+    "decision_id": "89f11c8770744e818f3f18a458ad791645d473211480ba14fff21c0a51026975"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "single",
+      "variable"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 383,
+    "column": 65,
+    "matched_expression": "single-variable",
+    "semantic_suggestion": "\\aminus{single,variable}",
+    "decision": "accepted",
+    "start": 20614,
+    "end": 20629,
+    "source_hash": "be418266178b992a445d4594f5dc3f7397aaca924f7d84f1119a6cf8ccbed582",
+    "decision_id": "295d4de848699f99745e17627d82423f4de2c852cb9a34a614d1ea391d2ac60b"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "x",
+      "R"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 388,
+    "column": 36,
+    "matched_expression": "x - R",
+    "semantic_suggestion": "\\aminus{x,R}",
+    "decision": "accepted",
+    "start": 20898,
+    "end": 20903,
+    "source_hash": "4b351182d32db0d43542e76c9205091dc78f73aeaf9681c47b7b9d0e1e652669",
+    "decision_id": "3b5a87bcd1d41c66bf80de5afd8db649df44d170b6241655ebfc997994c233d7"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "x",
+      "S"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 388,
+    "column": 43,
+    "matched_expression": "x - S",
+    "semantic_suggestion": "\\aminus{x,S}",
+    "decision": "accepted",
+    "start": 20905,
+    "end": 20910,
+    "source_hash": "30dfd7d0f17c76fd65c81b07b7147f5a26e36787879e205baf7e12cae12baeb7",
+    "decision_id": "1518cc583cbcfb5c684cd729e68d2f773362a2ee8dedf0489feeae796f0bb769"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "al",
+      "Khwarizmi"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 392,
+    "column": 28,
+    "matched_expression": "al-Khwarizmi",
+    "semantic_suggestion": "\\aminus{al,Khwarizmi}",
+    "decision": "accepted",
+    "start": 21195,
+    "end": 21207,
+    "source_hash": "39a865e85bd2cb43b00d53b9e5103db7ad1b75de026069967a9209ebf3c0a683",
+    "decision_id": "58bea081dc90134c277584bf14c034f579f847b396d9f659a9be7fd47e4c3405"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "sum",
+      "product"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 404,
+    "column": 14,
+    "matched_expression": "sum-product",
+    "semantic_suggestion": "\\aminus{sum,product}",
+    "decision": "accepted",
+    "start": 22012,
+    "end": 22023,
+    "source_hash": "cb658779bacde74d16efaafb66665a9602d9b2c4d47dfc9cae287896aa1651a7",
+    "decision_id": "1f656a0281e80b4b569e4c86d15cdfdc63835e17fa22d6eb237d23ce8f90d581"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 3,
+    "arguments": [
+      "guess",
+      "and",
+      "check"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 404,
+    "column": 61,
+    "matched_expression": "guess-and-check",
+    "semantic_suggestion": "\\aminus{guess,and,check}",
+    "decision": "accepted",
+    "start": 22059,
+    "end": 22074,
+    "source_hash": "a503750984021405e46d7efd2edab377890cda669aa3ca5c53ccfc441ffdac63",
+    "decision_id": "838ec7c2f50ee0167264d230225b187bc22bb1d388e23c250f46b73ce836af1e"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "Al",
+      "Khwarizmi"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 417,
+    "column": 26,
+    "matched_expression": "Al-Khwarizmi",
+    "semantic_suggestion": "\\aminus{Al,Khwarizmi}",
+    "decision": "accepted",
+    "start": 22686,
+    "end": 22698,
+    "source_hash": "d15ccf1b41f834046e27838699780093a75731b8413ee21c3cffa6c63e4d66e6",
+    "decision_id": "204c22c6534acf79410d35f3c1a58ed54b27a1a15b6c700c312225cb9b8da029"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "McGraw",
+      "Hill"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 428,
+    "column": 45,
+    "matched_expression": "McGraw-Hill",
+    "semantic_suggestion": "\\aminus{McGraw,Hill}",
+    "decision": "accepted",
+    "start": 23169,
+    "end": 23180,
+    "source_hash": "872eb0cd2268657ecc80d20f18cf5740d7ba74ea6ad3997bc2dc28974037fa87",
+    "decision_id": "82536917d5f2730676ff0c1a0ac9d813bf997103d832c85fdd9c0756eb8d72ae"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 6,
+    "arguments": [
+      "discovering",
+      "a",
+      "formula",
+      "for",
+      "the",
+      "cubic"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 465,
+    "column": 45,
+    "matched_expression": "discovering-a-formula-for-the-cubic",
+    "semantic_suggestion": "\\aminus{discovering,a,formula,for,the,cubic}",
+    "decision": "accepted",
+    "start": 24794,
+    "end": 24829,
+    "source_hash": "5211c6dfb6e3e666fe94c6675c59fb0c429a12b15c60c1c05ecb91a6012684d3",
+    "decision_id": "ba462a2fbc965cd5cf731388c71ff77aea55c7cf7db3b3e2ba6cd8e927f79086"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "Thirteenth",
+      "century"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 482,
+    "column": 20,
+    "matched_expression": "Thirteenth-century",
+    "semantic_suggestion": "\\aminus{Thirteenth,century}",
+    "decision": "accepted",
+    "start": 25534,
+    "end": 25552,
+    "source_hash": "1f6a9b6ac201239e983c8a3148824856b8dd5cb7cd44a3e359d2fbfa9895bc84",
+    "decision_id": "2f709653a5ddb95fc5be6633decb9cc7982cba611e8650d6b9f5cb16c9a9012a"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "Pre",
+      "Modern"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 486,
+    "column": 21,
+    "matched_expression": "Pre-Modern",
+    "semantic_suggestion": "\\aminus{Pre,Modern}",
+    "decision": "accepted",
+    "start": 25721,
+    "end": 25731,
+    "source_hash": "c5538f142dcdc2d79914e86b5750c7dd5df39b2c2ebb91191f96ff27f3b53844",
+    "decision_id": "ea5747c4b233d4fb46d0a5e38689fb0669d60239f178501d58c6033f5644c9ff"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "compminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "comparith",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "eq:formula-monic",
+      "\\frac"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 122,
+    "column": 9,
+    "matched_expression": "{eq:formula-monic}\n  -\\frac",
+    "semantic_suggestion": "\\compminus{eq:formula-monic,\\frac}",
+    "decision": "accepted",
+    "start": 6400,
+    "end": 6427,
+    "source_hash": "4026054292b6d9c4786873ac170cd4a5723aa6dcd6cd3f5efd99c37aba82a2bc",
+    "decision_id": "1094d2f50f43ec5036e0db7086703c67049d03243233a618bae779e99b41ba84"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "\\frac{B^2}{4}",
+      "C"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 117,
+    "column": 48,
+    "matched_expression": "\\frac{B^2}{4} - C",
+    "semantic_suggestion": "\\aminus{\\frac{B^2}{4},C}",
+    "decision": "accepted",
+    "start": 6180,
+    "end": 6197,
+    "source_hash": "efb20314a6a06e17dbf9089491db3159003bb13bfe0ed2b42f1f522a94768a52",
+    "decision_id": "a46d4c9115cf40222b21c19a3682a8128e2a03eac543221fed636a57dafd7bf6"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "u^2",
+      "v^2"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 207,
+    "column": 24,
+    "matched_expression": "u^2 - v^2",
+    "semantic_suggestion": "\\aminus{u^2,v^2}",
+    "decision": "accepted",
+    "start": 9964,
+    "end": 9973,
+    "source_hash": "49fa7d87b414a95152fbc06c57e91fc177d3b7e6245737d41503aa4c610d1e56",
+    "decision_id": "20086771f3ee922fb52a1d2bc0d2111cf7de4d6b8067ce85579e70882b1d04fa"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "\\frac{B^2}{4}",
+      "\\frac{B^2}{4}"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 266,
+    "column": 3,
+    "matched_expression": "\\frac{B^2}{4} - \\frac{B^2}{4}",
+    "semantic_suggestion": "\\aminus{\\frac{B^2}{4},\\frac{B^2}{4}}",
+    "decision": "accepted",
+    "start": 13352,
+    "end": 13381,
+    "source_hash": "e8b24618c3325d252ddc32d0f08d8f4ea2c872ea356eccdca8b8b9e2d5bdee99",
+    "decision_id": "f7de104ada1fb316a89922e80e2c0ab5e23b59048deb3b5b2a2301a76ef4c9e6"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "u^2",
+      "v^2"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 279,
+    "column": 24,
+    "matched_expression": "u^2 - v^2",
+    "semantic_suggestion": "\\aminus{u^2,v^2}",
+    "decision": "accepted",
+    "start": 14167,
+    "end": 14176,
+    "source_hash": "49fa7d87b414a95152fbc06c57e91fc177d3b7e6245737d41503aa4c610d1e56",
+    "decision_id": "06749bb9eb81be52ba408e227147ac339fa28d370c981d3a0a4723826636beb6"
+  },
+  {
+    "visible_symbol": "=",
+    "semantic_macro": "eq",
+    "semantic_meaning": "equal",
+    "semantic_module": "equal",
+    "semantic_repository": "mv",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "C",
+      "(x-R)"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 82,
+    "column": 14,
+    "matched_expression": "C = (x-R)",
+    "semantic_suggestion": "\\eq{C,(x-R)}",
+    "decision": "accepted",
+    "start": 4060,
+    "end": 4069,
+    "source_hash": "ad2c1c7e6de71c6a7a9fe596051beeb367f3b9a469438c946f5a830a77aabf70",
+    "decision_id": "90c6e35d36b1da7a81aab3f52c51ec0f70a9e5e1899bbd91f5bf4fc4f86e47c5"
+  },
+  {
+    "visible_symbol": "=",
+    "semantic_macro": "eq",
+    "semantic_meaning": "equal",
+    "semantic_module": "equal",
+    "semantic_repository": "mv",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "x",
+      "R"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 85,
+    "column": 57,
+    "matched_expression": "x = R",
+    "semantic_suggestion": "\\eq{x,R}",
+    "decision": "accepted",
+    "start": 4227,
+    "end": 4232,
+    "source_hash": "341d5b3348d1b0d304d38d3a8311fca6f7e2dcc4c988bf9bd0566f7715afcf6b",
+    "decision_id": "d4b9b003efe03d9422a2b9c0c9478acc4ac9dc271f6325dfbd856494ec42643c"
+  },
+  {
+    "visible_symbol": "=",
+    "semantic_macro": "eq",
+    "semantic_meaning": "equal",
+    "semantic_module": "equal",
+    "semantic_repository": "mv",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "x",
+      "S"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 85,
+    "column": 68,
+    "matched_expression": "x = S",
+    "semantic_suggestion": "\\eq{x,S}",
+    "decision": "accepted",
+    "start": 4238,
+    "end": 4243,
+    "source_hash": "e1012f39b60863173ae1e8c952a68e9aff0efa143f18d12b5976c18bd2e348ea",
+    "decision_id": "7d9dac64d0419dbefa2852b2a683cd5383194e0df8aa138fd1121898b8d1f0c6"
+  },
+  {
+    "visible_symbol": "=",
+    "semantic_macro": "eq",
+    "semantic_meaning": "equal",
+    "semantic_module": "equal",
+    "semantic_repository": "mv",
+    "pattern_type": "sequence",
+    "argument_count": 3,
+    "arguments": [
+      "R",
+      "S",
+      "-\\frac{B}{2}"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 106,
+    "column": 49,
+    "matched_expression": "R = S = -\\frac{B}{2}",
+    "semantic_suggestion": "\\eq{R,S,-\\frac{B}{2}}",
+    "decision": "accepted",
+    "start": 5683,
+    "end": 5703,
+    "source_hash": "b7c6a881ec41a1785616ef9d64490b8b650fbfc66e0036998da87b6a3f3ac9b7",
+    "decision_id": "f9c94dae3c45393f12fda651dc6de8ded5f58952af561ef01b64f604e5451ad7"
+  },
+  {
+    "visible_symbol": "=",
+    "semantic_macro": "eq",
+    "semantic_meaning": "equal",
+    "semantic_module": "equal",
+    "semantic_repository": "mv",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "c",
+      "0"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 173,
+    "column": 3,
+    "matched_expression": "c = 0",
+    "semantic_suggestion": "\\eq{c,0}",
+    "decision": "accepted",
+    "start": 8463,
+    "end": 8468,
+    "source_hash": "77f74adae4f489664d55531eb9070e9b7d836b2b35707abf994ec45918377a41",
+    "decision_id": "ede60009afc9052d403ac4131a76207c07578f1f5bbf1f3a672d0f4867e197ab"
+  },
+  {
+    "visible_symbol": "=",
+    "semantic_macro": "eq",
+    "semantic_meaning": "equal",
+    "semantic_module": "equal",
+    "semantic_repository": "mv",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "b",
+      "0"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 196,
+    "column": 23,
+    "matched_expression": "b = 0",
+    "semantic_suggestion": "\\eq{b,0}",
+    "decision": "accepted",
+    "start": 9564,
+    "end": 9569,
+    "source_hash": "81c4854fbc1afb5cea05093c264dad716ee6adc943e7e2572cd658948b28cdec",
+    "decision_id": "3702b7ed743218339c2009a71150cf36115523280d769036d5e5eaede5d79815"
+  },
+  {
+    "visible_symbol": "=",
+    "semantic_macro": "eq",
+    "semantic_meaning": "equal",
+    "semantic_module": "equal",
+    "semantic_repository": "mv",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "x",
+      "-\\frac{b}{a}"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 196,
+    "column": 34,
+    "matched_expression": "x = -\\frac{b}{a}",
+    "semantic_suggestion": "\\eq{x,-\\frac{b}{a}}",
+    "decision": "accepted",
+    "start": 9575,
+    "end": 9591,
+    "source_hash": "e26f4150c296c08870d63fdc9baf9d23d769c8f983806d1b8391a47a5adcc70b",
+    "decision_id": "c2790a7b334e38082584a4a6f7cff304c9e412c4f3138a516c8539ba9f2ce486"
+  },
+  {
+    "visible_symbol": "=",
+    "semantic_macro": "eq",
+    "semantic_meaning": "equal",
+    "semantic_module": "equal",
+    "semantic_repository": "mv",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "(u + v)^2",
+      "u^2 + 2uv + v^2"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 206,
+    "column": 52,
+    "matched_expression": "(u + v)^2 = u^2 + 2uv + v^2",
+    "semantic_suggestion": "\\eq{(u + v)^2,u^2 + 2uv + v^2}",
+    "decision": "accepted",
+    "start": null,
+    "end": null,
+    "migration_error": "saved expression differs at its original location",
+    "decision_id": "d33ac53fca678c1d94959407d44fad00347fc4e46d22e52955ab618b739fb314"
+  },
+  {
+    "visible_symbol": "=",
+    "semantic_macro": "eq",
+    "semantic_meaning": "equal",
+    "semantic_module": "equal",
+    "semantic_repository": "mv",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "(u-v)",
+      "u^2"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 207,
+    "column": 16,
+    "matched_expression": "(u-v) = u^2",
+    "semantic_suggestion": "\\eq{(u-v),u^2}",
+    "decision": "accepted",
+    "start": 9956,
+    "end": 9967,
+    "source_hash": "b0bfe4b279fb4dc755eb8cead3eb5e22349b80ac4c70ec3b52e36446420c29ec",
+    "decision_id": "7333599f4ae9a0db01eb3489070db1bd4a9b433472806517530d7dadf5a2cff7"
+  },
+  {
+    "visible_symbol": "=",
+    "semantic_macro": "eq",
+    "semantic_meaning": "equal",
+    "semantic_module": "equal",
+    "semantic_repository": "mv",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "C",
+      "0"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 246,
+    "column": 33,
+    "matched_expression": "C = 0",
+    "semantic_suggestion": "\\eq{C,0}",
+    "decision": "accepted",
+    "start": 12108,
+    "end": 12113,
+    "source_hash": "805e570ff01af2f3e24f373f99b41bedb170f21c4175f6dab497255c3c1cd303",
+    "decision_id": "0d44d3e1eb58b262808d2e184ec892b48ec77d5d146652ab6abb063fad573749"
+  },
+  {
+    "visible_symbol": "=",
+    "semantic_macro": "eq",
+    "semantic_meaning": "equal",
+    "semantic_module": "equal",
+    "semantic_repository": "mv",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "(u+v)^2",
+      "u^2 + 2uv + v^2"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 249,
+    "column": 63,
+    "matched_expression": "(u+v)^2 = u^2 + 2uv + v^2",
+    "semantic_suggestion": "\\eq{(u+v)^2,u^2 + 2uv + v^2}",
+    "decision": "accepted",
+    "start": null,
+    "end": null,
+    "migration_error": "saved expression differs at its original location",
+    "decision_id": "277497ba311ce0cdb3236a22b772e3cd57dff3b9a22333863b873a1af62d1ad8"
+  },
+  {
+    "visible_symbol": "=",
+    "semantic_macro": "eq",
+    "semantic_meaning": "equal",
+    "semantic_module": "equal",
+    "semantic_repository": "mv",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "x^2",
+      "K"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 259,
+    "column": 6,
+    "matched_expression": "x^2 = K",
+    "semantic_suggestion": "\\eq{x^2,K}",
+    "decision": "accepted",
+    "start": 12935,
+    "end": 12942,
+    "source_hash": "23d08a8712d1c035033f9d7918cbdfc7e9830c7277dcb2888227b14e573df523",
+    "decision_id": "d362a78dead0362e81167f2420c686281b7fd6f57a3a276bca53d892a655a97d"
+  },
+  {
+    "visible_symbol": "=",
+    "semantic_macro": "eq",
+    "semantic_meaning": "equal",
+    "semantic_module": "equal",
+    "semantic_repository": "mv",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "x^2",
+      "K"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 261,
+    "column": 51,
+    "matched_expression": "x^2 = K",
+    "semantic_suggestion": "\\eq{x^2,K}",
+    "decision": "accepted",
+    "start": 13130,
+    "end": 13137,
+    "source_hash": "23d08a8712d1c035033f9d7918cbdfc7e9830c7277dcb2888227b14e573df523",
+    "decision_id": "74445b24a557eb1206f8dc3f7efe25e4c2f20eb42e370b49cdbf2da92c101ad2"
+  },
+  {
+    "visible_symbol": "=",
+    "semantic_macro": "eq",
+    "semantic_meaning": "equal",
+    "semantic_module": "equal",
+    "semantic_repository": "mv",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "(u-v)",
+      "u^2"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 279,
+    "column": 16,
+    "matched_expression": "(u-v) = u^2",
+    "semantic_suggestion": "\\eq{(u-v),u^2}",
+    "decision": "accepted",
+    "start": 14159,
+    "end": 14170,
+    "source_hash": "b0bfe4b279fb4dc755eb8cead3eb5e22349b80ac4c70ec3b52e36446420c29ec",
+    "decision_id": "3027feaf879817e940961bb939efdcc53b912f923ed9166585d0ca9d1f741267"
+  },
+  {
+    "visible_symbol": "=",
+    "semantic_macro": "eq",
+    "semantic_meaning": "equal",
+    "semantic_module": "equal",
+    "semantic_repository": "mv",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "C",
+      "(x - R)"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 388,
+    "column": 31,
+    "matched_expression": "C = (x - R)",
+    "semantic_suggestion": "\\eq{C,(x - R)}",
+    "decision": "accepted",
+    "start": 20893,
+    "end": 20904,
+    "source_hash": "a345c814824ec085339b3c0c797d59038651395a42313d0a276fccdc5591ab95",
+    "decision_id": "b7a7e80ad0c12cf8bfce518d882b47bbb66deb93db86dfab7b99e58a364366e0"
+  },
+  {
+    "visible_symbol": "=",
+    "semantic_macro": "eq",
+    "semantic_meaning": "equal",
+    "semantic_module": "equal",
+    "semantic_repository": "mv",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "x^2 + Bx + C",
+      "(x-R)(x-S)"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 82,
+    "column": 3,
+    "matched_expression": "x^2 + Bx + C = (x-R)(x-S)",
+    "semantic_suggestion": "\\eq{x^2 + Bx + C,(x-R)(x-S)}",
+    "decision": "accepted",
+    "start": 4049,
+    "end": 4074,
+    "source_hash": "bc34a72710e46642e5f859d4d4b821df7ad36788b8f7e306dea042e2cecc1522",
+    "decision_id": "c882cf40c1cddc013d6ec118086fa9e89a380c1c910dc699ceef5e06213c50b5"
+  },
+  {
+    "visible_symbol": "=",
+    "semantic_macro": "eq",
+    "semantic_meaning": "equal",
+    "semantic_module": "equal",
+    "semantic_repository": "mv",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "ax^2 + bx + c",
+      "0"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 172,
+    "column": 67,
+    "matched_expression": "ax^2 + bx + c = 0",
+    "semantic_suggestion": "\\eq{ax^2 + bx + c,0}",
+    "decision": "accepted",
+    "start": null,
+    "end": null,
+    "migration_error": "saved expression differs at its original location",
+    "decision_id": "250bcf25c13cf5a887ed55d97b9db19b6a83ecb2dcf5cf9f473f9e67dfff89a4"
+  },
+  {
+    "visible_symbol": "=",
+    "semantic_macro": "eq",
+    "semantic_meaning": "equal",
+    "semantic_module": "equal",
+    "semantic_repository": "mv",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "ax + b",
+      "0"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 196,
+    "column": 18,
+    "matched_expression": "ax + b = 0",
+    "semantic_suggestion": "\\eq{ax + b,0}",
+    "decision": "accepted",
+    "start": 9559,
+    "end": 9569,
+    "source_hash": "7278c0d57b193bb42113c0d065c970ab29da07b7e534ce75ab929b9e64c6ef91",
+    "decision_id": "989f1eabf20ebc6f34bd6084150f07331065150e40f77153dddcb300efb7c218"
+  },
+  {
+    "visible_symbol": "=",
+    "semantic_macro": "eq",
+    "semantic_meaning": "equal",
+    "semantic_module": "equal",
+    "semantic_repository": "mv",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "(u+v)(u-v)",
+      "u^2 - v^2"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 207,
+    "column": 11,
+    "matched_expression": "(u+v)(u-v) = u^2 - v^2",
+    "semantic_suggestion": "\\eq{(u+v)(u-v),u^2 - v^2}",
+    "decision": "accepted",
+    "start": 9951,
+    "end": 9973,
+    "source_hash": "8185747fd95b399ef983950e2291331c356cf76351a106e3f6749ba942b59f5d",
+    "decision_id": "5d2d417487b4d94f776be65142d931e263de997e9524674a293cb2df337e2aaf"
+  },
+  {
+    "visible_symbol": "=",
+    "semantic_macro": "eq",
+    "semantic_meaning": "equal",
+    "semantic_module": "equal",
+    "semantic_repository": "mv",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "x^2 + Bx + C",
+      "0"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 246,
+    "column": 22,
+    "matched_expression": "x^2 + Bx + C = 0",
+    "semantic_suggestion": "\\eq{x^2 + Bx + C,0}",
+    "decision": "accepted",
+    "start": 12097,
+    "end": 12113,
+    "source_hash": "0b20930b89dfdabb0d57028f549b6c5f2ea92ffad78a2dab8183b452a9e3a25b",
+    "decision_id": "1362b1422f2da4675bf88b5351bb7d86beca93e9d8dd0e14b4637df1db3a8fc1"
+  },
+  {
+    "visible_symbol": "=",
+    "semantic_macro": "eq",
+    "semantic_meaning": "equal",
+    "semantic_module": "equal",
+    "semantic_repository": "mv",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "(u+v)(u-v)",
+      "u^2 - v^2"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 279,
+    "column": 11,
+    "matched_expression": "(u+v)(u-v) = u^2 - v^2",
+    "semantic_suggestion": "\\eq{(u+v)(u-v),u^2 - v^2}",
+    "decision": "accepted",
+    "start": 14154,
+    "end": 14176,
+    "source_hash": "8185747fd95b399ef983950e2291331c356cf76351a106e3f6749ba942b59f5d",
+    "decision_id": "ae549c3821e45977a338d8a063fe7c85e8d7f963246c8725998e83c52f3e33e1"
+  },
+  {
+    "visible_symbol": "=",
+    "semantic_macro": "eq",
+    "semantic_meaning": "equal",
+    "semantic_module": "equal",
+    "semantic_repository": "mv",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "x^2 + Bx + C",
+      "(x - R)(x - S)"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 388,
+    "column": 20,
+    "matched_expression": "x^2 + Bx + C = (x - R)(x - S)",
+    "semantic_suggestion": "\\eq{x^2 + Bx + C,(x - R)(x - S)}",
+    "decision": "accepted",
+    "start": 20882,
+    "end": 20911,
+    "source_hash": "4d17a9ed7eb2b00c5c9a5914cf7d35bc8851af4652d9d0febc600a0eda2c06a4",
+    "decision_id": "8759bd79f66fdedfac0ee1f9e8fcb20d1f5ed9248414af5140b71029191d2803"
+  },
+  {
+    "visible_symbol": "\\neq",
+    "semantic_macro": "notequal",
+    "semantic_meaning": "not equal",
+    "semantic_module": "equal",
+    "semantic_repository": "mv",
+    "pattern_type": "binary_infix",
+    "argument_count": 2,
+    "arguments": [
+      "a",
+      "0"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 196,
+    "column": 61,
+    "matched_expression": "a \\neq 0",
+    "semantic_suggestion": "\\notequal{a}{0}",
+    "decision": "accepted",
+    "start": 9602,
+    "end": 9610,
+    "source_hash": "813826f836dcc1835507b8b30bb61abd08a57fc009fed99e3bd9079f42009c69",
+    "decision_id": "b39353016d8059981555f3e6d0c12f269561842f741d1fe6e20b448822d318b3"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "-\\frac{B}{2}",
+      "z"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 107,
+    "column": 29,
+    "matched_expression": "-\\frac{B}{2} - z",
+    "semantic_suggestion": "\\aminus{-\\frac{B}{2},z}",
+    "decision": "accepted",
+    "start": 5739,
+    "end": 5755,
+    "source_hash": "92b0df9dfdf81383a7adb1ee2c3fb5cc129b5ae046181e22557bfa350216300f",
+    "decision_id": "3aa440965c28ca49a9a74de677c24b46e6d71a20022c7b07a22de6d041a500cb"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "\\frac{B^2}{4}",
+      "C"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 123,
+    "column": 26,
+    "matched_expression": "\\frac{B^2}{4} - C",
+    "semantic_suggestion": "\\aminus{\\frac{B^2}{4},C}",
+    "decision": "accepted",
+    "start": 6444,
+    "end": 6461,
+    "source_hash": "efb20314a6a06e17dbf9089491db3159003bb13bfe0ed2b42f1f522a94768a52",
+    "decision_id": "eca2a529b571a4a267be855f8c46d24df8671a829d7049d478310ad58851d40a"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "\\sqrt{3}",
+      "\\sqrt{2}"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 211,
+    "column": 46,
+    "matched_expression": "\\sqrt{3} - \\sqrt{2}",
+    "semantic_suggestion": "\\aminus{\\sqrt{3},\\sqrt{2}}",
+    "decision": "accepted",
+    "start": 10274,
+    "end": 10293,
+    "source_hash": "5991eea4b24c48d2b532fc2c12ddd1a4da2d13a12e7727d1044ee32ad74af9c1",
+    "decision_id": "8d4f3843eef5939eb60646f1c529879b55552fd8ca19d9aa21b3a56f0db30ea4"
+  },
+  {
+    "visible_symbol": "-",
+    "semantic_macro": "aminus",
+    "semantic_meaning": "subtraction",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "+\\frac{B^2}{4}",
+      "\\frac{B^2}{4}"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 266,
+    "column": 2,
+    "matched_expression": "+\\frac{B^2}{4} - \\frac{B^2}{4}",
+    "semantic_suggestion": "\\aminus{+\\frac{B^2}{4},\\frac{B^2}{4}}",
+    "decision": "accepted",
+    "start": 13351,
+    "end": 13381,
+    "source_hash": "0164bc80980329b1dd242e469a8f1af89ad7eecd6dc9687a7fe64c47fede5abd",
+    "decision_id": "ef46be419cf9707ba28ab601d9c7e91603b748a5d9f38cd05602d461b79d6daa"
+  },
+  {
+    "visible_symbol": "+",
+    "semantic_macro": "aplus",
+    "semantic_meaning": "addition",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 3,
+    "arguments": [
+      "x^2",
+      "Bx",
+      "C"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 82,
+    "column": 3,
+    "matched_expression": "x^2 + Bx + C",
+    "semantic_suggestion": "\\aplus{x^2,Bx,C}",
+    "decision": "accepted",
+    "start": 4049,
+    "end": 4061,
+    "source_hash": "9c22511a97693d05fc11957aedf71ad6e475ff2b5739e7b0ae23b4bbfacbd79a",
+    "decision_id": "a5d1962e02749a3024727bfa1544bc7230ae3acf23dfc55728a2e4eea08e70d7"
+  },
+  {
+    "visible_symbol": "+",
+    "semantic_macro": "aplus",
+    "semantic_meaning": "addition",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "-\\frac{B}{2}",
+      "z"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 107,
+    "column": 11,
+    "matched_expression": "-\\frac{B}{2} + z",
+    "semantic_suggestion": "\\aplus{-\\frac{B}{2},z}",
+    "decision": "accepted",
+    "start": 5721,
+    "end": 5737,
+    "source_hash": "725b450df56a3df5b3e6bb3e624dbd06fb2e2295290aa1a6091915235a279328",
+    "decision_id": "ed61834cca677d67e74a7917817b2e2684390b63285e30efc66b8f4791b14e53"
+  },
+  {
+    "visible_symbol": "+",
+    "semantic_macro": "aplus",
+    "semantic_meaning": "addition",
+    "semantic_module": "arithmetics",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 2,
+    "arguments": [
+      "ax^2",
+      "bx"
+    ],
+    "file": "1910.06709\\quadratic-20121216.tex",
+    "line": 172,
+    "column": 67,
+    "matched_expression": "ax^2 + bx",
+    "semantic_suggestion": "\\aplus{ax^2,bx}",
+    "decision": "accepted",
+    "start": 8451,
+    "end": 8460,
+    "source_hash": "388dd51c80d5455c9bb9ef9651fe5e7c60e14006eb08fc79a822fd31137f6de4",
+    "decision_id": "09a7b999c0e011af366a51f54b53fbe4850e4294482f225df527e60b7fd4454b"
+  },
+  {
+    "visible_symbol": "+",
+    "semantic_macro": "realplus",
+    "semantic_meaning": "addition",
+    "semantic_module": "realarith",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 3,
+    "arguments": [
+      "(A_1)",
+      "\\dots",
+      "P"
+    ],
+    "file": "1910.06709\\zufallsvariablen.de.tex",
+    "line": 142,
+    "column": 37,
+    "matched_expression": "(A_1)+\\dots+P",
+    "semantic_suggestion": "\\realplus{(A_1),\\dots,P}",
+    "decision": "accepted",
+    "argument_roles": [],
+    "configuration_source": "SMGloM",
+    "source_hash": "d25cab5ec17dd070de16d65288fc08db77573728ad3227e4704bbe73beade991",
+    "decision_id": "4a05d33d5a629453a1402ed37ac7ebd24f6389728e7dd443117aa149b8bb595a",
+    "start": null,
+    "end": null,
+    "migration_error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\91812\\\\Thesis\\\\annotation_workflow\\\\evaluation\\\\frozen_papers\\\\1910.06709\\\\zufallsvariablen.de.tex'"
+  },
+  {
+    "visible_symbol": "+",
+    "semantic_macro": "realplus",
+    "semantic_meaning": "addition",
+    "semantic_module": "realarith",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 3,
+    "arguments": [
+      "P(A_1)",
+      "\\dots",
+      "P(A_k)"
+    ],
+    "file": "1910.06709\\zufallsvariablen.de.tex",
+    "line": 142,
+    "column": 36,
+    "matched_expression": "P(A_1)+\\dots+P(A_k)",
+    "semantic_suggestion": "\\realplus{P(A_1),\\dots,P(A_k)}",
+    "decision": "accepted",
+    "argument_roles": [],
+    "configuration_source": "SMGloM",
+    "candidate_classification": {
+      "pattern_type": "sequence",
+      "separator": "+",
+      "separator_fragment": "\\mathbin{\\maincomp+}",
+      "variable_arguments": true,
+      "precedence": 500,
+      "grammar_supported": true,
+      "fixity": "infix",
+      "arity": "variable"
+    },
+    "adapter_family": null,
+    "expression_config": {
+      "notation_aliases": {
+        "*": "\\times"
+      },
+      "operators": [
+        {
+          "token": "+",
+          "precedence": 10,
+          "associativity": "left",
+          "arity": "variable"
+        },
+        {
+          "token": "-",
+          "precedence": 10,
+          "associativity": "left",
+          "arity": "variable"
+        },
+        {
+          "token": "*",
+          "variants": [
+            "\\cdot"
+          ],
+          "precedence": 20,
+          "associativity": "left"
+        },
+        {
+          "token": "/",
+          "precedence": 20,
+          "associativity": "left"
+        },
+        {
+          "token": "+",
+          "precedence": 30,
+          "associativity": "right",
+          "fixity": "prefix",
+          "arity": 1
+        },
+        {
+          "token": "-",
+          "precedence": 30,
+          "associativity": "right",
+          "fixity": "prefix",
+          "arity": 1
+        },
+        {
+          "token": "=",
+          "precedence": 1,
+          "associativity": "sequence",
+          "arity": "variable"
+        },
+        {
+          "token": "\\ne",
+          "precedence": 1,
+          "associativity": "none"
+        },
+        {
+          "token": "\\wedge",
+          "variants": [
+            "\\land"
+          ],
+          "precedence": 6,
+          "associativity": "left"
+        },
+        {
+          "token": "\\vee",
+          "precedence": 5,
+          "associativity": "left"
+        },
+        {
+          "token": "\\cup",
+          "precedence": 10,
+          "associativity": "sequence",
+          "arity": "variable"
+        },
+        {
+          "token": "\\cap",
+          "precedence": 20,
+          "associativity": "left"
+        },
+        {
+          "token": "\\in",
+          "precedence": 1,
+          "associativity": "none"
+        },
+        {
+          "token": "\\subseteq",
+          "precedence": 1,
+          "associativity": "none"
+        },
+        {
+          "token": "\\pm",
+          "precedence": 10,
+          "associativity": "left"
+        },
+        {
+          "token": "\\pm",
+          "precedence": 30,
+          "associativity": "right",
+          "fixity": "prefix",
+          "arity": 1
+        },
+        {
+          "token": "−",
+          "precedence": 10,
+          "associativity": "left",
+          "arity": "variable",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "−",
+          "precedence": 30,
+          "associativity": "right",
+          "fixity": "prefix",
+          "arity": 1,
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "×",
+          "precedence": 20,
+          "associativity": "left",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "÷",
+          "precedence": 20,
+          "associativity": "left",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "∪",
+          "precedence": 10,
+          "associativity": "sequence",
+          "arity": "variable",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "∩",
+          "precedence": 20,
+          "associativity": "left",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "∧",
+          "precedence": 6,
+          "associativity": "left",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "∨",
+          "precedence": 5,
+          "associativity": "left",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "⇒",
+          "precedence": 2,
+          "associativity": "right",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "→",
+          "precedence": 2,
+          "associativity": "right",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "≤",
+          "precedence": 1,
+          "associativity": "none",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "≥",
+          "precedence": 1,
+          "associativity": "none",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "≠",
+          "precedence": 1,
+          "associativity": "none",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "≈",
+          "precedence": 1,
+          "associativity": "none",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "≡",
+          "precedence": 1,
+          "associativity": "none",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "∈",
+          "precedence": 1,
+          "associativity": "none",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "∉",
+          "precedence": 1,
+          "associativity": "none",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "⊂",
+          "precedence": 1,
+          "associativity": "none",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "⊆",
+          "precedence": 1,
+          "associativity": "none",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "⊃",
+          "precedence": 1,
+          "associativity": "none",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "⊇",
+          "precedence": 1,
+          "associativity": "none",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "√",
+          "precedence": 30,
+          "associativity": "right",
+          "fixity": "prefix",
+          "arity": 1,
+          "source": "Unicode structural grammar"
+        }
+      ],
+      "review_labels": {
+        "*": "multiplication",
+        "\\cup": "union",
+        "\\cap": "intersection",
+        "\\subseteq": "subset relation",
+        "\\in": "membership relation",
+        "∈": "membership relation",
+        "∪": "union"
+      },
+      "review_argument_labels": {
+        "\\in": {
+          "left": "element",
+          "right": "set"
+        }
+      },
+      "review_unavailable_status": {
+        "\\cup": "real set-theory semantic metadata unavailable locally",
+        "\\cap": "real set-theory semantic metadata unavailable locally",
+        "\\subseteq": "real set-theory semantic metadata unavailable locally",
+        "\\in": "real set-theory semantic metadata unavailable locally"
+      },
+      "commands": {
+        "\\aplus": {
+          "arity": 1,
+          "semantic": true,
+          "argument_types": [
+            "sequence"
+          ]
+        },
+        "\\eq": {
+          "arity": 1,
+          "semantic": true,
+          "argument_types": [
+            "sequence"
+          ]
+        },
+        "\\notequal": {
+          "arity": 2,
+          "semantic": true,
+          "argument_types": [
+            "expression",
+            "expression"
+          ]
+        },
+        "\\frac": {
+          "arity": 2,
+          "roles": [
+            "numerator",
+            "denominator"
+          ]
+        },
+        "\\sqrt": {
+          "arity": 1,
+          "optional_arguments": 1,
+          "roles": [
+            "radicand"
+          ]
+        },
+        "\\mathcal": {
+          "arity": 1,
+          "callable": true
+        },
+        "\\mathfrak": {
+          "arity": 1,
+          "callable": true
+        },
+        "\\alpha": {
+          "arity": 0
+        },
+        "\\Box": {
+          "arity": 0
+        },
+        "\\boldsymbol": {
+          "arity": 1,
+          "roles": [
+            "content"
+          ]
+        },
+        "\\mathrm": {
+          "arity": 1,
+          "roles": [
+            "content"
+          ]
+        },
+        "\\operatorname": {
+          "arity": 1,
+          "roles": [
+            "content"
+          ]
+        },
+        "\\sin": {
+          "arity": 0,
+          "callable": true
+        },
+        "\\dots": {
+          "arity": 0
+        },
+        "\\cdots": {
+          "arity": 0
+        },
+        "\\text": {
+          "arity": 1,
+          "argument_types": [
+            "opaque"
+          ],
+          "roles": [
+            "content"
+          ]
+        },
+        "\\pi": {
+          "arity": 0
+        }
+      },
+      "bound_constructs": {
+        "\\sum": {
+          "node_kind": "BigOperatorApplication",
+          "name": "summation",
+          "scripts": {
+            "_": "lower",
+            "^": "upper"
+          },
+          "body_role": "body",
+          "body_precedence": 11
+        },
+        "\\prod": {
+          "node_kind": "BigOperatorApplication",
+          "scripts": {
+            "_": "lower",
+            "^": "upper"
+          },
+          "body_role": "body",
+          "body_precedence": 11
+        },
+        "\\int": {
+          "node_kind": "BoundExpression",
+          "scripts": {
+            "_": "lower",
+            "^": "upper"
+          },
+          "body_role": "body",
+          "body_precedence": 0,
+          "trailing_role": "variable",
+          "trailing_forms": [
+            {
+              "separator": "\\,",
+              "prefix": "d"
+            },
+            {
+              "separator": ",",
+              "prefix": "d"
+            },
+            {
+              "prefix": "d"
+            },
+            {
+              "separator": "\\,",
+              "prefix_command": "\\mathrm",
+              "prefix_argument": "d"
+            },
+            {
+              "prefix_command": "\\mathrm",
+              "prefix_argument": "d"
+            },
+            {
+              "separator": "\\,",
+              "prefix_command": "\\operatorname",
+              "prefix_argument": "d"
+            },
+            {
+              "prefix_command": "\\operatorname",
+              "prefix_argument": "d"
+            }
+          ]
+        },
+        "\\lim": {
+          "node_kind": "BigOperatorApplication",
+          "scripts": {
+            "_": "lower",
+            "^": "upper"
+          },
+          "body_role": "body",
+          "body_precedence": 11
+        },
+        "\\forall": {
+          "node_kind": "BinderApplication",
+          "leading_roles": [
+            "variable"
+          ],
+          "body_role": "body",
+          "body_precedence": 0
+        },
+        "\\exists": {
+          "node_kind": "BinderApplication",
+          "leading_roles": [
+            "variable"
+          ],
+          "body_role": "body",
+          "body_precedence": 0
+        },
+        "∑": {
+          "node_kind": "BigOperatorApplication",
+          "name": "summation",
+          "scripts": {
+            "_": "lower",
+            "^": "upper"
+          },
+          "body_role": "body",
+          "body_precedence": 11,
+          "source": "Unicode structural grammar"
+        },
+        "∏": {
+          "node_kind": "BigOperatorApplication",
+          "name": "product",
+          "scripts": {
+            "_": "lower",
+            "^": "upper"
+          },
+          "body_role": "body",
+          "body_precedence": 11,
+          "source": "Unicode structural grammar"
+        },
+        "∫": {
+          "node_kind": "BoundExpression",
+          "name": "integral",
+          "scripts": {
+            "_": "lower",
+            "^": "upper"
+          },
+          "body_role": "body",
+          "body_precedence": 0,
+          "trailing_forms": [
+            {
+              "prefix": "d"
+            },
+            {
+              "separator": ",",
+              "prefix": "d"
+            }
+          ],
+          "source": "Unicode structural grammar"
+        },
+        "∀": {
+          "node_kind": "BinderApplication",
+          "name": "universal binder",
+          "leading_roles": [
+            "variable"
+          ],
+          "body_role": "body",
+          "body_precedence": 0,
+          "source": "Unicode structural grammar"
+        },
+        "∃": {
+          "node_kind": "BinderApplication",
+          "name": "existential binder",
+          "leading_roles": [
+            "variable"
+          ],
+          "body_role": "body",
+          "body_precedence": 0,
+          "source": "Unicode structural grammar"
+        }
+      },
+      "syntax": {
+        "delimiter_pairs": {
+          "(": ")",
+          "[": "]",
+          "{": "}",
+          "⟨": "⟩"
+        },
+        "literal_operator_classes": [
+          {
+            "characters": "<>",
+            "precedence": 1,
+            "associativity": "none"
+          }
+        ],
+        "functions": [
+          "f",
+          "g",
+          "h",
+          "p",
+          "q",
+          "P",
+          "F"
+        ],
+        "alignment_environments": [
+          "align",
+          "align*",
+          "aligned",
+          "alignedat",
+          "eqnarray",
+          "eqnarray*",
+          "gather",
+          "gather*",
+          "multline",
+          "multline*"
+        ],
+        "ignored_commands": {
+          "\\label": 1,
+          "\\,": 0
+        },
+        "trailing_punctuation": [
+          ",",
+          ";",
+          ":",
+          "."
+        ],
+        "script_precedence": 40,
+        "application_precedence": 50,
+        "implicit_operator": {
+          "token": "juxtaposition",
+          "precedence": 20,
+          "associativity": "left"
+        }
+      }
+    },
+    "source_hash": "ee6d95bc5d478aa81ed37cd10c5ce1c290c5d1fdf71912c3c07db40a99b048fb",
+    "decision_id": "fadfcb3dce6b261087bee3abc6c3da75cad00b372d229602ae1212d53387f43c",
+    "start": null,
+    "end": null,
+    "migration_error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\91812\\\\Thesis\\\\annotation_workflow\\\\evaluation\\\\frozen_papers\\\\1910.06709\\\\zufallsvariablen.de.tex'"
+  },
+  {
+    "visible_symbol": "+",
+    "semantic_macro": "realplus",
+    "semantic_meaning": "addition",
+    "semantic_module": "realarith",
+    "semantic_repository": "arithmetics",
+    "pattern_type": "sequence",
+    "argument_count": 3,
+    "arguments": [
+      "P\\left(\\text{Puzzleteile in }A_1\\right)",
+      "\\dots",
+      "P\\left(\\text{Puzzleteile in }A_k\\right)"
+    ],
+    "file": "1910.06709\\zufallsvariablen.de.tex",
+    "line": 172,
+    "column": 1,
+    "matched_expression": "P\\left(\\text{Puzzleteile in }A_1\\right)+\\dots+P\\left(\\text{Puzzleteile in }A_k\\right)",
+    "semantic_suggestion": "\\realplus{P\\left(\\text{Puzzleteile in }A_1\\right),\\dots,P\\left(\\text{Puzzleteile in }A_k\\right)}",
+    "decision": "accepted",
+    "argument_roles": [],
+    "configuration_source": "SMGloM",
+    "candidate_classification": {
+      "pattern_type": "sequence",
+      "separator": "+",
+      "separator_fragment": "\\mathbin{\\maincomp+}",
+      "variable_arguments": true,
+      "precedence": 500,
+      "grammar_supported": true,
+      "fixity": "infix",
+      "arity": "variable"
+    },
+    "adapter_family": null,
+    "expression_config": {
+      "notation_aliases": {
+        "*": "\\times"
+      },
+      "operators": [
+        {
+          "token": "+",
+          "precedence": 10,
+          "associativity": "left",
+          "arity": "variable"
+        },
+        {
+          "token": "-",
+          "precedence": 10,
+          "associativity": "left",
+          "arity": "variable"
+        },
+        {
+          "token": "*",
+          "variants": [
+            "\\cdot"
+          ],
+          "precedence": 20,
+          "associativity": "left"
+        },
+        {
+          "token": "/",
+          "precedence": 20,
+          "associativity": "left"
+        },
+        {
+          "token": "+",
+          "precedence": 30,
+          "associativity": "right",
+          "fixity": "prefix",
+          "arity": 1
+        },
+        {
+          "token": "-",
+          "precedence": 30,
+          "associativity": "right",
+          "fixity": "prefix",
+          "arity": 1
+        },
+        {
+          "token": "=",
+          "precedence": 1,
+          "associativity": "sequence",
+          "arity": "variable"
+        },
+        {
+          "token": "\\ne",
+          "precedence": 1,
+          "associativity": "none"
+        },
+        {
+          "token": "\\wedge",
+          "variants": [
+            "\\land"
+          ],
+          "precedence": 6,
+          "associativity": "left"
+        },
+        {
+          "token": "\\vee",
+          "precedence": 5,
+          "associativity": "left"
+        },
+        {
+          "token": "\\cup",
+          "precedence": 10,
+          "associativity": "sequence",
+          "arity": "variable"
+        },
+        {
+          "token": "\\cap",
+          "precedence": 20,
+          "associativity": "left"
+        },
+        {
+          "token": "\\in",
+          "precedence": 1,
+          "associativity": "none"
+        },
+        {
+          "token": "\\subseteq",
+          "precedence": 1,
+          "associativity": "none"
+        },
+        {
+          "token": "\\pm",
+          "precedence": 10,
+          "associativity": "left"
+        },
+        {
+          "token": "\\pm",
+          "precedence": 30,
+          "associativity": "right",
+          "fixity": "prefix",
+          "arity": 1
+        },
+        {
+          "token": "−",
+          "precedence": 10,
+          "associativity": "left",
+          "arity": "variable",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "−",
+          "precedence": 30,
+          "associativity": "right",
+          "fixity": "prefix",
+          "arity": 1,
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "×",
+          "precedence": 20,
+          "associativity": "left",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "÷",
+          "precedence": 20,
+          "associativity": "left",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "∪",
+          "precedence": 10,
+          "associativity": "sequence",
+          "arity": "variable",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "∩",
+          "precedence": 20,
+          "associativity": "left",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "∧",
+          "precedence": 6,
+          "associativity": "left",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "∨",
+          "precedence": 5,
+          "associativity": "left",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "⇒",
+          "precedence": 2,
+          "associativity": "right",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "→",
+          "precedence": 2,
+          "associativity": "right",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "≤",
+          "precedence": 1,
+          "associativity": "none",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "≥",
+          "precedence": 1,
+          "associativity": "none",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "≠",
+          "precedence": 1,
+          "associativity": "none",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "≈",
+          "precedence": 1,
+          "associativity": "none",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "≡",
+          "precedence": 1,
+          "associativity": "none",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "∈",
+          "precedence": 1,
+          "associativity": "none",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "∉",
+          "precedence": 1,
+          "associativity": "none",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "⊂",
+          "precedence": 1,
+          "associativity": "none",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "⊆",
+          "precedence": 1,
+          "associativity": "none",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "⊃",
+          "precedence": 1,
+          "associativity": "none",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "⊇",
+          "precedence": 1,
+          "associativity": "none",
+          "source": "Unicode structural grammar"
+        },
+        {
+          "token": "√",
+          "precedence": 30,
+          "associativity": "right",
+          "fixity": "prefix",
+          "arity": 1,
+          "source": "Unicode structural grammar"
+        }
+      ],
+      "review_labels": {
+        "*": "multiplication",
+        "\\cup": "union",
+        "\\cap": "intersection",
+        "\\subseteq": "subset relation",
+        "\\in": "membership relation",
+        "∈": "membership relation",
+        "∪": "union"
+      },
+      "review_argument_labels": {
+        "\\in": {
+          "left": "element",
+          "right": "set"
+        }
+      },
+      "review_unavailable_status": {
+        "\\cup": "real set-theory semantic metadata unavailable locally",
+        "\\cap": "real set-theory semantic metadata unavailable locally",
+        "\\subseteq": "real set-theory semantic metadata unavailable locally",
+        "\\in": "real set-theory semantic metadata unavailable locally"
+      },
+      "commands": {
+        "\\aplus": {
+          "arity": 1,
+          "semantic": true,
+          "argument_types": [
+            "sequence"
+          ]
+        },
+        "\\eq": {
+          "arity": 1,
+          "semantic": true,
+          "argument_types": [
+            "sequence"
+          ]
+        },
+        "\\notequal": {
+          "arity": 2,
+          "semantic": true,
+          "argument_types": [
+            "expression",
+            "expression"
+          ]
+        },
+        "\\frac": {
+          "arity": 2,
+          "roles": [
+            "numerator",
+            "denominator"
+          ]
+        },
+        "\\sqrt": {
+          "arity": 1,
+          "optional_arguments": 1,
+          "roles": [
+            "radicand"
+          ]
+        },
+        "\\mathcal": {
+          "arity": 1,
+          "callable": true
+        },
+        "\\mathfrak": {
+          "arity": 1,
+          "callable": true
+        },
+        "\\alpha": {
+          "arity": 0
+        },
+        "\\Box": {
+          "arity": 0
+        },
+        "\\boldsymbol": {
+          "arity": 1,
+          "roles": [
+            "content"
+          ]
+        },
+        "\\mathrm": {
+          "arity": 1,
+          "roles": [
+            "content"
+          ]
+        },
+        "\\operatorname": {
+          "arity": 1,
+          "roles": [
+            "content"
+          ]
+        },
+        "\\sin": {
+          "arity": 0,
+          "callable": true
+        },
+        "\\dots": {
+          "arity": 0
+        },
+        "\\cdots": {
+          "arity": 0
+        },
+        "\\text": {
+          "arity": 1,
+          "argument_types": [
+            "opaque"
+          ],
+          "roles": [
+            "content"
+          ]
+        },
+        "\\pi": {
+          "arity": 0
+        }
+      },
+      "bound_constructs": {
+        "\\sum": {
+          "node_kind": "BigOperatorApplication",
+          "name": "summation",
+          "scripts": {
+            "_": "lower",
+            "^": "upper"
+          },
+          "body_role": "body",
+          "body_precedence": 11
+        },
+        "\\prod": {
+          "node_kind": "BigOperatorApplication",
+          "scripts": {
+            "_": "lower",
+            "^": "upper"
+          },
+          "body_role": "body",
+          "body_precedence": 11
+        },
+        "\\int": {
+          "node_kind": "BoundExpression",
+          "scripts": {
+            "_": "lower",
+            "^": "upper"
+          },
+          "body_role": "body",
+          "body_precedence": 0,
+          "trailing_role": "variable",
+          "trailing_forms": [
+            {
+              "separator": "\\,",
+              "prefix": "d"
+            },
+            {
+              "separator": ",",
+              "prefix": "d"
+            },
+            {
+              "prefix": "d"
+            },
+            {
+              "separator": "\\,",
+              "prefix_command": "\\mathrm",
+              "prefix_argument": "d"
+            },
+            {
+              "prefix_command": "\\mathrm",
+              "prefix_argument": "d"
+            },
+            {
+              "separator": "\\,",
+              "prefix_command": "\\operatorname",
+              "prefix_argument": "d"
+            },
+            {
+              "prefix_command": "\\operatorname",
+              "prefix_argument": "d"
+            }
+          ]
+        },
+        "\\lim": {
+          "node_kind": "BigOperatorApplication",
+          "scripts": {
+            "_": "lower",
+            "^": "upper"
+          },
+          "body_role": "body",
+          "body_precedence": 11
+        },
+        "\\forall": {
+          "node_kind": "BinderApplication",
+          "leading_roles": [
+            "variable"
+          ],
+          "body_role": "body",
+          "body_precedence": 0
+        },
+        "\\exists": {
+          "node_kind": "BinderApplication",
+          "leading_roles": [
+            "variable"
+          ],
+          "body_role": "body",
+          "body_precedence": 0
+        },
+        "∑": {
+          "node_kind": "BigOperatorApplication",
+          "name": "summation",
+          "scripts": {
+            "_": "lower",
+            "^": "upper"
+          },
+          "body_role": "body",
+          "body_precedence": 11,
+          "source": "Unicode structural grammar"
+        },
+        "∏": {
+          "node_kind": "BigOperatorApplication",
+          "name": "product",
+          "scripts": {
+            "_": "lower",
+            "^": "upper"
+          },
+          "body_role": "body",
+          "body_precedence": 11,
+          "source": "Unicode structural grammar"
+        },
+        "∫": {
+          "node_kind": "BoundExpression",
+          "name": "integral",
+          "scripts": {
+            "_": "lower",
+            "^": "upper"
+          },
+          "body_role": "body",
+          "body_precedence": 0,
+          "trailing_forms": [
+            {
+              "prefix": "d"
+            },
+            {
+              "separator": ",",
+              "prefix": "d"
+            }
+          ],
+          "source": "Unicode structural grammar"
+        },
+        "∀": {
+          "node_kind": "BinderApplication",
+          "name": "universal binder",
+          "leading_roles": [
+            "variable"
+          ],
+          "body_role": "body",
+          "body_precedence": 0,
+          "source": "Unicode structural grammar"
+        },
+        "∃": {
+          "node_kind": "BinderApplication",
+          "name": "existential binder",
+          "leading_roles": [
+            "variable"
+          ],
+          "body_role": "body",
+          "body_precedence": 0,
+          "source": "Unicode structural grammar"
+        }
+      },
+      "syntax": {
+        "delimiter_pairs": {
+          "(": ")",
+          "[": "]",
+          "{": "}",
+          "⟨": "⟩"
+        },
+        "literal_operator_classes": [
+          {
+            "characters": "<>",
+            "precedence": 1,
+            "associativity": "none"
+          }
+        ],
+        "functions": [
+          "f",
+          "g",
+          "h",
+          "p",
+          "q",
+          "P",
+          "F"
+        ],
+        "alignment_environments": [
+          "align",
+          "align*",
+          "aligned",
+          "alignedat",
+          "eqnarray",
+          "eqnarray*",
+          "gather",
+          "gather*",
+          "multline",
+          "multline*"
+        ],
+        "ignored_commands": {
+          "\\label": 1,
+          "\\,": 0
+        },
+        "trailing_punctuation": [
+          ",",
+          ";",
+          ":",
+          "."
+        ],
+        "script_precedence": 40,
+        "application_precedence": 50,
+        "implicit_operator": {
+          "token": "juxtaposition",
+          "precedence": 20,
+          "associativity": "left"
+        }
+      }
+    },
+    "source_hash": "0002851d85a0f7f617c79947dc6f772465c08ff89d90c6c2ddc64fc423b69695",
+    "decision_id": "c32e2fcfddf866343c99407d3ac92c7029e32001b61125ef041ccd3dd6a11f25",
+    "start": null,
+    "end": null,
+    "migration_error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\91812\\\\Thesis\\\\annotation_workflow\\\\evaluation\\\\frozen_papers\\\\1910.06709\\\\zufallsvariablen.de.tex'"
+  }
+]

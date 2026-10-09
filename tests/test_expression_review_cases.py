@@ -7,15 +7,15 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from expression_document import parse_math_regions
-from expression_metadata import build_expression_config
-from expression_registry import NotationRegistry
+from notation_catalog import build_expression_config
+from expression_parser import NotationRegistry
 
 
-class TestProfessorDemo(unittest.TestCase):
-    def test_every_demo_region_parses_and_preserves_source(self):
+class TestExpressionReviewCases(unittest.TestCase):
+    def test_all_expression_review_regions_preserve_source(self):
         raw = json.loads((ROOT / "expression-config.example.json").read_text(encoding="utf-8"))
         registry = NotationRegistry.from_config(build_expression_config(raw, []))
-        path = ROOT / "tests/fixtures/professor_demo.tex"
+        path = ROOT / "tests/fixtures/expression_review_cases.tex"
         source = path.read_text(encoding="utf-8")
         regions = parse_math_regions(source, registry, path)
         self.assertEqual(len(regions), 9)
@@ -24,10 +24,10 @@ class TestProfessorDemo(unittest.TestCase):
                                                        region.start + region.tree.end]
                             for region in regions))
 
-    def test_integral_demo_distinguishes_latex_and_unicode_source(self):
+    def test_integral_notations_distinguish_latex_and_unicode_source(self):
         raw = json.loads((ROOT / "expression-config.example.json").read_text(encoding="utf-8"))
         registry = NotationRegistry.from_config(build_expression_config(raw, []))
-        path = ROOT / "tests/fixtures/professor_integral_demo.tex"
+        path = ROOT / "tests/fixtures/integral_notation_cases.tex"
         source = path.read_text(encoding="utf-8")
         regions = parse_math_regions(source, registry, path)
         self.assertEqual([region.tree.kind for region in regions],

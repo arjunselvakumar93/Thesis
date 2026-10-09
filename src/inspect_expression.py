@@ -4,9 +4,9 @@ import argparse
 import json
 import sys
 from pathlib import Path
-from expression_metadata import build_expression_config
-from expression_parser import ExpressionParser, ParseError
-from expression_registry import NotationRegistry
+from notation_catalog import build_expression_config
+from expression_parser import ExpressionParser
+from expression_parser import NotationRegistry
 from expression_document import parse_math_regions
 
 

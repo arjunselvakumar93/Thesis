@@ -8,9 +8,9 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from expression_document import parse_math_regions, find_structural_occurrences
-from expression_metadata import build_expression_config
+from notation_catalog import build_expression_config
 from expression_parser import ExpressionParser
-from expression_registry import NotationRegistry
+from expression_parser import NotationRegistry
 
 
 class TestUnicodeMath(unittest.TestCase):
@@ -51,7 +51,7 @@ class TestUnicodeMath(unittest.TestCase):
                          ("BigOperatorApplication", "∑", source))
         self.assertEqual(tree.roles, ("lower", "body"))
 
-    def test_professor_example_is_an_honest_fragment_sequence(self):
+    def test_mixed_unicode_fragment_is_an_honest_fragment_sequence(self):
         source = "P(ωi) ω∈A"
         tree = self.parser.parse(source)
         self.assertEqual((tree.kind, tree.text), ("MathSequence", source))
@@ -70,7 +70,7 @@ class TestUnicodeMath(unittest.TestCase):
         self.assertFalse(tree.metadata["semantic_mapping_available"])
 
     def test_unicode_review_scopes_preserve_exact_spans(self):
-        path = ROOT / "tests/fixtures/review_unicode_math.tex"
+        path = ROOT / "tests/fixtures/review_unicode_cases.tex"
         regions = parse_math_regions(path.read_text(encoding="utf-8"), self.registry, path)
         matches = find_structural_occurrences(regions, "ωᵢ∈A", self.config)
         self.assertTrue(matches)

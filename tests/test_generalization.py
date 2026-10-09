@@ -8,9 +8,9 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from evaluate_generalization import DEFAULT_FIXTURE, evaluate
 from expression_document import find_ast_occurrences, parse_math_regions
-from expression_metadata import build_expression_config
+from notation_catalog import build_expression_config
 from expression_parser import ExpressionParser
-from expression_registry import NotationRegistry
+from expression_parser import NotationRegistry
 from review_workflow import find_expression_candidates
 from review_scope import build_review_scopes, render_review_scope
 
@@ -85,7 +85,7 @@ class TestGeneralizationStress(unittest.TestCase):
         config = build_expression_config(raw, [])
         source = r"$\begin{fooenv}x+y & z\end{fooenv}$"
         regions = parse_math_regions(source, NotationRegistry.from_config(config))
-        candidate = {"macro": "demoPlus", "name": "addition", "module": "test",
+        candidate = {"macro": "testPlus", "name": "addition", "module": "test",
                      "repository": None, "args": "a",
                      "classification": {"pattern_type": "sequence", "separator": "+"}}
         matches = find_ast_occurrences(regions, candidate["classification"], config, candidate)

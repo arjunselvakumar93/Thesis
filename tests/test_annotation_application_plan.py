@@ -1,3 +1,4 @@
+import hashlib
 import sys
 import tempfile
 import unittest
@@ -18,8 +19,8 @@ def decision(source, original, replacement, macro, start=None, module="synthetic
             cursor = source.index(original, cursor + 1)
         start = cursor
     return {"file": "paper.tex", "line": 1, "column": start + 1,
-            "source_start": start, "source_end": start + len(original),
-            "source_expression": original, "matched_expression": original,
+            "start": start, "end": start + len(original),
+            "source_hash": hashlib.sha256(original.encode("utf-8")).hexdigest(), "matched_expression": original,
             "semantic_macro": macro, "semantic_suggestion": replacement,
             "semantic_module": module, "semantic_repository": "test",
             "decision": "accepted"}
@@ -89,6 +90,7 @@ class TestApplicationPlan(unittest.TestCase):
         self.assertEqual(result, "a-b")
         self.assertEqual(len(plan["stale"]), 1)
         self.assertEqual(count, 0)
+
 
     def test_modules_are_deduplicated_and_second_run_is_idempotent(self):
         source = "\\documentclass{article}\n$a+b$\n"

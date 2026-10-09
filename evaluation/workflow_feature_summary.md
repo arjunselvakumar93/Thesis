@@ -1,4 +1,4 @@
-# Professor demo summary
+﻿# Workflow feature summary
 
 ## A. What the system does
 
@@ -6,9 +6,9 @@ The system provides broad, extensible structural support for textual
 mathematical notation using generic LaTeX and Unicode parsing, source-span
 preservation, configurable grammar metadata, and safe opaque fallbacks.
 
-## B. Professor example
+## B. Representative expression
 
-Both `\sum_{\omega_i\in A} P(\omega_i)` and `∑_{ωᵢ∈A} P(ωᵢ)` are parsed as
+Both `\sum_{\omega_i\in A} P(\omega_i)` and `âˆ‘_{Ï‰áµ¢âˆˆA} P(Ï‰áµ¢)` are parsed as
 source-preserving big-operator applications. Their lower expressions contain a
 complete membership relation and their bodies contain a complete function
 application.

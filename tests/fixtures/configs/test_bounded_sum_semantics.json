@@ -1,13 +1,8 @@
 {
-  "description": "TEST/DEMO CONFIGURATION ONLY. This visible lower-condition/body mapping is not real SMGloM sum semantics.",
-  "demo_only": true,
+  "description": "SYNTHETIC TEST CONFIGURATION ONLY. This visible lower/upper/body mapping is not real SMGloM sum semantics.",
+  "test_only": true,
   "review_labels": {
     "\\sum": "summation"
-  },
-  "review_argument_labels": {
-    "\\sum": {
-      "lower": "index/domain"
-    }
   },
   "operators": [
     {"token": "+", "precedence": 10, "associativity": "left", "arity": "variable"},
@@ -21,11 +16,11 @@
   "bound_constructs": {
     "\\sum": {
       "node_kind": "BigOperatorApplication",
-      "semantic_macro": "fooSum",
-      "semantic_argument_roles": ["lower", "body"],
-      "semantic_module": "demo-summation",
+      "semantic_macro": "fooBoundedSum",
+      "semantic_argument_roles": ["lower", "upper", "body"],
+      "semantic_module": "test-summation",
       "semantic_repository": "test",
-      "source": "test/demo configuration; not real SMGloM",
+      "source": "synthetic test configuration; not real SMGloM",
       "name": "summation",
       "scripts": {"_": "lower", "^": "upper"},
       "body_role": "body",

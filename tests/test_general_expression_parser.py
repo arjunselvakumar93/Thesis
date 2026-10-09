@@ -1,3 +1,4 @@
+import hashlib
 import io
 import json
 import sys
@@ -12,10 +13,10 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from expression_annotation import match_ast
 from expression_document import parse_math_regions, parse_papers, find_ast_occurrences
-from expression_metadata import build_expression_config
+from notation_catalog import build_expression_config
 from expression_parser import ExpressionParser, ParseError
-from expression_registry import NotationRegistry, Operator
-from expression_tokenizer import tokenize
+from expression_parser import NotationRegistry, Operator
+from expression_parser import tokenize
 from inspect_expression import main as inspect_main
 from parser_diagnostics import coverage_report
 from notation_catalog import build_catalog, catalog_statistics, registry_from_catalog, search_catalog
@@ -24,7 +25,7 @@ from review_workflow import (find_expression_candidates, find_generic_candidates
                              generate_classified_suggestion)
 import review_workflow
 import apply_annotations
-from decision_validator import validate_decisions
+from apply_annotations import validate_decisions
 
 
 def configuration():
@@ -51,7 +52,7 @@ class TestGeneralExpressionParser(unittest.TestCase):
         self.assertEqual([child.text for child in tree.children], ["a", "b"])
 
     def test_new_control_sequence_loaded_from_json_without_parser_changes(self):
-        data = json.loads((ROOT / "tests/fixtures/custom_operator.json").read_text(
+        data = json.loads((ROOT / "tests/fixtures/configs/test_custom_operator.json").read_text(
             encoding="utf-8"
         ))
         registry = NotationRegistry.from_config(build_expression_config(data, []))
@@ -181,13 +182,68 @@ class TestGeneralExpressionParser(unittest.TestCase):
         self.assertEqual((tree.value, tree.notation), (r"\ne", r"\neq"))
 
     def test_scripts_preserve_roles_and_order(self):
-        for expression in ("x^2", "x^{n+1}", "x_i", "x_{i+1}", "x_i^2", "x^2_i"):
+        for expression in ("x^2", "x^{n+1}", "x_i", "x_{i+1}", "x_i^2", "x^2_i",
+                           "f(x)^2", "(a+b)^n", r"P(\omega_i)^2"):
             tree = self.parser.parse(expression)
             self.assertEqual(tree.kind, "ScriptedExpression")
-            self.assertEqual(tree.children[0].text, "x")
             self.assertEqual(tree.text, expression)
+            self.assertEqual(tree.text, expression[tree.start:tree.end])
         self.assertEqual(self.parser.parse("x_i^2").roles, ("base", "_", "^"))
         self.assertEqual(self.parser.parse("x^2_i").roles, ("base", "^", "_"))
+        self.assertEqual(self.parser.parse("x^{n+1}").children[1].children[0].value, "+")
+        semantic = self.parser.parse(r"\aplus{a,b}^2")
+        self.assertEqual((semantic.kind, semantic.children[0].kind),
+                         ("ScriptedExpression", "SemanticCommand"))
+
+    def test_malformed_scripts_fail_without_partial_ast(self):
+        for expression in ("x^", "x_", "x^{", "x_{i", "x^^2", "x__i"):
+            with self.subTest(expression=expression), self.assertRaises(ParseError):
+                self.parser.parse(expression)
+
+    def test_configured_variable_arity_operator_and_mixed_precedence(self):
+        sequence = self.parser.parse(r"a\cdot b\cdot c")
+        self.assertEqual((sequence.kind, sequence.value), ("NaryOperator", r"\cdot"))
+        self.assertEqual([child.text for child in sequence.children], ["a", "b", "c"])
+        self.assertEqual(sequence.metadata.arity, "variable")
+        self.assertEqual(sequence.metadata.precedence_source, "structural configuration")
+        self.assertEqual(sequence.text, r"a\cdot b\cdot c")
+        mixed = self.parser.parse(r"a+b\cdot c")
+        self.assertEqual((mixed.value, mixed.children[1].value), ("+", r"\cdot"))
+        reverse = self.parser.parse(r"a\cdot b+c")
+        self.assertEqual((reverse.value, reverse.children[0].value), ("+", r"\cdot"))
+        self.assertEqual(self.parser.parse(r"a\cdot(b+c)").children[1].children[0].value, "+")
+
+    def test_configured_biconditional_precedence_and_uncertain_chain(self):
+        tree = self.parser.parse(r"A \Leftrightarrow B \land C")
+        self.assertEqual((tree.value, tree.children[1].value),
+                         (r"\Leftrightarrow", r"\wedge"))
+        reverse = self.parser.parse(r"A \land B \Leftrightarrow C")
+        self.assertEqual((reverse.value, reverse.children[0].value),
+                         (r"\Leftrightarrow", r"\wedge"))
+        chain = self.parser.parse(r"A \Leftrightarrow B \Leftrightarrow C")
+        self.assertEqual((chain.kind, chain.text),
+                         ("UncertainOperatorChain", r"A \Leftrightarrow B \Leftrightarrow C"))
+        self.assertEqual(tree.metadata.precedence_source,
+                         "structural policy; semantically unverified")
+        self.assertTrue(tree.metadata.uncertain_chain)
+        self.assertEqual(self.parser.parse(r"A \to B \Leftrightarrow C").children[0].value,
+                         r"\to")
+        self.assertEqual(self.parser.parse(r"A \Leftrightarrow B \to C").children[1].value,
+                         r"\to")
+
+    def test_configured_function_signature_is_structural(self):
+        for source in (r"f: A \to B", r"f:A\to B", r"f : A \to B", r"g: X \to Y",
+                       r"T: V \to W", r"F: X \times Y \to Z"):
+            with self.subTest(source=source):
+                tree = self.parser.parse(source)
+                self.assertEqual((tree.value, tree.children[1].value, tree.text),
+                                 (":", r"\to", source))
+        chain = self.parser.parse(r"f: A \to B \to C")
+        self.assertEqual(chain.children[1].children[1].value, r"\to")
+        product_signature = self.parser.parse(r"F: X \times Y \to Z")
+        product = product_signature.children[1].children[0]
+        self.assertEqual((product.value, product.notation, product.text),
+                         ("*", r"\times", r"X \times Y"))
 
     def test_unbraced_script_takes_one_tex_token(self):
         tree = self.parser.parse("x^23")
@@ -386,6 +442,19 @@ class TestGeneralExpressionParser(unittest.TestCase):
                 self.assertLessEqual(child.end, node.end)
         self.assertEqual(root.roles, ("numerator", "denominator"))
 
+    def test_source_spans_and_named_children_are_exact_and_ordered(self):
+        source = r"f(x_i^2)+y"
+        tree = self.parser.parse(source)
+        self.assertEqual((tree.start, tree.end), (0, len(source)))
+        self.assertEqual([role for role, _ in tree.named_children()],
+                         ["argument_1", "argument_2"])
+        for node in tree.walk():
+            self.assertEqual(node.text, source[node.start:node.end])
+            self.assertTrue(tree.start <= node.start <= node.end <= tree.end)
+            starts = [child.start for child in node.children]
+            self.assertEqual(starts, sorted(starts))
+
+
     def test_unsupported_regions_retain_source_and_do_not_block_others(self):
         source = r"$a+b$ $\unknown{x}$ $a&b$ $a*b$"
         regions = parse_math_regions(source, self.registry)
@@ -548,6 +617,21 @@ class TestRegistryIntegration(unittest.TestCase):
         self.assertTrue(all(item["match_type"] in {"exact meaning/name", "meaning/name search"}
                             for item in not_equal))
 
+    def test_real_plus_and_cdot_use_the_same_sequence_classification_path(self):
+        config = configuration()
+        plus = [item for item in find_expression_candidates("+", config, self.records)
+                if item.get("macro") == "realplus" and item.get("record")]
+        cdot = [item for item in find_expression_candidates(r"\cdot", config, self.records)
+                if item.get("macro") == "realtimes" and item.get("record")]
+        self.assertTrue(plus)
+        self.assertTrue(cdot)
+        for candidates, separator in ((plus, "+"), (cdot, r"\cdot")):
+            self.assertTrue(all(item["classification"]["pattern_type"] == "sequence"
+                                for item in candidates))
+            self.assertTrue(all(item["classification"]["separator"] == separator
+                                for item in candidates))
+            self.assertTrue(all(item["source"] == "SMGloM" for item in candidates))
+
     def test_missing_associativity_and_ambiguous_import_fail(self):
         for selector in ({"macro": "atimes", "module": "arithmetics", "associativity": "left"},
                          {"macro": "aplus", "module": "arithmetics", "visible": "+"}):
@@ -603,7 +687,7 @@ class TestRegistryIntegration(unittest.TestCase):
             (papers / "paper.tex").write_text(original, encoding="utf-8")
             matches = find_ast_occurrences(parse_papers(papers, cfg), rule, cfg)
             match = matches[0]
-            decision = dict(match, file="paper.tex", semantic_suggestion=generate_classified_suggestion(match, candidate))
+            decision = review_workflow.build_review_decision(match, candidate, rule, papers)
             self.assertNotIn("%", decision["semantic_suggestion"])
             with patch.object(apply_annotations, "PAPERS_DIR", papers), patch.object(apply_annotations, "OUTPUT_DIR", output):
                 apply_annotations.prepare_output_folder()
@@ -617,13 +701,13 @@ class TestRegistryIntegration(unittest.TestCase):
             paper = root / "paper.tex"
             original = "$a-b-c$"
             paper.write_text(original, encoding="utf-8")
-            decisions = [dict(file="paper.tex", source_start=1, source_end=end,
-                              source_expression=expression, matched_expression=expression,
+            decisions = [dict(file="paper.tex", start=1, end=end,
+                              source_hash=hashlib.sha256(expression.encode("utf-8")).hexdigest(), matched_expression=expression,
                               semantic_suggestion=r"\changed{x}")
                          for end, expression in ((4, "a-b"), (6, "a-b-c"))]
             with patch.object(apply_annotations, "OUTPUT_DIR", root):
                 self.assertEqual(apply_annotations.apply_annotations(decisions), 0)
-                decisions[0]["source_expression"] = "a-z"
+                decisions[0]["source_hash"] = hashlib.sha256(b"a-z").hexdigest()
                 self.assertEqual(apply_annotations.apply_annotations(decisions[:1]), 0)
             self.assertEqual(paper.read_text(encoding="utf-8"), original)
 

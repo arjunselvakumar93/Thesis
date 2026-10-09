@@ -1,3 +1,4 @@
+import hashlib
 import json
 import sys
 import tempfile
@@ -7,13 +8,13 @@ from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-import decision_validator
+import apply_annotations as decision_validator
 import validate_decisions
 
 
 class TestDecisionValidator(unittest.TestCase):
     def test_requested_command_entry_point_uses_safe_validator(self):
-        self.assertIs(validate_decisions.main, decision_validator.main)
+        self.assertIs(validate_decisions.main, decision_validator.validate_main)
 
     def test_current_and_stale_decisions_are_partitioned_without_writes(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -24,11 +25,12 @@ class TestDecisionValidator(unittest.TestCase):
                     "visible_symbol": "-", "semantic_macro": "aminus",
                     "semantic_module": "arithmetics", "file": "paper.tex",
                     "line": 1, "column": 2, "matched_expression": "a-b",
+                    "start": 1, "end": 4, "source_hash": hashlib.sha256(b"a-b").hexdigest(),
                 },
                 {
                     "visible_symbol": "-", "semantic_macro": "aminus",
                     "semantic_module": "arithmetics", "file": "paper.tex",
-                    "line": 2, "column": 1,
+                    "line": 2, "column": 1, "start": 6, "end": 21,
                     "matched_expression": "guess-and-check",
                 },
             ]
@@ -38,12 +40,13 @@ class TestDecisionValidator(unittest.TestCase):
             }
             current_match = {
                 "file": paper, "line": 1, "column": 2,
-                "matched_expression": "a-b",
+                "matched_expression": "a-b", "source_expression": "a-b",
+                "source_start": 1, "source_end": 4,
             }
             with patch.object(
                 decision_validator, "find_generic_candidates", return_value=[candidate]
             ), patch.object(
-                decision_validator, "find_notation_occurrences", return_value=[current_match]
+                decision_validator, "find_ast_occurrences", return_value=[current_match]
             ):
                 report = decision_validator.validate_decisions(
                     decisions, records=[], papers_dir=papers

@@ -1,0 +1,160 @@
+{
+  "original": {
+    "src_loc": 11274,
+    "src_modules": 33,
+    "tests": 306,
+    "src_and_tests_python_loc": 16897
+  },
+  "reported_prior_milestone": {
+    "src_loc": 7912,
+    "src_modules": 17,
+    "tests": 261
+  },
+  "verified_final_pass_baseline": {
+    "src_loc": 7748,
+    "src_modules": 17,
+    "tests": 261,
+    "project_python_loc": 12633
+  },
+  "final": {
+    "src_loc": 7628,
+    "src_modules": 17,
+    "core_loc": 5116,
+    "project_python_loc": 12513,
+    "project_python_files": 48,
+    "tests": 261,
+    "test_result": "261 passing; zero failures or errors"
+  },
+  "removed_src_loc_since_original": 3646,
+  "src_reduction_percent": 32.34,
+  "removed_src_loc_in_final_pass": 120,
+  "core_reading_order": [
+    "review_workflow.py",
+    "expression_document.py",
+    "expression_parser.py",
+    "smglom_notation_extractor.py",
+    "notation_catalog.py",
+    "expression_annotation.py",
+    "review_scope.py",
+    "apply_annotations.py"
+  ],
+  "source_sizes": {
+    "notation_catalog.py": 1224,
+    "evaluate_corpus.py": 1130,
+    "expression_parser.py": 962,
+    "review_workflow.py": 649,
+    "smglom_notation_extractor.py": 604,
+    "evaluate_workflow.py": 520,
+    "apply_annotations.py": 512,
+    "review_scope.py": 413,
+    "expression_document.py": 394,
+    "expression_annotation.py": 358,
+    "smglom_dependencies.py": 233,
+    "project_status.py": 166,
+    "evaluate_generalization.py": 157,
+    "parser_diagnostics.py": 138,
+    "evaluate_unicode_stress.py": 95,
+    "inspect_expression.py": 66,
+    "validate_decisions.py": 7
+  },
+  "manual_expressions_passed": 14,
+  "preview_queries_passed": 3,
+  "range_correction": {
+    "check": "range correction",
+    "original": "x+y",
+    "alternatives": [
+      "p(x+y)",
+      "p(x+y) * p(x - y)"
+    ],
+    "selected": "p(x+y) * p(x - y)",
+    "highlighted": "[p(x+y) * p(x - y)]",
+    "review_state": "STRUCTURAL_ONLY",
+    "obsolete_candidates_removed": true,
+    "decisions_unchanged": true
+  },
+  "annotation_readiness": {
+    "total_math_regions": 141,
+    "annotation_eligible_regions": 107,
+    "supported_annotation_eligible_regions": 99,
+    "review_ready_regions": 99,
+    "automatically_ready_regions": 88,
+    "human_selection_required_regions": 11,
+    "unsupported_annotation_eligible_regions": 8
+  },
+  "current_application_replay": {
+    "requested": true,
+    "accepted": 146,
+    "applied": 55,
+    "failed": 0,
+    "original_sources_unchanged": true,
+    "validated_current": 55,
+    "stale": 91,
+    "unverifiable": 0,
+    "compilation": "not run; no usable compiler was invoked",
+    "eligible_current_decisions": 55,
+    "unique_source_nodes": 55,
+    "same_span_conflicts": 0,
+    "partial_overlap_conflicts": 0,
+    "nested_relationships": 21,
+    "nested_compositions": 13,
+    "independent_replacements": 21,
+    "successfully_rendered_decisions": 55,
+    "successfully_written_files": 1,
+    "failure_reasons": {},
+    "modules_inserted": [
+      {
+        "repository": "arithmetics",
+        "module": "arithmetics"
+      },
+      {
+        "repository": "mv",
+        "module": "equal"
+      }
+    ],
+    "sanity": {
+      "files_checked": 1,
+      "unreadable_files": [],
+      "unbalanced_brace_files": [],
+      "unbalanced_math_delimiter_files": [],
+      "duplicate_module_files": [],
+      "passed": true
+    },
+    "compiler_available": false
+  },
+  "historical_application_count_note": "Archived reports mention 59; this pass independently replayed 55 currently valid saved decisions. Historical evidence was not rewritten.",
+  "frozen_evidence_sha256": {
+    "evaluation\\gold_annotations.json": "e171494ce789d3b625790bc5556cb112759ef686ee7c46f7c717f7026d898e07",
+    "evaluation\\gold_final_v1.json": "013c789cbc9d444a920c9ae165eaf4882b4a36c7b459e02d4c69ba5a5aabab7c",
+    "evaluation\\gold_general_v2.json": "c9d07e54a644915c45e7001203ea81b9230413345911a251c73c81507193db6d",
+    "evaluation\\gold_integrals_v2.json": "c0167eebaae08c1a0069c6dc76c12f2ca8f146410f1d1b4e8cf41fca77c4986f",
+    "evaluation\\gold_schema.json": "093a3e632b741a857e8b0f3d5db154bc68efe235e1d9a52f01a39cbd115a1c6c",
+    "evaluation\\gold_v1.json": "e171494ce789d3b625790bc5556cb112759ef686ee7c46f7c717f7026d898e07",
+    "evaluation\\corpus.json": "6f70059c896ed960a63177ca67ed8e100f5c99f498110a9d3a8f73f7dacfb810",
+    "evaluation\\frozen_review_decisions.json": "0c03715a5c3d551aebc691f699d969bb8e2a6f250f70386c78ce9ce31d1ae1cf",
+    "evaluation\\frozen_papers\\1910.06709\\quadratic-20121216.tex": "674c78aa2c3fa7d1c35074816a221bdee4f5c1a183d07e3f0fd9107146b1efb7"
+  },
+  "deleted_this_pass": [
+    "simplify_worktree.py",
+    "simplify_models.py",
+    "simplify_ranges.py",
+    "simplify_legacy.py",
+    "simplify_modules.py",
+    "simplify_decisions.py",
+    "finish_legacy_removal.py",
+    "finish_simplification.py",
+    "freeze_evaluation_decisions.py",
+    "manual_simplification_checks.py",
+    "run_simplification_checks.py",
+    "stage1-tests.log",
+    "stage1-fix.log",
+    "evaluation/simplification_decisions-fixed.log",
+    "evaluation/simplification_decisions.log",
+    "evaluation/simplification_final-core.log",
+    "evaluation/simplification_legacy-fixed.log",
+    "evaluation/simplification_legacy-focused.log",
+    "evaluation/simplification_legacy.log",
+    "evaluation/simplification_merged.log"
+  ],
+  "committed": false,
+  "pushed": false
+}

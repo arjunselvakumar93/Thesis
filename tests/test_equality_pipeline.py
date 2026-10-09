@@ -9,8 +9,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 import apply_annotations
 import review_workflow
-from notation_matcher import match_notation
-from notation_scanner import find_notation_occurrences
+from ast_test_helpers import match_rule as match_notation
+from ast_test_helpers import scan_rule as find_notation_occurrences
 from smglom_notation_extractor import SMGLOM_REPOSITORIES, scan_repository
 
 

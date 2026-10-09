@@ -3,12 +3,16 @@
   "operators": [
     {"token": "+", "precedence": 10, "associativity": "left", "arity": "variable"},
     {"token": "-", "precedence": 10, "associativity": "left", "arity": "variable"},
-    {"token": "*", "variants": ["\\cdot"], "precedence": 20, "associativity": "left"},
+    {"token": "*", "precedence": 20, "associativity": "left"},
+    {"token": "\\cdot", "precedence": 20, "associativity": "sequence", "arity": "variable", "source": "structural example configuration; semantic candidates are loaded separately from SMGloM", "precedence_source": "structural configuration", "associativity_source": "structural configuration"},
     {"token": "/", "precedence": 20, "associativity": "left"},
     {"token": "+", "precedence": 30, "associativity": "right", "fixity": "prefix", "arity": 1},
     {"token": "-", "precedence": 30, "associativity": "right", "fixity": "prefix", "arity": 1},
     {"token": "=", "precedence": 1, "associativity": "sequence", "arity": "variable"},
     {"token": "\\ne", "precedence": 1, "associativity": "none"},
+    {"token": "\\Leftrightarrow", "precedence": 2, "associativity": "none", "uncertain_chain": true, "source": "structural example configuration; relative precedence is not supplied by SMGloM", "precedence_source": "structural policy; semantically unverified", "associativity_source": "structural policy; repeated chains remain uncertain"},
+    {"token": "\\to", "precedence": 3, "associativity": "right", "source": "structural grammar configuration", "precedence_source": "structural configuration", "associativity_source": "structural configuration"},
+    {"token": ":", "precedence": 1, "associativity": "right", "source": "structural grammar configuration", "precedence_source": "structural configuration", "associativity_source": "structural configuration"},
     {"token": "\\wedge", "variants": ["\\land"], "precedence": 6, "associativity": "left"},
     {"token": "\\vee", "precedence": 5, "associativity": "left"},
     {"token": "\\cup", "precedence": 10, "associativity": "sequence", "arity": "variable"},
@@ -42,6 +46,10 @@
   ],
   "review_labels": {
     "*": "multiplication",
+    "\\cdot": "multiplication",
+    "\\Leftrightarrow": "biconditional relation",
+    "\\to": "arrow relation",
+    ":": "typed expression",
     "\\cup": "union",
     "\\cap": "intersection",
     "\\subseteq": "subset relation",
@@ -104,7 +112,9 @@
         {"separator": "\\,", "prefix_command": "\\mathrm", "prefix_argument": "d"},
         {"prefix_command": "\\mathrm", "prefix_argument": "d"},
         {"separator": "\\,", "prefix_command": "\\operatorname", "prefix_argument": "d"},
-        {"prefix_command": "\\operatorname", "prefix_argument": "d"}
+        {"prefix_command": "\\operatorname", "prefix_argument": "d"},
+        {"separator": "\\,", "prefix_command": "\\text", "prefix_argument": "d"},
+        {"prefix_command": "\\text", "prefix_argument": "d"}
       ]
     },
     "\\lim": {

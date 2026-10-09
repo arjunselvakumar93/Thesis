@@ -11,14 +11,14 @@ sys.path.insert(0, str(ROOT / "src"))
 
 import review_workflow
 from expression_document import find_structural_occurrences, parse_papers
-from expression_metadata import build_expression_config
+from notation_catalog import build_expression_config
 from review_scope import build_review_scopes, render_review_scope
 
 
 class TestStructuralReviewFallback(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.paper = ROOT / "tests" / "fixtures" / "review_structural_fallback.tex"
+        cls.paper = ROOT / "tests" / "fixtures" / "structural_fallback_cases.tex"
         cls.raw = json.loads((ROOT / "expression-config.example.json").read_text(
             encoding="utf-8-sig"))
         cls.config = build_expression_config(cls.raw, [])
@@ -77,22 +77,22 @@ class TestStructuralReviewFallback(unittest.TestCase):
         text = output.getvalue()
         self.assertIn("Found ", text)
         self.assertIn("structural review scope", text)
-        self.assertIn("Matched scope:\n\\omega", text)
+        self.assertIn("Suggested scope:\n\\omega", text)
         self.assertNotIn("No matching notation was found", text)
         self.assertNotIn("Semantic candidates:", text)
 
-    def test_raw_star_is_structural_without_config_and_semantic_with_demo_config(self):
+    def test_raw_star_is_structural_without_config_and_semantic_with_test_config(self):
         output = io.StringIO()
         with redirect_stdout(output):
             count = review_workflow.run_structural_preview(
                 "*", self.paper, self.raw, self.regions)
         self.assertEqual(count, 1)
         self.assertIn("Structure:\nmultiplication", output.getvalue())
-        self.assertIn("Matched scope:\np(x) * q(x)", output.getvalue())
+        self.assertIn("Suggested scope:\np(x) * q(x)", output.getvalue())
         self.assertNotIn(r"\fooTimes", output.getvalue())
-        demo_path = ROOT / "tests" / "fixtures" / "demo-star-config.json"
-        demo = build_expression_config(json.loads(demo_path.read_text(encoding="utf-8")), [])
-        candidates = review_workflow.find_expression_candidates("*", demo, [])
+        test_config_path = ROOT / "tests" / "fixtures" / "configs/test_raw_star_semantics.json"
+        test_config = build_expression_config(json.loads(test_config_path.read_text(encoding="utf-8")), [])
+        candidates = review_workflow.find_expression_candidates("*", test_config, [])
         self.assertEqual({candidate["macro"] for candidate in candidates}, {"fooTimes"})
 
     def test_existing_semantic_review_keeps_priority(self):

@@ -12,10 +12,10 @@ sys.path.insert(0, str(ROOT / "src"))
 
 import review_workflow
 from apply_annotations import build_application_plan, render_application_plan
-from decision_validator import materialize_valid_decisions, validate_decisions
+from apply_annotations import materialize_valid_decisions, validate_decisions
 from expression_document import find_ast_occurrences, parse_math_regions, parse_papers
-from expression_metadata import build_expression_config
-from expression_registry import NotationRegistry
+from notation_catalog import build_expression_config
+from expression_parser import NotationRegistry
 from review_scope import build_review_scopes, render_review_scope
 from smglom_notation_extractor import scan_available_smglom
 
@@ -23,10 +23,10 @@ from smglom_notation_extractor import scan_available_smglom
 class TestSetReview(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.paper = ROOT / "tests" / "fixtures" / "review_demo_sets.tex"
-        cls.demo_path = ROOT / "tests" / "fixtures" / "demo-sets-config.json"
-        cls.demo_raw = json.loads(cls.demo_path.read_text(encoding="utf-8"))
-        cls.demo = build_expression_config(cls.demo_raw)
+        cls.paper = ROOT / "tests" / "fixtures" / "review_set_cases.tex"
+        cls.test_config_path = ROOT / "tests" / "fixtures" / "configs/test_set_semantics.json"
+        cls.test_config_raw = json.loads(cls.test_config_path.read_text(encoding="utf-8"))
+        cls.test_config = build_expression_config(cls.test_config_raw)
         cls.production_raw = json.loads(
             (ROOT / "expression-config.example.json").read_text(encoding="utf-8-sig"))
         cls.production = build_expression_config(cls.production_raw)
@@ -40,9 +40,9 @@ class TestSetReview(unittest.TestCase):
             match["classification"] = dict(rule)
         return build_review_scopes(matches, (), include_structural=True)
 
-    def demo_candidate(self, symbol, macro):
+    def synthetic_candidate(self, symbol, macro):
         return next(item for item in review_workflow.find_expression_candidates(
-            symbol, self.demo, self.records) if item["macro"] == macro)
+            symbol, self.test_config, self.records) if item["macro"] == macro)
 
     def test_generic_structural_ast_for_set_operators_and_nested_function(self):
         regions = parse_math_regions(
@@ -99,20 +99,20 @@ class TestSetReview(unittest.TestCase):
                              self.production.get("operators", ()) if item["token"] == r"\cup"))
         self.assertNotIn(r"\P", self.production.get("commands", {}))
 
-    def test_demo_config_is_explicit_and_candidates_keep_provenance(self):
-        self.assertTrue(self.demo_raw["demo_only"])
-        self.assertIn("not real SMGloM", self.demo_raw["description"])
-        candidate = self.demo_candidate(r"\cup", "fooUnion")
+    def test_synthetic_config_and_candidate_provenance(self):
+        self.assertTrue(self.test_config_raw["test_only"])
+        self.assertIn("not real SMGloM", self.test_config_raw["description"])
+        candidate = self.synthetic_candidate(r"\cup", "fooUnion")
         self.assertEqual(candidate["semantic_source"],
-                         "test/demo configuration; not real SMGloM")
+                         "synthetic test configuration; not real SMGloM")
 
-    def test_demo_decision_round_trip_validates_and_plans_application(self):
-        candidate = self.demo_candidate(r"\cup", "fooUnion")
-        matches = find_ast_occurrences(parse_papers(self.paper, self.demo),
-                                       candidate["classification"], self.demo, candidate)
+    def test_synthetic_decision_round_trip_validates_and_plans_application(self):
+        candidate = self.synthetic_candidate(r"\cup", "fooUnion")
+        matches = find_ast_occurrences(parse_papers(self.paper, self.test_config),
+                                       candidate["classification"], self.test_config, candidate)
         scope = next(item for item in build_review_scopes(matches, (candidate,))
                      if item.matched_source == r"A \cup B")
-        classification = dict(candidate["classification"], expression_config=self.demo_raw)
+        classification = dict(candidate["classification"], expression_config=self.test_config_raw)
         decision = review_workflow.build_review_decision(
             scope.match, candidate, classification, self.paper)
         self.assertEqual(decision["semantic_suggestion"], r"\fooUnion{A,B}")
@@ -126,7 +126,7 @@ class TestSetReview(unittest.TestCase):
         self.assertIn(r"\fooUnion{A,B}", rendered)
         self.assertEqual(self.paper.read_text(encoding="utf-8"), source)
 
-    def test_production_preview_shows_structure_without_demo_fallback(self):
+    def test_production_preview_has_no_synthetic_fallback(self):
         output = io.StringIO()
         with patch.object(sys, "argv", ["review_workflow.py", "--paper", str(self.paper),
                                         "--preview"]), \

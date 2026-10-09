@@ -1,3 +1,4 @@
+import hashlib
 import json
 import sys
 import tempfile
@@ -10,9 +11,9 @@ sys.path.insert(0, str(ROOT / "src"))
 
 import apply_annotations
 import review_workflow
-from decision_validator import validate_decisions
+from apply_annotations import validate_decisions
 from expression_document import parse_papers
-from expression_metadata import build_expression_config
+from notation_catalog import build_expression_config
 from notation_catalog import build_catalog, search_catalog
 
 
@@ -21,7 +22,7 @@ class TestIntegralReviewWorkflow(unittest.TestCase):
     def setUpClass(cls):
         raw = json.loads((ROOT / "integral-config.example.json").read_text(encoding="utf-8"))
         cls.config = build_expression_config(raw)
-        cls.paper = ROOT / "tests" / "fixtures" / "integral_review_document.tex"
+        cls.paper = ROOT / "tests" / "fixtures" / "integral_review_cases.tex"
 
     def test_combined_catalog_search_preserves_configured_provenance(self):
         catalogue = build_catalog([], self.config)
@@ -61,13 +62,13 @@ class TestIntegralReviewWorkflow(unittest.TestCase):
         child_text = r"\frac{x}{2}"
         child_start = source.index(child_text)
         common = {"file": "paper.tex", "line": 2, "decision": "accepted"}
-        child = dict(common, column=child_start + 1, source_start=child_start,
-                     source_end=child_start + len(child_text), source_expression=child_text,
+        child = dict(common, column=child_start + 1, start=child_start,
+                     end=child_start + len(child_text), source_hash=hashlib.sha256(child_text.encode("utf-8")).hexdigest(),
                      matched_expression=child_text, semantic_macro="fooDivide",
                      semantic_suggestion=r"\fooDivide{x}{2}", semantic_module="foo-arithmetic",
                      semantic_repository="user")
-        parent = dict(common, column=parent_start + 1, source_start=parent_start,
-                      source_end=parent_start + len(expression), source_expression=expression,
+        parent = dict(common, column=parent_start + 1, start=parent_start,
+                      end=parent_start + len(expression), source_hash=hashlib.sha256(expression.encode("utf-8")).hexdigest(),
                       matched_expression=expression, semantic_macro="fooIntegral",
                       semantic_suggestion=r"\fooIntegral{0}{1}{\frac{x}{2}}{x}",
                       semantic_module="synthetic-integrals", semantic_repository="user")

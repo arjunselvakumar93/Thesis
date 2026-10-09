@@ -1,3 +1,4 @@
+import hashlib
 import json
 import sys
 import unittest
@@ -8,10 +9,11 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from apply_annotations import build_application_plan, render_application_plan
 from expression_annotation import match_ast
-from expression_metadata import build_expression_config, configured_annotation_candidates
+from notation_catalog import build_expression_config, configured_annotation_candidates
 from expression_parser import ExpressionParser, ParseError
-from expression_registry import NotationRegistry
-from expression_document import parse_math_regions
+from expression_parser import NotationRegistry
+from expression_document import parse_math_regions, find_structural_occurrences
+from review_scope import build_review_scopes, scope_alternatives
 from review_workflow import find_expression_candidates, generate_classified_suggestion
 
 
@@ -77,17 +79,47 @@ class TestIntegralStructure(IntegralTestCase):
         triple = self.parser.parse(r"\iiint_V f(x)\,dx\,dy\,dz")
         self.assertEqual([child.text for child in triple.children[-3:]], ["x", "y", "z"])
 
+    def test_integral_review_ranges_keep_complete_bound_expressions(self):
+        sources = (r"\int_a^b f(x)\,dx", r"\int_a^b f(x) dx",
+                   r"\int_a^b f(x)\mathrm{d}x", r"\int_a^b f(x)\text{d}x",
+                   r"\int f(x)\,dx")
+        for source in sources:
+            with self.subTest(source=source):
+                document = "$" + source + "$"
+                regions = parse_math_regions(document, self.registry, Path("paper.tex"))
+                matches = find_structural_occurrences(regions, r"\int", self.config)
+                scope = next(item for item in build_review_scopes(
+                    matches, (), include_structural=True)
+                             if item.matched_source == source)
+                self.assertEqual(scope.node.kind, "BoundExpression")
+                self.assertEqual(document[scope.matched_start:scope.matched_end], source)
+                alternatives = scope_alternatives(scope, self.config)
+                self.assertTrue(all(not item['node'].text.startswith((r"\int_a", "^b"))
+                                    for item in alternatives))
+
 
 class TestIntegralDifferentials(IntegralTestCase):
     def test_configured_differential_spellings(self):
         sources = (r"\int_0^1 f(x)dx", r"\int_0^1 f(x)\,dx",
                    r"\int_0^1 f(x)\, dx", r"\int_0^1 f(x)\mathrm{d}x",
                    r"\int_0^1 f(x)\mathrm{d} x",
-                   r"\int_0^1 f(x)\operatorname{d}x")
+                   r"\int_0^1 f(x)\operatorname{d}x",
+                   r"\int_0^1 f(x)\text{d}x",
+                   r"\int_0^1 f(x)\,\text{d}x",
+                   r"\int_0^1 x^2\,dx",
+                   r"\int_a^b g(x,y)\,dx",
+                   r"\int_a^b f(x)\,dt",
+                   r"\int f(x)\,dx")
         for source in sources:
             with self.subTest(source=source):
                 tree = self.parser.parse(source)
-                self.assertEqual(dict(zip(tree.roles, tree.children))["variable"].text, "x")
+                self.assertEqual((tree.kind, tree.text), ("BoundExpression", source))
+                roles = dict(zip(tree.roles, tree.children))
+                self.assertEqual(roles["variable"].text,
+                                 "t" if source.endswith(r"dt") else "x")
+                if source == r"\int f(x)\,dx":
+                    self.assertNotIn("lower", roles)
+                    self.assertNotIn("upper", roles)
 
     def test_differential_detection_does_not_consume_arbitrary_d_expressions(self):
         for source in (r"\int_0^1 dx + y", r"\int_0^1 d*x", r"\int_0^1 distance(x)"):
@@ -126,12 +158,12 @@ class TestIntegralApplication(IntegralTestCase):
         child_start = source.index(r"\frac")
         child_text = r"\frac{x}{2}"
         child = {"file": "paper.tex", "line": 1, "column": child_start + 1,
-                 "source_start": child_start, "source_end": child_start + len(child_text),
-                 "source_expression": child_text, "matched_expression": child_text,
+                 "start": child_start, "end": child_start + len(child_text),
+                 "source_hash": hashlib.sha256(child_text.encode("utf-8")).hexdigest(), "matched_expression": child_text,
                  "semantic_macro": "fooDivide", "semantic_suggestion": r"\fooDivide{x}{2}"}
         parent = {"file": "paper.tex", "line": 1, "column": 1,
-                  "source_start": 0, "source_end": len(source),
-                  "source_expression": source, "matched_expression": source,
+                  "start": 0, "end": len(source),
+                  "source_hash": hashlib.sha256(source.encode("utf-8")).hexdigest(), "matched_expression": source,
                   "semantic_macro": "fooIntegral",
                   "semantic_suggestion": r"\fooIntegral{0}{1}{\frac{x}{2}}{x}"}
         plan = build_application_plan(source, [child, parent], "paper.tex")

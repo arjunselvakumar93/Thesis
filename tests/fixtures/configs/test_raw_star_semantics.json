@@ -1,6 +1,6 @@
 {
-  "description": "TEST/DEMO CONFIGURATION ONLY. This is not real SMGloM metadata and does not assert that raw * is equivalent to \\times.",
-  "demo_only": true,
+  "description": "SYNTHETIC TEST CONFIGURATION ONLY. This is not real SMGloM metadata and does not assert that raw * is equivalent to \\times.",
+  "test_only": true,
   "review_labels": {
     "*": "multiplication"
   },
@@ -23,7 +23,7 @@
       "associativity": "left",
       "arity": 2,
       "semantic_macro": "fooTimes",
-      "source": "test/demo configuration; not real SMGloM"
+      "source": "synthetic test configuration; not real SMGloM"
     }
   ],
   "commands": {},
