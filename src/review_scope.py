@@ -4,8 +4,28 @@ The parser AST remains the source of spans and structure.  This module only
 turns stable shared-matcher records into compact review cards.
 """
 
+import sys
 from dataclasses import dataclass
 from pathlib import Path
+
+
+def _supports_color():
+    """Return True if the terminal supports ANSI color codes."""
+    return sys.stdout.isatty()
+
+
+def _highlight_with_color(full_math_region, region_start, match_start, match_end):
+    """Highlight with bright cyan ANSI codes inside square brackets."""
+    left, right = match_start - region_start, match_end - region_start
+    if left < 0 or right < left or right > len(full_math_region):
+        return full_math_region
+    if not _supports_color():
+        return (full_math_region[:left] + "[" + full_math_region[left:right]
+                + "]" + full_math_region[right:])
+    cyan = "\033[96m"
+    reset = "\033[0m"
+    return (full_math_region[:left] + "[" + cyan + full_math_region[left:right]
+            + reset + "]" + full_math_region[right:])
 
 
 @dataclass(frozen=True)
@@ -273,16 +293,6 @@ def _structure_label(match, candidates, argument_count):
     return label
 
 
-def highlight_source(full_math_region, region_start, match_start, match_end,
-                     open_marker="[", close_marker="]"):
-    """Highlight one exact document span without reconstructing source text."""
-    left, right = match_start - region_start, match_end - region_start
-    if left < 0 or right < left or right > len(full_math_region):
-        return full_math_region
-    return (full_math_region[:left] + open_marker + full_math_region[left:right]
-            + close_marker + full_math_region[right:])
-
-
 def build_review_scope(match, candidates):
     """Project a stable shared match into a terminal-friendly review scope."""
     compatible = _compatible_candidates(match, candidates)
@@ -338,7 +348,7 @@ def build_review_scope(match, candidates):
         structurally_ready=structurally_ready,
         semantic_status=semantic_status, review_state=review_state,
         nesting_depth=int(match.get("ast_depth", 0)),
-        highlighted=highlight_source(full_region, display_region_start, start, end),
+        highlighted=_highlight_with_color(full_region, display_region_start, start, end),
         ast_debug=match.get("ast_debug", ""), match=match)
 
 
