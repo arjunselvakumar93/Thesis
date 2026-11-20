@@ -1,3 +1,5 @@
+from contextlib import redirect_stdout
+import io
 import hashlib
 import json
 import sys
@@ -38,7 +40,7 @@ class TestIntegralReviewWorkflow(unittest.TestCase):
         self.assertEqual(len(candidates), 1)
         regions = parse_papers(self.paper, self.config)
         captured = []
-        with patch.object(review_workflow, "choose_candidate", return_value=candidates[0]), \
+        with redirect_stdout(io.StringIO()), patch.object(review_workflow, "choose_candidate", return_value=candidates[0]), \
              patch.object(review_workflow, "ask_for_decision", side_effect=["accepted", "quit"]), \
              patch.object(review_workflow, "save_decisions",
                           side_effect=lambda decisions: captured.extend(decisions) or len(decisions)):

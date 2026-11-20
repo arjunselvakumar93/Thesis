@@ -14,12 +14,12 @@ def _supports_color():
     return sys.stdout.isatty()
 
 
-def _highlight_with_color(full_math_region, region_start, match_start, match_end):
-    """Highlight with bright cyan ANSI codes inside square brackets."""
+def _highlight_with_color(full_math_region, region_start, match_start, match_end, color=False):
+    """Bracket the selected span, optionally coloring it for terminal display."""
     left, right = match_start - region_start, match_end - region_start
     if left < 0 or right < left or right > len(full_math_region):
         return full_math_region
-    if not _supports_color():
+    if not color:
         return (full_math_region[:left] + "[" + full_math_region[left:right]
                 + "]" + full_math_region[right:])
     cyan = "\033[96m"
@@ -382,13 +382,20 @@ def build_review_scopes(matches, candidates, order="innermost", include_structur
 
 def render_review_scope(scope, number=None, total=None, show_ast=False):
     """Return a normal-mode review card; full AST output is opt-in."""
+    highlighted = scope.highlighted
+    if _supports_color():
+        raw_region = scope.match.get("full_math_region", scope.full_math_region)
+        leading = len(raw_region) - len(raw_region.lstrip())
+        highlighted = _highlight_with_color(
+            scope.full_math_region, scope.math_region_start + leading,
+            scope.matched_start, scope.matched_end, color=True)
     lines = ["=" * 60]
     if number is not None and total is not None:
         lines.append(f"Review {number} of {total}")
     lines.extend((f"File: {scope.file.name}", f"Line: {scope.line}  Column: {scope.column}",
                   "", "Original formula:", scope.full_math_region,
                   "", "Suggested scope:", scope.matched_source,
-                  "", "Highlighted:", scope.highlighted,
+                  "", "Highlighted:", highlighted,
                   "", "Structure:", scope.simple_structure,
                   "", "Review state:", scope.review_state))
     if scope.precedence_confidence in {"configuration-dependent", "unknown"}:

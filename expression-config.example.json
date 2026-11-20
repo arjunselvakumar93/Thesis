@@ -11,7 +11,7 @@
     {"token": "=", "precedence": 1, "associativity": "sequence", "arity": "variable"},
     {"token": "\\ne", "precedence": 1, "associativity": "none"},
     {"token": "\\Leftrightarrow", "precedence": 2, "associativity": "none", "uncertain_chain": true, "source": "structural example configuration; relative precedence is not supplied by SMGloM", "precedence_source": "structural policy; semantically unverified", "associativity_source": "structural policy; repeated chains remain uncertain"},
-    {"token": "\\to", "precedence": 3, "associativity": "right", "source": "structural grammar configuration", "precedence_source": "structural configuration", "associativity_source": "structural configuration"},
+    {"token": "\\to", "variants": ["\\rightarrow"], "precedence": 3, "associativity": "right", "source": "structural grammar configuration", "precedence_source": "structural configuration", "associativity_source": "structural configuration"},
     {"token": ":", "precedence": 1, "associativity": "right", "source": "structural grammar configuration", "precedence_source": "structural configuration", "associativity_source": "structural configuration"},
     {"token": "\\wedge", "variants": ["\\land"], "precedence": 6, "associativity": "left"},
     {"token": "\\vee", "precedence": 5, "associativity": "left"},
@@ -29,20 +29,23 @@
     ,{"token": "∩", "precedence": 20, "associativity": "left", "source": "Unicode structural grammar"}
     ,{"token": "∧", "precedence": 6, "associativity": "left", "source": "Unicode structural grammar"}
     ,{"token": "∨", "precedence": 5, "associativity": "left", "source": "Unicode structural grammar"}
-    ,{"token": "⇒", "precedence": 2, "associativity": "right", "source": "Unicode structural grammar"}
+    ,{"token": "⇒", "variants": ["\\Rightarrow", "\\implies"], "precedence": 0, "associativity": "none", "source": "structural grammar; implication binds below comparisons; chains require grouping"}
     ,{"token": "→", "precedence": 2, "associativity": "right", "source": "Unicode structural grammar"}
-    ,{"token": "≤", "precedence": 1, "associativity": "none", "source": "Unicode structural grammar"}
-    ,{"token": "≥", "precedence": 1, "associativity": "none", "source": "Unicode structural grammar"}
+    ,{"token": "≤", "variants": ["\\leq", "\\le"], "precedence": 1, "associativity": "none", "source": "Unicode and TeX structural grammar"}
+    ,{"token": "≥", "variants": ["\\geq", "\\ge"], "precedence": 1, "associativity": "none", "source": "Unicode and TeX structural grammar"}
     ,{"token": "≠", "precedence": 1, "associativity": "none", "source": "Unicode structural grammar"}
     ,{"token": "≈", "precedence": 1, "associativity": "none", "source": "Unicode structural grammar"}
     ,{"token": "≡", "precedence": 1, "associativity": "none", "source": "Unicode structural grammar"}
     ,{"token": "∈", "precedence": 1, "associativity": "none", "source": "Unicode structural grammar"}
     ,{"token": "∉", "precedence": 1, "associativity": "none", "source": "Unicode structural grammar"}
-    ,{"token": "⊂", "precedence": 1, "associativity": "none", "source": "Unicode structural grammar"}
+    ,{"token": "⊂", "variants": ["\\subset"], "precedence": 1, "associativity": "none", "source": "Unicode and TeX structural grammar"}
     ,{"token": "⊆", "precedence": 1, "associativity": "none", "source": "Unicode structural grammar"}
     ,{"token": "⊃", "precedence": 1, "associativity": "none", "source": "Unicode structural grammar"}
-    ,{"token": "⊇", "precedence": 1, "associativity": "none", "source": "Unicode structural grammar"}
+    ,{"token": "⊇", "variants": ["\\supseteq"], "precedence": 1, "associativity": "none", "source": "Unicode and TeX structural grammar"}
     ,{"token": "√", "precedence": 30, "associativity": "right", "fixity": "prefix", "arity": 1, "source": "Unicode structural grammar"}
+    ,{"token": ":=", "variants": ["\\coloneqq"], "precedence": 1, "associativity": "right", "source": "structural grammar configuration"}
+    ,{"token": "\\sim", "variants": ["∼"], "precedence": 1, "associativity": "none", "source": "structural relation only; no semantic mapping"}
+    ,{"token": "\\ll", "variants": ["≪"], "precedence": 1, "associativity": "none", "source": "structural relation only; no semantic mapping"}
   ],
   "review_labels": {
     "*": "multiplication",
@@ -103,7 +106,7 @@
       "node_kind": "BoundExpression",
       "scripts": {"_": "lower", "^": "upper"},
       "body_role": "body",
-      "body_precedence": 0,
+      "body_precedence": 4,
       "trailing_role": "variable",
       "trailing_forms": [
         {"separator": "\\,", "prefix": "d"},
@@ -156,7 +159,7 @@
       "name": "integral",
       "scripts": {"_": "lower", "^": "upper"},
       "body_role": "body",
-      "body_precedence": 0,
+      "body_precedence": 4,
       "trailing_forms": [{"prefix": "d"}, {"separator": ",", "prefix": "d"}],
       "source": "Unicode structural grammar"
     },

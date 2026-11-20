@@ -18,9 +18,10 @@ class TestCorpusEvaluation(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.manifest = ROOT / "evaluation" / "corpus.json"
-        cls.aggregate, cls.documents, cls.ambiguity, cls.errors, cls.breakdown = (
-            evaluate_corpus(cls.manifest)
-        )
+        with contextlib.redirect_stdout(io.StringIO()):
+            cls.aggregate, cls.documents, cls.ambiguity, cls.errors, cls.breakdown = (
+                evaluate_corpus(cls.manifest)
+            )
 
     def test_portable_manifest_has_multiple_documents_and_enough_gold(self):
         manifest = json.loads(self.manifest.read_text(encoding="utf-8"))
@@ -87,7 +88,8 @@ class TestCorpusEvaluation(unittest.TestCase):
     def test_star_is_not_fabricated_as_a_times_alias(self):
         from notation_catalog import build_catalog
         from smglom_notation_extractor import scan_available_smglom
-        default = build_catalog(scan_available_smglom())
+        with contextlib.redirect_stdout(io.StringIO()):
+            default = build_catalog(scan_available_smglom())
         self.assertFalse(any(item.get("macro") and "*" in item.get("variants", ())
                              for item in default))
 
@@ -128,20 +130,24 @@ class TestCorpusEvaluation(unittest.TestCase):
         self.assertLessEqual(interval["wilson_95_percent"][1], 100)
 
     def test_command_writes_all_machine_readable_reports(self):
-        with tempfile.TemporaryDirectory() as directory:
+        output = io.StringIO()
+        with contextlib.redirect_stdout(output), tempfile.TemporaryDirectory() as directory:
             self.assertEqual(main(["--corpus", str(self.manifest),
                                    "--output", directory]), 0)
             expected = {"corpus_summary.json", "per_document_metrics.json",
                         "ambiguity_report.json", "error_analysis.json",
                         "annotation_coverage_gaps.json"}
             self.assertEqual({path.name for path in Path(directory).glob("*.json")}, expected)
+        self.assertIn("Documents:", output.getvalue())
+        self.assertIn("SEMANTIC AVAILABILITY", output.getvalue())
 
     def test_every_non_ready_region_has_a_pipeline_explanation(self):
         audit = self.errors["annotation_coverage_audit"]
         summary, gaps = audit["summary"], audit["gaps"]
         self.assertEqual(summary["total_math_regions"], 141)
-        self.assertEqual(summary["annotation_ready_regions"], 88)
-        self.assertEqual(len(gaps), 141 - 88)
+        # A bounded integral is no longer counted as a power-template match.
+        self.assertEqual(summary["annotation_ready_regions"], 87)
+        self.assertEqual(len(gaps), 141 - 87)
         self.assertEqual(sum(summary["gap_categories"].values()), len(gaps))
         self.assertEqual(len(summary["per_document"]), 3)
         required = {"document", "file", "line", "full_expression", "ast_summary",
@@ -152,6 +158,9 @@ class TestCorpusEvaluation(unittest.TestCase):
         self.assertEqual(sum(gap["blocker"] == "already_semantic_correctly_skipped"
                              for gap in gaps), 2)
         self.assertTrue(any(gap["requires_repository"] == "sets" for gap in gaps))
+        bounded_integral = next(gap for gap in gaps
+                                if gap["full_expression"] == r"\int_0^1 f(x)\,dx")
+        self.assertEqual(bounded_integral["semantic_candidates"], [])
         integral = next(gap for gap in gaps if gap["full_expression"] == r"\int f(x)\,dx")
         self.assertEqual(integral["argument_mapping"]["hidden_or_missing"],
                          ["lower", "upper"])

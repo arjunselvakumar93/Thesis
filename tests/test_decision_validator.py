@@ -13,6 +13,40 @@ import validate_decisions
 
 
 class TestDecisionValidator(unittest.TestCase):
+    def test_replacement_is_revalidated_against_current_candidate_and_arguments(self):
+        import review_workflow
+        from expression_document import parse_papers, find_ast_occurrences
+        from notation_catalog import build_expression_config
+        root = Path(__file__).resolve().parents[1]
+        config = build_expression_config(json.loads(
+            (root / "tests/fixtures/configs/test_raw_star_semantics.json").read_text(encoding="utf-8")), [])
+        candidate, = review_workflow.find_expression_candidates("*", config, [])
+        with tempfile.TemporaryDirectory() as directory:
+            paper = Path(directory) / "paper.tex"
+            original = "$a*b$"
+            paper.write_text(original, encoding="utf-8")
+            rule = dict(candidate["classification"], expression_config=config)
+            match, = find_ast_occurrences(parse_papers(paper, config), rule, config, candidate)
+            accepted = review_workflow.build_review_decision(match, candidate, rule, paper)
+            self.assertEqual(len(decision_validator.validate_decisions([accepted], [], paper)["valid"]), 1)
+            for status in ("rejected", "skipped", None):
+                with self.subTest(status=status):
+                    unaccepted = dict(accepted, decision=status)
+                    report = decision_validator.validate_decisions([unaccepted], [], paper)
+                    self.assertEqual(decision_validator.materialize_valid_decisions(report), [])
+            for replacement in (r"\fooTimes{changed}{b}", r"\unlistedMacro{a}{b}", None):
+                with self.subTest(replacement=replacement):
+                    altered = dict(accepted, semantic_suggestion=replacement)
+                    report = decision_validator.validate_decisions([altered], [], paper)
+                    self.assertFalse(report["valid"])
+                    self.assertEqual(decision_validator.materialize_valid_decisions(report), [])
+                    self.assertIn("replacement does not match", report["unverifiable"][0][2])
+            missing = dict(accepted, semantic_macro="unlistedMacro")
+            report = decision_validator.validate_decisions([missing], [], paper)
+            self.assertFalse(report["valid"])
+            self.assertIn("semantic candidate not found", report["unverifiable"][0][2])
+            self.assertEqual(paper.read_text(encoding="utf-8"), original)
+
     def test_requested_command_entry_point_uses_safe_validator(self):
         self.assertIs(validate_decisions.main, decision_validator.validate_main)
 

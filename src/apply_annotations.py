@@ -79,6 +79,9 @@ def validate_decisions(decisions, records=None, papers_dir=PAPERS_DIR):
         (PROJECT_DIR / "expression-config.example.json").read_text(encoding="utf-8-sig"))
 
     for index, decision in enumerate(decisions):
+        if decision.get("annotation_ready") is False or decision.get("decision") == "unresolved":
+            unverifiable.append((index, decision, "meaning unresolved; no executable semantic definition"))
+            continue
         symbol = decision.get("visible_symbol")
         macro = decision.get("semantic_macro")
         if symbol is None or not macro:
@@ -127,6 +130,12 @@ def validate_decisions(decisions, records=None, papers_dir=PAPERS_DIR):
         source_matches = matched is not None and decision.get("source_hash") == hashlib.sha256(
             matched["source_expression"].encode("utf-8")).hexdigest()
         if source_matches:
+            if "semantic_suggestion" in decision:
+                from review_workflow import generate_classified_suggestion
+                expected = generate_classified_suggestion(matched, candidate)
+                if expected is None or decision["semantic_suggestion"] != expected:
+                    unverifiable.append((index, decision, "replacement does not match validated semantic arguments"))
+                    continue
             valid.append(item)
             valid_matches.append((index, decision, matched))
         else:
@@ -138,7 +147,8 @@ def validate_decisions(decisions, records=None, papers_dir=PAPERS_DIR):
 
 def materialize_valid_decisions(validation):
     """Return independently usable copies of the validated current decisions."""
-    return [dict(decision) for _, decision, _ in validation.get("valid_matches", [])]
+    return [dict(decision) for _, decision, _ in validation.get("valid_matches", [])
+            if decision.get("decision") == "accepted" and decision.get("semantic_suggestion")]
 
 
 def remove_stale_decisions(decisions, stale_indexes, decision_file, confirmation):
@@ -366,37 +376,35 @@ def build_application_plan(source, decisions, relative_file=""):
 
 
 def _render_node(node):
-    rendered, cursor = node.replacement, 0
+    rendered = node.replacement
     for child in node.children:
-        child_rendered = _render_node(child)
-        position = rendered.find(child.original, cursor)
-        if position == -1:
-            position = rendered.find(child.original)
-        if position == -1:
+        position = rendered.find(child.original)
+        source_position = node.original.find(child.original)
+        if position == -1 or source_position == -1:
             raise ValueError(f"child source is absent from parent template: {child.original!r}")
+        if (node.original.find(child.original, source_position + 1) != -1
+                or rendered.find(child.original, position + 1) != -1):
+            raise ValueError(f"child source is ambiguous in parent template: {child.original!r}")
+        child_rendered = _render_node(child)
         rendered = rendered[:position] + child_rendered + rendered[position + len(child.original):]
-        cursor = position + len(child_rendered)
     return rendered
 
 
 def render_application_plan(source, plan):
+    def count(node):
+        return 1 + sum(count(child) for child in node.children)
+
     rendered, failed = [], []
     for root in plan["roots"]:
         try:
             rendered.append((root.start, root.end, _render_node(root), root))
         except ValueError as error:
-            failed.append({"decision": root.decision, "reason": "nested_render_failure", "detail": str(error)})
+            failed.append({"decision": root.decision, "reason": "nested_render_failure",
+                           "detail": str(error), "decision_count": count(root)})
     result = source
     for start, end, replacement, _ in sorted(rendered, key=lambda item: item[0], reverse=True):
         result = result[:start] + replacement + result[end:]
-    rendered_count = 0
-    def count(node):
-        nonlocal rendered_count
-        rendered_count += 1
-        for child in node.children:
-            count(child)
-    for _, _, _, root in rendered:
-        count(root)
+    rendered_count = sum(count(root) for _, _, _, root in rendered)
     return result, rendered, failed, rendered_count
 
 
@@ -448,7 +456,7 @@ def apply_annotations(decisions, return_report=False):
         failures = {"source_span_mismatch": len(plan["stale"]),
                     "semantic_conflict_same_span": same_failed,
                     "overlapping_replacement_conflict": overlap_failed,
-                    "nested_render_failure": len(render_failures)}
+                    "nested_render_failure": sum(item["decision_count"] for item in render_failures)}
         for reason, count in failures.items():
             report["failure_reasons"][reason] += count
             report["failed_decisions"] += count

@@ -1,4 +1,6 @@
+import io
 import json
+from contextlib import redirect_stdout
 import sys
 import tempfile
 import unittest
@@ -25,17 +27,19 @@ class TestReviewReadiness(unittest.TestCase):
     def setUpClass(cls):
         cls.manifest_path = ROOT / "evaluation" / "corpus.json"
         cls.manifest = json.loads(cls.manifest_path.read_text(encoding="utf-8"))
-        cls.aggregate, _, _, cls.errors, _ = evaluate_corpus(cls.manifest_path)
+        with redirect_stdout(io.StringIO()):
+            cls.aggregate, _, _, cls.errors, _ = evaluate_corpus(cls.manifest_path)
         cls.audit = cls.errors["annotation_coverage_audit"]
         cls.records = scan_available_smglom(quiet=True)
 
     def test_readiness_levels_and_human_effort_are_separate(self):
         coverage = self.aggregate["region_annotation_coverage"]
-        self.assertEqual(coverage["supported_annotation_eligible_regions"], 99)
-        self.assertEqual(coverage["review_ready_regions"], 99)
-        self.assertEqual(coverage["automatically_ready_regions"], 88)
+        # The bounded integral has no valid power-template semantic candidate.
+        self.assertEqual(coverage["supported_annotation_eligible_regions"], 98)
+        self.assertEqual(coverage["review_ready_regions"], 98)
+        self.assertEqual(coverage["automatically_ready_regions"], 87)
         self.assertEqual(coverage["human_selection_required_regions"], 11)
-        self.assertEqual(coverage["unsupported_annotation_eligible_regions"], 8)
+        self.assertEqual(coverage["unsupported_annotation_eligible_regions"], 9)
         self.assertEqual(coverage["supported_review_coverage_percent"], 100.0)
         effort = coverage["reviewer_effort"]
         self.assertEqual(sum(effort["human_selection_candidate_count_distribution"].values()), 11)

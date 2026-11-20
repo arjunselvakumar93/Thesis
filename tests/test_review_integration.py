@@ -1,3 +1,5 @@
+from contextlib import redirect_stdout
+import io
 import json
 import sys
 import tempfile
@@ -94,7 +96,7 @@ class TestGenericReviewIntegration(unittest.TestCase):
             original = "$A>B$\n$x<Y$\n"
             paper.write_text(original, encoding="utf-8")
             decisions = root / "decisions" / "review_results.json"
-            with patch.object(review_workflow, "DECISIONS_DIR", decisions.parent), \
+            with redirect_stdout(io.StringIO()), patch.object(review_workflow, "DECISIONS_DIR", decisions.parent), \
                  patch.object(review_workflow, "DECISION_FILE", decisions), \
                  patch.object(review_workflow, "choose_candidate", return_value=candidate), \
                  patch.object(review_workflow, "ask_for_decision", return_value="accepted"):
@@ -126,7 +128,7 @@ class TestGenericReviewIntegration(unittest.TestCase):
                     paper_source = "$" + original + "$\n"
                     paper.write_text(paper_source, encoding="utf-8")
                     decisions = root / "decisions" / "review_results.json"
-                    with patch.object(review_workflow, "DECISIONS_DIR", decisions.parent), \
+                    with redirect_stdout(io.StringIO()), patch.object(review_workflow, "DECISIONS_DIR", decisions.parent), \
                          patch.object(review_workflow, "DECISION_FILE", decisions), \
                          patch.object(review_workflow, "choose_candidate", return_value=candidate), \
                          patch.object(review_workflow, "ask_for_decision", return_value="accepted"):
@@ -141,7 +143,7 @@ class TestGenericReviewIntegration(unittest.TestCase):
             root = Path(directory)
             paper = root / "paper.tex"
             paper.write_text("$a+$\n", encoding="utf-8")
-            with patch.object(review_workflow, "choose_candidate", return_value=candidate), \
+            with redirect_stdout(io.StringIO()), patch.object(review_workflow, "choose_candidate", return_value=candidate), \
                  patch.object(review_workflow, "ask_for_decision") as ask:
                 self.assertEqual(review_workflow.run_generic_review("+", [candidate], root), 0)
             ask.assert_not_called()
@@ -152,7 +154,7 @@ class TestGenericReviewIntegration(unittest.TestCase):
                               (r"\times", "nattimes"), (r"\cdot", "nattimes")):
             with self.subTest(symbol=symbol):
                 candidate = self.candidate(symbol, macro)
-                with patch.object(sys, "argv", ["review_workflow.py"]), \
+                with redirect_stdout(io.StringIO()), patch.object(sys, "argv", ["review_workflow.py"]), \
                      patch("builtins.input", return_value=symbol), \
                      patch.object(review_workflow, "find_generic_candidates",
                                   return_value=[candidate]), \

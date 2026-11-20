@@ -19,6 +19,10 @@ def coverage_report(regions, catalogue=None):
         details.update(file=str(region.file), line=region.source.count("\n", 0, region.start) + 1,
                        start=region.start, end=region.end,
                        math_text=region.source[region.start:region.end], reason=region.error)
+        absolute = region.start + (details.get("position") or 0)
+        details.update(error_line=region.source.count("\n", 0, absolute) + 1,
+                       error_column=absolute - region.source.rfind("\n", 0, absolute),
+                       recovery="Scope excluded from review/annotation; check completeness or configure syntax.")
         failures.append(details)
     total, unsupported = len(regions), len(failures)
     notation_nodes = []
@@ -74,8 +78,15 @@ def coverage_report(regions, catalogue=None):
         annotation_ready_regions += int(region_ready)
     semantic_nodes = sum(has_semantics(node) for node in notation_nodes)
     parsed = total - unsupported
+    partial = sum(region.tree is not None and any(
+        node.kind == "OpaqueEnvironmentBody" for node in region.tree.walk()) for region in regions)
+    fallback = sum(region.tree is not None and any(
+        node.kind in {"SymbolAtom", "OpaqueCommandApplication", "OpaqueMathToken"}
+        for node in region.tree.walk()) for region in regions)
     return {"structural_parser": {"total": total, "parsed": parsed,
                                    "unsupported": unsupported,
+                                   "fully_parsed": parsed - partial, "partially_preserved": partial,
+                                   "fallback_regions": fallback,
                                    "coverage_percent": round(100 * parsed / total, 1) if total else None},
             "notation_semantics": {"notation_nodes": len(notation_nodes),
                                      "semantically_mapped": semantic_nodes,
@@ -98,6 +109,9 @@ def display_report(report, show_unsupported=False):
     counts = report["structural_parser"]
     print(f"Total math regions: {counts['total']}\nParsed successfully: {counts['parsed']}\n"
           f"Unsupported: {counts['unsupported']}\nStructural parser coverage: {counts['coverage_percent']}%")
+    print(f"Fully parsed: {counts['fully_parsed']}\nPartially preserved: {counts['partially_preserved']}\n"
+          f"Regions with generic symbol/command fallbacks: {counts['fallback_regions']}")
+    print("Coverage counts extracted regions with ASTs, including opaque preservation; it does not measure semantic correctness.")
     semantics = report["notation_semantics"]
     annotation = report["annotation"]
     print(f"SMGloM-mapped notation nodes: {semantics['smglom_mapped']}/{semantics['notation_nodes']}\n"
@@ -112,8 +126,24 @@ def display_report(report, show_unsupported=False):
             print(f"\n{item['file']}:{item['line']} [{item['start']}:{item['end']}]\n"
                   f"Math: {item['math_text']!r}\nCategory: {item.get('category')}\n"
                   f"Token: {item.get('token')!r}; region position: {item.get('position')}\n"
-                  f"Reason: {item['reason']}")
+                  f"Error location: {item['error_line']}:{item['error_column']}\n"
+                  f"Reason: {item['reason']}\nRecovery: {item['recovery']}")
         print(f"\nFailure categories: {report['failure_categories']}")
+
+
+def format_region_failure(region):
+    """One source-aware diagnostic shared by interactive review entry points."""
+    position = (region.diagnostic or {}).get("position") or 0
+    absolute = region.start + position
+    line = region.source.count("\n", 0, absolute) + 1
+    column = absolute - region.source.rfind("\n", 0, absolute)
+    source = region.source[region.start:region.end]
+    snippet = source[max(0, position - 35):position + 45]
+    token = (region.diagnostic or {}).get("token") or "<end>"
+    return (f"Unparsed math region in {region.file}:{line}:{column}, "
+            f"region [{region.start}:{region.end}], token {token!r}: {region.error}\n"
+            f"  Context: {snippet!r}\n"
+            "  Scope excluded from review/annotation; check completeness or configure syntax.")
 
 
 def main(argv=None):

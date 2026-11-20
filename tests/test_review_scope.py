@@ -52,6 +52,28 @@ class TestReviewScope(unittest.TestCase):
         return [match for item in candidates for match in find_ast_occurrences(
             regions, item["classification"], self.config, item)]
 
+    def test_color_is_applied_only_when_rendering_to_a_terminal(self):
+        source = "  [x+y] + x+y  "
+        start = source.rindex("x+y")
+        match = {"full_math_region": source, "math_region_start": 100,
+                 "source_start": 100 + start, "source_end": 100 + start + 3,
+                 "source_expression": "x+y", "arguments": ["x", "y"],
+                 "classification": self.plus["classification"]}
+        with patch.object(sys.stdout, "isatty", return_value=True):
+            scope = build_review_scope(match, (self.plus,))
+            self.assertEqual(scope.highlighted, "[x+y] + [x+y]")
+            self.assertIn("Highlighted:\n[x+y] + [\033[96mx+y\033[0m]",
+                          render_review_scope(scope))
+        output = io.StringIO()
+        with redirect_stdout(output):
+            print(render_review_scope(scope))
+        self.assertNotIn("\033", output.getvalue())
+        self.assertIn("Highlighted:\n[x+y] + [x+y]", output.getvalue())
+        self.assertEqual(scope.highlighted, "[x+y] + [x+y]")
+        self.assertEqual(scope.matched_source, "x+y")
+        self.assertEqual((scope.matched_start, scope.matched_end),
+                         (100 + start, 100 + start + 3))
+
     def test_nested_function_expression_has_internal_ast_and_review_scopes(self):
         source = "p(x+y) * p(x-y)"
         tree = ExpressionParser(registry=NotationRegistry.from_config(self.config)).parse(source)
@@ -142,7 +164,7 @@ class TestReviewScope(unittest.TestCase):
             paper = Path(directory, "paper.tex")
             paper.write_text("$x+y$", encoding="utf-8")
             regions = parse_papers(paper, self.config)
-            with patch.object(review_workflow, "scan_available_smglom", return_value=[]), \
+            with redirect_stdout(io.StringIO()), patch.object(review_workflow, "scan_available_smglom", return_value=[]), \
                  patch.object(review_workflow, "choose_candidate", return_value=self.plus), \
                  patch.object(review_workflow, "ask_for_decision", return_value="accepted"), \
                  patch.object(review_workflow, "save_decisions", return_value=1) as save:
@@ -154,7 +176,7 @@ class TestReviewScope(unittest.TestCase):
             self.assertEqual(decision["end"] - decision["start"], len("x+y"))
 
     def test_cli_forwards_preview_ast_and_scope_order_without_tree_selection(self):
-        with patch.object(sys, "argv", ["review_workflow.py", "--preview", "--show-ast",
+        with redirect_stdout(io.StringIO()), patch.object(sys, "argv", ["review_workflow.py", "--preview", "--show-ast",
                                         "--scope-order", "outermost"]), \
              patch("builtins.input", return_value="+"), \
              patch.object(review_workflow, "find_generic_candidates", return_value=[self.plus]), \
@@ -186,8 +208,11 @@ class TestReviewScope(unittest.TestCase):
             selected_index = next(index for index, item in enumerate(alternatives, 1)
                                   if item['node'].text == r"A \Leftrightarrow B")
             answers = iter(("r", str(selected_index)))
-            changed, action = review_workflow.choose_review_range(
-                scope, self.config, regions, [], input_fn=lambda _: next(answers))
+            output = io.StringIO()
+            with redirect_stdout(output):
+                changed, action = review_workflow.choose_review_range(
+                    scope, self.config, regions, [], input_fn=lambda _: next(answers))
+            self.assertIn("Alternative ranges:", output.getvalue())
             self.assertEqual(action, "changed")
             self.assertEqual((changed.matched_start, changed.matched_end),
                              (scope.matched_start, scope.matched_start + len(r"A \Leftrightarrow B")))

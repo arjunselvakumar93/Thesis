@@ -189,6 +189,18 @@ def _alignment_row_spans(text):
 
 
 def _parse_alignment(text, parser, environment):
+    def parse_row(masked, offset):
+        try:
+            return _rebase_tree(parser.parse("".join(masked)), text, offset)
+        except ParseError as error:
+            # The parser's diagnostic is local to this row, not the region.
+            if error.position is not None:
+                error.position += offset
+            error.args = (re.sub(r"offset (\d+)",
+                                 lambda match: f"offset {int(match.group(1)) + offset}",
+                                 str(error)),)
+            raise
+
     rows = []
     spans = list(_alignment_row_spans(text))
     index = 0
@@ -208,7 +220,7 @@ def _parse_alignment(text, parser, environment):
             if character == "&" and (position == 0 or masked[position - 1] != "\\"):
                 masked[position] = " "
         try:
-            expression = _rebase_tree(parser.parse("".join(masked)), text, left)
+            expression = parse_row(masked, left)
         except ParseError as error:
             if error.category != "incomplete_expression" or index + 1 >= len(spans):
                 raise
@@ -222,7 +234,7 @@ def _parse_alignment(text, parser, environment):
             for position in range(len(masked) - 1):
                 if masked[position] == "\\" and masked[position + 1] == "\\":
                     masked[position] = masked[position + 1] = " "
-            expression = _rebase_tree(parser.parse("".join(masked)), text, left)
+            expression = parse_row(masked, left)
             right = next_end
             index += 1
         row = ExpressionParser._node(parser, "Row", left, right, "row", (expression,),
@@ -340,10 +352,12 @@ def find_structural_occurrences(regions, query, configuration, semantic_status=N
         if region.tree is None:
             continue
         for node in region.tree.walk():
-            if node.kind in {"Row", "Cell", "GroupedExpression", "Atom", "Number",
+            if node.kind in {"Row", "Cell", "GroupedExpression",
                              "OpaqueEnvironmentBody"}:
                 continue
             exact = node.text == query
+            if node.kind in {"Atom", "Number"} and not exact:
+                continue
             head = node.value == query or node.notation == query
             name = structure_name(node).casefold() == query.casefold()
             if not (exact or head or name):

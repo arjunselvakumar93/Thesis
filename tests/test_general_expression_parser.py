@@ -1,3 +1,4 @@
+from contextlib import redirect_stdout
 import hashlib
 import io
 import json
@@ -11,15 +12,17 @@ from unittest.mock import patch
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from expression_annotation import match_ast
+from expression_annotation import match_ast, match_candidate, rank_candidates
 from expression_document import parse_math_regions, parse_papers, find_ast_occurrences
 from notation_catalog import build_expression_config
 from expression_parser import ExpressionParser, ParseError
 from expression_parser import NotationRegistry, Operator
 from expression_parser import tokenize
 from inspect_expression import main as inspect_main
+from review_scope import build_review_scopes
 from parser_diagnostics import coverage_report
-from notation_catalog import build_catalog, catalog_statistics, registry_from_catalog, search_catalog
+from notation_catalog import (annotation_candidates, build_catalog, catalog_statistics,
+                              registry_from_catalog, search_catalog)
 from smglom_notation_extractor import scan_repository, scan_available_smglom, SMGLOM_REPOSITORIES
 from review_workflow import (find_expression_candidates, find_generic_candidates,
                              generate_classified_suggestion)
@@ -44,6 +47,40 @@ class TestGeneralExpressionParser(unittest.TestCase):
             tree = parser.parse("a@b$c")
             self.assertEqual(tree.value, root)
             self.assertEqual(tree.children[1 if power == 100 else 0].value, nested)
+
+    def test_sized_argument_lists_compose_like_ordinary_groups(self):
+        for source in (
+                r"f\left(x,y\right)",
+                r"\sin\left(g\left(x,y\right),z^2\right)",
+                r"\left[x+y,\frac{u}{v},z_i\right]",
+                r"\left\{x,y\right\}",
+                r"\frac{f\left(x,y\right)}{1+z}",
+                r"\sum_{i=1}^{n} f\left(i,z\right)",
+                r"\int_0^1 f\left(x,y\right)\,dx",
+                r"\begin{pmatrix}f\left(x,y\right)&z\\u&v\end{pmatrix}"):
+            with self.subTest(source=source):
+                plain = source.replace(r"\left", "").replace(r"\right", "")
+                expected = self.parser.parse(plain)
+                tree = self.parser.parse(source)
+                self.assertEqual(tree.text, source)
+                self.assertEqual([(node.kind, node.value, len(node.children))
+                                  for node in tree.walk()],
+                                 [(node.kind, node.value, len(node.children))
+                                  for node in expected.walk()])
+                for node in tree.walk():
+                    self.assertEqual(node.text, source[node.start:node.end])
+                    for child in node.children:
+                        self.assertTrue(node.start <= child.start < child.end <= node.end)
+
+    def test_sized_lists_still_reject_incomplete_or_mismatched_groups(self):
+        for source in (r"f\left(x,\right)", r"\left(x,y\right]",
+                       r"\left(x,,y\right)", r"\left(x,y"):
+            with self.subTest(source=source):
+                with self.assertRaises(ParseError):
+                    self.parser.parse(source)
+                regions = parse_math_regions("$" + source + "$", self.registry)
+                self.assertIsNone(regions[0].tree)
+                self.assertEqual(regions[0].source[regions[0].start:regions[0].end], source)
 
     def test_new_control_sequence_at_runtime(self):
         parser = ExpressionParser([Operator(r"\fooop", 20, "left")])
@@ -556,12 +593,249 @@ class TestGeneralExpressionParser(unittest.TestCase):
             self.assertEqual(inspect_main([r"\unknown{x}"]), 0)
         self.assertIn("OpaqueCommandApplication", output.getvalue())
 
+    def test_top_level_lists_reuse_group_syntax_and_preserve_fallbacks(self):
+        for source in (r"u_1,\dots,u_n", r"\first,\ldots,\last",
+                       r"f(u),g(v),h(w)", r"u,v\in W"):
+            with self.subTest(source=source):
+                tree = self.parser.parse(source)
+                self.assertEqual(tree.kind, "MathSequence")
+                self.assertEqual(tree.roles, ("item",) * len(tree.children))
+                self.assertFalse(tree.metadata["semantic_mapping_available"])
+                for node in tree.walk():
+                    self.assertEqual(node.text, source[node.start:node.end])
+        self.assertEqual([node.text for node in self.parser.parse(r"u,v\in W").children],
+                         ["u", r"v\in W"])
+        self.assertEqual(self.parser.parse(r"\ldots").kind, "SymbolAtom")
+        self.assertEqual(self.parser.parse("u,").kind, "Atom")
+        self.assertEqual(self.parser.parse(r"u,;\label{ref}").text, "u")
+
+    def test_list_support_does_not_hide_malformed_items_or_fragments(self):
+        for source in ("u,,v", "(u,v,)", "u,v+", "u=", "F(", ")=1",
+                       r"\sum_{i=1}^n = 1"):
+            with self.subTest(source=source), self.assertRaises(ParseError):
+                self.parser.parse(source)
+
+    def test_composite_operator_is_configuration_not_semantic_inference(self):
+        source = r"q(u):=\sum_{j=1}^m u_j"
+        tree = self.parser.parse(source)
+        self.assertEqual(tree.value, ":=")
+        self.assertFalse(tree.metadata.semantic_macro)
+        for node in tree.walk():
+            self.assertEqual(node.text, source[node.start:node.end])
+        parser = ExpressionParser([Operator("@@", 7, "right")])
+        self.assertEqual(parser.parse("u@@v").value, "@@")
+
+    def test_mixed_chain_diagnostic_names_conflicting_operator(self):
+        for source, token in ((r"a=b\in C", r"\in"), (r"a=b\neq c", r"\neq")):
+            with self.subTest(source=source), self.assertRaises(ParseError) as caught:
+                self.parser.parse(source)
+            self.assertEqual(caught.exception.position, source.index(token))
+            self.assertEqual(caught.exception.token, token)
+            self.assertEqual(caught.exception.category, "non_associative_chain")
+
+    def test_alignment_failure_offsets_refer_to_original_region(self):
+        source = "Before\n\\begin{gather*}\n u=v \\\\\n =w\n\\end{gather*}"
+        region, = parse_math_regions(source, self.registry)
+        math = source[region.start:region.end]
+        self.assertIsNone(region.tree)
+        self.assertEqual(region.diagnostic["position"], math.index("=w"))
+        self.assertEqual(region.diagnostic["token"], "=")
+        report = coverage_report([region])
+        failure, = report["unsupported_regions"]
+        self.assertEqual(failure["math_text"], math)
+        self.assertEqual(failure["error_line"], 4)
+        self.assertEqual(failure["error_column"], 2)
+
+    def test_coverage_separates_opaque_preservation_from_full_parsing(self):
+        source = r"$\begin{fooenv}u & v@ w\end{fooenv}$ $a+b$ $x+$ $\unlisted$"
+        counts = coverage_report(parse_math_regions(source, self.registry))["structural_parser"]
+        self.assertEqual(counts["total"], 4)
+        self.assertEqual(counts["parsed"], 3)
+        self.assertEqual(counts["fully_parsed"], 2)
+        self.assertEqual(counts["partially_preserved"], 1)
+        self.assertEqual(counts["unsupported"], 1)
+        self.assertEqual(counts["fallback_regions"], 1)
+
+    def test_verified_list_items_can_be_annotated_but_failed_regions_cannot(self):
+        config = build_expression_config(json.loads(
+            (ROOT / "tests/fixtures/configs/test_raw_star_semantics.json").read_text(encoding="utf-8")), [])
+        candidate, = review_workflow.find_expression_candidates("*", config, [])
+        source = "$a*b,c*d$ $a*b+$"
+        with tempfile.TemporaryDirectory() as directory:
+            paper = Path(directory) / "paper.tex"
+            paper.write_text(source, encoding="utf-8")
+            regions = parse_papers(paper, config)
+            rule = dict(candidate["classification"], expression_config=config)
+            matches = find_ast_occurrences(regions, rule, config, candidate)
+            self.assertEqual([match["source_expression"] for match in matches], ["a*b", "c*d"])
+            decisions = [review_workflow.build_review_decision(match, candidate, rule, paper)
+                         for match in matches]
+            validation = apply_annotations.validate_decisions(decisions, [], paper)
+            self.assertEqual(len(validation["valid"]), 2)
+            plan = apply_annotations.build_application_plan(source, decisions, "paper.tex")
+            result, _, failures, count = apply_annotations.render_application_plan(source, plan)
+            self.assertEqual(result, r"$\fooTimes{a}{b},\fooTimes{c}{d}$ $a*b+$")
+            self.assertFalse(failures)
+            self.assertEqual(count, 2)
+
+    def test_paper_cli_reports_parse_failures_before_notation_selection(self):
+        with tempfile.TemporaryDirectory() as directory:
+            paper = Path(directory) / "paper.tex"
+            paper.write_text("Before\n$x+$", encoding="utf-8")
+            output = io.StringIO()
+            def answer(_):
+                self.assertIn("Unparsed math region", output.getvalue())
+                self.assertIn(":2:", output.getvalue())
+                self.assertIn("Context:", output.getvalue())
+                self.assertIn("excluded from review/annotation", output.getvalue())
+                return ""
+            with patch.object(sys, "argv", ["review_workflow.py", "--paper", str(paper)]), \
+                 patch("builtins.input", side_effect=answer), redirect_stdout(output):
+                review_workflow.main()
+
+    def test_configured_relations_separate_two_bound_bodies(self):
+        for relation in (r"\leq", r"\geq", r"\subset", r"\supseteq", r"\sim", r"\ll",
+                         r"\rightarrow", r"\Rightarrow", r"\implies", r"\coloneqq"):
+            with self.subTest(relation=relation):
+                left, right = r"\sum_{i=1}^m a_i", r"\sum_{j=1}^n b_j"
+                source = left + relation + right
+                tree = self.parser.parse(source)
+                self.assertEqual(tree.kind, "BinaryOperator")
+                self.assertEqual(tree.value, self.registry.operators[(relation, "infix")].token)
+                self.assertEqual([child.text for child in tree.children], [left, right])
+                self.assertTrue(all(child.kind == "BigOperatorApplication" for child in tree.children))
+                self.assertFalse(tree.metadata.semantic_macro)
+                for node in tree.walk():
+                    self.assertEqual(node.text, source[node.start:node.end])
+
+    def test_grouping_can_put_a_relation_inside_a_bound_body(self):
+        for relation in (r"\leq", r"\sim", r"\Rightarrow"):
+            with self.subTest(relation=relation):
+                grouped = self.parser.parse(r"\sum_i (a" + relation + " b)")
+                body = dict(grouped.named_children())["body"]
+                self.assertEqual(body.kind, "GroupedExpression")
+                self.assertEqual(body.children[0].value, self.registry.operators[(relation, "infix")].token)
+                outside = self.parser.parse(r"\sum_i a" + relation + " b")
+                self.assertEqual(outside.children[0].kind, "BigOperatorApplication")
+                self.assertEqual(dict(outside.children[0].named_children())["body"].text, "a")
+        unknown = self.parser.parse(r"a\unconfigured b")
+        self.assertEqual(unknown.value, "juxtaposition")
+        self.assertTrue(any(node.kind == "SymbolAtom" and node.value == r"\unconfigured"
+                            for node in unknown.walk()))
+
+    def test_integral_relations_require_a_complete_differential_or_grouped_body(self):
+        for head in (r"\int", "∫"):
+            for relation in (r"\leq", r"\sim", r"\rightarrow", r"\Rightarrow"):
+                with self.subTest(head=head, relation=relation):
+                    source = head + "_0^1 x dx" + relation + " " + head + "_0^1 y dy"
+                    tree = self.parser.parse(source)
+                    self.assertEqual(tree.value, self.registry.operators[(relation, "infix")].token)
+                    self.assertEqual([dict(child.named_children())["body"].text
+                                      for child in tree.children], ["x", "y"])
+                    inside = self.parser.parse(head + "_0^1 (a" + relation + " b) dx")
+                    self.assertEqual(dict(inside.named_children())["body"].text, "(a" + relation + " b)")
+                    with self.assertRaises(ParseError):
+                        self.parser.parse(head + "_0^1 a" + relation + " b dx")
+                    for node in tree.walk():
+                        self.assertEqual(node.text, source[node.start:node.end])
+
+    def test_relation_chain_policy_is_conservative_and_implication_binds_below_comparison(self):
+        for source in (r"a\leq b\leq c", r"a=b\geq c", r"a\Rightarrow b\implies c"):
+            with self.subTest(source=source), self.assertRaises(ParseError):
+                self.parser.parse(source)
+        tree = self.parser.parse(r"a\leq b\Rightarrow c\geq d")
+        self.assertEqual(tree.value, "⇒")
+        self.assertEqual([node.value for node in tree.children], ["≤", "≥"])
+
 
 class TestRegistryIntegration(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.records = scan_repository("arithmetics", SMGLOM_REPOSITORIES["arithmetics"])
         cls.records += scan_repository("mv", SMGLOM_REPOSITORIES["mv"])
+
+    def test_implicit_candidates_and_application_stay_inside_relation_operands(self):
+        config = build_expression_config(configuration(), self.records)
+        candidate = next(item for item in annotation_candidates(build_catalog(self.records, config))
+                         if item["macro"] == "atimes" and item["classification"].get("implicit"))
+        source = r"$\sum_i a b\leq\sum_j c d$"
+        with tempfile.TemporaryDirectory() as directory:
+            paper = Path(directory) / "paper.tex"
+            paper.write_text(source, encoding="utf-8")
+            regions = parse_papers(paper, config)
+            rule = dict(candidate["classification"], expression_config=config)
+            matches = find_ast_occurrences(regions, rule, config, candidate)
+            self.assertEqual([match["source_expression"] for match in matches], ["a b", "c d"])
+            self.assertEqual(find_expression_candidates(r"\leq", config, []), [])
+            decisions = [review_workflow.build_review_decision(match, candidate, rule, paper)
+                         for match in matches]
+            validation = validate_decisions(decisions, self.records, paper)
+            self.assertEqual(len(validation["valid"]), 2)
+            plan = apply_annotations.build_application_plan(
+                source, apply_annotations.materialize_valid_decisions(validation), "paper.tex")
+            rendered, _, failures, count = apply_annotations.render_application_plan(source, plan)
+            self.assertEqual(rendered, r"$\sum_i \atimes{a,b}\leq\sum_j \atimes{c,d}$")
+            self.assertEqual(count, 2)
+            self.assertFalse(failures)
+            self.assertEqual(paper.read_text(encoding="utf-8"), source)
+
+    def test_real_candidates_inside_sized_lists_remain_safe_to_review_and_apply(self):
+        config = build_expression_config(configuration(), self.records)
+        registry = NotationRegistry.from_config(config)
+        candidate = next(item for item in find_generic_candidates("+", self.records)
+                         if item["macro"] == "aplus" and item["module"] == "arithmetics")
+        self.assertTrue(candidate["record"])
+        for expression in (r"f\left(x+y,z\right)",
+                           r"\frac{f\left(x+y,z\right)}{w}",
+                           r"\int_0^1 f\left(x+y,z\right)\,dx",
+                           r"\begin{pmatrix}f\left(x+y,z\right)&w\end{pmatrix}"):
+            with self.subTest(expression=expression):
+                source = "Before\n$  " + expression + "  $\nAfter\n"
+                regions = parse_math_regions(source, registry, Path("paper.tex"))
+                self.assertIsNotNone(regions[0].tree)
+                matches = find_ast_occurrences(
+                    regions, candidate["classification"], config, candidate)
+                ranked = rank_candidates([candidate], {"visible_symbol": "+"})
+                scopes = build_review_scopes(matches, ranked)
+                self.assertEqual(len(scopes), 1)
+                scope = scopes[0]
+                self.assertEqual(scope.matched_source, "x+y")
+                self.assertTrue(scope.review_ready)
+                self.assertEqual(scope.semantic_candidates[0]["macro"], "aplus")
+                self.assertIn("rank", scope.semantic_candidates[0])
+                self.assertNotEqual(scope.matched_source, expression)
+                decision = review_workflow.build_review_decision(
+                    scope.match, scope.semantic_candidates[0],
+                    candidate["classification"], Path("."))
+                plan = apply_annotations.build_application_plan(source, [decision], "paper.tex")
+                rendered, _, failures, count = apply_annotations.render_application_plan(source, plan)
+                self.assertEqual((failures, count), ([], 1))
+                self.assertEqual(rendered, source.replace("x+y", r"\aplus{x,y}"))
+                stale = apply_annotations.build_application_plan(
+                    source.replace("x+y", "x-y"), [decision], "paper.tex")
+                self.assertEqual(len(stale["stale"]), 1)
+                self.assertEqual(stale["safe"], [])
+
+    def test_script_templates_match_ast_scopes_not_carets_in_enclosing_expressions(self):
+        config = build_expression_config(configuration(), self.records)
+        registry = NotationRegistry.from_config(config)
+        power = next(item for item in annotation_candidates(build_catalog(self.records))
+                     if item["macro"] == "power"
+                     and item["classification"].get("grammar_adapter") == "ScriptedTemplateAdapter")
+        for source in ("x^2", "a+x^2", r"\int_0^1 x^2\,dx",
+                       r"\sum_{i=1}^n x^2", r"f\left(x^2,y\right)",
+                       r"\frac{x^2+y}{z}"):
+            with self.subTest(source=source):
+                tree = ExpressionParser(registry=registry).parse(source)
+                matches = match_candidate(tree, power, registry)
+                self.assertEqual([match["matched_expression"] for match in matches], ["x^2"])
+                self.assertEqual(matches[0]["arguments"], ["x", "2"])
+                self.assertEqual(matches[0]["ast_node"]["kind"], "ScriptedExpression")
+                self.assertEqual(source[matches[0]["start"]:matches[0]["end"]], "x^2")
+        for source in (r"\int_0^1 f(x)\,dx", r"\sum_{i=1}^n f(i)"):
+            with self.subTest(source=source):
+                tree = ExpressionParser(registry=registry).parse(source)
+                self.assertEqual(match_candidate(tree, power, registry), [])
 
     def test_real_smglom_precedence_and_command_imports(self):
         cfg = build_expression_config({"smglom_precedence_direction": "lower", "smglom": [
@@ -649,7 +923,7 @@ class TestRegistryIntegration(unittest.TestCase):
             def choose(_):
                 self.assertIsNotNone(regions[0].tree)
                 return candidate
-            with patch.object(review_workflow, "choose_candidate", side_effect=choose), \
+            with redirect_stdout(io.StringIO()), patch.object(review_workflow, "choose_candidate", side_effect=choose), \
                  patch.object(review_workflow, "ask_for_decision", return_value="accepted"), \
                  patch.object(review_workflow, "save_decisions", return_value=1) as save, \
                  patch.object(ExpressionParser, "parse", side_effect=AssertionError("AST should be reused")):
@@ -665,7 +939,7 @@ class TestRegistryIntegration(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             (root / "paper.tex").write_text(r"$a\fooop b$", encoding="utf-8")
-            with patch.object(review_workflow, "choose_candidate", return_value=candidates[0]), \
+            with redirect_stdout(io.StringIO()), patch.object(review_workflow, "choose_candidate", return_value=candidates[0]), \
                  patch.object(review_workflow, "ask_for_decision", return_value="accepted"), \
                  patch.object(review_workflow, "save_decisions", return_value=1) as save:
                 review_workflow.run_generic_review(r"\fooop", candidates, root, cfg)
@@ -723,14 +997,14 @@ class TestRegistryIntegration(unittest.TestCase):
             def prompt(_):
                 self.assertTrue(completed)
                 return ""
-            with patch.object(review_workflow, "PAPERS_DIR", root), \
+            with redirect_stdout(io.StringIO()), patch.object(review_workflow, "PAPERS_DIR", root), \
                  patch("expression_document.parse_papers", side_effect=parse_first), \
                  patch("builtins.input", side_effect=prompt), \
                  patch.object(sys, "argv", ["review_workflow.py", "--expression-config", str(ROOT / "expression-config.example.json")]):
                 review_workflow.main()
 
     def test_tex_structure_does_not_trigger_semantic_lookup(self):
-        with patch("builtins.input", return_value="^"), \
+        with redirect_stdout(io.StringIO()), patch("builtins.input", return_value="^"), \
              patch.object(sys, "argv", ["review_workflow.py"]), \
              patch.object(review_workflow, "find_generic_candidates") as lookup:
             review_workflow.main()

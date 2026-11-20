@@ -410,7 +410,13 @@ class ExpressionParser:
         self.stop_tokens = []
         try:
             self._skip_ignored_commands()
-            result = self._expression(float("-inf"))
+            children = self._comma_list(allow_trailing=True)
+            result = children[0] if len(children) == 1 else self._node(
+                "MathSequence", children[0].start, children[-1].end,
+                "comma-separated expressions", children,
+                roles=tuple("item" for _ in children),
+                metadata={"semantic_mapping_available": False,
+                          "source": "top-level comma separation"})
             self._skip_ignored_commands()
             while self.current.text in self.registry.trailing_punctuation:
                 self._take()
@@ -559,7 +565,8 @@ class ExpressionParser:
     def _locate_error(self, error):
         import re
         position = re.search(r"offset (\d+)", str(error))
-        error.position = int(position.group(1)) if position else self.current.start
+        if error.position is None:
+            error.position = int(position.group(1)) if position else self.current.start
         token = next((item for item in self.tokens if item.start == error.position), self.current)
         error.token = token.text
         if str(error).startswith("Unknown command"):
@@ -696,12 +703,17 @@ class ExpressionParser:
                         roles=tuple(f"alternative_operand_{index}"
                                     for index in range(1, len(children) + 1)))
                     continue
-                raise ParseError("Non-associative operators require explicit grouping")
+                raise ParseError("Non-associative operators require explicit grouping",
+                                 position=token.start, token=token.text,
+                                 category="non_associative_chain")
             right = self._expression(op.precedence + (op.associativity != "right"))
             if (right.kind in {"BinaryOperator", "NaryOperator"} and isinstance(right.metadata, Operator)
                     and right.metadata.precedence == op.precedence
                     and (right.metadata.associativity == "none" or op.associativity == "none")):
-                raise ParseError("Non-associative operators require explicit grouping")
+                raise ParseError("Non-associative operators require explicit grouping",
+                                 position=(right.operator_start if right.operator_start >= 0 else token.start),
+                                 token=right.notation or right.value,
+                                 category="non_associative_chain")
             children = (left, right)
             kind = "BinaryOperator"
             if op.associativity == "sequence":
@@ -735,14 +747,14 @@ class ExpressionParser:
         closing = delimiters.get(opening.text)
         if closing is None:
             raise ParseError("Unsupported sizing delimiter at offset " + str(opening.start))
-        child = self._expression(float("-inf"))
+        children = self._comma_list()
         if self.current.kind != "sized_close":
             raise ParseError("Expected TeX closing size delimiter")
         self._take()
         if self.current.text != closing:
             raise ParseError("Mismatched TeX sizing delimiters")
         end = self._take().end
-        return self._node("GroupedExpression", start, end, opening.text, (child,),
+        return self._node("GroupedExpression", start, end, opening.text, children,
                           metadata={"sized": True})
 
     def _group(self, allow_list=False):
@@ -751,14 +763,29 @@ class ExpressionParser:
                    or self.registry.delimiter_pairs.get(opening.text))
         if closing is None:
             raise ParseError(f"Unsupported delimiter at offset {opening.start}")
-        children = [self._expression(float("-inf"))]
-        while allow_list and self.current.kind == "comma":
-            self._take()
-            children.append(self._expression(float("-inf")))
+        children = (self._comma_list() if allow_list else
+                    [self._expression(float("-inf"))])
         if self.current.text != closing:
             raise ParseError(f"Expected {closing} at offset {self.current.start}")
         end = self._take().end
         return self._node("GroupedExpression", opening.start, end, opening.text, children)
+
+    def _comma_list(self, allow_trailing=False):
+        """Share comma-list syntax without interpreting ellipses or relations."""
+        children = [self._expression(float("-inf"))]
+        while self.current.kind == "comma":
+            # Preserve the existing configured trailing-comma convention.
+            if allow_trailing and "," in self.registry.trailing_punctuation:
+                saved_index = self.index
+                while self.current.text in self.registry.trailing_punctuation:
+                    self._take()
+                    self._skip_ignored_commands()
+                if self.current.kind == "end":
+                    break
+                self.index = saved_index
+            self._take()
+            children.append(self._expression(float("-inf")))
+        return children
 
     def _tex_argument(self):
         if self.current.text == "{":

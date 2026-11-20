@@ -249,8 +249,13 @@ def match_classification(root, classification, registry):
     """Match core grammar or a generic adapter at compatible AST scopes."""
     if not classification.get("grammar_adapter"):
         return match_ast(root, classification, registry)
+    if root.kind in {"Alignment", "Row", "MathSequence"}:
+        return [match for child in root.children
+                for match in match_classification(child, classification, registry)]
     expected_kind = classification.get("grammar_interpretation", {}).get("node_kind")
-    targets = [root]
+    # A caret inside a larger expression does not make that scope a script.
+    targets = ([root] if expected_kind != "ScriptedExpression"
+               or root.kind == expected_kind else [])
     targets.extend(node for node in root.walk()
                    if node is not root and node.kind == expected_kind)
     matches = []
@@ -343,6 +348,31 @@ def match_ast(root, classification, registry):
             if "optional" in node.roles or len(node.children) != classification.get("argument_count"):
                 continue
             children = node.children
+        elif pattern == "scripted_operator":
+            if node.kind != "ScriptedExpression":
+                continue
+            if "^" not in node.roles:
+                continue
+            if len(node.children) != 2:
+                continue
+            children = node.children
+        elif pattern == "template":
+            grammar_interp = classification.get("grammar_interpretation", {})
+            node_kind = grammar_interp.get("node_kind")
+            if node_kind == "MultiPartApplication" and node.kind == "Command":
+                parts = grammar_interp.get("parts", [])
+                arguments_expected = sum(1 for p in parts if p.get("kind") == "argument")
+                if arguments_expected == len(node.children):
+                    first_part = parts[0] if parts else {}
+                    first_fixed_text = first_part.get("text", "")
+                    if first_fixed_text.startswith(r"\sqrt") and canonicalize_tex_notation(node.value) == canonicalize_tex_notation(r"\sqrt"):
+                        children = node.children
+                    else:
+                        continue
+                else:
+                    continue
+            else:
+                continue
         else:
             continue
         arguments = []

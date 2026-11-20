@@ -33,6 +33,36 @@ def render(source, decisions):
 
 
 class TestApplicationPlan(unittest.TestCase):
+    def test_repeated_child_source_is_blocked_instead_of_annotating_wrong_occurrence(self):
+        source = "(a+b)+(a+b)"
+        parent = decision(source, source, r"\outer{(a+b)}{(a+b)}", "outer", 0)
+        child = decision(source, "a+b", r"\inner{a}{b}", "inner", occurrence=1)
+        result, _, failures, count = render(source, [parent, child])
+        self.assertEqual(result, source)
+        self.assertEqual(count, 0)
+        self.assertEqual(len(failures), 1)
+        self.assertIn("ambiguous", failures[0]["detail"])
+        self.assertEqual(failures[0]["decision_count"], 2)
+
+    def test_ambiguous_nested_root_does_not_block_independent_safe_replacement(self):
+        source = "(a+b)+(a+b);c-d"
+        parent = decision(source, "(a+b)+(a+b)", r"\outer{(a+b)}{(a+b)}", "outer", 0)
+        child = decision(source, "a+b", r"\inner{a}{b}", "inner", occurrence=1)
+        independent = decision(source, "c-d", r"\difference{c}{d}", "difference")
+        result, _, failures, count = render(source, [parent, child, independent])
+        self.assertEqual(result, r"(a+b)+(a+b);\difference{c}{d}")
+        self.assertEqual(count, 1)
+        self.assertEqual(len(failures), 1)
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory)
+            paper = output / "paper.tex"
+            paper.write_text(source, encoding="utf-8")
+            with patch.object(apply_annotations, "OUTPUT_DIR", output):
+                report = apply_annotations.apply_annotations([parent, child, independent], return_report=True)
+            self.assertEqual(report["successfully_rendered_decisions"], 1)
+            self.assertEqual(report["failed_decisions"], 2)
+            self.assertEqual(report["failure_reasons"]["nested_render_failure"], 2)
+
     def test_two_disjoint_replacements(self):
         source = "a+b and c-d"
         decisions = [decision(source, "a+b", r"\fooPlus{a}{b}", "fooPlus"),

@@ -28,6 +28,26 @@ class TestGenericNotationAdapters(unittest.TestCase):
         return [entry for entry in self.entries
                 if entry["classification"].get("grammar_adapter") == name]
 
+    def test_adapter_scopes_stay_inside_rows_and_sequence_items(self):
+        from expression_annotation import match_candidate
+        from expression_document import parse_math_regions, _without_alignment_markers
+        config = json.loads((ROOT / "expression-config.example.json").read_text(encoding="utf-8-sig"))
+        registry = NotationRegistry.from_config(config)
+        candidate = next(entry for entry in annotation_candidates(self.entries)
+                         if entry["macro"] == "defeq")
+        for source in (r"\begin{align}a&:=b\\c&:=d\end{align}", "$a:=b,c:=d$"):
+            with self.subTest(source=source):
+                region, = parse_math_regions(source, registry)
+                self.assertIsNotNone(region.tree, region.error)
+                matches = match_candidate(region.tree, candidate, registry)
+                self.assertEqual([[_without_alignment_markers(arg).strip() for arg in match["arguments"]]
+                                  for match in matches], [["a", "b"], ["c", "d"]])
+                for match in matches:
+                    self.assertEqual(match["matched_expression"],
+                                     source[region.start + match["start"]:region.start + match["end"]])
+                    self.assertNotIn(r"\\", match["matched_expression"])
+                    self.assertNotIn(",", match["matched_expression"])
+
     def test_multi_part_adapter_handles_unrelated_real_records(self):
         entries = self.by_adapter("MultiPartAdapter")
         self.assertGreaterEqual(len({entry["module"] for entry in entries}), 3)
@@ -178,6 +198,93 @@ class TestGenericNotationAdapters(unittest.TestCase):
                                 if entry["classification"].get("pattern_type") == "sequence"
                                 else "\\" + macro + "".join("{" + arg + "}" for arg in arguments))
                     self.assertEqual(generate_classified_suggestion(matches[0], candidate), expected)
+
+    def test_exponentiation_and_root_semantic_matching(self):
+        """Regression test for scripted_operator and template pattern support.
+
+        Verifies that:
+        - Exponentiation (x^2, 2^3) matches power semantic macro
+        - Subscripts (x_i) do NOT match power
+        - Nth-root (\sqrt[3]{x}) matches aroot semantic macro
+        - Single-arg square root (\sqrt{x}) matches asqrt semantic macro
+        """
+        raw_config = json.loads((ROOT / "expression-config.example.json").read_text(encoding="utf-8-sig"))
+        config = raw_config  # Already has proper structure
+        registry = NotationRegistry.from_config(config)
+        parser = ExpressionParser(registry=registry)
+        candidates = annotation_candidates(self.entries)
+
+        test_cases = [
+            ("x^2", "power", "Exponentiation: base x, exponent 2"),
+            ("2^3", "power", "Exponentiation: base 2, exponent 3"),
+            ("a^{2}", "power", "Exponentiation with braces: base a, exponent {2}"),
+            (r"\sqrt{x}", "asqrt", "Single-arg square root"),
+            (r"\sqrt[3]{x}", "aroot", "Nth-root with explicit index"),
+            (r"\sqrt[2]{x}", "aroot", "Square root with explicit index 2"),
+        ]
+
+        for expr, expected_macro, description in test_cases:
+            with self.subTest(expr=expr, macro=expected_macro):
+                ast = parser.parse(expr)
+                expected_cands = [c for c in candidates if c.get("macro") == expected_macro]
+                self.assertTrue(expected_cands, f"No candidates found for {expected_macro}")
+
+                matches = []
+                for cand in expected_cands:
+                    m = match_ast(ast, cand.get("classification"), registry)
+                    if m:
+                        matches.extend(m)
+
+                self.assertTrue(matches, f"Failed to match {expr} to {expected_macro}: {description}")
+                self.assertEqual(matches[0].get("pattern_type"),
+                                expected_cands[0].get("classification", {}).get("pattern_type"),
+                                f"Pattern type mismatch for {expr}")
+
+    def test_subscripts_do_not_match_exponentiation(self):
+        """Verify that subscripts are not interpreted as exponentiation.
+
+        This is a critical safety check to prevent x_i from being matched as x^i.
+        """
+        config = json.loads((ROOT / "expression-config.example.json").read_text(encoding="utf-8-sig"))
+        registry = NotationRegistry.from_config(config)
+        parser = ExpressionParser(registry=registry)
+        candidates = annotation_candidates(self.entries)
+
+        # Parse subscript expression
+        ast = parser.parse("x_i")
+
+        # Get power candidates
+        power_cands = [c for c in candidates if c.get("macro") == "power"]
+        self.assertTrue(power_cands, "No power candidates found")
+
+        # Verify it does NOT match power
+        for cand in power_cands:
+            matches = match_ast(ast, cand.get("classification"), registry)
+            self.assertFalse(matches, f"Subscript x_i should NOT match power pattern, but got: {matches}")
+
+    def test_template_handler_not_overly_broad(self):
+        """Verify that the template handler doesn't match unrelated commands.
+
+        This ensures that commands with the same argument count as templates
+        don't get false positive matches.
+        """
+        config = json.loads((ROOT / "expression-config.example.json").read_text(encoding="utf-8-sig"))
+        registry = NotationRegistry.from_config(config)
+        parser = ExpressionParser(registry=registry)
+        candidates = annotation_candidates(self.entries)
+
+        # Test that unrelated 2-argument commands don't match aroot
+        aroot_cands = [c for c in candidates if c.get("macro") == "aroot"]
+        if aroot_cands:
+            aroot_cand = aroot_cands[0]
+
+            # Parse a different 2-argument command
+            ast = parser.parse(r"\frac{a}{b}")
+            matches = match_ast(ast, aroot_cand.get("classification"), registry)
+
+            # Should NOT match because it's \frac, not \sqrt
+            self.assertFalse(matches,
+                           r"\frac{a}{b} should NOT match aroot (nth-root) pattern")
 
 
 if __name__ == "__main__":

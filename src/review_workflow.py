@@ -1,7 +1,9 @@
 import hashlib
 import json
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
+from parser_diagnostics import format_region_failure
 
 from smglom_notation_extractor import scan_available_smglom
 
@@ -103,6 +105,14 @@ def run_structural_preview(symbol, papers_dir=PAPERS_DIR, expression_config=None
                            parsed_regions=None, show_ast=False, scope_order="innermost",
                            semantic_status=None):
     """Render parsed scopes with no semantic candidate and never write decisions."""
+    return run_structural_review(symbol, papers_dir, expression_config, parsed_regions,
+                                 show_ast, scope_order, semantic_status, preview=True)
+
+
+def run_structural_review(symbol, papers_dir=PAPERS_DIR, expression_config=None,
+                          parsed_regions=None, show_ast=False, scope_order="innermost",
+                          semantic_status=None, preview=False):
+    """Review parsed scopes without claiming an executable semantic definition."""
     if expression_config is None:
         expression_config = json.loads(
             (PROJECT_DIR / "expression-config.example.json").read_text(encoding="utf-8-sig"))
@@ -111,17 +121,70 @@ def run_structural_preview(symbol, papers_dir=PAPERS_DIR, expression_config=None
     expression_config = build_expression_config(expression_config)
     regions = parsed_regions if parsed_regions is not None else parse_papers(
         papers_dir, expression_config)
+    if not preview:
+        for region in regions:
+            if region.error:
+                print(format_region_failure(region))
     matches = find_structural_occurrences(
         regions, symbol, expression_config, semantic_status)
     from review_scope import build_review_scopes, render_review_scope
     scopes = build_review_scopes(matches, (), scope_order, include_structural=True)
     if not scopes:
+        if not preview:
+            print("No structurally parsed occurrences match this query; no meaning was recorded.")
         return 0
     print(f"Found {len(scopes)} structural review scope(s) in the paper collection.")
+    decisions = []
     for number, scope in enumerate(scopes, 1):
         print(render_review_scope(scope, number, len(scopes), show_ast))
-    print("\nPreview mode: no decisions were written.")
-    return len(scopes)
+        if not preview:
+            action = choose_candidate([])
+            if action is None:
+                break
+            decisions.append(build_unresolved_decision(
+                scope.match, symbol, papers_dir, expression_config, action))
+    if preview:
+        print("\nPreview mode: no decisions were written.")
+        return len(scopes)
+    total = save_decisions(decisions) if decisions else len(load_existing_decisions())
+    print(f"Saved {len(decisions)} unresolved decision(s). Total stored: {total}")
+    if decisions:
+        print("Meanings remain unresolved until an annotation-ready semantic definition is configured and accepted.")
+    return len(decisions)
+
+
+def build_unresolved_decision(match, symbol, papers_dir, configuration, action):
+    """Persist human intent separately from executable semantic annotations."""
+    if action not in {"meaning", "unresolved"}:
+        raise ValueError("Expected a meaning or unresolved review action")
+    meaning = ""
+    if action == "meaning":
+        while not meaning:
+            meaning = input("Describe the intended meaning (stored for review, not applied): ").strip()
+    source = match["source_expression"]
+    base, path = Path(papers_dir), Path(match["file"])
+    relative = path.name if base.is_file() else str(path.relative_to(base))
+    record = {
+        "visible_symbol": symbol, "file": relative,
+        "line": match["line"], "column": match["column"],
+        "start": match["source_start"], "end": match["source_end"],
+        "matched_expression": source, "full_text": match["text"],
+        "source_hash": hashlib.sha256(source.encode("utf-8")).hexdigest(),
+        "decision": "unresolved", "semantic_meaning": meaning or None,
+        "semantic_status": "user_provided_meaning" if meaning else "unresolved",
+        "semantic_macro": None, "semantic_suggestion": None,
+        "annotation_ready": False,
+        "configuration_source": "human review",
+        "meaning_provenance": {
+            "source": "human review", "method": "interactive input",
+            "recorded_at": datetime.now(timezone.utc).isoformat(),
+        },
+        "pattern_type": match["pattern_type"],
+        "expression_config": configuration,
+    }
+    identity = "\0".join((relative, str(record["start"]), str(record["end"]), symbol, source))
+    record["decision_id"] = hashlib.sha256(identity.encode("utf-8")).hexdigest()
+    return record
 
 def generate_classified_suggestion(match, candidate):
     """Build a semantic macro call from a classified notation match."""
@@ -220,7 +283,7 @@ def run_generic_review(symbol, candidates, papers_dir=PAPERS_DIR, expression_con
         parsed_regions = parse_papers(papers_dir, expression_config)
     for region in parsed_regions:
         if region.error:
-            print(f"Unparsed math region in {region.file}, offset {region.start}: {region.error}")
+            print(format_region_failure(region))
     from expression_annotation import document_context, rank_candidates
     paths = [Path(papers_dir)] if Path(papers_dir).is_file() else sorted(Path(papers_dir).rglob("*.tex"))
     source = "\n".join(path.read_text(encoding="utf-8", errors="replace") for path in paths)
@@ -237,7 +300,9 @@ def run_generic_review(symbol, candidates, papers_dir=PAPERS_DIR, expression_con
     candidates = rank_candidates(candidates, occurrence, context, history)
     if not candidates:
         print("No semantic candidates were found.")
-        return 0
+        return run_structural_review(
+            symbol, papers_dir, expression_config, parsed_regions, show_ast,
+            scope_order, preview=preview)
     # Ranked candidates in one review group share the structural notation.
     # Semantic selection happens only after the exact source scope is shown.
     selected = candidates[0]
@@ -248,7 +313,9 @@ def run_generic_review(symbol, candidates, papers_dir=PAPERS_DIR, expression_con
         parsed_regions, classification, expression_config, selected)
     if not matches:
         print("No matching occurrences were found in the papers.")
-        return 0
+        return run_structural_review(
+            symbol, papers_dir, expression_config, parsed_regions, show_ast,
+            scope_order, "Catalogue candidates do not match this parsed structure.", preview)
 
     for match in matches:
         match.setdefault("classification", dict(classification))
@@ -257,7 +324,9 @@ def run_generic_review(symbol, candidates, papers_dir=PAPERS_DIR, expression_con
     scopes = build_review_scopes(matches, candidates, scope_order)
     if not scopes:
         print("No review-ready occurrences were found in the papers.")
-        return 0
+        return run_structural_review(
+            symbol, papers_dir, expression_config, parsed_regions, show_ast,
+            scope_order, "No annotation-ready candidate matches this scope.", preview)
 
     print(f"Found {len(scopes)} review scope(s) in the paper collection.")
     decisions = []
@@ -276,13 +345,17 @@ def run_generic_review(symbol, candidates, papers_dir=PAPERS_DIR, expression_con
                 print(scope.highlighted)
                 print(render_review_scope(scope, show_ast=show_ast))
         match = scope.match
-        if not scope.semantic_candidates:
+        if not scope.semantic_candidates and preview:
             continue
         selected = scope.semantic_candidates[0] if preview else choose_candidate(
             list(scope.semantic_candidates))
         if selected is None:
             print("Review stopped without selecting a semantic meaning for this scope.")
             break
+        if isinstance(selected, str) and selected in {"meaning", "unresolved"}:
+            decisions.append(build_unresolved_decision(
+                match, symbol, papers_dir, expression_config, selected))
+            continue
         suggestion = generate_classified_suggestion(match, selected)
         if suggestion is None:
             continue
@@ -525,6 +598,18 @@ def main():
         if "--report-unsupported" in sys.argv:
             return
 
+    if parsed_regions is None and paper_option:
+        # Parse and report failures even before a notation is selected.
+        initial_config = json.loads((PROJECT_DIR / "expression-config.example.json").read_text(
+            encoding="utf-8-sig"))
+        from notation_catalog import build_expression_config
+        from expression_document import parse_papers
+        initial_config = build_expression_config(initial_config)
+        initial_regions = parse_papers(papers_target, initial_config)
+        for region in initial_regions:
+            if region.error:
+                print(format_region_failure(region))
+
     # ---------------------------------------------
     # STEP 1
     # User selects visible LaTeX notation
@@ -593,9 +678,11 @@ def main():
     if structural_config is None:
         structural_config = json.loads(
             (PROJECT_DIR / "expression-config.example.json").read_text(encoding="utf-8-sig"))
-    if run_structural_preview(
+    structural_review = run_structural_preview if preview else run_structural_review
+    reviewed = structural_review(
             symbol, papers_target, structural_config, structural_regions,
-            show_ast, scope_order, status):
+            show_ast, scope_order, status)
+    if reviewed or not preview:
         return
     if matches:
         display_catalog(matches)
@@ -608,26 +695,25 @@ def main():
 
 def choose_candidate(results):
     """
-    Let the user choose one semantic candidate.
+    Return a candidate, a non-executable review action, or None to quit.
     """
-
-    if not results:
-        return None
 
     while True:
 
         print()
 
         choice = input(
-            "Choose a semantic candidate by number, "
-            "or Q to quit: "
+            ("Choose a semantic candidate by number, or " if results else "No suitable semantic candidate. ")
+            + "[M] Provide a meaning  [U] Leave unresolved  [Q] Quit: "
         ).strip()
 
         if choice.lower() == "q":
             return None
+        if choice.lower() in {"m", "u"}:
+            return "meaning" if choice.lower() == "m" else "unresolved"
 
         if not choice.isdigit():
-            print("Please enter a number or Q.")
+            print("Please enter a listed number, M, U, or Q.")
             continue
 
         number = int(choice)

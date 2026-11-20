@@ -1,3 +1,5 @@
+from contextlib import redirect_stdout
+import io
 import json
 import sys
 import tempfile
@@ -235,7 +237,7 @@ class TestEqualityPipeline(unittest.TestCase):
             paper = papers / "paper.tex"
             paper.write_text(original, encoding="utf-8")
 
-            with patch.object(review_workflow, "DECISIONS_DIR", decisions_file.parent), \
+            with redirect_stdout(io.StringIO()), patch.object(review_workflow, "DECISIONS_DIR", decisions_file.parent), \
                  patch.object(review_workflow, "DECISION_FILE", decisions_file), \
                  patch.object(review_workflow, "choose_candidate", return_value=self.eq_candidate), \
                  patch.object(review_workflow, "ask_for_decision", return_value="accepted"):
@@ -245,7 +247,7 @@ class TestEqualityPipeline(unittest.TestCase):
                     ),
                     1,
                 )
-            with patch.object(review_workflow, "DECISIONS_DIR", decisions_file.parent), \
+            with redirect_stdout(io.StringIO()), patch.object(review_workflow, "DECISIONS_DIR", decisions_file.parent), \
                  patch.object(review_workflow, "DECISION_FILE", decisions_file), \
                  patch.object(
                      review_workflow, "choose_candidate",

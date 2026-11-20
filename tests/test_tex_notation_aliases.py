@@ -1,3 +1,5 @@
+from contextlib import redirect_stdout
+import io
 import json
 import sys
 import tempfile
@@ -119,7 +121,7 @@ class TestTexNotationAliases(unittest.TestCase):
             paper = root / "paper.tex"
             paper.write_text(source, encoding="utf-8")
             decision_file = root / "decisions" / "review_results.json"
-            with patch.object(review_workflow, "DECISIONS_DIR", decision_file.parent), \
+            with redirect_stdout(io.StringIO()), patch.object(review_workflow, "DECISIONS_DIR", decision_file.parent), \
                  patch.object(review_workflow, "DECISION_FILE", decision_file), \
                  patch.object(review_workflow, "choose_candidate", return_value=candidate), \
                  patch.object(review_workflow, "ask_for_decision", return_value="accepted"):

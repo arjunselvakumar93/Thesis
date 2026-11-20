@@ -1,3 +1,5 @@
+from contextlib import redirect_stdout
+import io
 import sys
 import tempfile
 import unittest
@@ -133,7 +135,7 @@ class TestExpressionPipeline(unittest.TestCase):
             papers = root / "papers"
             papers.mkdir()
             Path(papers, "paper.tex").write_text("$a+b*c$", encoding="utf-8")
-            with patch.object(review_workflow, "DECISIONS_DIR", root / "decisions"), \
+            with redirect_stdout(io.StringIO()), patch.object(review_workflow, "DECISIONS_DIR", root / "decisions"), \
                  patch.object(review_workflow, "DECISION_FILE", root / "decisions" / "review.json"), \
                  patch.object(review_workflow, "choose_candidate", return_value=self.candidate), \
                  patch.object(review_workflow, "ask_for_decision", return_value="accepted"):
